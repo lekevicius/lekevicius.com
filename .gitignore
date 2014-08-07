@@ -1,0 +1,4 @@
+node_modules/
+build/
+design/
+config/keys.json

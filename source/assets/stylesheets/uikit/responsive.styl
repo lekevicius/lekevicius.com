@@ -2,6 +2,7 @@
 
 @-ms-viewport
   width device-width
+
 @media screen and (max-width: 400px)
   @-ms-viewport
     width 320px
@@ -64,10 +65,6 @@
   @media screen_large_only
     responsive-visibility()
 
-
-
-
-
 .hidden-t
   responsive-visibility()
   @media screen_tiny_only
@@ -124,13 +121,12 @@
   @media screen_large_only
     responsive-invisibility()
 
-
-
-
 .visible-print
   responsive-invisibility()
+
 @media print
   .visible-print
     responsive-visibility()
+
   .hidden-print
     responsive-invisibility()

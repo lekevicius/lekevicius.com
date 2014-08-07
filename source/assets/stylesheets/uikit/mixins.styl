@@ -42,17 +42,20 @@ ie7-inline-block()
 -pos(type, args)
   i = 0
   position: s(type)
-  {args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+  {args [ i ]}: args[i + 1] is a 'unit' ? args[i += 1]:0
   if ( length(args) > i + 1 )
-    {args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+    {args [ i += 1 ]}: args[i + 1] is a 'unit' ? args[i += 1]:0
   if ( length(args) > i + 1 )
-    {args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+    {args [ i += 1 ]}: args[i + 1] is a 'unit' ? args[i += 1]:0
   if ( length(args) > i + 1 )
-    {args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+    {args [ i += 1 ]}: args[i + 1] is a 'unit' ? args[i += 1]:0
+
 fixed()
   -pos('fixed', arguments)
+
 absolute()
   -pos('absolute', arguments)
+
 relative()
   -pos('relative', arguments)
 
@@ -88,19 +91,22 @@ tab-focus()
 
 border-top-radius(radius)
   border-top-right-radius radius
-   border-top-left-radius radius
+    border-top-left-radius radius
+
 border-right-radius(radius)
   border-bottom-right-radius radius
   border-top-right-radius radius
+
 border-bottom-radius(radius)
   border-bottom-right-radius radius
   border-bottom-left-radius radius
+
 border-left-radius(radius)
   border-bottom-left-radius radius
   border-top-left-radius radius
 
 hide-text()
-  font 0/0 a
+  font 0 / 0 a
   color transparent
   text-shadow none
   background-color transparent
@@ -154,16 +160,20 @@ responsive-img(display = block)
 
 responsive-visibility()
   display block !important
-  tr &
+  tr
+  &
     display table-row !important
-  th &, td &
+  th
+  &, td &
     display table-cell !important
 
 responsive-invisibility()
   display none !important
-  tr &
+  tr
+  &
     display none !important
-  th &, td &
+  th
+  &, td &
     display none !important
 
 // Gradients
@@ -194,7 +204,7 @@ gradient-radial(inner_color = #555, outer_color = #333)
 
 gradient-striped(color = #555, angle = 45deg)
   background-color color
-  shade = rgba(255,255,255,.15)
+  shade = rgba(255, 255, 255, .15)
   background-image linear-gradient(angle, shade 25%, transparent 25%, transparent 50%, shade 50%, shade 75%, transparent 75%, transparent)
 
 ie-reset-gradient()
