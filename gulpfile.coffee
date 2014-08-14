@@ -46,6 +46,9 @@ gulp.task 'images', ['clean'], ->
   .pipe(imagemin({optimizationLevel: 5}))
   .pipe(gulp.dest('build/img'))
 
+gulp.task 'content', ['clean'], ->
+  gulp.src(paths.contents)
+
 gulp.task 'watch', ->
   gulp.watch(paths.scripts, ['scripts'])
   gulp.watch(paths.images, ['images'])
