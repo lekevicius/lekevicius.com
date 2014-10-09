@@ -1,0 +1,15 @@
+---
+title: Page Not Found
+color: '#fc0c44'
+---
+extends ../../assets/templates/base
+block content
+  p.error I am terribly sorry, but this page does not exist.
+  p You might have followed a dead link or mistyped something. Either way, you can <a href="/">go to the home page</a> or search the site for what   you are looking for.
+  
+  form.color-border.site-search( action="/" )
+    .input-text
+      input( type='text', name='q', placeholder='Search Lekevicius.com' )
+    .input.color-background( type='submit', value='Search' )
+  
+  p Also, if you think I should know about this missing page, please tweet me <a href='http://twitter.com/lekevicius'>@lekevicius</a>.
