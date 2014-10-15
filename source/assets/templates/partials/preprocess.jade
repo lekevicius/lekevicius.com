@@ -1,0 +1,47 @@
+//- unless page.color
+//-   - page.color = '#ff9900'
+
+if helpers.fs && file
+  - originalFilePath = file.history[0]
+
+  - cssPath = originalFilePath.replace( /\.(md|jade)$/, '.styl' )
+  if helpers.fs.existsSync( cssPath )
+    - baselessPath = cssPath.split('/content/')[1].replace('.styl', '')
+    if baselessPath.indexOf('pages') > -1
+      - page.customStylesheet = baselessPath.replace('pages', '')
+    - match = helpers.rePostName.exec(baselessPath)
+    if match
+      - page.customStylesheet = "/journal/" + match[1] +"/"+ match[2] +"/"+ match[3] +"/"+ match[4]
+    if page.customStylesheet
+      - page.customStylesheet = page.customStylesheet + '/style.css'
+
+  - jsPath = originalFilePath.replace( /\.(md|jade)$/, '.coffee' )
+  if helpers.fs.existsSync( jsPath )
+    - baselessPath = jsPath.split('/content/')[1].replace('.coffee', '')
+    if baselessPath.indexOf('pages') > -1
+      - page.customScript = baselessPath.replace('pages', '')
+    - match = helpers.rePostName.exec(baselessPath)
+    if match
+      - page.customScript = "/journal/" + match[1] +"/"+ match[2] +"/"+ match[3] +"/"+ match[4]
+    if page.customScript
+      - page.customScript = page.customScript + '/script.js'
+
+
+//- @page_data = current_page.data.dup
+//- unless @page_data['color']
+//-   color_seed = ( current_page.data.title ? current_page.data.title : current_page.url )
+//-   hue = (("0x"+Digest::MD5.hexdigest(color_seed).to_s[0..7]).hex.to_f / 4294967296 * 360 ).to_i
+//-   color = ColorMath::HSL.new(hue, 0.75, 0.30)
+//-   @page_data['color'] = color.hex
+//- end
+
+//- path_components = current_page.url.split('/')
+//- @active_navigation_item = path_components.size > 0 ? path_components[1] : 'home'
+
+//- @menu = {
+//-   'journal' => '/journal',
+//-   'projects' => '/projects',
+//-   'portfolio' => '/portfolio',
+//-   'profile' => '/profile'
+//- }
+//- @possible_menu_keys = @menu.keys

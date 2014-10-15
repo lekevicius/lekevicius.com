@@ -1,17 +1,85 @@
+include partials/preprocess
+
+//- <!--[if lt IE 7 ]><html lang="en" class="no-js ie6 lt-ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
+//- <!--[if IE 7 ]>   <html lang="en" class="no-js ie7 lt-ie8 lt-ie9 lt-ie10">       <![endif]-->
+//- <!--[if IE 8 ]>   <html lang="en" class="no-js ie8 lt-ie9 lt-ie10">              <![endif]-->
+//- <!--[if IE 9 ]>   <html lang="en" class="no-js ie9 lt-ie10">                     <![endif]-->
+//- <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js">                 <!--<![endif]-->
+
+//- <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+
+
+
+
+
+
+//-   <% is_article = !! ( current_page.path =~ /journal\/(\d{4})-(\d{2})-(\d{2})-/i ) %>
+//-   <meta property="og:type" content="<%= is_article ? 'article' : 'website' %>">
+//-   <meta property="og:url" content="<%= @site.baseurl %><%= current_page.url %>">
+//-   <meta property="og:site_name" content="Jonas Lekevicius">
+//-   <% if current_page.data.title %>
+//-     <meta property="og:title" content="<%= current_page.data.title + ( is_article ? ' by ' : ' - ' ) + 'Jonas Lekevicius' %>">
+//-   <% else %>
+//-     <meta property="og:title" content="Jonas Lekevicius">
+//-   <% end %>
+//-   <meta property="og:description" content="Personal website of Jonas Lekevicius">
+//-   <% if is_article %>
+//-   <meta property="article:published_time" content="<%= current_page.date.strftime("%Y-%m-%d") %>">
+//-   <meta property="article:author" content="<%= @site.baseurl %>/profile">
+//-   <% end %>
+
+//-   <!--[if lt IE 9]>
+//-     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+//-     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+//-   <![endif]-->
+
+//- </head>
+
+//- <body id="body" class="<%= current_page.data.bodyclass %>">
+//-   <%= partial 'layouts/includes/analytics' %>
+//-   <div id="container">
+
+
 doctype html
 html
   head
     block head
 
+      title
+        if page.title
+          | #{ page.title } - #{ site.title }
+        else
+          | #{ site.title }
+
       meta( charset='utf-8' )
       meta( http-equiv='X-UA-Compatible', content='IE=edge,chrome=1' )
       meta( name='viewport', content='width=device-width, initial-scale=1.0' )
 
-      meta( name='description', content=( description ) )
+      //- TODO: Check if redirect starts with http://
+      if page.redirect
+        meta( http-equiv="refresh", content="0;URL=#{ page.redirect }" )
 
-      title= title
+      meta( name='description', content=site.description )
+      meta( name="author", content=site.author )
+      link( type="text/plain", rel="author", href="#{ site.url }/humans.txt" )
+      // See #{ site.url }/humans.txt for detailed info about authorship and used technologies
+
+      meta( name="msapplication-TileColor", content="#df342e" )
+      meta( name="msapplication-TileImage", content="/tileicon.png" )
+
+      meta( name="apple-mobile-web-app-title", content="Lekevicius" )
+      meta( name="apple-mobile-web-app-capable", content="yes" )
+      meta( name="apple-mobile-web-app-status-bar-style", content="black-translucent" )
+
+      link( rel="canonical" href="#{ site.url }#{ page.url }" )
+      link( rel="alternate" type="application/atom+xml" title="Journal Feed (Atom)" href="/feed.xml" )
 
       link( rel='stylesheet', href='/css/jl.css' )
+
+      //- style#color-styles.
+      //-   a, .color-text { color: #{ page.color } } #color, #color-cover { background-color: #{ page.color } } .color-background { background-color: #{ page.color } !important } .color-border { border-color: #{ page.color } !important }
+      if page.customStylesheet
+        link( href=page.customStylesheet, rel="stylesheet" )
 
       //- script( src="//use.typekit.net/tdv5ais.js" )
       //- script try{Typekit.load();}catch(e){}
@@ -31,4 +99,7 @@ html
 
       script( src="http://code.jquery.com/jquery-2.1.1.min.js" )
       script( src="/js/jl.js" )
+
+      if page.customScript
+        script( src=page.customScript )
 

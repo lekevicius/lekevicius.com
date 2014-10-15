@@ -1,18 +1,3 @@
-###
-Tasks:
-  * Fix S3 and VDK ***
-  * Journal index and pagination *****
-  * Build Journal monthly archive ****
-  * Full page template with metadata **
-  * Custom stylesheet inclusion **
-  * Custom js inclusion **
-  * Integrating jQuery plugins: Entree, Retina, Seen, Etc. ***
-  - Page color plugin ***
-  - Sketches *****
-  - Typography ****
-  - Responsive menu and navigation ****
-###
-
 # tags = ->
 #   stream = through.obj (file, enc, cb) ->
 #     @push file
@@ -50,6 +35,7 @@ Tasks:
 gulp = require 'gulp'
 http = require 'http'
 path = require 'path'
+fs = require 'fs'
 
 # General utilities
 del = require 'del'
@@ -61,7 +47,6 @@ through = require 'through2'
 
 # HTML and Journal
 jade = require 'jade'
-gulpJade = require 'gulp-jade'
 frontmatter = require 'gulp-front-matter'
 minifyHtml = require 'gulp-minify-html'
 marked = require 'gulp-marked'
@@ -87,17 +72,16 @@ webserver = require 'gulp-webserver'
 
 # Deployment
 sitemap = require 'gulp-sitemap'
-revAll = require 'gulp-rev-all'
+revall = require 'gulp-rev-all'
 parallelize = require 'concurrent-transform'
 awspublish = require 'gulp-awspublish'
 
 keys = require './config/keys.json'
 
 
-
 paths =
   posts: 'source/content/journal/*.md'
-  postsMedia: ['source/content/journal/**/*.*', '!source/content/journal/*.md']
+  postsMedia: ['source/content/journal/**/*.*', '!source/content/journal/*.+(md|styl|coffee)']
   pages: 'source/content/pages/**/*.jade'
   pagesMedia: ['source/content/pages/**/*.*', '!source/content/pages/**/*.+(jade|styl|coffee)']
   stylesheets: 'source/assets/stylesheets/site.styl'
@@ -114,7 +98,7 @@ site =
   title: "Jonas Lekevicius",
   author: "Jonas Lekevicius",
   email: "jonas@lekevicius.com",
-  descrption: "A personal website of Jonas Lekevicius",
+  description: "A personal website of Jonas Lekevicius",
   # 'Journal by Jonas Lekevicius about design, development, technology, how we got to where we are and where we might go next.'
   url: "http://lekevicius.com"
   date: new Date()
@@ -163,12 +147,14 @@ applyTemplate = (templateFile) ->
     data =
       site: site
       page: file.page
+      file: file
+      helpers: helpers
       content: file.contents.toString()
     file.contents = new Buffer(template(data), 'utf8')
     @push file
     cb()
 
-
+helpers = { fs: fs, rePostName: rePostName }
 
 ## TASKS ##
 
@@ -176,22 +162,26 @@ gulp.task 'clean', (cb) -> del ['build'], cb
 
 taskStylesheets = ->
   gulp.src(paths.stylesheets)
-  .pipe(sourcemaps.init())
+  # .pipe(sourcemaps.init())
   .pipe(stylus())
   .pipe(autoprefixer())
   .pipe(concat('jl.css'))
   .pipe(csso())
-  .pipe(sourcemaps.write())
+  # .pipe(sourcemaps.write())
   .pipe(gulp.dest('build/css'))
 
   gulp.src(paths.pageStylesheets)
-  .pipe(sourcemaps.init())
+  # .pipe(sourcemaps.init())
   .pipe(stylus())
   .pipe(autoprefixer())
   .pipe(csso())
-  .pipe(sourcemaps.write())
+  # .pipe(sourcemaps.write())
   .pipe(rename (path) ->
-    path.dirname = path.dirname.replace('pages/', '') + "/#{ path.basename }"
+    match = rePostName.exec path.basename
+    if match
+      path.dirname = "journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }"
+    else
+      path.dirname = path.dirname.replace('pages/', '') + "/#{ path.basename }"
     path.basename = 'style'
     path
   )
@@ -203,20 +193,24 @@ gulp.task 'stylesheets-watch', taskStylesheets
 
 taskScripts = ->
   gulp.src(paths.scripts)
-  .pipe(sourcemaps.init())
+  # .pipe(sourcemaps.init())
   .pipe(rigger())
   .pipe(uglify())
   .pipe(concat('jl.js'))
-  .pipe(sourcemaps.write())
+  # .pipe(sourcemaps.write())
   .pipe(gulp.dest('build/js'))
 
   gulp.src(paths.pageScripts)
-  .pipe(sourcemaps.init())
+  # .pipe(sourcemaps.init())
   .pipe(coffee())
   .pipe(uglify())
-  .pipe(sourcemaps.write())
+  # .pipe(sourcemaps.write())
   .pipe(rename (path) ->
-    path.dirname = path.dirname.replace('pages/', '') + "/#{ path.basename }"
+    match = rePostName.exec path.basename
+    if match
+      path.dirname = "journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }"
+    else
+      path.dirname = path.dirname.replace('pages/', '') + "/#{ path.basename }"
     path.basename = 'script'
     path
   )
@@ -229,6 +223,11 @@ gulp.task 'scripts-watch', taskScripts
 taskMedia = ->
   # Posts media
   gulp.src(paths.postsMedia, { base: 'source/content' })
+  .pipe(rename (path) ->
+    match = rePostName.exec path.dirname
+    path.dirname = "journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }" if match
+    path
+  )
   .pipe(gulp.dest('build'))
 
   # Pages media
@@ -256,7 +255,7 @@ gulp.task 'media-watch', taskMedia
 
 taskPosts = ->
   gulp.src(paths.posts)
-  .pipe(frontmatter({ property: 'page', remove: true}))    
+  .pipe(frontmatter({ property: 'page', remove: true }))    
   .pipe(filename2date())   
   .pipe(marked())
   # .pipe(summarize('<!--more-->'))
@@ -284,6 +283,8 @@ taskPages = ->
     data =
       site: site
       page: file.page
+      file: file
+      helpers: helpers
     template = jade.compileFile file.path
     file.contents = new Buffer template(data), 'utf8'
     @push file
@@ -356,12 +357,10 @@ gulp.task 'server', ['default'], ->
 gulp.task 'publish', ['default'], ->
   publisher = awspublish.create keys
 
-  headers =
-   'Cache-Control': 'max-age=315360000, no-transform, public'
-
   gulp.src('build/**/*.*')
+    # .pipe(revall())
     .pipe(awspublish.gzip())
-    .pipe(parallelize(publisher.publish(headers), 10))
+    .pipe(parallelize(publisher.publish(), 10))
     .pipe(publisher.cache())
     .pipe(publisher.sync()) # delete missing
     .pipe(awspublish.reporter())
