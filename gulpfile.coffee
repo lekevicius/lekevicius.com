@@ -15,6 +15,11 @@
 #   stream.emit "end"
 #   stream
 
+# gulp.task 'tags', ['posts'], ->
+#   tags()
+#   .pipe(applyTemplate('design/tag.html'))
+#   .pipe(gulp.dest('build/tag'))
+
 # summarize = (marker) ->
 #   through.obj( (file, enc, cb) ->
 #     summary = file.contents.toString().split(marker)[0]
@@ -23,19 +28,12 @@
 #     cb()
 #   )
 
-# gulp.task 'tags', ['posts'], ->
-#   tags()
-#   .pipe(applyTemplate('design/tag.html'))
-#   .pipe(gulp.dest('build/tag'))
-
-
 
 ## REQUIRES & CONFIG ##
 
 gulp = require 'gulp'
 http = require 'http'
 path = require 'path'
-fs = require 'fs'
 
 # General utilities
 del = require 'del'
@@ -50,6 +48,7 @@ jade = require 'jade'
 frontmatter = require 'gulp-front-matter'
 minifyHtml = require 'gulp-minify-html'
 marked = require 'gulp-marked'
+markdownExtra = require('js-markdown-extra').Markdown
 
 # CSS
 stylus = require 'gulp-stylus'
@@ -103,11 +102,13 @@ site =
   url: "http://lekevicius.com"
   date: new Date()
 
+minifyHtmlOptions = { comments: true, conditionals: true, cdata: true, quotes: true }
+
+rePostName = /(\d{4})-(\d{1,2})-(\d{1,2})-(.*)/
+
 
 
 ## HELPERS ##
-
-rePostName = /(\d{4})-(\d{1,2})-(\d{1,2})-(.*)/
 
 collectPosts = ->
   posts = []
@@ -130,13 +131,28 @@ collectPosts = ->
     site.tags = tags
     cb()
 
-filename2date = ->
+setPostMetadata = ->
   through.obj( (file, enc, cb) ->
     basename = path.basename file.path, '.md'
     match = rePostName.exec basename
     if match
       file.page.date = new Date(match[1], match[2], match[3]);
       file.page.url  = "/journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }/"
+    @push file
+    cb()
+  )
+
+setPageMetadata = ->
+  through.obj( (file, enc, cb) ->
+    basename = path.basename file.path, '.jade'
+    dirname = path.dirname(file.path).replace(process.cwd(), '').replace('/source/content/pages', '')
+    dirname = dirname.slice(1) if dirname.charAt(0) == '/'
+    if dirname == '' and (basename == 'index' or basename == '404')
+      file.page.url = "/"
+    else if dirname == ''
+      file.page.url = "/#{ basename }/"
+    else
+      file.page.url = "/#{ dirname }/#{ basename }/"
     @push file
     cb()
   )
@@ -154,7 +170,44 @@ applyTemplate = (templateFile) ->
     @push file
     cb()
 
-helpers = { fs: fs, rePostName: rePostName }
+journalPages = ->
+  stream = through.obj (file, enc, cb) ->
+    @push file
+    cb()
+  
+  postsPerPage = 2
+  totalPages = Math.ceil site.posts.length / postsPerPage
+
+  for pageNumber in [1..totalPages]
+
+    file = new gutil.File
+      path: path.join(__dirname, ( if pageNumber is 1 then "./journal/index.html" else "./journal/page/#{ pageNumber }/index.html" )),
+      contents: new Buffer('')
+
+    file.page =
+      title: 'Journal'
+      totalPages: totalPages
+      currentPage: pageNumber
+      nextPageURL: ( if pageNumber < totalPages then "/journal/page/#{ pageNumber + 1 }/" else null )
+      previousPageURL: ( if pageNumber > 1 then ( if pageNumber == 2 then "/journal/" else "/journal/page/#{ pageNumber - 1 }/" ) else null )
+      posts: site.posts.slice( (pageNumber - 1) * postsPerPage, (pageNumber - 1) * postsPerPage + postsPerPage )
+      url: ( if pageNumber is 1 then "/journal/" else "/journal/page/#{ pageNumber }/" )
+
+    stream.write file
+  
+  stream.end()
+  stream.emit "end"
+  stream
+
+
+
+helpers = 
+  rePostName: rePostName
+  fs: require('fs')
+  crypto: require('crypto')
+  color: require('color')
+
+
 
 ## TASKS ##
 
@@ -256,8 +309,13 @@ gulp.task 'media-watch', taskMedia
 taskPosts = ->
   gulp.src(paths.posts)
   .pipe(frontmatter({ property: 'page', remove: true }))    
-  .pipe(filename2date())   
-  .pipe(marked())
+  .pipe(setPostMetadata())   
+  # .pipe(marked())
+  .pipe(through.obj (file, enc, cb) ->
+    file.contents = new Buffer markdownExtra(file.contents.toString()), 'utf8'
+    @push file
+    cb()
+  )
   # .pipe(summarize('<!--more-->'))
   .pipe(rename (path) ->
     path.extname = ".html"
@@ -269,7 +327,7 @@ taskPosts = ->
   )
   .pipe(collectPosts())
   .pipe(applyTemplate('source/assets/templates/journal-entry.jade'))
-  .pipe(minifyHtml())
+  .pipe(minifyHtml(minifyHtmlOptions))
   .pipe(gulp.dest('build'))
 
 gulp.task 'posts', ['clean'], taskPosts
@@ -279,6 +337,7 @@ gulp.task 'posts-watch', taskPosts
 taskPages = ->
   gulp.src(paths.pages)
   .pipe(frontmatter({ property: 'page', remove: true }))
+  .pipe(setPageMetadata())
   .pipe(through.obj (file, enc, cb) ->
     data =
       site: site
@@ -290,7 +349,7 @@ taskPages = ->
     @push file
     cb()
   )
-  .pipe(minifyHtml())
+  .pipe(minifyHtml(minifyHtmlOptions))
   .pipe(rename (path) ->
     fullPath = path.dirname + '/' + path.basename + path.extname
     if fullPath in [ './404.jade', './index.jade' ]
@@ -305,6 +364,16 @@ taskPages = ->
 
 gulp.task 'pages', ['posts'], taskPages
 gulp.task 'pages-watch', ['posts-watch'], taskPages
+
+
+taskPagination = ->
+  journalPages()
+  .pipe(applyTemplate('source/assets/templates/journal-page.jade'))
+  .pipe(minifyHtml(minifyHtmlOptions))
+  .pipe(gulp.dest('build'))
+
+gulp.task 'pagination', ['posts'], taskPagination
+gulp.task 'pagination-watch', ['posts-watch'], taskPagination
 
 
 taskRSS = ->
@@ -370,8 +439,8 @@ gulp.task 'publish', ['default'], ->
 ## TASK GROUPS ##
 
 gulp.task 'assets', [ 'stylesheets', 'scripts', 'media' ]
-gulp.task 'content', [ 'posts', 'pages', 'rss' ]
-gulp.task 'content-watch', [ 'posts-watch', 'pages-watch', 'rss-watch' ]
+gulp.task 'content', [ 'posts', 'pagination', 'pages', 'rss' ]
+gulp.task 'content-watch', [ 'posts-watch', 'pagination-watch', 'pages-watch', 'rss-watch' ]
 
 gulp.task 'default', [ 'clean', 'assets', 'content', 'sitemap' ]
 

@@ -1,5 +1,8 @@
-//- unless page.color
-//-   - page.color = '#ff9900'
+unless page.color
+  - colorSeed = ( page.title ? page.title : site.url + page.url )
+  - hue = parseInt("0x"+ helpers.crypto.createHash('md5').update(colorSeed).digest('hex').slice(0,4)) / 65536.0
+  - page.color = helpers.color().hsl( Math.floor( hue * 360 ), 75, 30 ).hexString()
+  
 
 if helpers.fs && file
   - originalFilePath = file.history[0]
@@ -25,15 +28,6 @@ if helpers.fs && file
       - page.customScript = "/journal/" + match[1] +"/"+ match[2] +"/"+ match[3] +"/"+ match[4]
     if page.customScript
       - page.customScript = page.customScript + '/script.js'
-
-
-//- @page_data = current_page.data.dup
-//- unless @page_data['color']
-//-   color_seed = ( current_page.data.title ? current_page.data.title : current_page.url )
-//-   hue = (("0x"+Digest::MD5.hexdigest(color_seed).to_s[0..7]).hex.to_f / 4294967296 * 360 ).to_i
-//-   color = ColorMath::HSL.new(hue, 0.75, 0.30)
-//-   @page_data['color'] = color.hex
-//- end
 
 //- path_components = current_page.url.split('/')
 //- @active_navigation_item = path_components.size > 0 ? path_components[1] : 'home'
