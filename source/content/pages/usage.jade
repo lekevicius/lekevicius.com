@@ -222,101 +222,193 @@ block content
     h3 Basic Table
     table
       thead
-        tr. <th>#</th><th>First Name</th><th>Last Name</th><th>Username</th>
+        tr
+          th #
+          th First Name
+          th Last Name
+          th Username
       tbody
-        tr. <td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td>
-        tr. <td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td>
-        tr. <td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td>
+        tr
+          td 1
+          td Mark
+          td Otto
+          td @mdo
+        tr
+          td 2
+          td Jacob
+          td Thornton
+          td @fat
+        tr
+          td 3
+          td Larry
+          td the Bird
+          td @twitter
 
     h3 Condensed Table
     table.condensed
       thead
-        tr. <th>#</th><th>First Name</th><th>Last Name</th><th>Username</th>
+        tr
+          th #
+          th First Name
+          th Last Name
+          th Username
       tbody
-        tr. <td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td>
-        tr. <td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td>
-        tr. <td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td>
+        tr
+          td 1
+          td Mark
+          td Otto
+          td @mdo
+        tr
+          td 2
+          td Jacob
+          td Thornton
+          td @fat
+        tr
+          td 3
+          td Larry
+          td the Bird
+          td @twitter
 
     h3 Bordered Table
     table.bordered
       thead
-        tr. <th>#</th><th>First Name</th><th>Last Name</th><th>Username</th>
+        tr
+          th #
+          th First Name
+          th Last Name
+          th Username
       tbody
-        tr. <td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td>
-        tr. <td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td>
-        tr. <td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td>
+        tr
+          td 1
+          td Mark
+          td Otto
+          td @mdo
+        tr
+          td 2
+          td Jacob
+          td Thornton
+          td @fat
+        tr
+          td 3
+          td Larry
+          td the Bird
+          td @twitter
 
     h3 Striped Table
     table.striped
       thead
-        tr. <th>#</th><th>First Name</th><th>Last Name</th><th>Username</th>
+        tr
+          th #
+          th First Name
+          th Last Name
+          th Username
       tbody
-        tr. <td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td>
-        tr. <td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td>
-        tr. <td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td>
+        tr
+          td 1
+          td Mark
+          td Otto
+          td @mdo
+        tr
+          td 2
+          td Jacob
+          td Thornton
+          td @fat
+        tr
+          td 3
+          td Larry
+          td the Bird
+          td @twitter
 
     h3 Hover Table
     table.hover
       thead
-        tr. <th>#</th><th>First Name</th><th>Last Name</th><th>Username</th>
+        tr
+          th #
+          th First Name
+          th Last Name
+          th Username
       tbody
-        tr. <td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td>
-        tr. <td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td>
-        tr. <td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td>
+        tr
+          td 1
+          td Mark
+          td Otto
+          td @mdo
+        tr
+          td 2
+          td Jacob
+          td Thornton
+          td @fat
+        tr
+          td 3
+          td Larry
+          td the Bird
+          td @twitter
 
     h3 Responsive Table
     .table-responsive
       table
         thead
-          tr. <th>#</th><th>Table heading</th><th>Table heading</th><th>Table heading</th><th>Table heading</th><th>Table heading</th><th>Table heading</th>
+          tr
+            th #
+            th Table heading
+            th Table heading
+            th Table heading
+            th Table heading
+            th Table heading
+            th Table heading
         tbody
-          tr. <td>1</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td>
-          tr. <td>2</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td>
-          tr. <td>3</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td>
-          tr. <td>4</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td><td>Table cell</td>
-
-    //- h3 Markdown Table
-    //- :markdown
-    //-   | Header1 | Header2 | Header3 |
-    //-   |:--------|:-------:|--------:|
-    //-   | cell1   | cell2   | cell3   |
-    //-   | cell4   | cell5   | cell6   |
-    //-   |----
-    //-   | cell1   | cell2   | cell3   |
-    //-   | cell4   | cell5   | cell6   |
-    //-   |=====
-    //-   | Foot1   | Foot2   | Foot3
-
+          tr
+            td 1
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
+          tr
+            td 1
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
+          tr
+            td 1
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
+            td Table cell
     hr
 
     h2 Code
 
-    //- :markdown
+    p Code can be `inline` or in syntx-highlighted blocks.
 
-    //-   Code can be `inline` or in syntx-highlighted blocks.
+    pre: code
+      :escape
+        $ ->
+          setLogoColors Math.floor(Math.random() * 360), true
 
-    //-   ~~~ coffeescript
-    //-   $ ->
-    //-     setLogoColors Math.floor(Math.random() * 360), true
+          if $('img').length
+            $(window).on 'load', -> setBodyHeight()
+          else
+            setBodyHeight()
 
-    //-     if $('img').length
-    //-       $(window).on 'load', -> setBodyHeight()
-    //-     else
-    //-       setBodyHeight()
+          $(window).on 'load', -> delay 0, -> window.scrollTo(0, 1)
 
-    //-     $(window).on 'load', -> delay 0, -> window.scrollTo(0, 1)
+          $(window).on 'resize', -> setBodyHeight()
 
-    //-     $(window).on 'resize', -> setBodyHeight()
+          $(document).pjax "a[href^='/']", '#main', { fragment: "#main" }
+          $(document).on 'pjax:start', ->
+            setLogoColors Math.floor(Math.random() * 360)
+          $(document).on 'pjax:end', ->
+            setBodyHeight()
 
-    //-     $(document).pjax "a[href^='/']", '#main', { fragment: "#main" }
-    //-     $(document).on 'pjax:start', ->
-    //-       setLogoColors Math.floor(Math.random() * 360)
-    //-     $(document).on 'pjax:end', ->
-    //-       setBodyHeight()
-
-    //-     $('.menu-button').on 'click', ->
-    //-       $('header nav ul').toggleClass 'shown'
-    //-   ~~~
+          $('.menu-button').on 'click', ->
+            $('header nav ul').toggleClass 'shown'
 
     hr
 

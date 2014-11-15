@@ -1,0 +1,9 @@
+extends base
+
+block content
+  h1 Archive
+  for posts, month in site.postsByMonth
+    h3= month
+    ul
+    for post in posts
+      li: a( href="#{ site.url }#{ post.url }" )= post.title

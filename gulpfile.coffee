@@ -1,32 +1,61 @@
-# tags = ->
-#   stream = through.obj (file, enc, cb) ->
-#     @push file
-#     cb()
-    
-#   if site.tags
-#     site.tags.forEach (tag) ->
-#       file = new gutil.File
-#         path: tag + '.html',
-#         contents: new Buffer('')
-#       file.page = { title: tag, tag: tag }
-#       stream.write file
-  
-#   stream.end()
-#   stream.emit "end"
-#   stream
+###
+Todo:
 
-# gulp.task 'tags', ['posts'], ->
-#   tags()
-#   .pipe(applyTemplate('design/tag.html'))
-#   .pipe(gulp.dest('build/tag'))
+Design:
+  * System
+  - Sketches
+  - Sketch (hah)
+  - Responsive Navigation
+  - Usage & Typography
 
-# summarize = (marker) ->
-#   through.obj( (file, enc, cb) ->
-#     summary = file.contents.toString().split(marker)[0]
-#     file.page.summary = summary
-#     @push(file);
-#     cb()
-#   )
+  - Home
+  - 404 page
+  - Journal paging
+  - Archive
+  - Single post
+
+  - Plugins:
+    - Footnote Popover
+    - Pixel Loupe
+    - Zoombox
+    - Entree
+
+Content:
+  - First post
+  - Profile
+  - Projects
+    - jQuery Entree
+    - jQuery Pixel Loupe
+    - jQuery Seen
+    - jQuery Footnote Popover
+    - jQuery Zoombox
+    - Air Drawing
+    - ReadSprint
+    - UIKit.Stylus
+    - Email Printer
+    - Postcards
+    - Spelltower AI
+    - Letterpress AI
+    - Amora
+    - Sound Shapes
+    - ARDrone + Leap Motion
+    - App Design Guide
+    - Vijual
+    - Pile of Days
+    - Coffee Package
+    - Login Trailer
+    - Movie Word History
+    - ...
+
+Future Features:
+  - Journal tags with paginated tag pages
+  - Better site search index and features
+  - Zoombox navigation between images
+  - Zoombox swipe navigation
+  - Zoombox captions
+
+###
+
 
 
 ## REQUIRES & CONFIG ##
@@ -36,19 +65,27 @@ http = require 'http'
 path = require 'path'
 
 # General utilities
+_ = require 'lodash'
 del = require 'del'
 sourcemaps = require 'gulp-sourcemaps'
 concat = require 'gulp-concat'
 rename = require 'gulp-rename'
 gutil = require 'gulp-util'
 through = require 'through2'
+gulpif = require 'gulp-if'
+gulpfilter = require 'gulp-filter'
 
 # HTML and Journal
 jade = require 'jade'
 frontmatter = require 'gulp-front-matter'
-minifyHtml = require 'gulp-minify-html'
+minifyhtml = require 'gulp-minify-html'
 marked = require 'gulp-marked'
-markdownExtra = require('js-markdown-extra').Markdown
+markdown = require('js-markdown-extra').Markdown
+moment = require 'moment'
+highlight = require 'gulp-highlight'
+cheerio = require 'cheerio'
+lunr = require 'lunr'
+html2plaintext = require 'html2plaintext'
 
 # CSS
 stylus = require 'gulp-stylus'
@@ -63,6 +100,7 @@ uglify = require 'gulp-uglify'
 # Images
 changed = require 'gulp-changed'
 imagemin = require 'gulp-imagemin'
+imageresize = require 'gulp-image-resize'
 
 # Development
 watch = require 'gulp-watch'
@@ -80,16 +118,18 @@ keys = require './config/keys.json'
 
 paths =
   posts: 'source/content/journal/*.md'
-  postsMedia: ['source/content/journal/**/*.*', '!source/content/journal/*.+(md|styl|coffee)']
   pages: 'source/content/pages/**/*.jade'
-  pagesMedia: ['source/content/pages/**/*.*', '!source/content/pages/**/*.+(jade|styl|coffee)']
+  templates: 'source/assets/templates/**/*.jade'
   stylesheets: 'source/assets/stylesheets/site.styl'
-  allStylesheets: 'source/assets/stylesheets/**/*.styl'
-  pageStylesheets: 'source/content/**/*.styl'
+  siteStylesheets: 'source/assets/stylesheets/**/*.styl'
+  contentStylesheets: 'source/content/**/*.styl'
   scripts: 'source/assets/scripts/site.js'
-  allScripts: 'source/assets/scripts/**/*.+(js|coffee)'
-  pageScripts: 'source/content/**/*.coffee'
-  images: 'source/assets/images/**/*'
+  siteScripts: 'source/assets/scripts/**/*.+(js|coffee)'
+  contentScripts: 'source/content/**/*.coffee'
+  siteImages: 'source/assets/images/**/*.+(png|jpg|gif|svg)'
+  contentImages: [ 'source/content/**/*.+(png|jpg|gif|svg)' ]
+  siteAssets: [ 'source/assets/images/**/*.*', '!source/assets/images/**/*.+(png|jpg|gif|svg)' ]
+  contentAssets: [ 'source/content/**/*.*', '!source/content/**/*.+(jade|styl|coffee|png|jpg|gif|svg)' ]
   fonts: 'source/assets/fonts/**/*'
   icons: 'source/assets/icons/**/*'
 
@@ -101,14 +141,32 @@ site =
   # 'Journal by Jonas Lekevicius about design, development, technology, how we got to where we are and where we might go next.'
   url: "http://lekevicius.com"
   date: new Date()
+  index: lunr ->
+    @field 'title', { boost: 10 }
+    @field 'body'
+    @ref 'path'
 
 minifyHtmlOptions = { comments: true, conditionals: true, cdata: true, quotes: true }
+imageminOptions = { optimizationLevel: 3, progressive: true, svgoPlugins: [{ removeDesc: true }] }
 
 rePostName = /(\d{4})-(\d{1,2})-(\d{1,2})-(.*)/
 
 
 
 ## HELPERS ##
+
+
+
+jade.filters.escape = (block) ->
+  block
+  .replace /&/g, '&amp;'
+  .replace /</g, '&lt;'
+  .replace />/g, '&gt;'
+  .replace /"/g, '&quot;'
+  .replace /#/g, '&#35;'
+  .replace /\\/g, '\\\\'
+  .replace /\n/g, '\\n'
+
 
 collectPosts = ->
   posts = []
@@ -128,6 +186,7 @@ collectPosts = ->
   , (cb) ->
     posts.sort (a, b) -> b.date - a.date
     site.posts = posts
+    site.postsByMonth = _.groupBy site.posts, (post) -> moment(post.date).format("MMMM YYYY")
     site.tags = tags
     cb()
 
@@ -136,8 +195,12 @@ setPostMetadata = ->
     basename = path.basename file.path, '.md'
     match = rePostName.exec basename
     if match
-      file.page.date = new Date(match[1], match[2], match[3]);
+      if file.page.date
+        file.page.date = moment(file.page.date, ['YYYY-MM-DD', 'YYYY-MM-DD HH:mm'])
+      else
+        file.page.date = moment({ year: parseInt(match[1]), month: parseInt(match[2]) - 1, day: parseInt(match[3]) })
       file.page.url  = "/journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }/"
+      file.page.readingTime = Math.max( Math.round(file.contents.toString().split(' ').length / 200.0), 1 )
     @push file
     cb()
   )
@@ -170,6 +233,15 @@ applyTemplate = (templateFile) ->
     @push file
     cb()
 
+summarize = () ->
+  through.obj (file, enc, cb) ->
+    fileContents = file.contents.toString()
+    if cheerio('p', fileContents).length
+      file.page.summary = cheerio('p:first-of-type', fileContents).html()
+    @push file
+    cb()
+
+
 journalPages = ->
   stream = through.obj (file, enc, cb) ->
     @push file
@@ -200,12 +272,37 @@ journalPages = ->
   stream
 
 
+# tags = ->
+#   stream = through.obj (file, enc, cb) ->
+#     @push file
+#     cb()
+    
+#   if site.tags
+#     site.tags.forEach (tag) ->
+#       file = new gutil.File
+#         path: tag + '.html',
+#         contents: new Buffer('')
+#       file.page = { title: tag, tag: tag }
+#       stream.write file
+  
+#   stream.end()
+#   stream.emit "end"
+#   stream
+
+# gulp.task 'tags', ['posts'], ->
+#   tags()
+#   .pipe(applyTemplate('design/tag.html'))
+#   .pipe(gulp.dest('build/tag'))
+
+
 
 helpers = 
   rePostName: rePostName
   fs: require('fs')
   crypto: require('crypto')
   color: require('color')
+  moment: moment
+  _: _
 
 
 
@@ -223,7 +320,7 @@ taskStylesheets = ->
   # .pipe(sourcemaps.write())
   .pipe(gulp.dest('build/css'))
 
-  gulp.src(paths.pageStylesheets)
+  gulp.src(paths.contentStylesheets)
   # .pipe(sourcemaps.init())
   .pipe(stylus())
   .pipe(autoprefixer())
@@ -253,7 +350,7 @@ taskScripts = ->
   # .pipe(sourcemaps.write())
   .pipe(gulp.dest('build/js'))
 
-  gulp.src(paths.pageScripts)
+  gulp.src(paths.contentScripts)
   # .pipe(sourcemaps.init())
   .pipe(coffee())
   .pipe(uglify())
@@ -274,23 +371,55 @@ gulp.task 'scripts-watch', taskScripts
 
 
 taskMedia = ->
-  # Posts media
-  gulp.src(paths.postsMedia, { base: 'source/content' })
-  .pipe(rename (path) ->
+
+  # Assets
+
+  contentPathRename = (path) ->
     match = rePostName.exec path.dirname
-    path.dirname = "journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }" if match
+    if match
+      path.dirname = "journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }"
+    else
+      path.dirname = path.dirname.replace('pages/', '')
+    path
+
+  gulp.src(paths.siteAssets, { base: 'source/assets/images' })
+  .pipe(gulp.dest('build/img'))
+
+  gulp.src(paths.contentAssets, { base: 'source/content' })
+  .pipe(rename(contentPathRename))
+  .pipe(gulp.dest('build'))
+
+  # Images
+
+  gulp.src(paths.siteImages, { base: 'source/assets/images' })
+  .pipe(gulpfilter('**/*@2x*'))
+  .pipe(imageresize({ width: '50%' }))
+  # .pipe(imagemin(imageminOptions))
+  .pipe(rename (path) ->
+    path.basename = path.basename.replace '@2x', ''
+    path
+  )
+  .pipe(gulp.dest('build/img'))
+
+  gulp.src(paths.siteImages, { base: 'source/assets/images' })
+  # .pipe(imagemin(imageminOptions))
+  .pipe(gulp.dest('build/img'))
+
+  gulp.src(paths.contentImages, { base: 'source/content' })
+  .pipe(gulpfilter('**/*@2x*'))
+  .pipe(rename(contentPathRename))
+  .pipe(imageresize({ width: '50%' }))
+  # .pipe(imagemin(imageminOptions))
+  .pipe(rename (path) ->
+    path.basename = path.basename.replace '@2x', ''
     path
   )
   .pipe(gulp.dest('build'))
 
-  # Pages media
-  gulp.src(paths.pagesMedia, { base: 'source/content/pages' })
+  gulp.src(paths.contentImages, { base: 'source/content' })
+  .pipe(rename(contentPathRename))
+  # .pipe(imagemin(imageminOptions))
   .pipe(gulp.dest('build'))
-
-  # Images
-  gulp.src(paths.images)
-  # .pipe(imagemin({optimizationLevel: 5}))
-  .pipe(gulp.dest('build/img'))
 
   # Fonts
   gulp.src(paths.fonts)
@@ -300,7 +429,8 @@ taskMedia = ->
   gulp.src(paths.icons)
   .pipe(gulp.dest('build'))
 
-  gulp.src(['source/assets/humans.txt', 'source/assets/robots.txt']).pipe(gulp.dest('build'))
+  gulp.src(['source/assets/humans.txt', 'source/assets/robots.txt', 'source/assets/crossdomain.xml'])
+  .pipe(gulp.dest('build'))
 
 gulp.task 'media', ['clean'], taskMedia
 gulp.task 'media-watch', taskMedia
@@ -312,11 +442,12 @@ taskPosts = ->
   .pipe(setPostMetadata())   
   # .pipe(marked())
   .pipe(through.obj (file, enc, cb) ->
-    file.contents = new Buffer markdownExtra(file.contents.toString()), 'utf8'
+    file.contents = new Buffer markdown(file.contents.toString()), 'utf8'
     @push file
     cb()
   )
-  # .pipe(summarize('<!--more-->'))
+  .pipe(highlight())
+  .pipe(summarize()) # '<!--more-->'
   .pipe(rename (path) ->
     path.extname = ".html"
     match = rePostName.exec path.basename
@@ -327,7 +458,7 @@ taskPosts = ->
   )
   .pipe(collectPosts())
   .pipe(applyTemplate('source/assets/templates/journal-entry.jade'))
-  .pipe(minifyHtml(minifyHtmlOptions))
+  .pipe(minifyhtml(minifyHtmlOptions))
   .pipe(gulp.dest('build'))
 
 gulp.task 'posts', ['clean'], taskPosts
@@ -349,7 +480,7 @@ taskPages = ->
     @push file
     cb()
   )
-  .pipe(minifyHtml(minifyHtmlOptions))
+  .pipe(minifyhtml(minifyHtmlOptions))
   .pipe(rename (path) ->
     fullPath = path.dirname + '/' + path.basename + path.extname
     if fullPath in [ './404.jade', './index.jade' ]
@@ -366,18 +497,79 @@ gulp.task 'pages', ['posts'], taskPages
 gulp.task 'pages-watch', ['posts-watch'], taskPages
 
 
+taskIndex = ->
+
+  fileStream = ->
+    stream = through.obj (file, enc, cb) ->
+      @push file
+      cb()
+
+    file = new gutil.File
+      path: path.join(__dirname, "search.json"),
+      contents: new Buffer JSON.stringify(site.index.toJSON()), 'utf8'
+
+    stream.write file
+    stream.end()
+    stream.emit "end"
+    stream
+
+  gulp.src('build/**/*.html', { base: 'build' })
+  .pipe(through.obj (file, enc, cb) ->
+    fileContents = file.contents.toString()
+    bodyContent = cheerio('body', fileContents)
+    bodyContent.remove('script')
+    bodyContent.remove('pre code')
+    console.log html2plaintext(bodyContent.html())
+    site.index.add
+      path: file.path
+      title: cheerio('title', fileContents).text()
+      body: html2plaintext(bodyContent.html())
+    @push file
+    cb()
+  , (cb) ->
+    fileStream()
+    .pipe(gulp.dest('build'))
+    cb()
+  )
+
+gulp.task 'index', ['pages'], taskIndex
+gulp.task 'index-watch', ['pages-watch'], taskIndex
+
+
 taskPagination = ->
   journalPages()
   .pipe(applyTemplate('source/assets/templates/journal-page.jade'))
-  .pipe(minifyHtml(minifyHtmlOptions))
+  .pipe(minifyhtml(minifyHtmlOptions))
   .pipe(gulp.dest('build'))
 
 gulp.task 'pagination', ['posts'], taskPagination
 gulp.task 'pagination-watch', ['posts-watch'], taskPagination
 
 
+taskArchive = ->
+  gulp.src(['source/assets/templates/archive.jade'])
+  .pipe(through.obj (file, enc, cb) ->
+    data =
+      site: site
+      helpers: helpers
+      file: file
+      page:
+        title: 'Archive'
+        url: '/journal/archive/'
+    template = jade.compileFile(file.path)
+    file.contents = new Buffer(template(data), 'utf8')
+    @push file
+    cb()
+  )
+  .pipe(rename('journal/archive/index.html'))
+  .pipe(gulp.dest('build'))
+
+gulp.task 'archive', ['posts'], taskArchive
+gulp.task 'archive-watch', ['posts-watch'], taskArchive
+
+
 taskRSS = ->
-  gulp.src(['source/assets/templates/feed.xml.jade'])
+  gulp.src(['source/assets/templates/feed.jade'])
   .pipe(through.obj (file, enc, cb) ->
     data =
       site: site
@@ -407,10 +599,10 @@ gulp.task 'sitemap-watch', ['content-watch'], taskSitemap
 ## DEVELOPMENT TASKS ##
 
 gulp.task 'watch', ['default'], ->
-  gulp.watch [ paths.allStylesheets, paths.pageStylesheets ], ['stylesheets-watch']
-  gulp.watch [ paths.allScripts, paths.pageScripts ], ['scripts-watch']
-  gulp.watch [ paths.postsMedia, paths.pagesMedia, paths.images, paths.fonts, paths.icons ], ['media-watch']
-  gulp.watch [ paths.posts, paths.pages ], ['content-watch', 'sitemap-watch']
+  gulp.watch [ paths.siteStylesheets, paths.contentStylesheets ], [ 'stylesheets-watch' ]
+  gulp.watch [ paths.siteScripts, paths.contentScripts ], ['scripts-watch']
+  gulp.watch [ paths.siteAssets, paths.contentAssets, paths.siteImages, paths.contentImages, paths.fonts, paths.icons ], ['media-watch']
+  gulp.watch [ paths.posts, paths.pages, paths.templates ], ['content-watch', 'sitemap-watch']
 
 gulp.task 'server', ['default'], ->
   gulp.src('build')
@@ -418,7 +610,7 @@ gulp.task 'server', ['default'], ->
     livereload: true
     open: true
   }))
-    
+
 
 
 ## DEPLOYMENT TASKS ##
@@ -427,7 +619,8 @@ gulp.task 'publish', ['default'], ->
   publisher = awspublish.create keys
 
   gulp.src('build/**/*.*')
-    # .pipe(revall())
+    # .pipe(revall({ ignore: [ '.html', '.xml', '.txt' ] }))
+    # .pipe(gulp.dest('build'))
     .pipe(awspublish.gzip())
     .pipe(parallelize(publisher.publish(), 10))
     .pipe(publisher.cache())
@@ -439,8 +632,8 @@ gulp.task 'publish', ['default'], ->
 ## TASK GROUPS ##
 
 gulp.task 'assets', [ 'stylesheets', 'scripts', 'media' ]
-gulp.task 'content', [ 'posts', 'pagination', 'pages', 'rss' ]
-gulp.task 'content-watch', [ 'posts-watch', 'pagination-watch', 'pages-watch', 'rss-watch' ]
+gulp.task 'content', [ 'posts', 'pagination', 'pages', 'archive', 'rss' ]
+gulp.task 'content-watch', [ 'posts-watch', 'pagination-watch', 'pages-watch', 'archive-watch', 'rss-watch' ]
 
 gulp.task 'default', [ 'clean', 'assets', 'content', 'sitemap' ]
 

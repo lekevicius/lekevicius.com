@@ -45,7 +45,7 @@ html
         meta( property="og:title", content=site.title )
       meta( property="og:description", content=site.description )
       if isArticle
-        meta( property="article:published_time", content=page.date.toISOString().slice(0,10) )
+        meta( property="article:published_time", content=page.date.format("YYYY-MM-DD") )
         meta( property="article:author", content="#{ site.url }/profile" )
 
       link( rel='stylesheet', href='/css/jl.css' )

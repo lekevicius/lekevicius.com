@@ -1,0 +1,171 @@
+html
+  background #f8f8f8
+
+body, #page
+  background transparent
+
+.logo
+  padding-top 40px
+  .logo-image
+    width 92px
+    height 92px
+    background url('/img/logo.svg') no-repeat
+
+@media screen_medium_min
+  .wrap
+    margin-left 30px
+
+.text
+  padding-top 40px
+  @media screen_small_only
+    padding-left 60px
+    padding-right 60px
+
+h1, p
+  font-size 16px
+  line-height 30px
+  margin 0
+
+h1, p.subheading
+  font-size 24px
+  text-transform lowercase
+
+h1
+  font-weight 600
+  color #4A90E2
+
+p.subheading
+  font-weight 300
+
+a
+  color #4A90E2
+
+.letter
+  font-weight 400
+  padding-bottom 40px
+  @media screen_medium_min
+    max-width 380px
+  p
+    margin 30px 0 0 0
+
+@media screen_small_max
+  .logo
+    .logo-image
+      margin 0 auto
+
+
+
+
+
+
+
+
+body.home
+  #container > header .page-title p
+    padding-top 2.5em
+    padding-bottom 0.8em
+    font-size 1.6em
+    @media screen_medium_min
+      width 70%
+
+    strong
+      font-weight 600
+      display block
+      font-size 1.2em
+      margin-bottom 0.4em
+
+  .slider
+    padding 3px 0 3px 3px
+    background #222
+    width 100%
+    overflow auto
+    overflow-y hidden
+    -ms-overflow-y hidden
+    -webkit-overflow-scrolling touch
+
+    ul
+      list-style none
+      margin 0
+      padding 0
+      // max-width 20000px
+      // width 2419px
+      font-size 0
+      width 100%
+      white-space nowrap
+
+      li
+        margin 0 3px 0 0
+        padding 0
+        display inline-block
+        position relative
+        box-sizing border-box
+        height 0
+        overflow hidden
+
+        width 70%
+        padding-bottom 70% * 0.75
+
+        @media screen_small_min
+          width 40%
+          padding-bottom 40% * 0.75
+        @media screen_medium_min
+          width 28%
+          padding-bottom 28% * 0.75
+        @media screen_large_min
+          width 22%
+          padding-bottom 22% * 0.75
+
+        a
+          absolute top left
+          size 100%
+
+        a img
+          display block
+          margin 0
+          padding 0
+          width 100%
+          height auto
+
+  h5
+    font-size 0.9em
+    letter-spacing 1px
+    font-weight bold
+    margin-top 3.2em
+    margin-bottom 2.6em
+    color #888
+    text-transform uppercase
+
+  a.more-link
+    font-family font_heading
+    font-weight bold
+    display inline-block
+    border-bottom 2px solid key_color
+
+  .recent-journal
+    article
+      margin-bottom 2em
+      h4
+        margin-bottom 0
+      .meta
+        font-size 0.8em
+        color #999
+      section p:first-child
+        margin-top 0.5em
+
+  .recent-projects
+    article
+      margin-bottom 2em
+
+      .project-image
+        text-align center
+        border-radius 4px
+        padding 30px 0
+        margin 1em 0
+
+      h4
+        margin-top 0
+        font-size 1.1em
+
+      p
+        margin-top 0.5em
+        font-size 0.9em

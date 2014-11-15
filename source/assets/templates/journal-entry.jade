@@ -4,3 +4,11 @@ block content
     if page.summary
         p= page.summary
     != content
+
+
+//- %span.time
+//-   = reading_time_minutes(current_page.body)
+//-   min read
+//- .read-later
+//-   Instapaper
+//-   = '<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0" style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;" src="http://www.instapaper.com/e2?url=' + ERB::Util.url_encode(@site.baseurl + current_page.url) + '&title=' + ERB::Util.url_encode(current_page.data.title) + '"></iframe>'

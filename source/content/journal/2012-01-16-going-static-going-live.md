@@ -1,6 +1,9 @@
 ---
 title: Going Static, Going Live, Going Build
-date: 2012-01-16 12:26
+tags:
+    - site
+    - tutorial
+    - apple
 summary: >
     For the last year, my online presence was very minimal: I had two almost identical "web cards", with just links to other web services I use, at Lekevicius.com and Lekevicius.lt, and this website, that only mentioned where I work.
 ---

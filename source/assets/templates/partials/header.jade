@@ -1,0 +1,30 @@
+#color
+  .rel
+    #color-image.visible{ style: ( @page_data['cover'] ? "background-image: url(#{ @page_data['cover'] })" : nil ) }
+#color-cover
+
+header
+
+  .header-inner.container
+
+    %a.site-logo{ href: '/' }
+
+    .navigation-items
+
+      %a.site-title{ href: '/', class: ( !@possible_menu_keys.include?(@active_navigation_item) ? 'active' : nil ) } Jonas Lekevicius
+
+      %nav
+        %ul
+          - @possible_menu_keys.each do |key|
+            %li{ class: "#{ key } #{ 'active' if @active_navigation_item == key }" }
+              %a{ href: @menu[key] }= key.capitalize
+
+    %a.menu-button{ href: '#menu' }
+
+  .page-title.container
+    - if @page_data['title']
+      %h1= @page_data['title']
+    - if @page_data['title_description']
+      %p= @page_data['title_description']
+
+#spacer
