@@ -1,5 +1,6 @@
 node_modules/
 build/
-design/
+_design/
+_older/
 config/keys.json
 .awspublish*
