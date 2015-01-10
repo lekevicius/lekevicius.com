@@ -65,21 +65,17 @@ html
       <![endif]-->
 
   body#body( class=page.bodyclass )
-    block body
-      include partials/analytics
 
+    include partials/analytics
+    
+    block body
       #page
-        #content
+        #content.container
           block content
             section.content
 
-        footer
-          .wrap
-            block footer
+    script( src="/js/jl.js" )
 
-      script( src="http://code.jquery.com/jquery-2.1.1.min.js" )
-      script( src="/js/jl.js" )
-
-      if page.customScript
-        script( src=page.customScript )
+    if page.customScript
+      script( src=page.customScript )
 

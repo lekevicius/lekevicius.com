@@ -1,4 +1,4 @@
-wrap-fixed(max_width = content_max_width)
+container-fixed(max_width = content_max_width)
   margin-right auto
   margin-left auto
   padding-left (grid_gutter / 2)
@@ -88,8 +88,8 @@ make-large-column-pull(columns)
   @media screen_large_min
     right unit(columns / grid_columns * 100, '%')
 
-.wrap
-  wrap-fixed()
+.container
+  container-fixed()
 
 .row
   make-row()

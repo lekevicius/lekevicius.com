@@ -1,181 +1,272 @@
-#color
-  absolute top 0 left 0 right 0
-  background key_color
-  z-index 1000
-  .rel
-    height 100%
+// #color
+//   absolute top 0 left 0 right 0
+//   background key_color
+//   z-index 1000
+//   .rel
+//     height 100%
 
-#color-image
-  background center center no-repeat
-  background-size cover
-  absolute top 0 left 0 bottom 0 right 0
-  opacity 0
-  transition opacity 300ms
-  &.visible
-    opacity 1
+// #color-image
+//   background center center no-repeat
+//   background-size cover
+//   absolute top 0 left 0 bottom 0 right 0
+//   opacity 0
+//   transition opacity 300ms
+//   &.visible
+//     opacity 1
 
-#color-cover
-  fixed top 0 left 0 right 0 height 0
-  background-color key_color
-  z-index 2000
-  transition height 600ms cubic-bezier(0.770, 0.000, 0.175, 1.000), background-color 600ms ease
+// #color-cover
+//   fixed top 0 left 0 right 0 height 0
+//   background-color key_color
+//   z-index 2000
+//   transition height 600ms cubic-bezier(0.770, 0.000, 0.175, 1.000), background-color 600ms ease
 
-#container > header
-  absolute top 0 left 0 right 0
-  z-index 3000
+// .site-header
+//   absolute top 0 left 0 right 0
+//   z-index 3000
 
+//   .header-inner
+//     position relative
+//     padding-top 16px
+//     clearfix()
+
+//     @media screen_medium_min
+//       padding-top 36px
+
+//   .site-logo
+//     background-image url('../img/logo.svg')
+//     size 48px
+//     float left
+//     border 0
+//     opacity 0.9
+
+//   .navigation-items
+//     float left
+
+//     .site-title, nav
+//       font-family font_heading
+//       font-size 21px
+//       line-height 24px
+
+//     .site-title
+//       display block
+//       height 0px
+//       overflow hidden
+//       float none
+//       margin 0 0 0 16px
+//       transition height 300ms, margin-top 300ms
+//       color #fff
+//       font-weight 700
+//       opacity 0.9
+//       width 159px
+//       &.active
+//         height 28px
+//         margin-top 10px
+
+//       @media menu_expand
+//         margin-top 10px
+//         float left
+//         overflow visible
+
+//     nav
+//       font-weight 400
+//       float left
+//       margin 10px 0 0 0
+//       clearfix()
+
+//       ul
+//         list-style none
+//         margin 0
+//         position relative
+
+//         li
+//           float left
+//           margin 0 0 0 24px
+//           a
+//             color #fff
+//             opacity 0.8
+
+//           &.active
+//             margin-left 6px
+//             font-weight 700
+//             a
+//               opacity 0.9
+
+//         &.manipulated
+
+//           li
+//             position static
+//             float none
+//             display block
+//             height 0
+//             overflow hidden
+//             margin 0 0 0 16px
+//             transition height 300ms, margin-top 300ms
+//             &.active
+//               height 28px
+//               margin 0 0 0 16px
+
+//             @media menu_expand
+//               position absolute
+//               margin 0
+//               top 0
+//               height auto
+//               left 100px
+//               transition left 400ms ease 300ms
+//               &.active
+//                 left 6px
+//                 margin 0
+
+
+
+//     &.open
+//       .site-title
+//         height 28px
+//         margin-top 10px
+//         margin-bottom 0px
+//       nav
+//         margin-top 0
+//       nav ul
+//         &, &.manipulated
+//           li
+//             height 28px
+//             margin 12px 0 0 16px
+
+
+//   .menu-button
+//     background-image url('../img/menu.png')
+//     width 32px
+//     height 40px
+//     float right
+//     border 0
+//     opacity 0.7
+//     margin-top 4px
+//     display block
+//     transition: transform 400ms, opacity 400ms
+//     &.open
+//       opacity 1
+//       scale 0.8
+
+//     @media menu_expand
+//       display none
+
+//   .page-title
+//     color #fff
+//     padding-bottom 16px
+//     transition: transform 400ms ease 200ms, opacity 400ms ease 200ms
+
+//     h1
+//       margin 0.2em 0 0 0
+
+//       @media screen_medium_min
+//         margin-top 0.5em
+
+//     @media screen_medium_min
+//       padding-bottom 36px
+
+//     &.fade-in, &.fade-out
+//       translate 0, 100px
+//       opacity 0
+
+//     p
+//       font-family font_heading
+//       font-weight 300
+//       font-size 1.5em
+//       line-height 1.3em
+//       margin-bottom 0
+//       margin-top 0
+//       padding-top 0.5em
+
+//       @media screen_medium_min
+//         padding-top 0.8em
+
+
+
+// .site-logo path
+//   fill red
+
+
+.site-header
   .header-inner
-    position relative
-    padding-top 16px
+    padding 50px 0 40px 0
+    border-bottom 1px solid rgba(black, 0.2)
+    line-height 1
     clearfix()
-
-    @media screen_medium_min
-      padding-top 36px
-
-  .site-logo
-    background-image url('../img/logo.svg')
-    size 48px
-    float left
-    border 0
-    opacity 0.9
-
+    
   .navigation-items
     float left
-
-    .site-title, nav
-      font-family font_heading
-      font-size 21px
-      line-height 24px
-
-    .site-title
+    clearfix()
+    
+    a.site-title
       display block
-      height 0px
-      overflow hidden
-      float none
-      margin 0 0 0 16px
-      transition height 300ms, margin-top 300ms
-      color #fff
-      font-weight 700
-      opacity 0.9
-      width 159px
-      &.active
-        height 28px
-        margin-top 10px
-
-      @media menu_expand
-        margin-top 10px
-        float left
-        overflow visible
-
-    nav
-      font-weight 400
       float left
-      margin 10px 0 0 0
       clearfix()
-
+      .logo
+        display block
+        float left
+        height 40px
+      .title
+        display block
+        float left
+        font-weight 600
+        font-size 20px
+        padding 12px 10px 8px 20px
+        
+    nav
+      float left
+      
       ul
-        list-style none
         margin 0
-        position relative
-
+        list-style none
+        clearfix()
         li
+          padding 0
+          margin 0 0 0 10px
           float left
-          margin 0 0 0 24px
           a
-            color #fff
-            opacity 0.8
-
-          &.active
-            margin-left 6px
-            font-weight 700
-            a
-              opacity 0.9
-
-        &.manipulated
-
-          li
-            position static
-            float none
             display block
-            height 0
-            overflow hidden
-            margin 0 0 0 16px
-            transition height 300ms, margin-top 300ms
-            &.active
-              height 28px
-              margin 0 0 0 16px
-
-            @media menu_expand
-              position absolute
-              margin 0
-              top 0
-              height auto
-              left 100px
-              transition left 400ms ease 300ms
-              &.active
-                left 6px
-                margin 0
-
-
-
-    &.open
-      .site-title
-        height 28px
-        margin-top 10px
-        margin-bottom 0px
-      nav
-        margin-top 0
-      nav ul
-        &, &.manipulated
-          li
-            height 28px
-            margin 12px 0 0 16px
-
-
+            font-size 20px
+            padding 12px 10px 8px 10px
+  
   .menu-button
-    background-image url('../img/menu.png')
-    width 32px
-    height 40px
+    width 30px
+    height 30px
     float right
-    border 0
-    opacity 0.7
-    margin-top 4px
-    display block
-    transition: transform 400ms, opacity 400ms
-    &.open
-      opacity 1
-      scale 0.8
-
-    @media menu_expand
-      display none
-
+    position relative
+    overflow visible
+    
+    .bar
+      width 30px
+      height 2px
+      background #000
+      opacity 0.5
+      position absolute
+      top 14px
+      left 0
+      transition all 0.3s
+      
+      &.first
+        transform translateY(-12px)
+      &.second
+        transform translateY(-4px)
+      &.third
+        transform translateY(4px)
+      &.fourth
+        transform translateY(12px)
+        
+    &.active
+      .bar
+        opacity 1
+        &.first
+          opacity 0
+          transform translateY(-12px) scaleX(0)
+        &.second
+          transform translateY(0) rotate(45deg)
+        &.third
+          transform translateY(0) rotate(-45deg)
+        &.fourth
+          opacity 0
+          transform translateY(12px) scaleX(0)
+      
+  
   .page-title
-    color #fff
-    padding-bottom 16px
-    transition: transform 400ms ease 200ms, opacity 400ms ease 200ms
-
-    h1
-      margin 0.2em 0 0 0
-
-      @media screen_medium_min
-        margin-top 0.5em
-
-    @media screen_medium_min
-      padding-bottom 36px
-
-    &.fade-in, &.fade-out
-      translate 0, 100px
-      opacity 0
-
-    p
-      font-family font_heading
-      font-weight 300
-      font-size 1.5em
-      line-height 1.3em
-      margin-bottom 0
-      margin-top 0
-      padding-top 0.5em
-
-      @media screen_medium_min
-        padding-top 0.8em
-
+    display none
