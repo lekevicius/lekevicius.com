@@ -9,11 +9,11 @@ header.site-header
       a.site-title( href='/' )
         .logo
           include logo_svg
-        span.title Jonas Lekevicius
       nav
         ul
+          li.menu-title: a( href='/' ) Jonas Lekevicius
           li.menu-journal: a( href='/journal' ) Journal
-          li.menu-journal: a( href='/profile' ) Profile
+          li.menu-profile.menu-current: a( href='/profile' ) Profile
 
     a.menu-button( href='#menu' )
       .bar.first
@@ -22,7 +22,14 @@ header.site-header
       .bar.fourth
 
   .page-title.container
-    h1 Title
-    p Description
+    if page.custom-title
+      != page.custom-title
+    else
+      if page.title
+        h1
+          != page.title
+      if page.description
+        p
+          != page.description
 
 #spacer

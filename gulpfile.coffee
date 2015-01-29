@@ -1,16 +1,27 @@
 ###
 Todo:
 
+Work plan:
+  - Everything about navigation incl. Entree
+  - Everything about typography
+  - Profile page
+  - Everything about Journal
+  - Homepage, 404 page
+  - Launch!
+  - Start releasing most important projects
+
 Design:
-  * System
-  - Sketches
-  - Sketch (hah)
   - Responsive Navigation
+    - Page title areas (title, description, custom-title)
+    - Dark variation
+    - Current menu item marking
+    - JavaScript positioning
+    - Entree transitions!
+    
   - Usage & Typography
 
   - Home
   - 404 page
-  - Journal paging
   - Archive
   - Single post
 
@@ -264,6 +275,9 @@ journalPages = ->
       previousPageURL: ( if pageNumber > 1 then ( if pageNumber == 2 then "/journal/" else "/journal/page/#{ pageNumber - 1 }/" ) else null )
       posts: site.posts.slice( (pageNumber - 1) * postsPerPage, (pageNumber - 1) * postsPerPage + postsPerPage )
       url: ( if pageNumber is 1 then "/journal/" else "/journal/page/#{ pageNumber }/" )
+
+    if pageNumber is 1
+      file.page.description = """Occasional <a href="/">articles</a>, <a href="/">links</a> and <a href="/">remarks</a> about <a href="/">design</a>, <a href="/">technology</a> and <a href="/">media</a>.<br> You can <a href="/">browse the archive</a> or subscribe by RSS (<a href="/">everything</a> or <a href="/">just articles</a>)."""
 
     stream.write file
   

@@ -52,7 +52,8 @@ setNavigationPositions = ->
 
 
 $ ->
-  $('.menu-button').on 'click', -> $(@).toggleClass 'active'
+  $('.menu-button').on 'click', ->
+    $('.site-header').toggleClass 'open'
   # Basic setup
   # $('html').removeClass('no-js').addClass('js')
   # $('#spacer, #color').css 'height', $('#container > header').outerHeight() + 'px'
