@@ -50,8 +50,10 @@ html
 
       link( rel='stylesheet', href='/css/jl.css' )
 
-      style#color-styles.
-        a, .page-title h1 { color: #{ page.color } } #color, #color-cover, a.menu-button .bar { background-color: #{ page.color } } .logo path  { fill: #{ page.color } } .color-background { background-color: #{ page.color } !important } .color-border { border-color: #{ page.color } !important } .color-text { color: #{ page.color } !important }
+      style#color-styles
+        | .page-title h1, a { color: #{ page.color } } #color { background-color: #{ page.coverColor } } a.menu-button .bar, header.site-header.dark { background-color: #{ page.color } } .logo path { fill: #{ page.color } } .color-background { background-color: #{ page.color } !important } .color-border, blockquote { border-color: #{ page.color } !important } .color-text { color: #{ page.color } !important }
+        if page.cover
+          | header.site-header { background-image: url(#{ page.cover }) }
 
       if page.customStylesheet
         link( href=page.customStylesheet, rel="stylesheet" )

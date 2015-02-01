@@ -1,8 +1,8 @@
 extends basic
 
-block content
+block text
   each post in page.posts
-    h1= post.title
+    h1: a( href=post.url )= post.title
     p.date= post.date
     != post.content
   

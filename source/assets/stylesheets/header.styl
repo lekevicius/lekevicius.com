@@ -1,5 +1,8 @@
 .site-header
   transform translate3D(0,0,0)
+  background-position center center
+  background-size cover
+  overflow visible
 
   .menu-button
     width 30px
@@ -31,18 +34,26 @@
       opacity 1
       &.first
         opacity 0
-        transform translateY(-12px) scaleX(0)
+        transform translateY(-12px) scaleX(0.01)
       &.second
         transform translateY(0) rotate(45deg)
       &.third
         transform translateY(0) rotate(-45deg)
       &.fourth
         opacity 0
-        transform translateY(12px) scaleX(0)
+        transform translateY(12px) scaleX(0.01)
       
   
   .page-title
+    z-index 100
     padding 36px 0
+    transition all 0.5s
+    transition-property opacity, transform
+    
+    &.faded
+      opacity 0
+      transform translateY(40px)
+      
     h1
       margin 0
       font-weight 600
@@ -53,9 +64,12 @@
 
 
   .header-inner
+    position relative
+    z-index 300
     padding 17px 0 17px 0
     border-bottom 1px solid rgba(black, 0.2)
     line-height 1
+    transition border-bottom 0.3s
     clearfix()
     
   .navigation-items
@@ -73,21 +87,24 @@
         height 30px
         width 30px
         
+        path
+          transition fill 0.6s
+        
     nav
       display block
       margin-left 15px
       float right
       height 30px
       overflow hidden
-      transition all 0.3s
+      transition height 0.3s
       
       ul
         display block
         margin 0
-        margin-top 36px * -2
+        // margin-top 36px * 0 * (-1)
         list-style none
         position relative
-        transition all 0.3s
+        transition margin-top 0.3s
         clearfix()
         li
           display block
@@ -97,8 +114,9 @@
             display block
             font-size 16px
             padding 8px 0 12px 0
+            transition color 0.3s
           
-          &.menu-title
+          &.menu-item-title
             margin-left 0
             
             a
@@ -113,9 +131,9 @@
     
     .navigation-items
       nav
-        height 36px * 3
+        height 36px * menu-item-count
         ul
-          margin 0
+          margin 0 !important
 
   @media menu-full
   
@@ -159,6 +177,7 @@
         ul
           display block
           margin 0
+          margin-top 0 !important
           list-style none
           transition none
           clearfix()
@@ -172,9 +191,21 @@
               font-size 20px
               padding 12px 10px 8px 10px
             
-            &.menu-title
+            &.menu-item-title
               a
                 font-weight 600
+                
+          &.positioned
+            position relative
+            width 400px
+            height 40px
+            li
+              position absolute
+              top 0
+              left 0
+              margin 0
+              transform translate3D(0,0,0)
+              transition left 0.5s cubic-bezier(1, 0, 0, 1)
 
     .page-title
       padding 52px 0
@@ -182,6 +213,48 @@
       h1
         font-weight 300
         font-size 64px
+        line-height 1
+        margin-bottom 0.4em
       p
         margin-top 6px
         font-size 21px
+
+
+    &.open
+      
+      .navigation-items
+        nav
+          height auto
+
+  &.dark
+
+    .menu-button
+      .bar
+        background-color white !important
+
+    .page-title
+      h1, p
+        color white
+
+
+    .header-inner
+      border-bottom 1px solid rgba(white, 0.2)
+      
+    .navigation-items
+      
+      a.site-title .logo path 
+        fill white
+          
+      nav ul li a
+        color white !important
+          
+#color
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom auto
+  height 0
+  z-index 200
+  transition height 0.6s cubic-bezier(1, 0, 0, 1), background-color 0.6s
+  background #eee

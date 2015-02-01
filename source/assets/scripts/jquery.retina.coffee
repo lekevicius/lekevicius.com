@@ -74,5 +74,5 @@ $.fn.extend
   retina: ->
     return @each ->
       if $.isRetina()
-        $('img', @).each ->
+        $("img[src$='.jpg'], img[src$='.jpeg'], img[src$='.png'], img[src$='.gif']", @).each ->
           retinaImages.push new RetinaImage(@)

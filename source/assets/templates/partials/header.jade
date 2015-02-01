@@ -1,9 +1,4 @@
-#color
-  .rel
-    #color-image.visible
-#color-cover
-
-header.site-header
+header.site-header( class=( page.darkHeader ? 'dark' : '' ) )
   .header-inner.container
     .navigation-items
       a.site-title( href='/' )
@@ -11,9 +6,9 @@ header.site-header
           include logo_svg
       nav
         ul
-          li.menu-title: a( href='/' ) Jonas Lekevicius
-          li.menu-journal: a( href='/journal' ) Journal
-          li.menu-profile.menu-current: a( href='/profile' ) Profile
+          li.menu-item-title( class=( page.section == 'home' ? 'menu-current' : '' ) ): a( href='/' ) Jonas Lekevicius
+          li.menu-item-journal( class=( page.section == 'journal' ? 'menu-current' : '' ) ): a( href='/journal' ) Journal
+          li.menu-item-profile( class=( page.section == 'profile' ? 'menu-current' : '' ) ): a( href='/profile' ) Profile
 
     a.menu-button( href='#menu' )
       .bar.first
@@ -21,9 +16,11 @@ header.site-header
       .bar.third
       .bar.fourth
 
+  #color
+
   .page-title.container
-    if page.custom-title
-      != page.custom-title
+    if page.customTitle
+      != page.customTitle
     else
       if page.title
         h1

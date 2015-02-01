@@ -1,419 +1,411 @@
 ---
 title: HTML Elements Guide
+description: This private page describes available HTML elements and their CSS classes. It's meant to aid style development and document future usage.
 ---
-extends ../../assets/templates/base
-block content
+extends ../../assets/templates/basic
+block text
+  h2 Typography
 
-  .container
-    p.lead This private page describes available HTML elements and their CSS classes. It's meant to aid style development and document future usage.
+  h3 Headings
 
-    h2 Typography
+  h1
+    | Heading 1 
+    small Small Text
+  h2
+    | Heading 2 
+    small Small Text
+  h3
+    | Heading 3 
+    small Small Text
+  h4
+    | Heading 4 
+    small Small Text
+  h5
+    | Heading 5 
+    small Small Text
+  h6
+    | Heading 6 
+    small Small Text
 
-    h3 Headings
+  h3 Body Copy
 
-    h1
-      | Heading 1
-      small Small Text
-    h2
-      | Heading 2
-      small Small Text
-    h3
-      | Heading 3
-      small Small Text
-    h4
-      | Heading 4
-      small Small Text
-    h5
-      | Heading 5
-      small Small Text
-    h6
-      | Heading 6
-      small Small Text
+  p.lead Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-    h3 Body Copy
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    p.lead Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  ul
+    li <strong>Strong - important, key pharase</strong>
+    li <b>Bold - highlighting without importance</b>
+    li <em>Emphasis - more attention</em>
+    li <i>Italic - voice, tone, technical terms</i>
+    li <small>Small - fine print</small>
 
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  h3 Misc. Text Elements
 
-    ul
-      li <strong>Strong - important, key pharase</strong>
-      li <b>Bold - highlighting without importance</b>
-      li <em>Emphasis - more attention</em>
-      li <i>Italic - voice, tone, technical terms</i>
-      li <small>Small - fine print</small>
+  p.text-left Left aligned text.
+  p.text-center Center aligned text.
+  p.text-right Right aligned text.
 
-    h3 Misc. Text Elements
+  :markdown
+    Paragraph with a footnote demo.
 
-    p.text-left Left aligned text.
-    p.text-center Center aligned text.
-    p.text-right Right aligned text.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore *magna aliqua*. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. For the sake of demo, here is another one.
 
-    :markdown
-      Paragraph with a footnote[^foot] demo.
+    Lorem ipsum dolor sit **amet**, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. For the sake of demo, here[^2] is another one.
+  p An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>
+  p <abbr title="HyperText Markup Language" class="initialism">HTML</abbr> is the best thing since sliced bread.
 
-      Lorem ipsum dolor sit amet[^long], consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  address
+    strong Twitter, Inc.
+    br
+    | 795 Folsom Ave, Suite 600
+    br
+    | San Francisco, CA 94107
+    br
+    <abbr title="Phone">P:</abbr> (123) 456-7890
 
-      [^foot]: Footnotes are the best way to show side-ideas.
-      [^2]: Another explanation - how exciting!
-      [^long]: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  address
+    strong Full Name
+    br
+    a( href="mailto:#" ) first.last@example.com
 
-    p An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>
-    p <abbr title="HyperText Markup Language" class="initialism">HTML</abbr> is the best thing since sliced bread.
+  h3 Blockquotes
 
-    address
-      strong Twitter, Inc.
-      br
-      | 795 Folsom Ave, Suite 600
-      br
-      | San Francisco, CA 94107
-      br
-      <abbr title="Phone">P:</abbr> (123) 456-7890
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    address
-      strong Full Name
-      br
-      a( href="mailto:#" ) first.last@example.com
+  blockquote
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
 
-    h3 Blockquotes
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  blockquote.feature
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
 
-    blockquote
-      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  blockquote
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+    small
+      | Someone famous in
+      cite( title="Source Title" ) Source Title
 
-    blockquote.feature
-      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  blockquote.pull-right.col-s-12.col-m-5
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+    small
+      | Someone famous in 
+      cite( title="Source Title" ) Source Title
 
-    blockquote
-      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-      small
-        | Someone famous in
-        cite( title="Source Title" ) Source Title
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  blockquote.pull-left.col-s-12.col-m-5
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+    small
+      | Someone famous in 
+      cite( title="Source Title" ) Source Title
 
-    blockquote.pull-right.col-s-12.col-m-5
-      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-      small
-        | Someone famous in
-        cite( title="Source Title" ) Source Title
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  .clearfix
+  hr
 
-    blockquote.pull-left.col-s-12.col-m-5
-      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-      small
-        | Someone famous in
-        cite( title="Source Title" ) Source Title
+  h3 Lists
 
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  ul
+    li Lorem ipsum dolor sit amet
+    li Consectetur adipiscing elit
+    li Integer molestie lorem at massa
+    li Facilisis in pretium nisl aliquet
+    li
+      | Nulla volutpat aliquam
+      ul
+        li Phasellus iaculis neque
+        li Purus sodales ultricies
+        li Vestibulum laoreet porttitor sem
+        li Ac tristique libero volutpat at
+    li Faucibus porta lacus fringilla vel
+    li Aenean sit amet erat nunc
+    li Eget porttitor lorem
 
-    .clearfix
-    hr
+  ol
+    li Lorem ipsum dolor sit amet
+    li Consectetur adipiscing elit
+    li Integer molestie lorem at massa
+    li Facilisis in pretium nisl aliquet
+    li
+      | Nulla volutpat aliquam
+      ol
+        li Phasellus iaculis neque
+        li Purus sodales ultricies
+        li Vestibulum laoreet porttitor sem
+        li Ac tristique libero volutpat at
+    li Faucibus porta lacus fringilla vel
+    li Aenean sit amet erat nunc
+    li Eget porttitor lorem
 
-    h3 Lists
+  ul.unstyled
+    li Lorem ipsum dolor sit amet
+    li Consectetur adipiscing elit
+    li Integer molestie lorem at massa
+    li Facilisis in pretium nisl aliquet
+    li
+      | Nulla volutpat aliquam
+      ul
+        li Phasellus iaculis neque
+        li Purus sodales ultricies
+        li Vestibulum laoreet porttitor sem
+        li Ac tristique libero volutpat at
+    li Faucibus porta lacus fringilla vel
+    li Aenean sit amet erat nunc
+    li Eget porttitor lorem
 
-    ul
-      li Lorem ipsum dolor sit amet
-      li Consectetur adipiscing elit
-      li Integer molestie lorem at massa
-      li Facilisis in pretium nisl aliquet
-      li
-        | Nulla volutpat aliquam
-        ul
-          li Phasellus iaculis neque
-          li Purus sodales ultricies
-          li Vestibulum laoreet porttitor sem
-          li Ac tristique libero volutpat at
-      li Faucibus porta lacus fringilla vel
-      li Aenean sit amet erat nunc
-      li Eget porttitor lorem
+  ul.inline
+    li Lorem ipsum dolor sit amet
+    li Consectetur adipiscing elit
+    li Integer molestie lorem at massa
+    li Facilisis in pretium nisl aliquet
 
-    ol
-      li Lorem ipsum dolor sit amet
-      li Consectetur adipiscing elit
-      li Integer molestie lorem at massa
-      li Facilisis in pretium nisl aliquet
-      li
-        | Nulla volutpat aliquam
-        ol
-          li Phasellus iaculis neque
-          li Purus sodales ultricies
-          li Vestibulum laoreet porttitor sem
-          li Ac tristique libero volutpat at
-      li Faucibus porta lacus fringilla vel
-      li Aenean sit amet erat nunc
-      li Eget porttitor lorem
+  dl
+    dt Description lists
+    dd A description list is perfect for defining terms.
 
-    ul.unstyled
-      li Lorem ipsum dolor sit amet
-      li Consectetur adipiscing elit
-      li Integer molestie lorem at massa
-      li Facilisis in pretium nisl aliquet
-      li
-        | Nulla volutpat aliquam
-        ul
-          li Phasellus iaculis neque
-          li Purus sodales ultricies
-          li Vestibulum laoreet porttitor sem
-          li Ac tristique libero volutpat at
-      li Faucibus porta lacus fringilla vel
-      li Aenean sit amet erat nunc
-      li Eget porttitor lorem
+    dt Euismod
+    dd Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+    dd Donec id elit non mi porta gravida at eget metus.
 
-    ul.inline
-      li Lorem ipsum dolor sit amet
-      li Consectetur adipiscing elit
-      li Integer molestie lorem at massa
-      li Facilisis in pretium nisl aliquet
+    dt Malesuada porta
+    dd Etiam porta sem malesuada magna mollis euismod.
 
-    dl
-      dt Description lists
-      dd A description list is perfect for defining terms.
+  dl.horizontal
+    dt Description lists
+    dd A description list is perfect for defining terms.
 
-      dt Euismod
-      dd Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
-      dd Donec id elit non mi porta gravida at eget metus.
+    dt Euismod
+    dd Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+    dd Donec id elit non mi porta gravida at eget metus.
 
-      dt Malesuada porta
-      dd Etiam porta sem malesuada magna mollis euismod.
+    dt Malesuada porta
+    dd Etiam porta sem malesuada magna mollis euismod.
 
-    dl.horizontal
-      dt Description lists
-      dd A description list is perfect for defining terms.
+  hr
 
-      dt Euismod
-      dd Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
-      dd Donec id elit non mi porta gravida at eget metus.
+  h2 Responsive Media
 
-      dt Malesuada porta
-      dd Etiam porta sem malesuada magna mollis euismod.
+  h3 Images
 
-    hr
+  .row( style='background-color: #333; margin-top: 20px; margin-bottom: 20px; padding-top: 40px; padding-bottom: 40px;' )
+    .col-m-6.text-center
+      img( src='/img/logo.svg' )
+    .col-m-6.text-center
+      img( src='/img/menu.png', width=32, height=40 )
 
-    h2 Responsive Media
+  a( href='http://google.com' )
+    img( src='/journal/2013/02/20/code-test/peacock.jpg' )
 
-    h3 Images
+  h3 Videos
+  .video
+    //- <iframe width="560" height="315" src="http://www.youtube.com/embed/v1uyQZNg2vE?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
-    .row( style='background-color: #333; margin-top: 20px; margin-bottom: 20px; padding-top: 40px; padding-bottom: 40px;' )
-      .col-m-6.text-center
-        img( src='/assets/images/logo.png' )
-      .col-m-6.text-center
-        img( src='/assets/images/menu.png', width=32, height=40 )
+  hr
 
-    a( href='http://google.com' )
-      img( src='/journal/2013/02/peacock.jpg' )
+  h2 Tables
 
-    h3 Videos
-    .video
-      <iframe width="560" height="315" src="http://www.youtube-nocookie.com/embed/v1uyQZNg2vE?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  h3 Basic Table
+  table
+    thead
+      tr
+        th #
+        th First Name
+        th Last Name
+        th Username
+    tbody
+      tr
+        td 1
+        td Mark
+        td Otto
+        td @mdo
+      tr
+        td 2
+        td Jacob
+        td Thornton
+        td @fat
+      tr
+        td 3
+        td Larry
+        td the Bird
+        td @twitter
 
-    hr
+  h3 Condensed Table
+  table.condensed
+    thead
+      tr
+        th #
+        th First Name
+        th Last Name
+        th Username
+    tbody
+      tr
+        td 1
+        td Mark
+        td Otto
+        td @mdo
+      tr
+        td 2
+        td Jacob
+        td Thornton
+        td @fat
+      tr
+        td 3
+        td Larry
+        td the Bird
+        td @twitter
 
-    h2 Tables
+  h3 Bordered Table
+  table.bordered
+    thead
+      tr
+        th #
+        th First Name
+        th Last Name
+        th Username
+    tbody
+      tr
+        td 1
+        td Mark
+        td Otto
+        td @mdo
+      tr
+        td 2
+        td Jacob
+        td Thornton
+        td @fat
+      tr
+        td 3
+        td Larry
+        td the Bird
+        td @twitter
 
-    h3 Basic Table
+  h3 Striped Table
+  table.striped
+    thead
+      tr
+        th #
+        th First Name
+        th Last Name
+        th Username
+    tbody
+      tr
+        td 1
+        td Mark
+        td Otto
+        td @mdo
+      tr
+        td 2
+        td Jacob
+        td Thornton
+        td @fat
+      tr
+        td 3
+        td Larry
+        td the Bird
+        td @twitter
+
+  h3 Hover Table
+  table.hover
+    thead
+      tr
+        th #
+        th First Name
+        th Last Name
+        th Username
+    tbody
+      tr
+        td 1
+        td Mark
+        td Otto
+        td @mdo
+      tr
+        td 2
+        td Jacob
+        td Thornton
+        td @fat
+      tr
+        td 3
+        td Larry
+        td the Bird
+        td @twitter
+
+  h3 Responsive Table
+  .table-responsive
     table
       thead
         tr
           th #
-          th First Name
-          th Last Name
-          th Username
+          th Table heading
+          th Table heading
+          th Table heading
+          th Table heading
+          th Table heading
+          th Table heading
       tbody
         tr
           td 1
-          td Mark
-          td Otto
-          td @mdo
-        tr
-          td 2
-          td Jacob
-          td Thornton
-          td @fat
-        tr
-          td 3
-          td Larry
-          td the Bird
-          td @twitter
-
-    h3 Condensed Table
-    table.condensed
-      thead
-        tr
-          th #
-          th First Name
-          th Last Name
-          th Username
-      tbody
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
         tr
           td 1
-          td Mark
-          td Otto
-          td @mdo
-        tr
-          td 2
-          td Jacob
-          td Thornton
-          td @fat
-        tr
-          td 3
-          td Larry
-          td the Bird
-          td @twitter
-
-    h3 Bordered Table
-    table.bordered
-      thead
-        tr
-          th #
-          th First Name
-          th Last Name
-          th Username
-      tbody
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
         tr
           td 1
-          td Mark
-          td Otto
-          td @mdo
-        tr
-          td 2
-          td Jacob
-          td Thornton
-          td @fat
-        tr
-          td 3
-          td Larry
-          td the Bird
-          td @twitter
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
+          td Table cell
+  hr
 
-    h3 Striped Table
-    table.striped
-      thead
-        tr
-          th #
-          th First Name
-          th Last Name
-          th Username
-      tbody
-        tr
-          td 1
-          td Mark
-          td Otto
-          td @mdo
-        tr
-          td 2
-          td Jacob
-          td Thornton
-          td @fat
-        tr
-          td 3
-          td Larry
-          td the Bird
-          td @twitter
+  h2 Code
 
-    h3 Hover Table
-    table.hover
-      thead
-        tr
-          th #
-          th First Name
-          th Last Name
-          th Username
-      tbody
-        tr
-          td 1
-          td Mark
-          td Otto
-          td @mdo
-        tr
-          td 2
-          td Jacob
-          td Thornton
-          td @fat
-        tr
-          td 3
-          td Larry
-          td the Bird
-          td @twitter
+  p Code can be `inline` or in syntx-highlighted blocks.
 
-    h3 Responsive Table
-    .table-responsive
-      table
-        thead
-          tr
-            th #
-            th Table heading
-            th Table heading
-            th Table heading
-            th Table heading
-            th Table heading
-            th Table heading
-        tbody
-          tr
-            td 1
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-          tr
-            td 1
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-          tr
-            td 1
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-            td Table cell
-    hr
+  pre: code.
+    $ ->
+      setLogoColors Math.floor(Math.random() * 360), true
 
-    h2 Code
+      if $('img').length
+        $(window).on 'load', -> setBodyHeight()
+      else
+        setBodyHeight()
 
-    p Code can be `inline` or in syntx-highlighted blocks.
+      $(window).on 'load', -> delay 0, -> window.scrollTo(0, 1)
 
-    pre: code
-      :escape
-        $ ->
-          setLogoColors Math.floor(Math.random() * 360), true
+      $(window).on 'resize', -> setBodyHeight()
 
-          if $('img').length
-            $(window).on 'load', -> setBodyHeight()
-          else
-            setBodyHeight()
+      $(document).pjax "a[href^='/']", '#main', { fragment: "#main" }
+      $(document).on 'pjax:start', ->
+        setLogoColors Math.floor(Math.random() * 360)
+      $(document).on 'pjax:end', ->
+        setBodyHeight()
 
-          $(window).on 'load', -> delay 0, -> window.scrollTo(0, 1)
+      $('.menu-button').on 'click', ->
+        $('header nav ul').toggleClass 'shown'
 
-          $(window).on 'resize', -> setBodyHeight()
+  hr
 
-          $(document).pjax "a[href^='/']", '#main', { fragment: "#main" }
-          $(document).on 'pjax:start', ->
-            setLogoColors Math.floor(Math.random() * 360)
-          $(document).on 'pjax:end', ->
-            setBodyHeight()
+  h2 Helpful classes
 
-          $('.menu-button').on 'click', ->
-            $('header nav ul').toggleClass 'shown'
-
-    hr
-
-    h2 Helpful classes
-
-    img( src: 'http://placehold.it/150x150' )
-    img.rounded( src: 'http://placehold.it/150x150' )
-    img.circle( src: 'http://placehold.it/150x150' )
+  img( src='http://placehold.it/150x150' )
+  img.rounded( src='http://placehold.it/150x150' )
+  img.circle( src='http://placehold.it/150x150' )

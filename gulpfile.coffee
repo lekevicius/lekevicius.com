@@ -115,7 +115,6 @@ imageresize = require 'gulp-image-resize'
 
 # Development
 watch = require 'gulp-watch'
-livereload = require 'gulp-livereload'
 webserver = require 'gulp-webserver'
 
 # Deployment
@@ -494,6 +493,7 @@ taskPages = ->
     @push file
     cb()
   )
+  .pipe(highlight())
   .pipe(minifyhtml(minifyHtmlOptions))
   .pipe(rename (path) ->
     fullPath = path.dirname + '/' + path.basename + path.extname

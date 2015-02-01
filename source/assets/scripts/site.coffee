@@ -2,156 +2,128 @@ $.fn.classList = () -> $(this).attr('class').split(/\s+/)
 $.preload = (url, callback) -> $('<img/>').attr({ src: url }).load callback
 delay = (time, func) -> setTimeout func, time
 
-
-
-
-
-setColors = (toColor) ->
-  $('#color, #color-cover').css 'background-color', toColor
-  $('#color-styles').text """a { color: #{ toColor }; }
-    .color-background { background-color: #{ toColor } !important; }
-    .color-border { border-color: #{ toColor } !important; }"""
-
-$(window).resize ->
-  $('#spacer, #color').css 'height', $('#container > header').outerHeight() + 'px'
-
+menuFullWidth = 640
+isFullMenu = ( window.outerWidth >= menuFullWidth )
 pageTransitionDone = null
-colorCoverTransitionEnd = (event) -> pageTransitionDone() if pageTransitionDone isnt null
-
-pageTransitionStart = (done) ->
-  pageTransitionDone = done
-  $('#color-cover').css 'height', '100%'
-  $('html, body').animate({scrollTop: '0px'}, 500)
-  $('.page-title').addClass 'fade-out'
-
-pageTransitionEnd = ->
-  pageTransitionDone = null
-  $('#color-cover').css 'height', '0'
-  $('#container > header .page-title').removeClass 'fade-in'
-  $('.navigation-items, .menu-button').removeClass 'open'
-
-setNavigationPositions = ->
-  allItems = ['journal', 'projects', 'portfolio', 'profile']
-  activeItem = $('#container > header nav li.active')
-  runningTotalLeft = 0
-  if activeItem.length
-    activeItemClasses = activeItem.classList()
-    activeItemClasses.splice( $.inArray('active', activeItemClasses), 1 )
-    activeItemClass = activeItemClasses[0]
-
-    allItems.splice( $.inArray(activeItemClass, allItems), 1 )
-    runningTotalLeft = 6
-
-    $('#container > header nav li.active').css 'left', runningTotalLeft
-    runningTotalLeft += $('#container > header nav li.active').outerWidth()
-
-  for item in allItems
-    runningTotalLeft += 24
-    $("#container > header nav li.#{ item }").css 'left', runningTotalLeft
-    runningTotalLeft += $("#container > header nav li.#{ item }").outerWidth()
-
+colorTransitionDone = () -> pageTransitionDone() if pageTransitionDone isnt null
 
 $ ->
-  $('.menu-button').on 'click', ->
+  $('html').removeClass('no-js').addClass('js')
+
+  $(document).on 'click', '.menu-button', ->
     $('.site-header').toggleClass 'open'
-  # Basic setup
-  # $('html').removeClass('no-js').addClass('js')
-  # $('#spacer, #color').css 'height', $('#container > header').outerHeight() + 'px'
 
-  # delay 50, -> $('#spacer, #color').css 'height', $('#container > header').outerHeight() + 'px'
+  setNavigationPositions()
+  delay 10, -> setNavigationPositions()
 
-  # $('.menu-button').on 'click', (e) ->
-  #   e.preventDefault()
-  #   if $('#container > header .navigation-items').hasClass 'open'
-  #     $('#container > header .navigation-items, .menu-button').removeClass 'open'
-  #     $('#spacer, #color').animate { 'height': '-=150px' }, 300
-  #   else
-  #     $('#container > header .navigation-items, .menu-button').addClass 'open'
-  #     $('#spacer, #color').animate { 'height': '+=150px' }, 300
+  $('#content').retina()
+  $('a[rel=footnote]').footnotePopover()
+  $('.unseen').trackAppearance()
+  $('.unseen').on 'seen', -> console.log @
 
-
-  # setNavigationPositions()
-  # $('#container > header nav ul').addClass 'manipulated'
-
-  # $('#page').retina()
-  # $('a.footnote').footnotePopover()
-  # $('.unseen').trackAppearance()
-  # $('.unseen').on 'seen', -> console.log @
-
-  # # Styling for iOS Homescreen app
+  # Styling for iOS Homescreen app
   # if (window.navigator.standalone) then $('#container > header .header-inner').attr('style', 'padding-top: 32px')
 
   # # Pusher setup
-  # $('#color-cover').on 'webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd', colorCoverTransitionEnd
+  $('#color').on 'webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd', colorTransitionDone
 
-  # # $(document).on 'entree:before', (e, context) -> console.log context
-  # # $(document).on 'entree:update', (e, context) -> console.log context
-  # # $(document).on 'entree:after', (e, context) -> console.log context
+  $(document).entree
+    fragment: '#content'
+    debug: true
 
-  # $(document).entree
-  #   fragment: '#page'
-  #   debug: true
-  #   before: (done) ->
-  #     a = document.createElement('a')
-  #     a.href = @state.url
+    before: (done) ->
+      setFutureCurrentMenuItem @state.url
+      $('.site-header').removeClass 'open'
+      setNavigationPositions()
 
-  #     activeNavigationItem = a.pathname.split('/')[1]
-  #     $('#container > header .active').removeClass 'active'
-  #     if activeNavigationItem isnt ''
-  #       $("#container > header nav li.#{ activeNavigationItem }").addClass 'active'
-  #       if $(window).width() <= 659
-  #         $('.site-title').attr 'href', '/'
-  #       else
-  #         $('.site-title').attr 'href', '/' + activeNavigationItem
-  #     else
-  #       $("#container > header .site-title").addClass 'active'
-  #       $('.site-title').attr 'href', '/'
+      unless @popstate
+        pageTransitionStart(done)
+      else
+        $('html, body').scrollTop 0
+        done()
 
-  #     setNavigationPositions()
+    update: ->
+      $('header.site-header nav ul').css
+        marginTop: (-36 * $('header.site-header nav ul li.menu-current').index()) + 'px'
 
-  #     $('#color-image').removeClass 'visible'
+      # newColor = @query('#color-styles').text().match(/color: (#[0-9a-f]{6}|[0-9a-f]{3})/i)
+      # newColor = if newColor then newColor[1] else '#eeeeee'
+      # $('.logo svg path').velocity { fill: newColor }, { duration: 1200 }
 
-  #     unless @popstate
-  #       pageTransitionStart(done)
-  #     else
-  #       $('html, body').animate({scrollTop: '0px'}, 0)
-  #       done()
-  #   update: ->
-  #     $('#page').retina()
+      $('#color-styles').text @query('#color-styles').text()
+      $('.page-title').html @query('.page-title').html()
+      $('.site-header').toggleClass 'dark', @query('.site-header').hasClass('dark')
 
-  #     colorStyle = @query('#color-styles').text()
-  #     pageColor = '#' + colorStyle.match(/a { color: #([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}); }/)[1]
-  #     setColors pageColor
+      resHack = @data.replace /(html|head|body)/ig, 'my$1'
+      myBody = $('<root>').html(resHack).find('mybody')
+      $('body').attr 'class', ( if myBody.attr('class') then myBody.attr('class') else '' )
 
-  #     $('#container > header .page-title').remove()
-  #     pageTitle = @query('.page-title')
-  #     pageTitle.addClass 'fade-in' unless @popstate
-  #     $('#container > header').append pageTitle
+      $('a img').parent().addClass 'contains-image'
+      $('#content').retina()
+      $('a[rel=footnote]').footnotePopover()
 
-  #     colorImage = @query('#color-image')
-  #     if colorImage.attr('style')
-  #       colorImageStyle = colorImage.css('background-image')
-  #       colorImageUrl = colorImageStyle.substring(4, colorImageStyle.length - 1)
-  #       $.preload colorImageUrl, ->
-  #         $('#color-image').css('background-image', "url(#{ colorImageUrl })").addClass 'visible'
+    after: ->
+      delay 20, => pageTransitionEnd() unless @popstate
 
-  #     resHack = @data.replace /(html|head|body)/ig, 'my$1'
-  #     $('body').attr 'class', $('<root>').html(resHack).find('mybody').attr('class')
-
-  #     headerHeight = $('#container > header').outerHeight()
-  #     headerHeight -= 150 if $('#container > header .navigation-items').hasClass 'open'
-  #     $('#spacer, #color').css 'height', headerHeight + 'px'
-
-  #     $('a img').parent().addClass 'contains-image'
-  #     $('a.footnote').footnotePopover()
-  #   after: ->
-  #     pageTransitionEnd() unless @popstate
-  #   fail: ->
-  #     pageTransitionEnd()
-  #     alert "Can't load #{ @state.url }"
+    fail: ->
+      pageTransitionEnd()
+      alert "Can't load #{ @state.url }"
 
   # # Site Search
   # $(document).on 'submit', 'form.site-search', (e) ->
   #   e.preventDefault()
   #   window.location.href = "http://duckduckgo.com/?q=site%3Alekevicius.com+" + encodeURIComponent($('input[type=text]', @).val())
 
+
+$(window).resize ->
+  if isFullMenu and window.outerWidth < menuFullWidth
+    isFullMenu = false
+  if not isFullMenu and window.outerWidth >= menuFullWidth
+    isFullMenu = true
+    setNavigationPositions()
+    delay 10, -> setNavigationPositions()
+    delay 30, -> setNavigationPositions()
+
+pageTransitionStart = (done) ->
+  pageTransitionDone = done
+  $('#color').css { height: window.outerHeight, top: $(window).scrollTop(), bottom: 'auto' }
+  $('.page-title, #content').addClass 'faded'
+
+pageTransitionEnd = ->
+  pageTransitionDone = null
+  $('html, body').scrollTop 0
+  $('#color').css { height: 0, top: 'auto', bottom: $('.site-header').outerHeight() - window.outerHeight }
+  $('.page-title, #content').removeClass 'faded'
+
+setFutureCurrentMenuItem = (url) ->
+  a = document.createElement('a')
+  a.href = url
+  futureNavigationItem = a.pathname.toLowerCase().split('/')[1]
+  $('header.site-header nav ul li').removeClass 'menu-current'
+  
+  if [ 'journal', 'profile' ].indexOf(futureNavigationItem) > -1
+    $("header.site-header nav ul li.menu-item-#{ futureNavigationItem }").addClass 'menu-current'
+  else
+    $('header.site-header nav ul li.menu-item-title').addClass 'menu-current'
+
+setNavigationPositions = ->
+  $('header.site-header nav ul').css
+    marginTop: (-36 * $('header.site-header nav ul li.menu-current').index()) + 'px'
+
+  allItems = [ 'menu-item-journal', 'menu-item-profile' ]
+  activeItem = $('header.site-header nav ul li.menu-current:not(.menu-item-title)')
+  runningTotalLeft = $('header.site-header nav ul li.menu-item-title').outerWidth() + 10
+
+  if activeItem.length
+    runningTotalLeft -= 26
+    activeItemClass = _.without(activeItem.classList(), 'menu-current')[0]
+    allItems = _.without allItems, activeItemClass if activeItemClass isnt 'menu-item-title'
+
+    $("header.site-header nav ul li.#{ activeItemClass }").css 'left', runningTotalLeft
+    runningTotalLeft += $("header.site-header nav ul li.#{ activeItemClass }").outerWidth() + 10
+
+  for item in allItems
+    $("header.site-header nav ul li.#{ item }").css 'left', runningTotalLeft
+    runningTotalLeft += $("header.site-header nav ul li.#{ item }").outerWidth() + 10
+
+  $('header.site-header nav ul').addClass 'positioned'

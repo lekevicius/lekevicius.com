@@ -1,8 +1,32 @@
+for value, key in page
+  if typeof value == 'string'
+    if value.substring(0, 3) == 'o \\'
+      - page[key] = value.substring(3)
+    else if value.substring(0, 2) == 'o '
+      - page[key] = value.substring(2)
+
+- hue = 0
 unless page.color
   - colorSeed = ( page.title ? page.title : site.url + page.url )
   - hue = parseInt("0x"+ helpers.crypto.createHash('md5').update(colorSeed).digest('hex').slice(0,4)) / 65536.0
-  - page.color = helpers.color().hsl( Math.floor( hue * 360 ), 75, 30 ).hexString()
+  - page.color = helpers.color().hsl( Math.floor( hue * 360 ), 75, 40 ).hexString()
+else
+  - hue = helpers.color(page.color).hslArray()[0] / 360
+
+if page.darkHeader
+  - page.coverColor = helpers.color().hsl( Math.floor( hue * 360 ), 75, 40 ).hexString()
+else
+  - page.coverColor = helpers.color().hsl( Math.floor( hue * 360 ), 50, 90 ).hexString()
   
+- section = page.url.toLowerCase().split('/')[1]
+if section == 'journal'
+  - page.section = 'journal'
+else if section == 'projects'
+  - page.section = 'projects'
+else if section == 'profile'
+  - page.section = 'profile'
+else 
+  - page.section = 'home'
 
 if helpers.fs && file
   - originalFilePath = file.history[0]
@@ -32,10 +56,4 @@ if helpers.fs && file
 //- path_components = current_page.url.split('/')
 //- @active_navigation_item = path_components.size > 0 ? path_components[1] : 'home'
 
-//- @menu = {
-//-   'journal' => '/journal',
-//-   'projects' => '/projects',
-//-   'portfolio' => '/portfolio',
-//-   'profile' => '/profile'
-//- }
-//- @possible_menu_keys = @menu.keys
+

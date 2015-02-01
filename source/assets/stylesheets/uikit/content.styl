@@ -5,15 +5,21 @@ body
   font-weight 400
 
   @media screen_small_min
-    font-size font_size_base * 1.1
+    font-size font_size_base * 1.2
   @media screen_medium_min
-    font-size font_size_base * 1.25
+    font-size font_size_base * 1.3
 
 body, select, input, textarea
   color #444
 
 #content
   text-shadow 0 0 1px rgba(0, 0, 0, 0.01)
+  transition all 0.5s
+  transition-property opacity, transform
+  
+  &.faded
+    opacity 0
+    transform translateY(100px)
 
 // Body text
 
@@ -43,7 +49,7 @@ p
     margin-bottom 1em
 
   &.lead
-    margin-bottom 1.7em
+    margin-bottom 1.4em
     font-size 1.3em
 
 // Emphasis & misc
@@ -128,11 +134,12 @@ img
 // Lists
 
 ul, ol
-  margin 0.8em 0 1.2em 1.8em
+  margin 0.8em 0 1.2em 1em
 
   li
     margin-top 0.3em
     margin-bottom 0.3em
+    padding-left 0.4em
 
   &.unstyled
     padding-left 0
@@ -156,6 +163,7 @@ ul
 
 ol
   list-style-type decimal
+  margin-left 1.2em
 
 // Description Lists
 
@@ -166,13 +174,13 @@ dl
     @media screen_medium_min
       dt
         float left
-        width 40%
+        width 30%
         clear left
         text-align right
         text-overflow()
 
       dd
-        margin-left 45%
+        margin-left 35%
         clearfix()
 
 dt
@@ -183,67 +191,69 @@ dd
 
 // Blockquotes
 
-// blockquote
-//   padding 0.4em 0.8em 0.4em 1.6em
-//   margin 0 -15px 1.2em -15px
-//   border-left 5px solid #999
+blockquote
+  padding 0.4em 10px 0.4em 10px
+  margin 0 -12px 1.2em -12px
+  border-left 2px solid #999
 
-//   @media screen_large_min
-//     margin-left -25px
-//     margin-right -25px
+  @media screen_large_min
+    margin-left -22px
+    margin-right -22px
+    padding-left 20px
+    padding-right 20px
 
-//   p
-//     font-style italic
-//     &:first-child
-//       margin-top 0
-//     &:last-child
-//       margin-bottom 0
+  p
+    font-style italic
+    &:first-child
+      margin-top 0
+    &:last-child
+      margin-bottom 0
+    &:last-of-type
+      margin-bottom 0.5em
 
-//     em
-//       font-style normal
+    em
+      font-style normal
 
-//   small
-//     display block
-//     line-height 1.4
-//     color #777
+  small
+    display block
+    line-height 1.4
+    color #777
 
-//     &:before
-//       content '\2014 \00A0'
+    &:before
+      content '\2014 \00A0 \00A0'
 
-//   &.feature
-//     border-left 0
-//     margin 30px 0
-//     padding-left 0
-//     padding-right 0
+  &.feature
+    border-left 0
+    margin 30px 0
+    padding-left 0
+    padding-right 0
 
-//     p
-//       text-align center
-//       font-size 1.3em
+    p
+      text-align center
+      font-size 1.3em
 
-//     @media screen_large_min
-//       margin-left -45px
-//       margin-right -45px
-//       p
-//         font-size 1.4em
+    @media screen_large_min
+      margin-left -45px
+      margin-right -45px
+      p
+        font-size 1.4em
 
-//   &.pull-left
-//     margin-right 30px
+  &.pull-left
+    margin-right 30px
 
-//   &.pull-right
-//     padding-right 20px
-//     padding-left 10px
-//     border-right 5px solid #999
-//     border-left 0
-//     margin-left 30px
+  &.pull-right
+    border-right 2px solid #999
+    border-left 0
+    margin-left 30px
 
-//     p, small
-//       text-align right
+    p, small
+      text-align right
 
-//     small
-//       &:before
-//         content: ''
-//       &:after
-//         content: '\00A0 \2014'
+    small
+      &:before
+        content: ''
+      &:after
+        content: '\00A0 \00A0 \2014'
 
 q:before, q:after, blockquote:before, blockquote:after
   content ""
@@ -275,7 +285,7 @@ dfn
   font-style italic
 
 b, strong, th
-  font-weight bold
+  font-weight 600
 
 i, em
   font-style italic
@@ -284,17 +294,15 @@ small
   font-size 80%
 
 sub, sup
-  font-size: 75%
-  line-height: 0
-  position: relative
-  vertical-align: baseline
+  font-size 75%
+  line-height 0
   padding 0 3px
 
 sup
-  top -0.5em
+  vertical-align super
 
 sub
-  bottom -0.25em
+  vertical-align sub
 
 abbr[title], dfn[title]
   border-bottom 1px dotted
@@ -305,7 +313,7 @@ abbr[title], dfn[title]
 
 address
   display block
-  margin-bottom 22px
+  margin-bottom 2em
   font-style normal
   line-height 1.4
 
@@ -320,7 +328,7 @@ address
     display block
     content ""
   p
-    margin-bottom 20px
+    margin-bottom 2em
   a.reversefootnote
     padding-left 0.6em
 
@@ -328,4 +336,5 @@ sup
   padding 0
   a
     margin 0
-    padding 0 4px 5px 4px
+    padding 0 4px 1em 4px
+    display inline-block

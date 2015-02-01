@@ -1,13 +1,15 @@
+table_border_color = #eee
+
 table
   width 100%
   max-width 100%
   margin-bottom line_height_computed
-  background-color table_bg
+  background-color transparent
 
   thead, tbody, tfoot
     > tr
       > th, > td
-        padding table_cell_padding
+        padding 8px
         line-height line_height_base
         vertical-align top
         border-top 1px solid table_border_color
@@ -39,7 +41,7 @@ table
     thead, tbody, tfoot
       > tr
         > th, > td
-          padding table_condensed_cell_padding
+          padding 5px
 
   &.bordered
     border 1px solid table_border_color
@@ -57,13 +59,13 @@ table
     > tbody
       > tr:nth-child(odd)
         > td, > th
-          background-color: table_bg_accent
+          background-color: rgba(#000, 0.03)
 
   &.hover
     > tbody
       > tr:hover
         > td, > th
-          background-color table_bg_hover
+          background-color rgba(#000, 0.03)
 
 table col[class*="col-"]
   float none
@@ -77,7 +79,7 @@ table
 
 .table > thead > tr, .table > tbody > tr, .table > tfoot > tr
   > td.active, > th.active, &.active > td, &.active > th
-    background-color table_bg_active
+    background-color #f5f5f5
 
 .table-responsive
   width 100%
