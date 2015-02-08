@@ -1,0 +1,4 @@
+---
+title: CAPITALIZED_TITLE
+---
+
