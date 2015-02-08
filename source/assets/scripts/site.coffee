@@ -32,9 +32,6 @@ $ ->
   $('.site-header').height $('.header-inner').outerHeight() + $('.page-title').outerHeight()
   delay 20, -> $('.site-header').addClass 'animated'
 
-  # Styling for iOS Homescreen app
-  # if (window.navigator.standalone) then $('#container > header .header-inner').attr('style', 'padding-top: 32px')
-
   # $(document).on 'entree:before', (e, context) -> console.log 'before', context
   # $(document).on 'entree:update', (e, context) -> console.log 'update', context
   # $(document).on 'entree:after', (e, context) -> console.log 'after', context

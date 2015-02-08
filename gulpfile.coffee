@@ -610,21 +610,6 @@ gulp.task 'publish', ->
   .pipe(publisher.sync()) # delete missing
   .pipe(awspublish.reporter())
 
-    # gulp.src('build/**/*.*')
-    # .pipe(gzip())
-    # .pipe(s3({
-    #     key: keys.key
-    #     secret: keys.secret
-    #     bucket: keys.bucket
-    #     region: 'us-east-1'
-    #   }, {
-    #     headers: { 'Cache-Control': 'max-age=315360000, no-transform, public' }
-    #     gzippedOnly: true
-    #   }))
-    # # .pipe(publisher.cache())
-    # # .pipe(publisher.sync()) # delete missing
-    # # .pipe(awspublish.reporter())
-
 
 
 ## TASK GROUPS ##
