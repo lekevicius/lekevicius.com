@@ -67,6 +67,8 @@ sitemap = require 'gulp-sitemap'
 revall = require 'gulp-rev-all'
 parallelize = require 'concurrent-transform'
 awspublish = require 'gulp-awspublish'
+# s3 = require 'gulp-s3'
+# gzip = require 'gulp-gzip'
 
 keys = require './config/keys.json'
 
@@ -596,17 +598,32 @@ gulp.task 'server', ['default'], ->
 
 ## DEPLOYMENT TASKS ##
 
-gulp.task 'publish', ['default'], ->
+gulp.task 'publish', ->
   publisher = awspublish.create keys
 
   gulp.src('build/**/*.*')
-    # .pipe(revall({ ignore: [ '.html', '.xml', '.txt' ] }))
-    # .pipe(gulp.dest('build'))
-    .pipe(awspublish.gzip())
-    .pipe(parallelize(publisher.publish(), 10))
-    .pipe(publisher.cache())
-    .pipe(publisher.sync()) # delete missing
-    .pipe(awspublish.reporter())
+  # .pipe(revall({ ignore: [ '.html', '.xml', '.txt' ] }))
+  # .pipe(gulp.dest('build'))
+  .pipe(awspublish.gzip())
+  .pipe(parallelize(publisher.publish(), 10))
+  .pipe(publisher.cache())
+  .pipe(publisher.sync()) # delete missing
+  .pipe(awspublish.reporter())
+
+    # gulp.src('build/**/*.*')
+    # .pipe(gzip())
+    # .pipe(s3({
+    #     key: keys.key
+    #     secret: keys.secret
+    #     bucket: keys.bucket
+    #     region: 'us-east-1'
+    #   }, {
+    #     headers: { 'Cache-Control': 'max-age=315360000, no-transform, public' }
+    #     gzippedOnly: true
+    #   }))
+    # # .pipe(publisher.cache())
+    # # .pipe(publisher.sync()) # delete missing
+    # # .pipe(awspublish.reporter())
 
 
 

@@ -8,11 +8,11 @@ The difference between moving a mouse and touching a screen is direct manipulati
 
 Tab bar is an abstraction: you have to *know*, not experience or see, that different buttons lead to different sections. It's fast, convenient, easy to learn - but nonetheless, it's an abstraction. Sections, such as feed or profile, do not live *inside* these buttons, they live in the Land of Somewhere. Tapping a button replaces current screen with a screen from Somewhere. It’s an indirect manipulation - user cannot see where that section comes from. Replacing this pattern with something direct can lead to UX improvements.
 
-![Snapchat Map](/journal/2015/02/08/sliding-screens-pattern/snapchat-map.png)
+![Snapchat Map](/journal/2015/02/08/sliding-screens-pattern/snapchat.png)
 
 Sliding screens pattern is about arranging those sections into a row of sliding pages. It allows to even have a "map" of the application: camera is next to snaps, stories are next to camera, and discover section is next to stories. Navigating the app becomes not a conceptional, abstract task of pressing tab bar buttons. Instead, navigating is physical and strongly spatial. User can know his place within the app, within a map.
 
-![Tinder Map](/journal/2015/02/08/sliding-screens-pattern/tinder-map.png)
+![Tinder Map](/journal/2015/02/08/sliding-screens-pattern/tinder.png)
 
 Tinder works very much in the same way, arranging sections next to each other. User’s profile, new cards, matches and moments. In case of Tinder, there are a couple of little details that make navigation very enjoyable. Navigation bar title is an icon, and icons beside it show nearby sections further explaining spatial arrangement. When you want to "Like" someone you have to swipe to the left - and to the left is where all your matches are listed. Sliding screens define the app as a series of spaces, and navigating means simply sliding left or right.
 
