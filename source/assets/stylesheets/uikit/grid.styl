@@ -14,8 +14,8 @@ container-fixed(max_width = content_max_width)
     max-width max_width
 
 make-row(gutter = grid_gutter)
-  margin-left (gutter / -2)
-  margin-right (gutter / -2)
+  margin-left (gutter / -1)
+  margin-right (gutter / -1)
   clearfix()
 
 make-tiny-column(columns, gutter = grid_gutter)
@@ -25,6 +25,18 @@ make-tiny-column(columns, gutter = grid_gutter)
   min-height 1px
   padding-left (gutter / 2)
   padding-right (gutter / 2)
+  
+make-tiny-column-before(columns)
+  margin-left unit(columns / grid_columns * 100, '%')
+  
+make-tiny-column-after(columns)
+  margin-right unit(columns / grid_columns * 100, '%')
+
+make-tiny-column-push(columns)
+  left unit(columns / grid_columns * 100, '%')
+
+make-tiny-column-pull(columns)
+  right unit(columns / grid_columns * 100, '%')
 
 make-small-column(columns, gutter = grid_gutter)
   position relative
@@ -35,9 +47,13 @@ make-small-column(columns, gutter = grid_gutter)
     float left
     width unit(columns / grid_columns * 100, '%')
 
-make-small-column-offset(columns)
+make-small-column-before(columns)
   @media screen_small_min
     margin-left unit(columns / grid_columns * 100, '%')
+    
+make-small-column-after(columns)
+  @media screen_small_min
+    margin-right unit(columns / grid_columns * 100, '%')
 
 make-small-column-push(columns)
   @media screen_small_min
@@ -56,9 +72,13 @@ make-medium-column(columns, gutter = grid_gutter)
     float left
     width unit(columns / grid_columns * 100, '%')
 
-make-medium-column-offset(columns)
+make-medium-column-before(columns)
   @media screen_medium_min
     margin-left unit(columns / grid_columns * 100, '%')
+    
+make-medium-column-after(columns)
+  @media screen_medium_min
+    margin-right unit(columns / grid_columns * 100, '%')
 
 make-medium-column-push(columns)
   @media screen_medium_min
@@ -77,9 +97,13 @@ make-large-column(columns, gutter = grid_gutter)
     float left
     width unit(columns / grid_columns * 100, '%')
 
-make-large-column-offset(columns)
+make-large-column-before(columns)
   @media screen_large_min
     margin-left unit(columns / grid_columns * 100, '%')
+    
+make-large-column-after(columns)
+  @media screen_large_min
+    margin-right unit(columns / grid_columns * 100, '%')
 
 make-large-column-push(columns)
   @media screen_large_min
@@ -113,6 +137,19 @@ for column_num in (1..grid_columns)
   .col-t-{column_num}
     width unit(column_num / grid_columns * 100, '%')
 
+for column_num in (0..(grid_columns - 1))
+  .col-t-before-{column_num}
+    margin-left unit(column_num / grid_columns * 100, '%')
+for column_num in (0..(grid_columns - 1))
+  .col-t-after-{column_num}
+    margin-right unit(column_num / grid_columns * 100, '%')
+for column_num in (0..(grid_columns - 1))
+  .col-t-push-{column_num}
+    left unit(column_num / grid_columns * 100, '%')
+for column_num in (0..(grid_columns - 1))
+  .col-t-pull-{column_num}
+    right unit(column_num / grid_columns * 100, '%')
+
 @media screen_small_min
 
   for column_num in (1..(grid_columns - 1))
@@ -123,15 +160,18 @@ for column_num in (1..grid_columns)
     .col-s-{column_num}
       width unit(column_num / grid_columns * 100, '%')
 
-  for column_num in (1..(grid_columns - 1))
+  for column_num in (0..(grid_columns - 1))
+    .col-s-before-{column_num}
+      margin-left unit(column_num / grid_columns * 100, '%')
+  for column_num in (0..(grid_columns - 1))
+    .col-s-after-{column_num}
+      margin-right unit(column_num / grid_columns * 100, '%')
+  for column_num in (0..(grid_columns - 1))
     .col-s-push-{column_num}
       left unit(column_num / grid_columns * 100, '%')
-  for column_num in (1..(grid_columns - 1))
+  for column_num in (0..(grid_columns - 1))
     .col-s-pull-{column_num}
       right unit(column_num / grid_columns * 100, '%')
-  for column_num in (1..(grid_columns - 1))
-    .col-s-offset-{column_num}
-      margin-left unit(column_num / grid_columns * 100, '%')
 
 @media screen_medium_min
 
@@ -143,15 +183,18 @@ for column_num in (1..grid_columns)
     .col-m-{column_num}
       width unit(column_num / grid_columns * 100, '%')
 
-  for column_num in (1..(grid_columns - 1))
+  for column_num in (0..(grid_columns - 1))
+    .col-m-before-{column_num}
+      margin-left unit(column_num / grid_columns * 100, '%')
+  for column_num in (0..(grid_columns - 1))
+    .col-m-after-{column_num}
+      margin-right unit(column_num / grid_columns * 100, '%')
+  for column_num in (0..(grid_columns - 1))
     .col-m-push-{column_num}
       left unit(column_num / grid_columns * 100, '%')
-  for column_num in (1..(grid_columns - 1))
+  for column_num in (0..(grid_columns - 1))
     .col-m-pull-{column_num}
       right unit(column_num / grid_columns * 100, '%')
-  for column_num in (1..(grid_columns - 1))
-    .col-m-offset-{column_num}
-      margin-left unit(column_num / grid_columns * 100, '%')
 
 @media screen_large_min
 
@@ -163,12 +206,15 @@ for column_num in (1..grid_columns)
     .col-l-{column_num}
       width unit(column_num / grid_columns * 100, '%')
 
-  for column_num in (1..(grid_columns - 1))
+  for column_num in (0..(grid_columns - 1))
+    .col-l-before-{column_num}
+      margin-left unit(column_num / grid_columns * 100, '%')
+  for column_num in (0..(grid_columns - 1))
+    .col-l-after-{column_num}
+      margin-right unit(column_num / grid_columns * 100, '%')
+  for column_num in (0..(grid_columns - 1))
     .col-l-push-{column_num}
       left unit(column_num / grid_columns * 100, '%')
-  for column_num in (1..(grid_columns - 1))
+  for column_num in (0..(grid_columns - 1))
     .col-l-pull-{column_num}
       right unit(column_num / grid_columns * 100, '%')
-  for column_num in (1..(grid_columns - 1))
-    .col-l-offset-{column_num}
-      margin-left unit(column_num / grid_columns * 100, '%')

@@ -52,19 +52,12 @@ html
 
       style#color-styles
         | .page-title h1, a { color: #{ page.color } } #color { background-color: #{ page.coverColor } } a.menu-button .bar, header.site-header.dark { background-color: #{ page.color } } .logo path { fill: #{ page.color } } .color-background { background-color: #{ page.color } !important } .color-border, blockquote { border-color: #{ page.color } !important } .color-text { color: #{ page.color } !important }
-        if page.cover
-          | header.site-header { background-image: url(#{ page.cover }) }
 
       if page.customStylesheet
         link( href=page.customStylesheet, rel="stylesheet" )
 
-      //- script( src="//use.typekit.net/tdv5ais.js" )
-      //- script try{Typekit.load();}catch(e){}
-
-      <!--[if lt IE 9]>
-      script( src="//html5shim.googlecode.com/svn/trunk/html5.js" )
-      script( src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js" )
-      <![endif]-->
+      script( src="//use.typekit.net/srz3pge.js" )
+      script try{Typekit.load();}catch(e){}
 
   body#body( class=page.bodyclass )
 

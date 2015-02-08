@@ -18,15 +18,16 @@ feed( xmlns="http://www.w3.org/2005/Atom" )
   - var index = 0
   for post in site.posts
     if index < 20
-      - index++
-      entry
-        id #{ site.url }#{ post.url }
-        link( href="#{ site.url }#{ post.url }", rel="alternate", type="text/html" )
+      if page.includeLinks || (post.link == undefined)
+        - index++
+        entry
+          id #{ site.url }#{ post.url }
+          link( href="#{ site.url }#{ post.url }", rel="alternate", type="text/html" )
 
-        published= post.date.toISOString()
-        updated= post.date.toISOString()
+          published= post.date.toISOString()
+          updated= post.date.toISOString()
 
-        title= post.title
-        content( type="html", xml:base=site.baseurl, xml:lang="en" )
-          :cdata
-            !{ post.content }
+          title= post.title
+          content( type="html", xml:base=site.baseurl, xml:lang="en" )
+            :cdata
+              !{ post.content }

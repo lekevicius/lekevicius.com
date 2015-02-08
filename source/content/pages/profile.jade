@@ -1,31 +1,50 @@
 ---
 title: Profile
-description: My name is Jonas Lekevicius, I am an interface designer at Lemon Labs and I study graphic design at Vilnius Art Academy.
-darkHeader: true
+description: UX and UI designer at Wahanda, delightfully simplifying complexity and crafting all sorts of inventions.
+//- darkHeader: true
+bodyclass: profile
 ---
 extends ../../assets/templates/basic
 
-block text
-  p My name is Jonas Lekevicius, I am an interface designer at <a href='http://lemonlabs.lt'>Lemon Labs</a>.
+block content
+  .row
+    .col-content.col-m-after-3.col-l-after-1
+      p 25 years old, living in lovely Vilnius, Lithuania. I have been designing and developing for over 10 years, and hold a BA degree in Graphic Design from Vilnius Academy of Arts.
+      p Currently I am working as user experience and interface designer at health and beauty marketplace <a href="https://www.wahanda.com/">Wahanda</a>. Previously I have co-founded app design and development agency <a href="http://lemonlabs.co/">Lemon Labs</a> that was acquired by Wahanda. I have been lecturing in <a href="http://www.dizainokolegija.lt/en/">Vilnius College of Design</a> and have co-founded an analytics startup <a href="https://socilyzer.com/">Socilyzer</a>.
+      hr
+      p I was never really sure what I wanted to do, design or code, so I ended up doing both.
+      p As a designer, I have created over a hundred websites, a bunch of games, about 20 apps and 2 magazines. Besides that I have dabbled in 3D, animation, procedural design, edited a couple of movies and even acted in a few. My strengths lie in information architecture, typography, usability, user interface and interaction design.
+      p As a developer I have coded pretty much everything I was designing. All the websites in HTML, CSS and JavaScript (and now Jade, Stylus and CoffeeScript), all the Flash games in good-old ActionScript 2 and 3, later native iOS apps in Objective-C — I’m still learning Swift. At one time I have worked as a Ruby on Rails developer. Whenever I can, I develop something for the latest gadgets: controlling drones with hand gestures in the air, making coffee with iBeacons and so on. Currently I’m deep into machine learning and Artificial Intelligence.
 
-  //- p I love doing almost everything in digital mediums. I can code in many languages, design websites, apps and games, work with logotypes and 3D graphics, and so on. I love learning more than anything else, and I try to learn something new every week.
+    .clearfix.hidden-l
 
-  p Currently I am not available for freelance projects, but if you need a great team to develop your mobile product, please contact Lemon Labs. We love building amazing things.
+    .col-l-4.col-m-9.col-sidebar
+      h3 Social
 
-  p Best way to reach me is via Twitter or <a href='mailto:jonas@lekevicius.com'>email</a>.
+      //- p Bits of me, scattered across the internet.
 
-  ul.social
-    li.twitter
-      a( href='https://twitter.com/lekevicius' ) Twitter
-    li.instagram
-      a( href='http://instagram.com/lekevicius' ) Instagram
-    li.dribbble
-      a( href='http://dribbble.com/lekevicius' ) Dribbble
-    li.github
-      a( href='https://github.com/lekevicius' ) GitHub
-    li.linkedin
-      a( href='http://www.linkedin.com/in/lekevicius' ) LinkedIn
-    li.behance
-      a( href='http://www.behance.net/lekevicius' ) Behance
-    
-//- # Twitter / App.net // Instagram / VSCO // Dribbble // Behance // Github // Hacker News // Letterboxd // Pinboard // Tumblr // Reddit // Pinterest // Speaker Deck
+      ul.unstyled.social-links
+        li: a( href='https://twitter.com/lekevicius' ) Twitter <span>Mostly interesting!</span>
+        li: a( href='https://github.com/lekevicius' ) Github <span>All open-source</span>
+        li: a( href='http://vvv.vsco.co/grid/1' ) VSCO Grid <span>iPhone photography</span>
+        li: a( href='https://dribbble.com/lekevicius' ) Dribbble <span>Occasional pretty pixels</span>
+        li: a( href='http://letterboxd.com/lekevicius/' ) Letterboxd <span>My movie reviews</span>
+        
+        //- li: a( href='' ) Pinboard
+        //- li: a( href='' ) Reddit
+        //- li: a( href='' ) Behance
+        
+        
+        //- li: a( href='' ) Instagram
+        //- li: a( href='' ) Codepen
+        li: a( href='https://news.ycombinator.com/user?id=flixic' ) Hacker News <span>Me being developer</span>
+        li: a( href='https://news.layervault.com/u/554/jonas-lekevicius' ) Designer News <span>Me being designer</span>
+        //- li: a( href='' ) SpeakerDeck
+        li: a( href='https://www.facebook.com/lekevicius' ) Facebook <span>Mostly lithuanian</span>
+        li: a( href='https://www.linkedin.com/in/lekevicius' ) LinkedIn <span>I hate that site though</span>
+
+      h3 Contact
+
+      p: em I am not available for any freelancing or contracting.
+      p The best way to reach me is Twitter. For any longer conversations you can <a href="mailto:jonas@lekevicius.com">email me</a>. I’m pretty bad at replying promptly and I may not reply at all. My public key is on <a href="https://keybase.io/lekevicius">keybase</a>.
+      //- p You can tip me in Bitcoins.

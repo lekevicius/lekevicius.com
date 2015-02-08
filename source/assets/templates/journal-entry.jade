@@ -1,12 +1,24 @@
 extends basic
 
-block text
-  != content
+block content
+  .row: .col-content.post( class=( page.link ? 'link-post' : 'article-post' ) )
+    .byline
+      if page.link
+        | Link to 
+        a( href=page.link )= page.link
+        br
+      | Published on 
+      = helpers.moment(page.date).format('MMMM Do, YYYY')
+      | . Reading time: 
+      = page.readingTime + " minute" + ( page.readingTime > 1 ? 's' : '' )
+      | .
 
+    != content
 
-//- %span.time
-//-   = reading_time_minutes(current_page.body)
-//-   min read
-//- .read-later
-//-   Instapaper
-//-   = '<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0" style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;" src="http://www.instapaper.com/e2?url=' + ERB::Util.url_encode(@site.baseurl + current_page.url) + '&title=' + ERB::Util.url_encode(current_page.data.title) + '"></iframe>'
+    unless page.link
+      .after-article
+        | If you liked this article, you should 
+        a( href='https://twitter.com/lekevicius' ) follow me 
+        |  on Twitter or 
+        a( href='/feed.xml' ) subscribe 
+        |  to this journal via RSS. Or just tell your friends about it, that would be very nice.

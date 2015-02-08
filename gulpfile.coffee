@@ -1,69 +1,13 @@
 ###
 Todo:
 
-Work plan:
-  - Everything about navigation incl. Entree
-  - Everything about typography
-  - Profile page
-  - Everything about Journal
-  - Homepage, 404 page
-  - Launch!
-  - Start releasing most important projects
-
-Design:
-  - Responsive Navigation
-    - Page title areas (title, description, custom-title)
-    - Dark variation
-    - Current menu item marking
-    - JavaScript positioning
-    - Entree transitions!
-    
-  - Usage & Typography
-
-  - Home
-  - 404 page
-  - Archive
-  - Single post
-
-  - Plugins:
-    - Footnote Popover
-    - Pixel Loupe
-    - Zoombox
-    - Entree
-
-Content:
-  - First post
+Design and content:
+  - Homepage
+  - Journal index and pages
+  - Journal entry
   - Profile
-  - Projects
-    - jQuery Entree
-    - jQuery Pixel Loupe
-    - jQuery Seen
-    - jQuery Footnote Popover
-    - jQuery Zoombox
-    - Air Drawing
-    - ReadSprint
-    - UIKit.Stylus
-    - Email Printer
-    - Postcards
-    - Spelltower AI
-    - Letterpress AI
-    - Amora
-    - Sound Shapes
-    - ARDrone + Leap Motion
-    - App Design Guide
-    - Vijual
-    - Pile of Days
-    - Coffee Package
-    - Login Trailer
-    - Movie Word History
-    - ...
-
-Future Features:
-  - Journal tags with paginated tag pages
-  - Better site search index and features
-  - Zoombox navigation between images
-  - Zoombox swipe navigation
-  - Zoombox captions
+  - 404
+  - First post
 
 ###
 
@@ -92,6 +36,7 @@ frontmatter = require 'gulp-front-matter'
 minifyhtml = require 'gulp-minify-html'
 marked = require 'gulp-marked'
 markdown = require('js-markdown-extra').Markdown
+typogr = require 'gulp-typogr'
 moment = require 'moment'
 highlight = require 'gulp-highlight'
 cheerio = require 'cheerio'
@@ -139,7 +84,7 @@ paths =
   siteImages: 'source/assets/images/**/*.+(png|jpg|gif|svg)'
   contentImages: [ 'source/content/**/*.+(png|jpg|gif|svg)' ]
   siteAssets: [ 'source/assets/images/**/*.*', '!source/assets/images/**/*.+(png|jpg|gif|svg)' ]
-  contentAssets: [ 'source/content/**/*.*', '!source/content/**/*.+(jade|styl|coffee|png|jpg|gif|svg)' ]
+  contentAssets: [ 'source/content/**/*.*', '!source/content/**/*.+(md|jade|styl|coffee|png|jpg|gif|svg)' ]
   fonts: 'source/assets/fonts/**/*'
   icons: 'source/assets/icons/**/*'
 
@@ -211,6 +156,7 @@ setPostMetadata = ->
         file.page.date = moment({ year: parseInt(match[1]), month: parseInt(match[2]) - 1, day: parseInt(match[3]) })
       file.page.url  = "/journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }/"
       file.page.readingTime = Math.max( Math.round(file.contents.toString().split(' ').length / 200.0), 1 )
+      file.page.bodyclass = if file.page.bodyclass then file.page.bodyclass + ' journal-entry' else 'journal-entry'
     @push file
     cb()
   )
@@ -246,7 +192,7 @@ applyTemplate = (templateFile) ->
 summarize = () ->
   through.obj (file, enc, cb) ->
     fileContents = file.contents.toString()
-    if cheerio('p', fileContents).length
+    if not file.page.summary and cheerio('p', fileContents).length
       file.page.summary = cheerio('p:first-of-type', fileContents).html()
     @push file
     cb()
@@ -257,7 +203,7 @@ journalPages = ->
     @push file
     cb()
   
-  postsPerPage = 2
+  postsPerPage = 20
   totalPages = Math.ceil site.posts.length / postsPerPage
 
   for pageNumber in [1..totalPages]
@@ -274,9 +220,11 @@ journalPages = ->
       previousPageURL: ( if pageNumber > 1 then ( if pageNumber == 2 then "/journal/" else "/journal/page/#{ pageNumber - 1 }/" ) else null )
       posts: site.posts.slice( (pageNumber - 1) * postsPerPage, (pageNumber - 1) * postsPerPage + postsPerPage )
       url: ( if pageNumber is 1 then "/journal/" else "/journal/page/#{ pageNumber }/" )
+      bodyclass: 'journal-page'
 
     if pageNumber is 1
-      file.page.description = """Occasional <a href="/">articles</a>, <a href="/">links</a> and <a href="/">remarks</a> about <a href="/">design</a>, <a href="/">technology</a> and <a href="/">media</a>.<br> You can <a href="/">browse the archive</a> or subscribe by RSS (<a href="/">everything</a> or <a href="/">just articles</a>)."""
+      file.page.description = """Occasional articles and links about design, technology and media.<br> You can subscribe by RSS (<a href="/feed.xml">everything</a> or <a href="/feed-articles.xml">just articles</a>)."""
+      # <a href="/journal/archive/">browse the archive</a> or 
 
     stream.write file
   
@@ -452,14 +400,20 @@ gulp.task 'media-watch', taskMedia
 taskPosts = ->
   gulp.src(paths.posts)
   .pipe(frontmatter({ property: 'page', remove: true }))    
-  .pipe(setPostMetadata())   
+  .pipe(setPostMetadata())
   # .pipe(marked())
   .pipe(through.obj (file, enc, cb) ->
-    file.contents = new Buffer markdown(file.contents.toString()), 'utf8'
+
+    suffix = moment(file.page.date).format('-YYYY-MM-DD')
+    textContents = file.contents.toString()
+    textContents = textContents.replace /\[\^([a-z0-9]+)\]/ig, "[^$1#{ suffix }]"
+    
+    file.contents = new Buffer markdown(textContents), 'utf8'
     @push file
     cb()
   )
   .pipe(highlight())
+  .pipe(typogr())
   .pipe(summarize()) # '<!--more-->'
   .pipe(rename (path) ->
     path.extname = ".html"
@@ -587,13 +541,26 @@ taskRSS = ->
   .pipe(through.obj (file, enc, cb) ->
     data =
       site: site
-      page: {} # empty object that can be extended as needed
+      page: { includeLinks: true } # empty object that can be extended as needed
     template = jade.compileFile(file.path)
     file.contents = new Buffer(template(data), 'utf8')
     @push file
     cb()
   )
   .pipe(rename('feed.xml'))
+  .pipe(gulp.dest('build'))
+
+  gulp.src(['source/assets/templates/feed.jade'])
+  .pipe(through.obj (file, enc, cb) ->
+    data =
+      site: site
+      page: { includeLinks: false } # empty object that can be extended as needed
+    template = jade.compileFile(file.path)
+    file.contents = new Buffer(template(data), 'utf8')
+    @push file
+    cb()
+  )
+  .pipe(rename('feed-articles.xml'))
   .pipe(gulp.dest('build'))
 
 gulp.task 'rss', ['posts'], taskRSS
@@ -646,7 +613,7 @@ gulp.task 'publish', ['default'], ->
 ## TASK GROUPS ##
 
 gulp.task 'assets', [ 'stylesheets', 'scripts', 'media' ]
-gulp.task 'content', [ 'posts', 'pagination', 'pages', 'archive', 'rss' ]
+gulp.task 'content', [ 'posts', 'pagination', 'pages', 'rss' ] # 'archive', 
 gulp.task 'content-watch', [ 'posts-watch', 'pagination-watch', 'pages-watch', 'archive-watch', 'rss-watch' ]
 
 gulp.task 'default', [ 'clean', 'assets', 'content', 'sitemap' ]

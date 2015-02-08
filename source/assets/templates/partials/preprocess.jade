@@ -14,7 +14,7 @@ else
   - hue = helpers.color(page.color).hslArray()[0] / 360
 
 if page.darkHeader
-  - page.coverColor = helpers.color().hsl( Math.floor( hue * 360 ), 75, 40 ).hexString()
+  - page.coverColor = helpers.color().hsl( Math.floor( hue * 360 ), 75, 30 ).hexString()
 else
   - page.coverColor = helpers.color().hsl( Math.floor( hue * 360 ), 50, 90 ).hexString()
   

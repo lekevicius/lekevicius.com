@@ -1,11 +1,7 @@
 $ = jQuery
 
-# Find all scripts, styles on page
-# Find all new ones and all removed ones
-# Remove removed ones, add new ones
-
 settings =
-  query: "a:not([href^='http'],[href$='.gif'],[href$='.png'],[href$='.jpg'])"
+  query: "a:not([href^='http'],[href$='.gif'],[href$='.png'],[href$='.jpg'],[href$='.xml'])"
   fragment: 'body'
   debug: false
   before: (done) -> done()

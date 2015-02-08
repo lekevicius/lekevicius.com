@@ -1,12 +1,53 @@
 ---
-color: o \#218ba5
+color: o \#E94B35
 bodyclass: home
 //- title: AssetPress
 //- description: Asset workflow for iOS and Android designs
-customTitle: <strong>I am user interface designer working on mobile apps.</strong> I value clarity over aesthetics and I put all my heart into the craftsmanship of every detail.
-cover: o /img/covers/index.jpg
+customTitle: <p>Improving creativity through design, teaching and tools.</p>
+//- cover: o /img/covers/index.jpg
 ---
 extends ../../assets/templates/basic
 
-block text
-  p: a(href="/usage") Usage
+block content
+
+  //- .row: .col-t-12.recent-projects
+  //-   h6 Recent Projects
+  //-   .projects
+
+  //-     .project-row.full
+  //-       .project: a(href="/projects/assetkit", style="background-color: #6499a4; background-image: url(/projects/assetkit/home.png)"): .text
+  //-         h3 Sound Shapes
+  //-         p Asset workflow for iOS and Android designs
+
+  //-     //- .project-row.halfs
+  //-     //-   .project: a(href="/projects/ardrone-leapmotion"): .text
+  //-     //-     h3 A.R.Drone + Leap Motion
+  //-     //-     p Jedi powers for all
+  //-     //-   .project: a(href="/projects/gulp-static-site"): .text
+  //-     //-     h3 Gulp Static Site
+  //-     //-     p Three post series: introduction, content, special features.
+
+  //-     .project-row.thirds
+  //-       .project: a(href="/projects/air-drawing"): .text
+  //-         h3 Air Drawing
+  //-         p Drawing in 3D
+  //-       .project: a(href="/projects/entree"): .text
+  //-         h3 jQuery Footnote Popover
+  //-         p Fancy transitions between pages
+  //-       .project.all-projects: a(href="/projects/"): .text
+  //-         h3 All Projects ›
+
+
+  .row: .col-content.recent-articles
+    h6 Recent Articles
+    .posts
+      - var index = 0
+      for post in site.posts
+        if index < 3
+          if post.link == undefined
+            - index++
+              .post
+                h3: a( href=post.url )= post.title
+                p!= post.summary
+
+  //- .row: .col-t-12: p: a(href="/usage") Usage

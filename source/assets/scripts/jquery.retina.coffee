@@ -2,7 +2,7 @@ $ = jQuery
 
 retinaImages = []
 confirmedPaths = []
-retinaRatio = 1.3
+retinaRatio = 2
 
 # I slightly disregard the jQuery docs advice and
 # add two new functions to jQuery in the same file.

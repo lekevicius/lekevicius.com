@@ -1,0 +1,57 @@
+project-gutter = 8px
+
+.projects
+  .project-row
+    clearfix()
+    margin 0 (project-gutter / -2)
+    
+    .project
+      float left
+      margin-bottom project-gutter
+      width 100%
+      &:last-child
+        float right
+      &.all-projects a h3
+        font-weight 300
+      
+      a
+        display block
+        height 200px
+        background #ccc
+        color rgba(#fff, 0.8)
+        margin 0 (project-gutter / 2)
+        padding 1px
+        transition all 0.3s
+        // transform translate3d(0,0,0)
+        // z-index 1
+        background-size cover
+        
+        &:hover
+          color #fff
+          // transform scale(1.02)
+          // box-shadow 0 1px 2px rgba(#000, 0.1), 0 2px 8px rgba(#000, 0.1), 0 4px 20px rgba(#000, 0.1), 0 10px 40px rgba(#000, 0.1)
+          // z-index 10
+          
+        .text
+          text-align center
+          width 80%
+          margin-left auto
+          margin-right auto
+          position relative
+          top 50%
+          transform translateY(-50%)
+          
+          h3
+            margin 0
+          p
+            margin 0
+            line-height 1.3
+
+    @media screen_medium_min
+      &.halfs
+        .project
+          width 50%
+      &.thirds
+        .project
+          width 33.3333%
+        

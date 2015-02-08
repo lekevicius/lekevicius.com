@@ -18,7 +18,7 @@ Location: Vilnius, Lithuania
 
 --------------------------------------------------------------------------------
 
-Copyright © 2005-2013 Jonas Lekevicius
+Copyright © 2005-2015 Jonas Lekevicius
 
 The content of the website is licensed under
 Creative Commons BY-NC-ND license.
@@ -31,23 +31,13 @@ Don't copy, be inspired.
 
 THIS WEBSITE WAS BUILT AND SERVED USING
 
-- Digital Ocean ~ for hosting. 512MB 32-bit Ubuntu 12.04 server.
-- Nginx ~ for serving the files with ease and speed.
+- Amazon S3 ~ hosting a completely static site
 - Git ~ for these 'just in case' and 'looking back' moments.
 
-- Middleman ~ for generatic static site. 100% non-dynamic HTMLs!
-- Middleman Blog ~ for adding great blogging functionality to Middleman.
-- Middleman Syntax, Pygments and Redcarpet ~ for code highlighting.
-- Middleman Deploy ~ for making publishing via rsync so damn simple.
-
-- HAML ~ for making HTML a joy to write.
-- Builder ~ for making XML not a terrible pain to write.
+- Gulp ~ for entire static site building
+- Jade ~ for making HTML a joy to write.
 - Stylus ~ for amazing CSS generation and transformation powers.
 - CoffeeScript ~ for enjoyable scripting.
-
-- HTML5 Boilerplate ~ for being like a best-practises checklist.
-- HTML5 shim ~ for babysitting older IEs.
-- CSS Reset Reloaded ~ for reseting those browser styles.
 
 - jQuery ~ for letting me forget about so many ugly JS things.
 
@@ -55,7 +45,7 @@ THIS WEBSITE WAS BUILT AND SERVED USING
 - Sketch ~ for designing graphics.
 - Chrome ~ for the best developer tools in a browser.
 
-- Typekit ~ for web fonts (Freight Sans, Adelle, Inconsolata)
+- Typekit ~ for web fonts (Colfax, M+ 1m)
 - Google Analytics ~ for real-time graph porn and ego-grooming.
 - Github ~ for letting me share the source of this site here:
            https://github.com/lekevicius/lekevicius.com

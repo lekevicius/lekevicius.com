@@ -3,14 +3,22 @@ $.preload = (url, callback) -> $('<img/>').attr({ src: url }).load callback
 delay = (time, func) -> setTimeout func, time
 
 menuFullWidth = 640
-isFullMenu = ( window.outerWidth >= menuFullWidth )
+isFullMenu = ( window.innerWidth >= menuFullWidth )
 pageTransitionDone = null
-colorTransitionDone = () -> pageTransitionDone() if pageTransitionDone isnt null
+colorTransitionDone = (e) ->
+  e.stopPropagation()
+  pageTransitionDone() if pageTransitionDone isnt null
+  pageTransitionDone = null
 
 $ ->
   $('html').removeClass('no-js').addClass('js')
+  FastClick.attach document.body
 
-  $(document).on 'click', '.menu-button', ->
+  $(document).on 'click', '.menu-button', (e) ->
+    e.preventDefault()
+    adjustment = 36 * ($('header.site-header nav ul li').length - 1) + 8
+    adjustment *= -1 if $('.site-header').hasClass 'open'
+    $('.site-header').height $('.header-inner').outerHeight() + $('.page-title').outerHeight() + adjustment
     $('.site-header').toggleClass 'open'
 
   setNavigationPositions()
@@ -21,11 +29,18 @@ $ ->
   $('.unseen').trackAppearance()
   $('.unseen').on 'seen', -> console.log @
 
+  $('.site-header').height $('.header-inner').outerHeight() + $('.page-title').outerHeight()
+  delay 20, -> $('.site-header').addClass 'animated'
+
   # Styling for iOS Homescreen app
   # if (window.navigator.standalone) then $('#container > header .header-inner').attr('style', 'padding-top: 32px')
 
-  # # Pusher setup
-  $('#color').on 'webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd', colorTransitionDone
+  # $(document).on 'entree:before', (e, context) -> console.log 'before', context
+  # $(document).on 'entree:update', (e, context) -> console.log 'update', context
+  # $(document).on 'entree:after', (e, context) -> console.log 'after', context
+
+  # Pusher setup
+  $('#content').bind 'transitionend webkitTransitionEnd msTransitionEnd oTransitionEnd', colorTransitionDone
 
   $(document).entree
     fragment: '#content'
@@ -36,11 +51,11 @@ $ ->
       $('.site-header').removeClass 'open'
       setNavigationPositions()
 
-      unless @popstate
-        pageTransitionStart(done)
-      else
-        $('html, body').scrollTop 0
-        done()
+      # unless @popstate
+      pageTransitionStart(done)
+      # else
+      #   $('html, body').scrollTop 0
+      #   done()
 
     update: ->
       $('header.site-header nav ul').css
@@ -54,6 +69,11 @@ $ ->
       $('.page-title').html @query('.page-title').html()
       $('.site-header').toggleClass 'dark', @query('.site-header').hasClass('dark')
 
+      if @query('.background-image').hasClass 'with-background'
+        backgroundImageURL = @query('.background-image').data('background-url')
+        $.preload backgroundImageURL, ->
+          $('.background-image').attr('style', "background-image: url(#{ backgroundImageURL })").addClass 'visible'
+
       resHack = @data.replace /(html|head|body)/ig, 'my$1'
       myBody = $('<root>').html(resHack).find('mybody')
       $('body').attr 'class', ( if myBody.attr('class') then myBody.attr('class') else '' )
@@ -62,23 +82,26 @@ $ ->
       $('#content').retina()
       $('a[rel=footnote]').footnotePopover()
 
+      $('.site-header').height $('.header-inner').outerHeight() + $('.page-title').outerHeight()
+
     after: ->
-      delay 20, => pageTransitionEnd() unless @popstate
+      pageTransitionEnd()
 
     fail: ->
       pageTransitionEnd()
       alert "Can't load #{ @state.url }"
 
-  # # Site Search
-  # $(document).on 'submit', 'form.site-search', (e) ->
-  #   e.preventDefault()
-  #   window.location.href = "http://duckduckgo.com/?q=site%3Alekevicius.com+" + encodeURIComponent($('input[type=text]', @).val())
+  # Site Search
+  $(document).on 'submit', 'form.site-search', (e) ->
+    e.preventDefault()
+    window.location.href = "http://duckduckgo.com/?q=site%3Alekevicius.com+" + encodeURIComponent($('input[type=text]', @).val())
 
 
 $(window).resize ->
-  if isFullMenu and window.outerWidth < menuFullWidth
+  $('.site-header').height $('.header-inner').outerHeight() + $('.page-title').outerHeight()
+  if isFullMenu and window.innerWidth < menuFullWidth
     isFullMenu = false
-  if not isFullMenu and window.outerWidth >= menuFullWidth
+  if not isFullMenu and window.innerWidth >= menuFullWidth
     isFullMenu = true
     setNavigationPositions()
     delay 10, -> setNavigationPositions()
@@ -86,13 +109,13 @@ $(window).resize ->
 
 pageTransitionStart = (done) ->
   pageTransitionDone = done
-  $('#color').css { height: window.outerHeight, top: $(window).scrollTop(), bottom: 'auto' }
+  # $('#color').css { height: window.innerHeight, top: $(window).scrollTop(), bottom: 'auto' }
+  $('body').animate { scrollTop: 0 }, 600
   $('.page-title, #content').addClass 'faded'
+  $('.background-image').removeClass 'visible'
 
 pageTransitionEnd = ->
-  pageTransitionDone = null
-  $('html, body').scrollTop 0
-  $('#color').css { height: 0, top: 'auto', bottom: $('.site-header').outerHeight() - window.outerHeight }
+  # $('#color').css { height: 0, top: 'auto', bottom: $('.site-header').outerHeight() - window.innerHeight }
   $('.page-title, #content').removeClass 'faded'
 
 setFutureCurrentMenuItem = (url) ->
@@ -127,3 +150,37 @@ setNavigationPositions = ->
     runningTotalLeft += $("header.site-header nav ul li.#{ item }").outerWidth() + 10
 
   $('header.site-header nav ul').addClass 'positioned'
+  delay 16, -> $('header.site-header nav ul').addClass 'animated'
+
+
+# socialGetter = (function() {
+#   /* just a utility to do the script injection */
+#   function injectScript(url) {
+#     var script = document.createElement('script');
+#     script.async = true;
+#     script.src = url;
+#     document.body.appendChild(script);
+#   }
+
+#   return {
+#     getFacebookCount: function(url, callbackName) {
+#       injectScript('https://graph.facebook.com/?id=' + url + '&callback=' + callbackName);
+#     },
+#     getTwitterCount: function(url, callbackName) {
+#       injectScript('http://urls.api.twitter.com/1/urls/count.json?url=' + url + '&callback=' + callbackName);
+#     }
+#   };
+# })();
+
+# // Callbacks to do something with the result
+# function twitterCallback(result) {
+#   result.count && console.log('The count is: ', result.count);
+# }
+
+# function facebookCallback(result) {
+#   result.shares && console.log('The count is: ', result.shares);
+# }
+
+# // Usage
+# socialGetter.getFacebookCount('http://davidwalsh.name/twitter-facebook-jsonp', 'facebookCallback');
+# socialGetter.getTwitterCount('http://davidwalsh.name/twitter-facebook-jsonp', 'twitterCallback');

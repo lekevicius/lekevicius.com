@@ -1,8 +1,11 @@
 .site-header
   transform translate3D(0,0,0)
-  background-position center center
-  background-size cover
   overflow visible
+  position relative
+  
+  &.animated
+    transition all 0.5s
+  
 
   .menu-button
     width 30px
@@ -45,13 +48,14 @@
       
   
   .page-title
+    position relative
     z-index 100
-    padding 36px 0
+    padding 32px 0 16px
     transition all 0.5s
     transition-property opacity, transform
     
     &.faded
-      opacity 0
+      opacity 0.01
       transform translateY(40px)
       
     h1
@@ -76,6 +80,11 @@
     float left
     clearfix()
     
+    a
+      color #555
+      &:focus
+        outline none
+    
     a.site-title
       display block
       float left
@@ -97,6 +106,7 @@
       height 30px
       overflow hidden
       transition height 0.3s
+      transform translate3D(0,0,0)
       
       ul
         display block
@@ -105,6 +115,7 @@
         list-style none
         position relative
         transition margin-top 0.3s
+        transform translate3D(0,0,0)
         clearfix()
         li
           display block
@@ -127,6 +138,22 @@
             a
               font-weight 600
   
+
+  .background-image
+    position absolute
+    z-index 50
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background transparent center center no-repeat
+    background-size cover
+    opacity 0
+    transition opacity 0.4s
+    // display none
+    &.visible
+      opacity 1
+
   &.open
     
     .navigation-items
@@ -205,7 +232,9 @@
               left 0
               margin 0
               transform translate3D(0,0,0)
-              transition left 0.5s cubic-bezier(1, 0, 0, 1)
+              
+            &.animated li
+                transition left 0.5s cubic-bezier(1, 0, 0, 1)
 
     .page-title
       padding 52px 0
@@ -213,8 +242,11 @@
       h1
         font-weight 300
         font-size 64px
-        line-height 1
+        line-height 1.2
         margin-bottom 0.4em
+        
+        &:last-child
+          margin-bottom 0
       p
         margin-top 6px
         font-size 21px
@@ -248,13 +280,15 @@
       nav ul li a
         color white !important
           
-#color
-  position absolute
-  top 0
-  left 0
-  right 0
-  bottom auto
-  height 0
-  z-index 200
-  transition height 0.6s cubic-bezier(1, 0, 0, 1), background-color 0.6s
-  background #eee
+// #color
+//   position absolute
+//   top 0
+//   left 0
+//   right 0
+//   bottom auto
+//   height 0
+//   z-index 200
+//   transition height 0.6s cubic-bezier(0.99, 0.01, 0.01, 0.99)
+//   transition-property height, background-color
+//   background #eee
+//   opacity 0.01
