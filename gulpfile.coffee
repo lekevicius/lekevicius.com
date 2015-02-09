@@ -600,12 +600,15 @@ gulp.task 'server', ['default'], ->
 
 gulp.task 'publish', ->
   publisher = awspublish.create keys
+  headers = {
+    'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate, public'
+  }
 
   gulp.src('build/**/*.*')
   # .pipe(revall({ ignore: [ '.html', '.xml', '.txt' ] }))
   # .pipe(gulp.dest('build'))
   .pipe(awspublish.gzip())
-  .pipe(parallelize(publisher.publish(), 10))
+  .pipe(parallelize(publisher.publish(headers), 10))
   .pipe(publisher.cache())
   .pipe(publisher.sync()) # delete missing
   .pipe(awspublish.reporter())

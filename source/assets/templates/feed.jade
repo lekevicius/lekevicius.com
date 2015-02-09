@@ -22,7 +22,10 @@ feed( xmlns="http://www.w3.org/2005/Atom" )
         - index++
         entry
           id #{ site.url }#{ post.url }
-          link( href="#{ site.url }#{ post.url }", rel="alternate", type="text/html" )
+          if post.link
+            link( href="#{ post.link }", rel="alternate", type="text/html" )
+          else
+            link( href="#{ site.url }#{ post.url }", rel="alternate", type="text/html" )
 
           published= post.date.toISOString()
           updated= post.date.toISOString()

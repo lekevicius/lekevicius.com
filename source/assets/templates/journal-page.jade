@@ -7,8 +7,7 @@ block content
         if post.link
           h3
             a( href=post.link )= "» " + post.title
-            | 
-            a.permalink( href=post.url ) ∞ Permalink
+            a.permalink( href=post.url ) &nbsp;∞&nbsp;Permalink
         else
           h3: a( href=post.url )= post.title
           if post.subtitle
