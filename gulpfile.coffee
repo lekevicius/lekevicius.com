@@ -26,6 +26,7 @@ sourcemaps = require 'gulp-sourcemaps'
 concat = require 'gulp-concat'
 rename = require 'gulp-rename'
 gutil = require 'gulp-util'
+debug = require 'gulp-debug'
 through = require 'through2'
 gulpif = require 'gulp-if'
 gulpfilter = require 'gulp-filter'
@@ -83,10 +84,11 @@ paths =
   scripts: 'source/assets/scripts/site.js'
   siteScripts: 'source/assets/scripts/**/*.+(js|coffee)'
   contentScripts: 'source/content/**/*.coffee'
+  contentJavaScripts: 'source/content/**/*.js'
   siteImages: 'source/assets/images/**/*.+(png|jpg|gif|svg)'
   contentImages: [ 'source/content/**/*.+(png|jpg|gif|svg)' ]
   siteAssets: [ 'source/assets/images/**/*.*', '!source/assets/images/**/*.+(png|jpg|gif|svg)' ]
-  contentAssets: [ 'source/content/**/*.*', '!source/content/**/*.+(md|jade|styl|coffee|png|jpg|gif|svg)' ]
+  contentAssets: [ 'source/content/**/*.*', '!source/content/**/*.+(md|jade|styl|coffee|js|png|jpg|gif|svg)' ]
   fonts: 'source/assets/fonts/**/*'
   icons: 'source/assets/icons/**/*'
 
@@ -275,6 +277,7 @@ gulp.task 'clean', (cb) -> del ['build'], cb
 
 taskStylesheets = ->
   gulp.src(paths.stylesheets)
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   # .pipe(sourcemaps.init())
   .pipe(stylus())
   .pipe(autoprefixer())
@@ -284,6 +287,7 @@ taskStylesheets = ->
   .pipe(gulp.dest('build/css'))
 
   gulp.src(paths.contentStylesheets)
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   # .pipe(sourcemaps.init())
   .pipe(stylus())
   .pipe(autoprefixer())
@@ -306,6 +310,7 @@ gulp.task 'stylesheets-watch', taskStylesheets
 
 taskScripts = ->
   gulp.src(paths.scripts)
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   # .pipe(sourcemaps.init())
   .pipe(rigger())
   .pipe(uglify())
@@ -314,10 +319,28 @@ taskScripts = ->
   .pipe(gulp.dest('build/js'))
 
   gulp.src(paths.contentScripts)
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   # .pipe(sourcemaps.init())
   .pipe(coffee())
   .pipe(uglify())
   # .pipe(sourcemaps.write())
+  .pipe(rename (path) ->
+    match = rePostName.exec path.basename
+    if match
+      path.dirname = "journal/#{ match[1] }/#{ match[2] }/#{ match[3] }/#{ match[4] }"
+    else
+      path.dirname = path.dirname.replace('pages/', '') + "/#{ path.basename }"
+    path.basename = 'script'
+    path
+  )
+  .pipe(gulp.dest('build'))
+
+  gulp.src(paths.contentJavaScripts)
+  # .pipe(debug({title: 'beforeFilterJS:'}))
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
+  # .pipe(debug({title: 'afterFilterJS:'}))
+  .pipe(rigger())
+  .pipe(uglify())
   .pipe(rename (path) ->
     match = rePostName.exec path.basename
     if match
@@ -346,15 +369,18 @@ taskMedia = ->
     path
 
   gulp.src(paths.siteAssets, { base: 'source/assets/images' })
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   .pipe(gulp.dest('build/img'))
 
   gulp.src(paths.contentAssets, { base: 'source/content' })
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   .pipe(rename(contentPathRename))
   .pipe(gulp.dest('build'))
 
   # Images
 
   gulp.src(paths.siteImages, { base: 'source/assets/images' })
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   .pipe(gulpfilter('**/*@2x*'))
   .pipe(imageresize({ width: '50%' }))
   # .pipe(imagemin(imageminOptions))
@@ -365,10 +391,12 @@ taskMedia = ->
   .pipe(gulp.dest('build/img'))
 
   gulp.src(paths.siteImages, { base: 'source/assets/images' })
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   # .pipe(imagemin(imageminOptions))
   .pipe(gulp.dest('build/img'))
 
   gulp.src(paths.contentImages, { base: 'source/content' })
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   .pipe(gulpfilter('**/*@2x*'))
   .pipe(rename(contentPathRename))
   .pipe(imageresize({ width: '50%' }))
@@ -380,6 +408,7 @@ taskMedia = ->
   .pipe(gulp.dest('build'))
 
   gulp.src(paths.contentImages, { base: 'source/content' })
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   .pipe(rename(contentPathRename))
   # .pipe(imagemin(imageminOptions))
   .pipe(gulp.dest('build'))
@@ -401,6 +430,7 @@ gulp.task 'media-watch', taskMedia
 
 taskPosts = ->
   gulp.src(paths.posts)
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   .pipe(frontmatter({ property: 'page', remove: true }))    
   .pipe(setPostMetadata())
   # .pipe(marked())
@@ -436,6 +466,7 @@ gulp.task 'posts-watch', taskPosts
 
 taskPages = ->
   gulp.src(paths.pages)
+  .pipe(gulpfilter([ '**', '!**/_*' ]))
   .pipe(frontmatter({ property: 'page', remove: true }))
   .pipe(setPageMetadata())
   .pipe(through.obj (file, enc, cb) ->

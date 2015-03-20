@@ -20,6 +20,7 @@
     "gulp-coffee": "^2.1.1",
     "gulp-concat": "^2.3.4",
     "gulp-csso": "^0.2.9",
+    "gulp-debug": "^2.0.1",
     "gulp-filter": "^1.0.2",
     "gulp-front-matter": "^1.0.0",
     "gulp-gzip": "0.0.8",

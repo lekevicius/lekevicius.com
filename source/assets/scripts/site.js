@@ -1,4 +1,5 @@
 //= modernizr.js
+//= hidpi-canvas.js
 //= lodash.js
 //= jquery.js
 //= snap.svg.js

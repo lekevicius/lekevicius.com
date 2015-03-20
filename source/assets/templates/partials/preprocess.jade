@@ -42,9 +42,20 @@ if helpers.fs && file
     if page.customStylesheet
       - page.customStylesheet = page.customStylesheet + '/style.css'
 
-  - jsPath = originalFilePath.replace( /\.(md|jade)$/, '.coffee' )
+  - coffeePath = originalFilePath.replace( /\.(md|jade)$/, '.coffee' )
+  if helpers.fs.existsSync( coffeePath )
+    - baselessPath = coffeePath.split('/content/')[1].replace('.coffee', '')
+    if baselessPath.indexOf('pages') > -1
+      - page.customScript = baselessPath.replace('pages', '')
+    - match = helpers.rePostName.exec(baselessPath)
+    if match
+      - page.customScript = "/journal/" + match[1] +"/"+ match[2] +"/"+ match[3] +"/"+ match[4]
+    if page.customScript
+      - page.customScript = page.customScript + '/script.js'
+
+  - jsPath = originalFilePath.replace( /\.(md|jade)$/, '.js' )
   if helpers.fs.existsSync( jsPath )
-    - baselessPath = jsPath.split('/content/')[1].replace('.coffee', '')
+    - baselessPath = jsPath.split('/content/')[1].replace('.js', '')
     if baselessPath.indexOf('pages') > -1
       - page.customScript = baselessPath.replace('pages', '')
     - match = helpers.rePostName.exec(baselessPath)
