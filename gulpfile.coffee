@@ -1,18 +1,3 @@
-###
-Todo:
-
-Design and content:
-  - Homepage
-  - Journal index and pages
-  - Journal entry
-  - Profile
-  - 404
-  - First post
-
-###
-
-
-
 ## REQUIRES & CONFIG ##
 
 gulp = require 'gulp'
@@ -91,6 +76,8 @@ paths =
   contentAssets: [ 'source/content/**/*.*', '!source/content/**/*.+(md|jade|styl|coffee|js|png|jpg|gif|svg)' ]
   fonts: 'source/assets/fonts/**/*'
   icons: 'source/assets/icons/**/*'
+  staticAssets: 'source/assets/static/**/*'
+  otherAssets: [ 'source/assets/**/*.*', "!source/assets/+(templates|stylesheets|scripts|images|icons|static)/**/*.*" ]
 
 site =
   title: "Jonas Lekevicius",
@@ -421,7 +408,10 @@ taskMedia = ->
   gulp.src(paths.icons)
   .pipe(gulp.dest('build'))
 
-  gulp.src(['source/assets/humans.txt', 'source/assets/robots.txt', 'source/assets/crossdomain.xml'])
+  gulp.src(paths.staticAssets)
+  .pipe(gulp.dest('build'))
+
+  gulp.src(paths.otherAssets)
   .pipe(gulp.dest('build'))
 
 gulp.task 'media', ['clean'], taskMedia

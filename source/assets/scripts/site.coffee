@@ -14,6 +14,9 @@ $ ->
   $('html').removeClass('no-js').addClass('js')
   FastClick.attach document.body
 
+  $(document).on 'click', '.clickable-block', (e) -> $(@).find('a').eq(0).click()
+  $(document).on 'click', '.clickable-block a', (e) -> e.stopPropagation()
+
   $(document).on 'click', '.menu-button', (e) ->
     e.preventDefault()
     adjustment = 36 * ($('header.site-header nav ul li').length - 1) + 8
@@ -121,7 +124,7 @@ setFutureCurrentMenuItem = (url) ->
   futureNavigationItem = a.pathname.toLowerCase().split('/')[1]
   $('header.site-header nav ul li').removeClass 'menu-current'
   
-  if [ 'journal', 'profile' ].indexOf(futureNavigationItem) > -1
+  if [ 'journal', 'projects', 'profile' ].indexOf(futureNavigationItem) > -1
     $("header.site-header nav ul li.menu-item-#{ futureNavigationItem }").addClass 'menu-current'
   else
     $('header.site-header nav ul li.menu-item-title').addClass 'menu-current'
@@ -130,7 +133,7 @@ setNavigationPositions = ->
   $('header.site-header nav ul').css
     marginTop: (-36 * $('header.site-header nav ul li.menu-current').index()) + 'px'
 
-  allItems = [ 'menu-item-journal', 'menu-item-profile' ]
+  allItems = [ 'menu-item-journal', 'menu-item-projects', 'menu-item-profile' ]
   activeItem = $('header.site-header nav ul li.menu-current:not(.menu-item-title)')
   runningTotalLeft = $('header.site-header nav ul li.menu-item-title').outerWidth() + 10
 

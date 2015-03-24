@@ -8,11 +8,12 @@ header.site-header( class=( page.darkHeader ? 'dark' : '' ) )
     .navigation-items
       a.site-title( href='/' )
         .logo
-          include logo_svg
+          include svg/logo
       nav
         ul
           li.menu-item-title( class=( page.section == 'home' ? 'menu-current' : '' ) ): a( href='/' ) Jonas Lekevicius
           li.menu-item-journal( class=( page.section == 'journal' ? 'menu-current' : '' ) ): a( href='/journal' ) Journal
+          li.menu-item-projects( class=( page.section == 'projects' ? 'menu-current' : '' ) ): a( href='/projects' ) Projects
           li.menu-item-profile( class=( page.section == 'profile' ? 'menu-current' : '' ) ): a( href='/profile' ) Profile
 
     a.menu-button( href='#menu' )

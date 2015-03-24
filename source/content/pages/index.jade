@@ -10,32 +10,35 @@ extends ../../assets/templates/basic
 
 block content
 
-  //- .row: .col-t-12.recent-projects
-  //-   h6 Recent Projects
-  //-   .projects
+  .row: .col-t-12.recent-projects
+    h6 Recent Projects
+    .projects
 
-  //-     .project-row.full
-  //-       .project: a(href="/projects/assetkit", style="background-color: #6499a4; background-image: url(/projects/assetkit/home.png)"): .text
-  //-         h3 Sound Shapes
-  //-         p Asset workflow for iOS and Android designs
+      .project-row.full
+        .project: a(href="/projects/infinite-loop", style="background-color: #6A7ED9; background-image: url(/projects/infinite-loop/project-image.jpg)"): .text
+          h3 Infinite Loop
+          p Simple, relaxing and endless game for iOS, Android and browser.
+        //- .project: a(href="/projects/assetkit", style="background-color: #6499a4; background-image: url(/projects/assetkit/home.png)"): .text
+        //-   h3 Sound Shapes
+        //-   p Asset workflow for iOS and Android designs
 
-  //-     //- .project-row.halfs
-  //-     //-   .project: a(href="/projects/ardrone-leapmotion"): .text
-  //-     //-     h3 A.R.Drone + Leap Motion
-  //-     //-     p Jedi powers for all
-  //-     //-   .project: a(href="/projects/gulp-static-site"): .text
-  //-     //-     h3 Gulp Static Site
-  //-     //-     p Three post series: introduction, content, special features.
+      //- .project-row.halfs
+      //-   .project: a(href="/projects/assetpress"): .text
+      //-     h3 AssetPress
+      //-     p Asset workflow for iOS and Android designs
+      //-   .project: a(href="/projects/infinite-loop"): .text
+      //-     h3 Infinite Loop
+      //-     p Simple, relaxing and endless game for iOS, Android and browser.
 
-  //-     .project-row.thirds
-  //-       .project: a(href="/projects/air-drawing"): .text
-  //-         h3 Air Drawing
-  //-         p Drawing in 3D
-  //-       .project: a(href="/projects/entree"): .text
-  //-         h3 jQuery Footnote Popover
-  //-         p Fancy transitions between pages
-  //-       .project.all-projects: a(href="/projects/"): .text
-  //-         h3 All Projects ›
+      //-     .project-row.thirds
+      //-       .project: a(href="/projects/air-drawing"): .text
+      //-         h3 Air Drawing
+      //-         p Drawing in 3D
+      //-       .project: a(href="/projects/entree"): .text
+      //-         h3 jQuery Footnote Popover Gulp Static Site
+      //-         p Fancy transitions between pages
+      //-       .project.all-projects: a(href="/projects/"): .text
+      //-         h3 All Projects ›
 
 
   .row: .col-content.recent-articles
@@ -46,7 +49,7 @@ block content
         if index < 3
           if post.link == undefined
             - index++
-              .post
+              .post.clickable-block
                 h3: a( href=post.url )= post.title
                 p!= post.summary
 

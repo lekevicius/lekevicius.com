@@ -1,98 +1,72 @@
 ---
-title: Akropolis
-color: o \#dd0000
-cover: o /portfolio/akropolis/cover.jpg
-bodyclass: work akropolis
+title: Infinite Loop
+description: Simple, relaxing and endless game for iOS, Android and browser.
+color: o \#6A7ED9
+bodyclass: project infinite-loop
 ---
 
-extends ../../../assets/templates/base
+extends ../../../assets/templates/basic
 block content
-  .container
-    section.articles
-      h1 Hey
 
-//- .container
-//-   %p.work-lead
-//-     Akropolis is a brand of the biggest shopping malls in Lithuania. They wanted an app, and we at Lemon Labs helped them with idea, design and development. My role in this project was helping to define the user experience and designing the entire user interface.
+  .row
+    img.spaced-1-bottom(src="/projects/infinite-loop/devices.png")
 
-//-   .row
-//-     .col-m-4.col-s-6
-//-       .screen-viewer.iphone5
-//-         %img.screen{ src: '/portfolio/akropolis/screen.png' }
-//-     .col-m-4.col-s-6
-//-       .screen-viewer.iphone5
-//-         %img.screen{ src: '/portfolio/akropolis/screen2.png' }
+  .row: .col-content
+      p Infinite Loop is a very simple, relaxing and never ending game for iPhone, iPad, Android and browser. Your goal is to turn all forms on the grid so that there would be no open connections. Most levels are algorithmically generated and randomly colored, and after successfully completing each level you will be rewarded with a beautiful design of your own making.
 
-//-   %h3 The New Navigation Bar. And the New Tab Bar.
-//-   .row
-//-     .col-m-6
-//-       .switcher
-//-         .left-option.current Current section
-//-         .right-option All sections
-//-     .col-m-6
-//-       %p To make as much space for the content and interface as psossible, we came up with a new concept for navigating between the screens and showing actions for the current screen by merging tab bar and navigation bar into one element. The "More" button toggles between two modes, switching between current page title with related actions, and a tab bar with all sections of the app. This allows to have an entire chrome of the app fit into a single a bar.
+      p.spaced-2: a.button.color-border( href="http://loop.lekevicius.com" ) Download or Play Infinite Loop
 
+      Authors
 
-//-   %h3.unseen The Shopping Cart as a To Do List
+      dl
 
-//- .full.shopping-cart
-//-   .container
-//-     .row
-//-       .col-m-4
-//-         Phone
-//-       .col-m-4
-//-         Phone
-//-       .col-m-4
-//-         Phone
+        dt Idea, design, music, iOS and web development
+        dd Jonas Lekevicius
 
-//- .container
-//-   %h3 Creating the Best Indoor Maps
-//-   .row
-//-     .col-m-8
-//-       %p It was clear from the beginning that navigating the shopping mall can be overwhelming, and maps in an app can definitely help users. However, when exploring our options, we were not satisfied with any existing solution and libraries. Naturally, we decided not to settle with something we were not entirely happy with, and design and develop our own solution.
-//-       %p Our mapping solution allows for easy routing between any two shops, selected either through a map, or from a list, even between floors. It makes sure user does not get lost by displaying easy to understand instructions and animations. Even more, the map is integrated with a shopping cart and highlighs the shops that have any items user has added to the list.
-//-     .col-m-4
-//-       Phone
+        dt Android development
+        dd Balys Valentukevicius
 
-//- .full.shopmob.dark.unseen{ :'data-appearance-min-height' => '0.5' }
-//-   .container
-//-     %h3 Shop Mobs are Sales of Smartphone Age
-//-     %p The last feature of the app was initially hidden from the users, waiting for it's big reveal. One of our big ideas for a shopping mall app was to leverage immediate communication with users through notifications, and create a new kind of sale we called Shop Mob. These sales are not pre-announced, and last only a couple of hours. Users receive notifications about the sale, and if they want to participate, they have to get to the mall fairly quickly. Each user also receives a custom code (which makes the sale exclusive to app users and allows usage tracking) to unlock the discount or gift.
-//-     .row
-//-       .col-m-4
-//-         Phone
-//-       .col-m-4
-//-         Phone
-//-       .col-m-4
-//-         Phone
+        dt Custom level design
+        dd Juste Ziliute
+        dd Jonas Lekevicius
+        dd Tomas Dirvonskas
 
-//- .container
-//-   %h3 Two Platforms: Same Features, Same Native Feel
-//-   %p The app was designed and developed both for iOS and Android at the same time. While the features and the feel of design were the same, UI elements and their look were chosen fitting to that OS. It meant using action sheet for iOS and options pop-up for Android; gradients, shadows and Helvetica for iOS, and flat elements and Roboto for Android. Customizations were using the same ideas, but applied to each OS individually.
+      //- h2 Making of
 
-//-   .row
-//-     .col-m-4.col-m-push-4
-//-       .switcher
-//-         .left-option.current iOS
-//-         .right-option Android
+      //- p In the evening before March 11th, Re-establishment of Lithuania's Independence and a non-working day, I remembered a game idea that I had in my backlog for years.
 
+      //- h6 Tuesday, March 10th 2015
 
-//-   %p.highlighted.unseen{ :'data-appearance-offset-top' => '200' } Akropolis app is available for iOS and Android.
-//-   %p.subtext (In Lithuanian markets)
+      //- p In the evening I developed a HTML prototype. It had static, grey design, basic level generator and clicking to rotate shapes. It looked like a simple and quite addictive game that would be entirely possible to build in a day.
 
-//- / .more-works
-//- /   .container
-//- /     %h3 More of my work
-//- /     .row
-//- /       %a.col-m-4.work-item{ href: '/work/lunchbox' }
-//- /         %img{ src: '/work/lunchbox/project.png' }
-//- /         %h4 Lunchbox <span>app and website</span>
-//- /         %p Helping users locate the best daily lunch offers.
-//- /       %a.col-m-4.work-item{ href: '/work/lunchbox' }
-//- /         %img{ src: '/work/gifty/project.png' }
-//- /         %h4 Gifty <span>app</span>
-//- /         %p Another app featuring both iOS and Android design.
-//- /       %a.col-m-4.work-item{ href: '/work/lunchbox' }
-//- /         %img{ src: '/work/vienasaskaita/project.png' }
-//- /         %h4 VienaSaskaita <span>app</span>
-//- /         %p Little app with plenty of custom UI.
+      //- h6 Wednesday, March 11th 2015
+
+      //- p Non-working day, so I had an entire day to build the game. I chose to develop it in Swift and SpriteKit, having never really used neither of these before. Some like to do quick hacks in technologies they know well, I like to learn by making something real.
+
+      //- p By the end of the day, I had entire game built, with proper level generator, dynamic colors and color transition after the level was completed, winning condition handling. It was no longer just a prototype, but a game, almost ready for release.
+
+      //- h6 Thursday, March 12th 2015
+
+      //- p Back at work I gave the game for co-workers to play test. Most really liked it, but jumping immediately to fairly complicated levels wasn't the best introduction to the game. The game was lacking a ramp up in difficulty and some kind of tutorial.
+
+      //- p I spent the evening making a level editor to design these tutorial levels.
+
+      //- h6 Friday, March 13th 2015
+
+      //- p I shared the level editor with another designer, Juste, and asked her to design some pretty levels. A bunch of them are now shown randomly throughout the game.
+
+      //- p While she was making awesome custom levels, I developed all the missing functionality: analytics and saving level progress.
+    
+      //- h6 Saturday, March 14th 2015
+
+      //- p I spent entire Saturday making music and sounds. I have bought Ableton Live back in summer but haven't ever made a song with it. This seemed like a good way to learn the application.
+
+      //- h6 Sunday, March 15th 2015
+
+      //- p Live was awesome, my background music - not so much. On Sunday morning I didn't like anything I made on Saturday, and started making a much simpler background music. Simplification helped, and made it much easier for myself to like my own work.
+      
+      //- p I made screenshots (iPhone 4, 5, 6, 6 Plus, iPad!), video preview, and submitted the app to the App Store.
+
+      //- h6 Monday, March 16th 2015
+
+      //- p 

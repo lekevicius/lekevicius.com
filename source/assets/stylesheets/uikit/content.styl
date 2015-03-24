@@ -30,6 +30,18 @@ body, select, input, textarea
   make-medium-column 9
   make-large-column 7
 
+.spaced-1
+  margin-top 1em
+  margin-bottom 1em
+.spaced-2
+  margin-top 2em
+  margin-bottom 2em
+  
+.spaced-1-bottom
+  margin-bottom 1em
+.spaced-1-top
+  margin-top 2em
+
 // Body text
 
 a
@@ -48,6 +60,12 @@ a
 
   &.contains-image, img
     border none
+    
+  &.button
+    padding 0.5em
+    border 1px solid key_color
+    border-radius 4px
+    font-weight 500
 
 p
   margin: 1.2em 0 1.5em 0;
@@ -103,10 +121,10 @@ h5, .h5
   font-weight 400
 
 h6, .h6
-  font-size 1em
+  font-size 0.9em
   text-transform uppercase
   letter-spacing 1px
-  font-weight 400
+  font-weight 500
 
 h1, h2, h3, .h1, .h2, .h3
   small
@@ -201,6 +219,7 @@ dl
 
 dt
   font-weight bold
+  margin-top 1em
 
 dd
   margin-left 0
