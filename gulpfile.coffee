@@ -630,6 +630,7 @@ gulp.task 'publish', ->
   # .pipe(gulp.dest('build'))
   .pipe(awspublish.gzip())
   .pipe(parallelize(publisher.publish(headers), 10))
+  # .pipe(publisher.publish(headers))
   .pipe(publisher.cache())
   .pipe(publisher.sync()) # delete missing
   .pipe(awspublish.reporter())

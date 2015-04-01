@@ -13,6 +13,11 @@ project-gutter = 8px
         float right
       &.all-projects a h3
         font-weight 300
+      &.dark
+        a
+          color rgba(#000, 0.8)
+          &:hover
+            color #000
       
       a
         display block
@@ -59,3 +64,22 @@ project-gutter = 8px
 .client-logos
   img
     padding 10px 30px
+
+
+.download
+  margin 1.6em 0
+  clearfix()
+  
+  .download-icon
+    float left
+    width 30%
+    max-width 160px
+    margin-right 30px
+  .links
+    padding-top 12px
+    float left
+    .download-description
+      font-size 0.8em
+      margin-bottom 0.2em
+      color #999
+  

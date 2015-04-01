@@ -1,7 +1,7 @@
 $ = jQuery
 
 settings =
-  query: "a:not([href^='http'],[href$='.gif'],[href$='.png'],[href$='.jpg'],[href$='.xml'])"
+  query: "a:not([href^='http'],[href$='.gif'],[href$='.png'],[href$='.jpg'],[href$='.xml'],[href$='.zip'],[href$='.tar'])"
   fragment: 'body'
   debug: false
   before: (done) -> done()

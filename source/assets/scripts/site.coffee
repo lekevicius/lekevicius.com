@@ -14,6 +14,14 @@ $ ->
   $('html').removeClass('no-js').addClass('js')
   FastClick.attach document.body
 
+  $(document).on 'click', 'a[href*=#]:not([href=#])', ->
+    if (location.pathname.replace(/^\//,'') is this.pathname.replace(/^\//,'') and location.hostname is this.hostname)
+      target = $(this.hash)
+      target = if target.length then target else $('[name=' + this.hash.slice(1) +']')
+      if target.length
+        $('html, body').animate { scrollTop: target.offset().top }, 600
+        return false
+
   $(document).on 'click', '.clickable-block', (e) -> $(@).find('a').eq(0).click()
   $(document).on 'click', '.clickable-block a', (e) -> e.stopPropagation()
 
