@@ -1,7 +1,9 @@
 ---
-title: Chinese Web Design Trends
-link: http://www.smashingmagazine.com/2015/02/13/china-web-design-trends-2015/
-date: 2015-02-17 11:29
+{
+  "title": "Chinese Web Design Trends",
+  "link": "http://www.smashingmagazine.com/2015/02/13/china-web-design-trends-2015/",
+  "date": "2015-02-17 11:29"
+}
 ---
 
 Fascinating read. It's a very different world behind the Great Firewall:

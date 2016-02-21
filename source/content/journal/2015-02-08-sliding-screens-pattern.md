@@ -1,6 +1,8 @@
 ---
-title: Sliding Screens Pattern
-date: 2015-02-08 16:54
+{
+  "title": "Sliding Screens Pattern",
+  "date": "2015-02-08 16:54"
+}
 ---
 
 The difference between moving a mouse and touching a screen is direct manipulation and removal of abstraction. Removing indirections generally improves usability. Snapchat and Tinder have managed to remove an abstraction nobody noticed before — a tab bar — and replaced it with something direct. I call this a sliding screens pattern.

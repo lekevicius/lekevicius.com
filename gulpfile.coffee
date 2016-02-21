@@ -18,8 +18,8 @@ gulpfilter = require 'gulp-filter'
 
 # HTML and Journal
 jade = require 'jade'
-frontmatter = require 'gulp-front-matter'
-minifyhtml = require 'gulp-minify-html'
+graymatter = require 'gulp-gray-matter'
+minifyhtml = require 'gulp-htmlmin'
 marked = require 'gulp-marked'
 markdown = require('js-markdown-extra').Markdown
 typogr = require 'gulp-typogr'
@@ -193,7 +193,7 @@ journalPages = ->
   stream = through.obj (file, enc, cb) ->
     @push file
     cb()
-  
+
   postsPerPage = 20
   totalPages = Math.ceil site.posts.length / postsPerPage
 
@@ -215,10 +215,10 @@ journalPages = ->
 
     if pageNumber is 1
       file.page.description = """Occasional articles and links about design, technology and media.<br> You can subscribe by RSS (<a href="/feed.xml">everything</a> or <a href="/feed-articles.xml">just articles</a>)."""
-      # <a href="/journal/archive/">browse the archive</a> or 
+      # <a href="/journal/archive/">browse the archive</a> or
 
     stream.write file
-  
+
   stream.end()
   stream.emit "end"
   stream
@@ -228,7 +228,7 @@ journalPages = ->
 #   stream = through.obj (file, enc, cb) ->
 #     @push file
 #     cb()
-    
+
 #   if site.tags
 #     site.tags.forEach (tag) ->
 #       file = new gutil.File
@@ -236,7 +236,7 @@ journalPages = ->
 #         contents: new Buffer('')
 #       file.page = { title: tag, tag: tag }
 #       stream.write file
-  
+
 #   stream.end()
 #   stream.emit "end"
 #   stream
@@ -248,7 +248,7 @@ journalPages = ->
 
 
 
-helpers = 
+helpers =
   rePostName: rePostName
   fs: require('fs')
   crypto: require('crypto')
@@ -421,7 +421,7 @@ gulp.task 'media-watch', taskMedia
 taskPosts = ->
   gulp.src(paths.posts)
   .pipe(gulpfilter([ '**', '!**/_*' ]))
-  .pipe(frontmatter({ property: 'page', remove: true }))    
+  .pipe(graymatter({ property: 'page', lang: 'json' }))
   .pipe(setPostMetadata())
   # .pipe(marked())
   .pipe(through.obj (file, enc, cb) ->
@@ -429,7 +429,7 @@ taskPosts = ->
     suffix = moment(file.page.date).format('-YYYY-MM-DD')
     textContents = file.contents.toString()
     textContents = textContents.replace /\[\^([a-z0-9]+)\]/ig, "[^$1#{ suffix }]"
-    
+
     file.contents = new Buffer markdown(textContents), 'utf8'
     @push file
     cb()
@@ -457,7 +457,7 @@ gulp.task 'posts-watch', taskPosts
 taskPages = ->
   gulp.src(paths.pages)
   .pipe(gulpfilter([ '**', '!**/_*' ]))
-  .pipe(frontmatter({ property: 'page', remove: true }))
+  .pipe(graymatter({ property: 'page', lang: 'json' }))
   .pipe(setPageMetadata())
   .pipe(through.obj (file, enc, cb) ->
     data =
@@ -465,7 +465,7 @@ taskPages = ->
       page: file.page
       file: file
       helpers: helpers
-    template = jade.compileFile file.path
+    template = jade.compile file.contents, { filename: file.path }
     file.contents = new Buffer template(data), 'utf8'
     @push file
     cb()
@@ -640,7 +640,7 @@ gulp.task 'publish', ->
 ## TASK GROUPS ##
 
 gulp.task 'assets', [ 'stylesheets', 'scripts', 'media' ]
-gulp.task 'content', [ 'posts', 'pagination', 'pages', 'rss' ] # 'archive', 
+gulp.task 'content', [ 'posts', 'pagination', 'pages', 'rss' ] # 'archive',
 gulp.task 'content-watch', [ 'posts-watch', 'pagination-watch', 'pages-watch', 'archive-watch', 'rss-watch' ]
 
 gulp.task 'default', [ 'clean', 'assets', 'content', 'sitemap' ]

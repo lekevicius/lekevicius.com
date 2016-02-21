@@ -1,7 +1,9 @@
 ---
-title: Silver, the Free Swift Implementation
-link: http://elementscompiler.com/elements/silver/
-date: 2015-02-09 11:23
+{
+  "title": "Silver, the Free Swift Implementation",
+  "link": "http://elementscompiler.com/elements/silver/",
+  "date": "2015-02-09 11:23"
+}
 ---
 
 Very interesting project. Swift as a language is very modern and quite fun. Swift as an implementation and compiler is just remarkable. I'm sure that re-implementing it -- for Windows, .NET, Java and Android -- is an incredible task.

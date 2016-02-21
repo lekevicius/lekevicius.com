@@ -1,11 +1,11 @@
 ---
-color: o \#E94B35
-bodyclass: home
-//- title: AssetPress
-//- description: Asset workflow for iOS and Android designs
-customTitle: <p>Curiously inventing with design and code</p>
-//- cover: o /img/covers/index.jpg
+{
+  "color": "#E94B35",
+  "bodyclass": "home",
+  "customTitle": "<p>Curiously inventing with design and code</p>"
+}
 ---
+
 extends ../../assets/templates/basic
 
 block content
@@ -14,6 +14,10 @@ block content
     h6 Recent Projects
     .projects
 
+      .project-row.full
+        .project: a(href="/projects/spiralflow", style="background-color: #0040ff; background-image: url(/projects/spiralflow/project-image.jpg)"): .text
+          h3 Spiralflow
+          p Explore limitless configurations of animated spirals
       .project-row.halfs
         .project: a(href="/projects/assetpress", style="background-color: #ACE2FF; background-image: url(/projects/assetpress/project-image.jpg)"): .text
           h3 AssetPress

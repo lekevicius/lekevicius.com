@@ -1,7 +1,9 @@
 ---
-title: Web Design in Japan
-link: http://webdesign.tutsplus.com/articles/big-in-japan-web-design-in-the-land-of-the-rising-sun--cms-23290
-date: 2015-02-19 16:02
+{
+  "title": "Web Design in Japan",
+  "link": "http://webdesign.tutsplus.com/articles/big-in-japan-web-design-in-the-land-of-the-rising-sun--cms-23290",
+  "date": "2015-02-19 16:02"
+}
 ---
 
 Rich Mirocco about web design in Japan. A good follow-up after reading [previously linked article about Chinese web design](http://lekevicius.com/journal/2015/02/17/china-web-design-trends/).

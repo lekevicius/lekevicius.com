@@ -1,7 +1,9 @@
 ---
-title: Affinity Photo Beta
-link: https://affinity.serif.com/en-gb/photo/
-date: 2015-02-09 20:02
+{
+  "title": "Affinity Photo Beta",
+  "link": "https://affinity.serif.com/en-gb/photo/",
+  "date": "2015-02-09 20:02"
+}
 ---
 
 I have been experimenting with [Affinity Designer](https://affinity.serif.com/en-gb/), and it works great as a replacement for Adobe Illustrator, when it comes to illustration. For UI design not so much, but for that there is [Sketch](http://www.bohemiancoding.com/sketch).
