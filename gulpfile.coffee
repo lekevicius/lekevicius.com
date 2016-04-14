@@ -53,6 +53,7 @@ sitemap = require 'gulp-sitemap'
 revall = require 'gulp-rev-all'
 parallelize = require 'concurrent-transform'
 awspublish = require 'gulp-awspublish'
+cloudfront = require 'gulp-cloudfront-invalidate-aws-publish'
 # s3 = require 'gulp-s3'
 # gzip = require 'gulp-gzip'
 
@@ -634,6 +635,7 @@ gulp.task 'publish', ->
   .pipe(publisher.cache())
   .pipe(publisher.sync()) # delete missing
   .pipe(awspublish.reporter())
+  .pipe(cloudfront(keys))
 
 
 
