@@ -5,11 +5,11 @@ phases:
       # Install nodejs https://nodejs.org/en/download/package-manager/
       - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
       - apt-get install -y nodejs
-      - sudo apt-get install python-software-properties
-      - sudo apt-get install software-properties-common
-      - sudo add-apt-repository ppa:rwky/graphicsmagick
-      - sudo apt-get update
-      - sudo apt-get install graphicsmagick
+      - apt-get install -y python-software-properties
+      - apt-get install -y software-properties-common
+      - add-apt-repository ppa:rwky/graphicsmagick
+      - apt-get update
+      - apt-get install -y graphicsmagick
   pre_build:
     commands:
       - npm install --production
