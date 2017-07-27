@@ -8,7 +8,18 @@
     "type": "git",
     "url": "http://github.com/lekevicius/lekevicius.com.git"
   },
+  "scripts": {
+    "build": "rm -rf build/ && NODE_ENV=production gulp"
+  },
   "devDependencies": {
+    "bluebird": "^3.4.7",
+    "nodegit": "^0.16.0",
+    "nodegit-flow": "^0.3.0",
+    "semver": "^5.3.0",
+    "yargs": "^6.6.0"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
     "cheerio": "^0.20.0",
     "coffee-script": "^1.10.0",
     "color": "^0.11.1",
@@ -55,8 +66,5 @@
     "marked": "^0.3.5",
     "moment": "^2.11.2",
     "through2": "^2.0.1"
-  },
-  "dependencies": {
-    "gulp": "^3.9.1"
   }
 }
