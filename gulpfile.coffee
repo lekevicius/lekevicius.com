@@ -57,7 +57,7 @@ cloudfront = require 'gulp-cloudfront-invalidate-aws-publish'
 # s3 = require 'gulp-s3'
 # gzip = require 'gulp-gzip'
 
-keys = require './config/keys.json'
+# keys = require './config/keys.json'
 
 
 paths =

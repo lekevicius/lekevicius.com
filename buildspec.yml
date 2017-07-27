@@ -7,7 +7,7 @@ phases:
       - apt-get install -y nodejs
   pre_build:
     commands:
-      - npm install
+      - npm install --production
   build:
     commands:
       - npm run build
