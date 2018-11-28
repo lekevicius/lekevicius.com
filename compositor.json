@@ -1,0 +1,90 @@
+{
+  "name": "lekevicius/lekevicius.com",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "Lekevicius",
+  "branch": "master",
+  "style": {
+    "name": "Material",
+    "componentSet": {
+      "nav": "nav/DarkAbsoluteNav",
+      "header": "header/GradientHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "Roboto, sans-serif",
+    "heading": {
+      "fontWeight": 500,
+      "letterSpacing": "-0.01em"
+    },
+    "colors": {
+      "text": "#212121",
+      "background": "#fff",
+      "primary": "#2196f3",
+      "secondary": "#1565c0",
+      "highlight": "#ff4081",
+      "border": "#e0e0e0",
+      "muted": "#f5f5f5"
+    },
+    "layout": {
+      "centered": true,
+      "bannerHeight": "80vh",
+      "maxWidth": 896
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/lekevicius/lekevicius.com",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/lekevicius.com",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "lekevicius.com",
+      "subhead": "My website, open-sourced.",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "lekevicius.com: My website, open-sourced.",
+          "url": null
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "lekevicius",
+          "repo": "lekevicius.com"
+        }
+      ],
+      "text": "v1.0.0"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n<p>Built used custom Gulp-based blog system (to be open sourced), custom CSS framework (to be open sourced) and a bunch of custom jQuery plugins (to be open sourced).</p>\n<p>Feel free to explore how the site is built. I will write it up eventually on my blog, so you might want to subscribe. Cheers!</p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/lekevicius/lekevicius.com",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/lekevicius",
+          "text": "lekevicius"
+        }
+      ]
+    }
+  ]
+}
