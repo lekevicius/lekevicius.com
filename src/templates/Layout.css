@@ -9,6 +9,7 @@ main {
 .full-width {
   width: calc(100vw - 32px);
   margin-bottom: 1rem;
+  overflow: scroll;
 }
 
 @media screen and (min-width: 560px) {

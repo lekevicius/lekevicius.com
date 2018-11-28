@@ -100,6 +100,7 @@ ul.tag-list li {
   margin-right: 0.5rem;
   font-size: 0.875em;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 a.github {
