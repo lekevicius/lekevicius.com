@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: http://lekevicius.com/sitemap.xml

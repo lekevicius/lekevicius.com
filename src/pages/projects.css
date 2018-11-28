@@ -1,0 +1,65 @@
+.project-list {
+  list-style: none;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 48px;
+}
+
+.project-list li {
+  margin: 0 0 1.5rem 0;
+}
+
+.project-list li a {
+  display: block;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-list li h3 {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 1rem 0 0 0;
+}
+
+.project-list li p {
+  margin: 0.25rem 0 0 0;
+}
+
+.project-list li img, .project-list li picture {
+  max-width: 100%;
+  margin: 0;
+  border-radius: 12px;
+  display: block;
+  
+}
+
+.project-list li .gatsby-image-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 0 1px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media screen and (min-width: 800px) {
+  .project-group h4 {
+    margin: 4rem 0 2rem 0;
+  }
+
+  .project-list {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 48px;
+  }
+}
+
+.project-group h4.section-title {
+  margin-bottom: 1rem;
+}
+.project-group p.intro {
+  margin-bottom: 2rem;
+}
+
+.client-logos .project-list li img {
+  width: 100%;
+  max-width: 140px;
+  display: block;
+  margin: 0 auto;
+}

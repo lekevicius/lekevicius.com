@@ -1,0 +1,110 @@
+body.homepage {
+  background: var(--body-background) url(../assets/images/background-light.jpg) center top no-repeat;
+  background-size: contain;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.homepage {
+    background: var(--body-background) url(../assets/images/background-dark.jpg) center top no-repeat;
+    background-size: contain;
+  }
+}
+
+.intro-text {
+  margin: 64px 0;
+}
+
+@media screen and (min-width: 800px) {
+  .intro-text {
+    margin: 60px 0 96px 0;
+  }
+}
+
+@media screen and (min-height: 700px) and (min-width: 800px) {
+  .intro-text {
+    margin: 80px 0 160px 0;
+  }
+}
+
+.intro-text h3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: normal;
+}
+.intro-text p {
+  max-width: 30rem;
+  color: var(--text-color-subtle);
+}
+
+.home-project-list {
+  list-style: none;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 32px;
+}
+
+.home-project-list li {
+  margin: 0 0 1.5rem 0;
+}
+
+.home-project-list li a {
+  display: block;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-project-list li h3 {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 1rem 0 0 0;
+}
+
+.home-project-list li p {
+  margin: 0.25rem 0 0 0;
+}
+
+.home-project-list li img, .home-project-list li picture {
+  max-width: 100%;
+  margin: 0;
+  border-radius: 8px;
+  display: block;
+}
+
+.home-project-list li .gatsby-image-wrapper {
+  border-radius: 8px;
+  max-width: 360px;
+  box-shadow: 0 0 1px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media screen and (min-width: 560px) {
+  .home-project-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .home-project-list li:nth-child(3) {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .home-project-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .home-project-list li:nth-child(3) {
+    display: block;
+  }
+}
+
+.home-article-list {
+  list-style: none;
+  margin: 0;
+}
+
+.home-article-list li {
+  margin: 0 0 1.5rem 0;
+}
+
+.home-article-list h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}

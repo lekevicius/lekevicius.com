@@ -1,0 +1,13 @@
+.site-search {
+  display: flex;
+}
+.site-search input {
+  height: 48px;
+}
+.site-search input[type='text'] {
+  flex: 1 0 240px;
+  max-width: 320px;
+}
+.site-search input[type='submit'] {
+  margin-left: 16px;
+}

@@ -1,7 +1,8 @@
 node_modules/
 build/
+public/
+.cache/
 _design/
 _older/
-config/keys.json
 .awspublish*
 .DS_Store

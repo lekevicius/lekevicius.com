@@ -1,4 +1,0 @@
-# robotstxt.org/
-
-Sitemap: http://lekevicius.com/sitemap.xml
-User-agent: *

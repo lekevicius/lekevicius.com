@@ -1,0 +1,103 @@
+main a {
+  color: var(--link-color);
+  /* border-bottom: 1px solid var(--link-border-color); */
+  text-decoration: none;
+  transition: border-bottom 0.2s, color 0.2s;
+}
+main a:hover,
+main a:active {
+  color: var(--link-color-hover);
+  /* border-bottom: 1px solid var(--link-color); */
+}
+
+a.footnote-ref {
+  padding: 0 3px;
+  margin-left: 2px;
+}
+
+a.gatsby-resp-image-link {
+  border-radius: 4px;
+  overflow: hidden;
+}
+a.gatsby-resp-image-link,
+a.gatsby-resp-image-link:hover,
+a.gatsby-resp-image-link:active {
+  border: 0;
+  transition: background 0.3s;
+}
+a.gatsby-resp-image-link:hover,
+a.gatsby-resp-image-link:active {
+  background: var(--block-color);
+}
+a.gatsby-resp-image-link img {
+  transition: box-shadow 0.3s;
+}
+a.gatsby-resp-image-link:hover img,
+a.gatsby-resp-image-link:active img {
+  box-shadow: var(--block-color) 0px 0px 0px 400px inset !important;
+}
+
+.full-width .gatsby-resp-image-wrapper {
+  max-width: none !important;
+}
+
+img.gatsby-resp-image-image {
+  box-shadow: var(--body-background) 0px 0px 0px 400px inset !important;
+}
+
+.gatsby-resp-image-background-image {
+  border-radius: 4px;
+}
+
+img {
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+img.rounded {
+  border-radius: 8px;
+}
+img.circle {
+  border-radius: 50%;
+}
+
+
+b, strong {
+  font-weight: inherit;
+  font-weight: bold;
+}
+
+dfn {
+  font-style: italic;
+}
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -.25em;
+}
+sup {
+  top: -.5em;
+}
+
+acronym {
+  border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
+  cursor: help;
+}
+abbr, abbr[title] {
+  border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
+  cursor: help;
+  text-decoration: none;
+}

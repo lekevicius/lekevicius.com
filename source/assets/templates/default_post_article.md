@@ -1,5 +1,0 @@
----
-title: CAPITALIZED_TITLE
-date: CURRENT_DATE
----
-

@@ -1,0 +1,31 @@
+ul.social-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (min-width: 720px) {
+  ul.social-links {
+    display: block;
+  }
+}
+
+ul.social-links li {
+  margin-bottom: 1rem;
+}
+
+ul.social-links a {
+  color: var(--text-color-subtle);
+}
+
+ul.social-links h5 {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: inherit;
+  margin-bottom: 4px;
+  color: var(--link-color);
+  transition: color 0.2s;
+}
+
+ul.social-links a:hover h5 {
+  color: var(--link-color-hover);
+}
