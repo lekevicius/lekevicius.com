@@ -1,13 +1,11 @@
-* Living in **Vilnius, Lithuania**. Will stay here for at least two more years.
-* Not employed at any company or freelancing, independently building my own apps. Currently working on **Alive.app**.
-* Just created a newsletter for this website. Unsure where this will go.
+* Currently in Vilnius, Lithuania. Next planned trip: London in late January.
+* Currently working on Alive.app, an easy to use dead man's switch.
 * Also, slowly transfering old projects into this website.
 
 ---
 
-* Watching House of Cards Season 6, Maniac, Making a Murderer Season 2.
+* Recently watched TV shows: House of Cards Season 6 (disappointing end to a good show), Maniac (funny but leaves with something to think about).
+* Recently finished game: Assassin’s Creed Odyssey. It's huge and packed with Greek myths and history.
 * Reading "It doesn't have to be crazy at work"
-* Playing Diablo III on Nintendo Switch. It's great.
-* Doing basic body weight training.
 
-_Last update 16th November, 2018_
+_Last updated on December 12th, 2018_
