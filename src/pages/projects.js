@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from "gatsby-image"
 import { get, orderBy } from 'lodash'
-import Helmet from 'react-helmet'
 
 import Layout from '../templates/Layout'
 import './projects.css'
@@ -41,11 +40,11 @@ groupKeys.map((val, idx) => groupKeyIndex[val] = idx)
 
 class ProjectsPage extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const siteDescription = get(
-      this,
-      'props.data.site.siteMetadata.description'
-    )
+    // const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    // const siteDescription = get(
+    //   this,
+    //   'props.data.site.siteMetadata.description'
+    // )
     const groups = get(this, 'props.data.allMarkdownRemark.group')
 
     const fixedImagesBySlug = {}
@@ -55,6 +54,7 @@ class ProjectsPage extends React.Component {
       if (imageMatch) {
         fixedImagesBySlug[imageMatch[1]] = node.childImageSharp.fixed
       }
+      return null
     })
 
     return (
@@ -100,10 +100,10 @@ class ProjectsPage extends React.Component {
             I have been doing client work of all kinds — websites, apps, games, magazines, videos — for over 10 years. Currently I am not available for any freelance or contract work. However, I would like to mention a couple of clients that I had pleasure to work with.
           </p></div></div>
           <ul className="project-list">
-            <li><img src={clientCocaCola} /></li>
-            <li><img src={clientHitachi} /></li>
-            <li><img src={clientBrusselsAirlines} /></li>
-            <li><img src={clientBarclays} /></li>
+            <li><img alt="Coca-Cola" src={clientCocaCola} /></li>
+            <li><img alt="Hitachi" src={clientHitachi} /></li>
+            <li><img alt="Brussels Airlines" src={clientBrusselsAirlines} /></li>
+            <li><img alt="Barclay's" src={clientBarclays} /></li>
           </ul>
         </div>
       </Layout>

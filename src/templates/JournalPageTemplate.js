@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
-import Helmet from 'react-helmet'
 
 import rehypeReact from "rehype-react"
 import JournalSidebar from "../components/JournalSidebar"

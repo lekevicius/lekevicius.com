@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Layout from '../templates/Layout'
 import './404.css'
-import { throws } from 'assert';
 
 class NotFoundPage extends React.Component {
   constructor(props) {
@@ -12,7 +11,7 @@ class NotFoundPage extends React.Component {
   }
   submitSearch(e) {
     e.preventDefault()
-    if (this.searchRef.current.value != '') {
+    if (this.searchRef.current.value !== '') {
       const url = `https://duckduckgo.com/?q=site%3Alekevicius.com+${ encodeURI(this.searchRef.current.value) }`
       window.location.href = url
     }

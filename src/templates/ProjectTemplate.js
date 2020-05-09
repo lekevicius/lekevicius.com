@@ -1,8 +1,7 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import Img from "gatsby-image"
-import { get, orderBy } from 'lodash'
-import { Link, graphql } from 'gatsby'
+import { get } from 'lodash'
+import { graphql } from 'gatsby'
 
 import rehypeReact from "rehype-react"
 import Counter from "../components/Counter"
@@ -21,6 +20,7 @@ class ProjectTemplate extends React.Component {
       if (imageMatch) {
         fixedImagesBySlug[imageMatch[1]] = node.childImageSharp.fixed
       }
+      return null
     })
     const projectIcon = fixedImagesBySlug[project.fields.slug]
 

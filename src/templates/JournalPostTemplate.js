@@ -1,6 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import moment from 'moment'
 import { extend } from 'lodash'
 
@@ -40,8 +39,8 @@ class JournalPostTemplate extends React.Component {
     function getCoords(elem) {
       let box = elem.getBoundingClientRect()
       return {
-        top: box.top + pageYOffset,
-        left: box.left + pageXOffset
+        top: box.top + window.pageYOffset,
+        left: box.left + window.pageXOffset
       }
     }
 

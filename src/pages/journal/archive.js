@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { get, orderBy, groupBy } from 'lodash'
-import Helmet from 'react-helmet'
+import { get, groupBy } from 'lodash'
 import moment from 'moment'
 
 import JournalSidebar from "../../components/JournalSidebar"

@@ -71,7 +71,7 @@ class Header extends React.Component {
             </ul>
           </nav>
         </div>
-        <a href="#" onClick={this.toggleOpenClass} className="menu-toggle">
+        <a href="#link" onClick={this.toggleOpenClass} className="menu-toggle">
           <div className="line top-line"></div>
           <div className="line bottom-line"></div>
         </a>

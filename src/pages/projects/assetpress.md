@@ -50,19 +50,19 @@ AssetPress runs on Mac from comand line, and needs to be installed from there. I
 
 AssetPress has only one dependency that needs to be installed seperately: [ImageMagick](http://www.imagemagick.org). You can install it via [Homebrew](http://brew.sh):
 
-```
+```sh
 brew install imageimagick
 ```
 
 AssetPress itself is a node app, so if you don't have node installed, you also need to run
 
-```
+```sh
 brew install node
 ```
 
 Once you have node installed, you can finally run
 
-```
+```sh
 npm install -g assetpress
 ```
 
@@ -72,7 +72,7 @@ If you or your designer is using [Sketch](http://bohemiancoding.com/sketch/), As
 
 Basic usage is
 
-```
+```sh
 assetpress input [options]
 ```
 
@@ -164,7 +164,7 @@ AssetPress Workflow allows you to save configuration of different actions – ex
 
 Your workflow file (something.assetpress.json) can be very simple:
 
-```
+```json
 {
   "source": "Exports",
   "assetpress": {
@@ -175,7 +175,7 @@ Your workflow file (something.assetpress.json) can be very simple:
 
 This workflow file takes all images from Exports and runs through AssetPress with default iOS settings. After running this workflow you would see "Images" folder next to "Exports".
 
-```
+```json
 {
   "source": "Design.sketch",
   "screens": "~/Dropbox/Project/Screen Previews",
@@ -197,13 +197,13 @@ This workflow file takes all images from Exports and runs through AssetPress wit
 
 This is a very complete workflow file using all the available steps. Input is set to a Sketch file, that will be exporting with sketchtool in the beginning of the workflow. Then Splitter will run, moving all screen previews to Dropbox folder. After that remaining resources will be resized and turned into Xcassets folder. Finally, this Xcassets folder will be moved to a git directory and a new git commit will be pushed to github, resource branch. If you run this workflow from command line, you can also set the commit message:
 
-```
+```sh
 assetpress design.assetpress.json -m 'Added client icons'
 ```
 
 Other notable use cases of AssetPress include using just Splitter:
 
-```
+```json
 {
   "source": "Exports",
   "screens": "Screen Previews"
@@ -212,7 +212,7 @@ Other notable use cases of AssetPress include using just Splitter:
 
 Or just as a Sketch exporter:
 
-```
+```json
 [
   {
     "source": "App Android.sketch"
@@ -227,7 +227,7 @@ Previous example also shows that a workflow file can contain a single workflow o
 
 If you have trouble understanding what a workflow is doing, you can always run workflow in verbose (debug) mode:
 
-```
+```sh
 assetpress design.assetpress.json --verbose
 ```
 
@@ -280,7 +280,7 @@ Everything is written in CoffeeScript and runs on Node. I welcome all contributi
 
 Finally, if you would like to build on top of AssetPress, refer to Option key in option tables above. It allows you to run AssetPress by using it as a library. Example below shows all options with their default values:
 
-```
+```js
 var assetpress = require('assetpress');
 assetpress({
   inputDirectory: 'source',

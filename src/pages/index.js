@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from "gatsby-image"
 import { get, keyBy } from 'lodash'
-import Helmet from 'react-helmet'
 
 import Layout from '../templates/Layout'
 import './index.css'

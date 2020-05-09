@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: 'Jonas Lekevicius',
+    title: `Jonas Lekevicius`,
     author: 'Jonas Lekevicius',
-    description: 'I design and build digital things',
+    description: `I design and build digital things.`,
     siteUrl: 'https://lekevicius.com',
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -28,6 +28,8 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -73,7 +75,6 @@ module.exports = {
               maxWidth: 640,
               linkImagesToOriginal: false,
               showCaptions: true,
-              sizeByPixelDensity: true,
               withWebp: false,
               backgroundColor: '#f2f2f2'
             },
@@ -102,8 +103,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
