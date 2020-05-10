@@ -4,6 +4,7 @@ import Img from "gatsby-image"
 import { get, keyBy } from 'lodash'
 
 import Layout from '../templates/Layout'
+import additionalProjects from './projects.json'
 import './index.css'
 
 class HomePage extends React.Component {
@@ -13,8 +14,19 @@ class HomePage extends React.Component {
     const projectInfo = get(this, 'props.data.projectInfo.edges')
     const projectImages = get(this, 'props.data.projectImages.edges')
 
-    const featuredProjects = ['timeful', 'cryptoproof', 'october30']
+    const featuredProjects = ['nyt', 'cryptoproof', 'october30']
     const projectInfoMap = keyBy(projectInfo, ({ node }) => node.fields.slug)
+    for (const additionalProject of additionalProjects) {
+      projectInfoMap[additionalProject.slug] = {
+        node: {
+          fields: {
+            slug: additionalProject.slug,
+            projectPath: additionalProject.path
+          },
+          frontmatter: additionalProject
+        }
+      }
+    }
     const projectImageMap = keyBy(projectImages, ({ node }) => 
       node.absolutePath.match(/\/projects\/([a-z0-9-]+)\/feature-image.png/)[1])
     
@@ -74,23 +86,23 @@ class HomePage extends React.Component {
 
 export default HomePage
 
-const featuredProjects = ['timeful', 'cryptoproof', 'october30']
-const featuredRegex = featuredProjects.join('|')
+// const featuredProjects = ['nyt', 'cryptoproof', 'october30']
+// const featuredRegex = featuredProjects.join('|')
 
-const projectInfoRegex = `/[a-zA-Z0-9/]+/projects/(${featuredRegex}).md/`
-const projectImageRegex = `/[a-zA-Z0-9/]+/projects/(${featuredRegex})/feature-image.png/`
+// const projectInfoRegex = `/[a-zA-Z0-9/]+/projects/(${featuredRegex}).md/`
+// const projectImageRegex = `/[a-zA-Z0-9/]+/projects/(${featuredRegex})/feature-image.png/`
 
-export const pageContext = {
-  projectInfoRegex,
-  projectImageRegex
-}
+// export const pageContext = {
+//   projectInfoRegex,
+//   projectImageRegex
+// }
 
 export const pageQuery = graphql`
   query {
     projectInfo: allMarkdownRemark(
       filter: {
         fileAbsolutePath: {
-          regex: "/[a-zA-Z0-9/]+/projects/(timeful|cryptoproof|october30).md/"
+          regex: "/[a-zA-Z0-9/]+/projects/(nyt|cryptoproof|october30).md/"
         }
       }
     ) {
@@ -110,9 +122,6 @@ export const pageQuery = graphql`
     projectImages: allFile(filter: {
       fields: {
         featureImageType: { eq: "projects" }
-        featureImageSlug: {
-          in: ["timeful", "cryptoproof", "october30"]
-        }
       }
     }) {
       edges {

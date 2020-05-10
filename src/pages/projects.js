@@ -5,6 +5,7 @@ import { get, orderBy } from 'lodash'
 
 import Layout from '../templates/Layout'
 import './projects.css'
+import additionalProjects from './projects.json'
 
 import clientCocaCola from './projects/logos/cocacola.svg'
 import clientHitachi from './projects/logos/hitachi.svg'
@@ -46,6 +47,29 @@ class ProjectsPage extends React.Component {
     //   'props.data.site.siteMetadata.description'
     // )
     const groups = get(this, 'props.data.allMarkdownRemark.group')
+    for (const additionalProject of additionalProjects) {
+      for (const projectGroup of groups) {
+        if (projectGroup.fieldValue === additionalProject.group) {
+          var alreadyAdded = false
+          for (const node of projectGroup.edges) {
+            if (node.node.fields.slug === additionalProject.slug) {
+              alreadyAdded = true
+            }
+          }
+          if (!alreadyAdded) {
+            projectGroup.edges.push({
+              node: {
+                fields: {
+                  slug: additionalProject.slug,
+                  projectPath: additionalProject.path
+                },
+                frontmatter: additionalProject
+              }
+            })
+          }
+        }
+      }
+    }
 
     const fixedImagesBySlug = {}
     const images = get(this, 'props.data.allFile.edges')

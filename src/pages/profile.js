@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+// import { Link } from 'gatsby'
 
 import Layout from '../templates/Layout'
 import './profile.css'
@@ -12,7 +12,8 @@ const ProfilePage = ({ location }) => (
     </div>
     <div className="content-layout">
       <div className="content">
-        <p><Link to="/now/">Now 28 years old, living in Vilnius, Lithuania.</Link> I have been designing and developing for close to 15 years, and hold a BA degree in Graphic Design from Vilnius Academy of Arts.</p>
+        {/* <Link to="/now/"></Link> */}
+        <p>Now 28 years old, living in Vilnius, Lithuania. I have been designing and developing for close to 15 years, and hold a BA degree in Graphic Design from Vilnius Academy of Arts.</p>
         <p>Currently I am independently designing and building new apps, trying to create something both useful and delightful.</p>
         <p>Previously I was Head of Product Design at health and beauty marketplace <a href="https://www.treatwell.com/">Treatwell</a> and co-founded an app design and development agency <a href="http://lemonlabs.co/">Lemon Labs</a> (later acquired by Treatwell). I have also been lecturing in <a href="http://www.dizainokolegija.lt/en/">Vilnius College of Design</a> and co-founded an analytics startup <a href="https://socilyzer.com/">Socilyzer</a>.</p>
 

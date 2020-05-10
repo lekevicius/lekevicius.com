@@ -18,7 +18,8 @@ body header {
   }
 }
 body header.open {
-  height: 292px;
+  height: 244px;
+  /* Line is 48px */
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
 header .menu-toggle {

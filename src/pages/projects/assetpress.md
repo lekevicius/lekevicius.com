@@ -50,19 +50,19 @@ AssetPress runs on Mac from comand line, and needs to be installed from there. I
 
 AssetPress has only one dependency that needs to be installed seperately: [ImageMagick](http://www.imagemagick.org). You can install it via [Homebrew](http://brew.sh):
 
-```sh
+```shell
 brew install imageimagick
 ```
 
 AssetPress itself is a node app, so if you don't have node installed, you also need to run
 
-```sh
+```shell
 brew install node
 ```
 
 Once you have node installed, you can finally run
 
-```sh
+```shell
 npm install -g assetpress
 ```
 
@@ -72,7 +72,7 @@ If you or your designer is using [Sketch](http://bohemiancoding.com/sketch/), As
 
 Basic usage is
 
-```sh
+```shell
 assetpress input [options]
 ```
 
@@ -197,7 +197,7 @@ This workflow file takes all images from Exports and runs through AssetPress wit
 
 This is a very complete workflow file using all the available steps. Input is set to a Sketch file, that will be exporting with sketchtool in the beginning of the workflow. Then Splitter will run, moving all screen previews to Dropbox folder. After that remaining resources will be resized and turned into Xcassets folder. Finally, this Xcassets folder will be moved to a git directory and a new git commit will be pushed to github, resource branch. If you run this workflow from command line, you can also set the commit message:
 
-```sh
+```shell
 assetpress design.assetpress.json -m 'Added client icons'
 ```
 
@@ -227,7 +227,7 @@ Previous example also shows that a workflow file can contain a single workflow o
 
 If you have trouble understanding what a workflow is doing, you can always run workflow in verbose (debug) mode:
 
-```sh
+```shell
 assetpress design.assetpress.json --verbose
 ```
 

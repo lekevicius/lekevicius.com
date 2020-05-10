@@ -67,7 +67,7 @@ class Header extends React.Component {
               <li><Link onClick={this.collapseMenu} to={'/projects/'}>Projects</Link></li>
               <li><Link onClick={this.collapseMenu} to={'/journal/'}>Journal</Link></li>
               <li><Link onClick={this.collapseMenu} to={'/profile/'}>Profile</Link></li>
-              <li><Link onClick={this.collapseMenu} to={'/now/'}>Now</Link></li>
+              {/* <li><Link onClick={this.collapseMenu} to={'/now/'}>Now</Link></li> */}
             </ul>
           </nav>
         </div>
