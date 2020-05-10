@@ -125,7 +125,7 @@ class NYTPage extends React.Component {
           </li>
         </ul>
         <p className="desktop-notice">
-          🖥 For the clearest look at the analysis, view this page on a desktop.
+          🖥 For the best viewing experience, open this page on a desktop.
         </p>
         <p className="notes">
           <strong>Notes on the methodology:</strong> each 2020 New York Times front page has been annotated by single-theme stories that have consistently appeared for more than a week. Minor stories at the bottom of the front page have not been annotated. Coronavirus-related stories are not further split into subtopics (e.g. health, economics, or politics) because New York Times themselves don’t. The usual double-line marking hasn’t been used for Coronavirus, because articles often touch on multiple subtopics.
