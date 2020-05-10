@@ -1,7 +1,0 @@
-node_modules/
-build/
-_design/
-_older/
-config/keys.json
-.awspublish*
-.DS_Store

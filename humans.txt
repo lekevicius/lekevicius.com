@@ -1,0 +1,41 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+                _         _              _      _
+                | |    ___| | _______   _(_) ___(_)_   _ ___
+                | |   / _ \ |/ / _ \ \ / / |/ __| | | | / __|
+                | |__|  __/   <  __/\ V /| | (__| | |_| \__ \
+                |_____\___|_|\_\___| \_/ |_|\___|_|\__,_|___/
+
+--------------------------------------------------------------------------------
+            THE PERSONAL WEBSITE OF JONAS LEKEVICIUS ~ Version 4
+--------------------------------------------------------------------------------
+
+Written, designed, developed and published by Jonas Lekevicius
+Email: my first name at this domain
+Twitter: @lekevicius
+Location: Vilnius, Lithuania
+
+--------------------------------------------------------------------------------
+
+Copyright © 2005-2018 Jonas Lekevicius
+
+The content of the website is licensed under
+Creative Commons BY-NC-ND license.
+http://creativecommons.org/licenses/by-nc-nd/3.0/
+
+The design and code is copyrighted.
+
+--------------------------------------------------------------------------------
+
+TECHNOLOGY STACK
+
+Built with Gatsby, a React + GraphQL static site generator.
+Coded with Visual Studio Code.
+Designed in Sketch.
+
+The site uses Google Analytics for analytics.
+
+This site is open source:
+https://github.com/lekevicius/lekevicius.com
+
+--------------------------------------------------------------------------------

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Journal Feed]]></title><description><![CDATA[I design and build digital things.]]></description><link>https://lekevicius.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 10 May 2020 14:34:02 GMT</lastBuildDate><item><title><![CDATA[Amora Font]]></title><description><![CDATA[Amora is a slab serif designed for one of the study assignments in Vilnius Academy of Arts. The assignment was to design a “workhorse” font…]]></description><link>https://lekevicius.comnull</link><guid isPermaLink="false">https://lekevicius.comnull</guid><content:encoded>&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 78.125%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsSAAALEgHS3X78AAAEBUlEQVQ4y2WUbUxbVRjHC86oiRrm2EZAdBlmI9BC3y4t7e19670dfaEv0Pa+dbeUlo5tnXMbsJSROUFBYKgbM4tzw+gW42Zcoi4CugrTxCzxg9FEP/lNP/nBjyYmxuv/btJhPMmTc85zzvmd/3nOeY7JhJJ1skZlojvcpiNdfI3R1tVT93w5J9ukOZl6078lY2cezxFcMu/yNxn9F6geY33NBqNaNjuW/ZL5jqAGpzwhs+pghjHWD7NqDmYwR7DhfrM3m2j3OhZTUu1+B1OPsV7Yw1XQBqzUxdd5La7GFb/EV3hl8RVP2KI46NiAkw1ijor6OmDhm8VC4s20HE51kOnBLs6MMQ321GZ1tUY9TPhbIlYy+iknFj/n5d++5JU6odNTBxCDOSOoJ6VOav67ieOeN/rTyXSHbxC+o7BjAwQ79r+jQv7WvJMTADwN4Kk7giJZ2527CwTnTtkpQrHTKRz5kqW+3Sq0EN4D3fxurN8vdfpOAn6i6dGWqsLHsMuYaKeLH7Ip6xe8/BHieHFdUK4ApCJ28R96suZVXpaPtTENK88f1ConDpPhve5WsdNH//76mZZfZycsuq4/uJRBJzcZtftkwA6u+qVBABug8v3rbLINcW1Y4SVllZMo/e+fa/64MKXq1y48hxgOqDZ6Sv/p40YA4w9gBEdseXLXI+dbA9sA+wCgNsOP9iw2GP1aUN3wvYT+yVVBzn7GilNrnDwyR0bG91k9YamNfFqxUjmE7P7FQHbgqqY168tv7VyPanEoGQNgBHYEkBLs4i1ObITqFNplHH18fZ/6zCecODTjDXMZB5OBqMI9WNHN70hayHHEofDn5ZnDt0OZIBZpUBIDILRyH7KwJigFxPR4hZeVVV6aBtQJf+FuILNQJgJD48Gool99zW+SrdTEbCzJ62/Puv96d478Pl1ILDNipuKX418JagCQwm1eps6R0dGXPaHhJToRRb+EzRRYf0VQzs25Qtp5TXXoS/MJE27wVaRSImOntVIgtG3CE9S+kfKOpVAqesYVDC2QvbGyu0eO2chcn803M+0JK1AVQ2wX1nglArWLd/mMT6L5lvlYkjKeTAOgadT1eDqRuNk7ei0/IN84kI/0Wchp1cmUkS0i3qecJdjItC+yZ9obDkx6Qiye2CGE5PItv9iTslHF6B73zv/kM4BZPIPyO2qm64qa8SpW+jQe8iEEPIk4Sz++ONr9y9xEn2inqH6bzxq3+Uo3uXTwEhVvRs4fHXL5mzd+ii0GEEq3I4U6jHZva/ezCIUZvr2Atik2On02nqT0b29sz3dxRNbBMkaqbojBr7QDc5+opt7mFHwvm63ZrNzYCOMivcux1ejjp6nBp/CQ0cYF1erKeHXuP+g9fQGAZ+EOAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Amora font art&quot;
+        title=&quot;Amora font art&quot;
+        src=&quot;/static/239f541ef2c65e52fea61491ce68bff1/6af66/graphic.png&quot;
+        srcset=&quot;/static/239f541ef2c65e52fea61491ce68bff1/69538/graphic.png 160w,
+/static/239f541ef2c65e52fea61491ce68bff1/72799/graphic.png 320w,
+/static/239f541ef2c65e52fea61491ce68bff1/6af66/graphic.png 640w,
+/static/239f541ef2c65e52fea61491ce68bff1/d9199/graphic.png 960w,
+/static/239f541ef2c65e52fea61491ce68bff1/21b4d/graphic.png 1280w&quot;
+        sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;Amora font art&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Amora is a slab serif designed for one of the study assignments in Vilnius Academy of Arts. The assignment was to design a “workhorse” font, something that could be used for typesetting a text of medium length, like an article.&lt;/p&gt;
+&lt;p&gt;I took this opportunity and committed to designing a full-featured font. Amora supports over 50 languages, includes hundreds of unique characters and maintains a consistent detail across all of its letters: a tapering serif. It’s a font somewhere in between a more classical and slab serif, echoing the taper not only in serifs, but all in counter spaces, stems, even punctuation.&lt;/p&gt;
+&lt;p&gt;Other details found in this font:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mostly consistent vertical rhythms in letters like m, n, u, e, and others.&lt;/li&gt;
+&lt;li&gt;Monospaced numbers designed for tabular display&lt;/li&gt;
+&lt;li&gt;A good number of ligatures&lt;/li&gt;
+&lt;li&gt;Relatively low x-height that makes the font more suitable for small sizes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;full-width&quot;&gt;
+  &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; &quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 83.125%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsSAAALEgHS3X78AAADR0lEQVQ4y42UW08TQRTHhyp35NLt7tLuds+Z2Vu3UKhWBG+AoGhINCZewAASTTAaLEqMJuqbGn01MTHGxKgPfjO/B/6nnaKPTvLLmdk5c/ac/55ZERL3B0RFn2gE82FwDAwBW88V8SDsABONjhMd84zFGe1rY79PYGAuVJmFGGUSDZKUEV/C5krY5pSxx0GK55Mp8USdZDaJvQniVayX8Pwc9kMdkL2gFbQ1tin2L1GYKimjLIzSahTHqcIERMQJsh+GT/8tipI1inidovgsqZCIJfZDBEp0NaIz8hSMBFKO2wV7DMtu0AN0KYMqoKHfl2+KEtEAAsc+sULZkmERTCJQBOgwGBY9FamcUdt21lauhN+fv6x9au6ffntvJ/vx4hUnUnkyIAeH7ZjYRakjEppDwxJKdnF+DBSAp7UWeGilrBqhW2yszV9Yeb2xvY1gr5o3bq8/uHZ9BeWf53KgtTwB5uBfgY7TNZJzWK9iPaV1Bhd06a0s34STuRvlMNxMJ6PF+olsaWY2OzNdr0yllThmSXAMQLHCquW/RrEHLWNknKi2fipsa2m36/ZdMc5s5z3PGSsUrNF83nYc1yl7vqsrMC1kdWRC21gFojxkGNCYVtOl9wpCX0Fsh6FTonVi6QI/YukB7VgyaL2KWitk5sCWA73W/lINHn4U6FGYIjlbJV6E0zKYBUumBxnMGP3OgAbItG5xOajXSn7Gnn+u5LiujlWrTnQJ9NYQqFylKDL9FJpW6OgijW2B7KXwi7kPy6v9O43T6cX5RW9hfsGfOd6wBnt6c63+KhIFHoSHHmXTWxoyGZaNhpoiQVckk/vw5Wv3i3fvnY+fPlvff/7Kf/n6rXUFBQIMgwwE6K0IL7BwbwOTkba+0c9JVNh7cHCQe7r/bHj30W7/3v2d7s3Nu72bW3f7Nja2cp3Gzqu2bnM14vMnSabVtk76PleNbvNau1ONmaOPm08sUG3uPY0BAwmy5t7+3w/TGfcpDu5QnCyj2KAtAZnyLfEfA4GFkPhDpAGjffgI2ifBPa1grn8Kkfk4Fd02uNOiXpsWDx/tCmTYpQ8bugztqBnJlsUdFVWSfWBgmmTu3zenIQtW8nCNgOKfgKITTNs/EtjC5YYVxFAAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;features&quot; title=&quot;features&quot; src=&quot;/static/c7daaea40406c55222016adbd72f8b77/6af66/features.png&quot; srcset=&quot;/static/c7daaea40406c55222016adbd72f8b77/69538/features.png 160w,
+/static/c7daaea40406c55222016adbd72f8b77/72799/features.png 320w,
+/static/c7daaea40406c55222016adbd72f8b77/6af66/features.png 640w,
+/static/c7daaea40406c55222016adbd72f8b77/d9199/features.png 960w,
+/static/c7daaea40406c55222016adbd72f8b77/21b4d/features.png 1280w,
+/static/c7daaea40406c55222016adbd72f8b77/29114/features.png 1920w&quot; sizes=&quot;(max-width: 640px) 100vw, 640px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+&lt;p&gt;Only one weight, Medium Roman, was designed. The font also lacks professional kerning. Amora was designed in Glyphs Pro. &lt;/p&gt;
+&lt;p&gt;It is not available for download.&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 198.12500000000003%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,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&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Amora font art&quot;
+        title=&quot;Amora font art&quot;
+        src=&quot;/static/734fa804c393a5eaa4b771f3c68c804e/6af66/grid.png&quot;
+        srcset=&quot;/static/734fa804c393a5eaa4b771f3c68c804e/69538/grid.png 160w,
+/static/734fa804c393a5eaa4b771f3c68c804e/72799/grid.png 320w,
+/static/734fa804c393a5eaa4b771f3c68c804e/6af66/grid.png 640w,
+/static/734fa804c393a5eaa4b771f3c68c804e/d9199/grid.png 960w,
+/static/734fa804c393a5eaa4b771f3c68c804e/21b4d/grid.png 1280w,
+/static/734fa804c393a5eaa4b771f3c68c804e/29114/grid.png 1920w&quot;
+        sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;Amora font art&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Arturka]]></title><description><![CDATA[One day, when we were discussing my Artificial Intelligence experiment to generate text trained on chat data, my friend Tadas Vidmantas…]]></description><link>https://lekevicius.comnull</link><guid isPermaLink="false">https://lekevicius.comnull</guid><content:encoded>&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 78.125%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsSAAALEgHS3X78AAAChklEQVQ4y4VU3W4SQRTmOXydvoCP4I0aE5/EmMZre6Pedb3SxCYmDaSFEtjoDT/SREIpFFo2pXSZ3fnZ2dnjd4aCrUlxwsfM7Jz59vx8e0rVam2nVqt97XQ6+8PhMGi320Gr1QoGg0EwnU6BsV+fnp4Gk8kEmAbn5+dBt9v1tp1Om+d93P9ycnKyW+r1eq+dc5QkCRljKE1TD6M1mSwnnRFp/GVZRkVRUJ7nfi2l3NgKIYjH2dnZqHRxcfGcN0opAyOLGZBWSm2LPLakG5gTu1jENooiG8exZbu/torXhp0Ceac0Go1eMiE8zIGCPRViSVIXVP72jj7vPqGj7+/pqNqkTx8/UKPRgMfae8W2d8jZe7zs14YQ7J5wFUZCUlka9Cr04+AZDX/XaX6zpCia0Ww2+5fscUKgQAiUIj+cp/uDc8dhrdfWWg/O5VZC9vDq6opz6sH71aVVAThcvrwebLOVkEPAM4KECLLhytF4PPYv4XAZ1q68Z5L/ErI319fXnuBmPkfeIr9/MAqHnwVhvp2Qi+JyR9tG4R6eq605TNJCZ8ibTilLURiZkoKo5wtJi1htCqUne3Tzc4fU6C1pk1MixOOESktSBpcRSqYVimBoKRSJBGujyaEeZl6h5eANqegAIRt4KB4PWYjE62wN1qT2xKuqL5cxibSgRBMJyR8ENIm79wlf3H3LGeBQFAdyJwEQOBTF9ft9h+bgZz6XaeLSJIadcJATkFjWJgi7JUjiFXvI+eGHXOW1/lhzt7e3Xj6My8vLjT75jGcW9zq3iKhfQht6igbRRmtqAGGz2QwPDw9DtLTw+Pg4rFarYb1e93u0p7BcLm9QqVRCeB3iRXy3Bef2/wCX7qTjhDYk3wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Arturka&quot;
+        title=&quot;Arturka&quot;
+        src=&quot;/static/3df875065d75b32552a459348970618a/6af66/screenshot.png&quot;
+        srcset=&quot;/static/3df875065d75b32552a459348970618a/69538/screenshot.png 160w,
+/static/3df875065d75b32552a459348970618a/72799/screenshot.png 320w,
+/static/3df875065d75b32552a459348970618a/6af66/screenshot.png 640w,
+/static/3df875065d75b32552a459348970618a/d9199/screenshot.png 960w,
+/static/3df875065d75b32552a459348970618a/21b4d/screenshot.png 1280w&quot;
+        sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;Arturka&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;One day, when we were discussing my Artificial Intelligence experiment to generate text trained on chat data, my friend Tadas Vidmantas suggested something along the the lines of training an agent on probably the worst of humanity: online comments. And like that, Artificial Idiot Arturka was born.&lt;/p&gt;
+&lt;p&gt;I developed a scraper for Delfi, the biggest news portal in Lithuania, notorious for vile comments section, and started downloading comments. In a couple of months I had over 2 million, enough to train the model.&lt;/p&gt;
+&lt;p&gt;The comments were predictably nonsensical, but after sharing thousands of them with Tadas, he selected a few hundred that were quite funny.&lt;/p&gt;
+&lt;p&gt;I then designed a very simple site that allowed upvoting and downvoting comments, the same way as an actual Delfi site, and we launched this project.&lt;/p&gt;
+&lt;p&gt;In the next couple of days over 20 000 people have explored this experiment and it was featured on national TV. &lt;/p&gt;
+&lt;p&gt;Arturka is now offline.&lt;/p&gt;
+&lt;h4 id=&quot;tech-stack&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#tech-stack&quot; aria-label=&quot;tech stack permalink&quot; class=&quot;header-link before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Tech Stack&lt;/h4&gt;
+&lt;ul class=&quot;tag-list&quot;&gt;
+&lt;li&gt;Node&lt;/li&gt; &lt;li&gt;Express&lt;/li&gt; &lt;li&gt;MongoDB&lt;/li&gt; &lt;li&gt;jQuery&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Film Speech Trends]]></title><description><![CDATA[This work was a result of a two-day Nodebox workshop at Vilnius Academy of Arts. By that time I was very familiar with Nodebox, so I decided…]]></description><link>https://lekevicius.comnull</link><guid isPermaLink="false">https://lekevicius.comnull</guid><content:encoded>&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAABtUlEQVQoz63Syy8DQRwH8C2qGqXUq6JKFKu721Y9ggNKtfU4iAQJ4hWJkIjEgRB3N4lEOEgkDh6hFIl2Ng0XZzcu/gWJm/v4TndaxJFJPvn95rG/3dkZQUAjQVn4a1ODihAd8CDxVycGSMhlBweUQx0nQgUUxbTxat7Ph0KwQTGLqcqX9rRkwWkYg2UYhBHS6/ayGB5oNCP2qyHXKOI80SJbvwjjPNd/fW6XqCNdYrna7rAQv7MhbtNlkM4aa1zO09+F3GVszX1AKrnu89rVHqmDdNeJIGGtgugkPVILCUgZqYI3u5vC1cOpMXK5Zzqj75nXJ9umq9uD7IvDrRw237G85GleWfGxPEpp+vlTzBh+fcw6f3sxhJ/vs44p1Uci+1qxuGT+8XOPKNWd0g9dokNpIoir67K4tqH8Ogk2Dzt8ndpWoY2ToGIgARmfLTdhG2XYvhm5G7kVh1H65KuqfQhICnIF461QD15g260BG2pYUi/iJzUFEzAMLbAKfnBFQ+45xFmYhAWY4X0fDPFnle8FjVAAFpDAyXN2PXLAE9NeauLztfyaVfKrxK5QbrKY8F+N1foEHaXGnVusyjkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Fifty Years of Film Speech&quot;
+        title=&quot;Fifty Years of Film Speech&quot;
+        src=&quot;/static/359941795602158bb264ffe4d899eebd/6af66/graphic.png&quot;
+        srcset=&quot;/static/359941795602158bb264ffe4d899eebd/69538/graphic.png 160w,
+/static/359941795602158bb264ffe4d899eebd/72799/graphic.png 320w,
+/static/359941795602158bb264ffe4d899eebd/6af66/graphic.png 640w,
+/static/359941795602158bb264ffe4d899eebd/d9199/graphic.png 960w,
+/static/359941795602158bb264ffe4d899eebd/21b4d/graphic.png 1280w&quot;
+        sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;Fifty Years of Film Speech&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;This work was a result of a two-day Nodebox workshop at Vilnius Academy of Arts. By that time I was very familiar with Nodebox, so I decided to do something a bit more challenging than usual, and picked a data-heavy analysis subject: scripts of hundreds of movies released over the last 50 years.&lt;/p&gt;
+&lt;p&gt;The goal was to identify visible changes in language. Which words were never used during 60’s but became popular later? Which words used to be very common but are barely spoken now?&lt;/p&gt;
+&lt;p&gt;To answer these questions I used a lot of scrapers, downloaders and text analysis libraries:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Identified Top 10 English movies for each year, according to IMDb.&lt;/li&gt;
+&lt;li&gt;Downloaded English language subtitles for all of them.&lt;/li&gt;
+&lt;li&gt;Cleaned each subtitle file from “markup”, leaving only dialogue.&lt;/li&gt;
+&lt;li&gt;Analyzed all dialogues together to identify most common words and additional “stop words” (words so common that it doesn’t make sense to include them, like “and”).&lt;/li&gt;
+&lt;li&gt;For 50 most promising words, identified relative word frequency for each word in each year.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally, we visualized each chart as a waveform using Nodebox, creating the final poster.&lt;/p&gt;
+&lt;div class=&quot;full-width&quot;&gt;
+  &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; &quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 150%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAACXBIWXMAAAsSAAALEgHS3X78AAAENUlEQVRIx3VW25LaSAzN/3/SVra2KpWHTaV2aiFzYQawsYEZ4/sVX0E5R20YBiYPKnWru9U60mnZX47Fq0j5JodsLV1oSR+tZEhc6WNqx+h8K13syEDBGkX3Yq2H7ZBt1Ad9fVGHe1+q9b3s7v6WZPavFPb/Eky/iYd5APFWv2Tz9EPCyT8S3n+XePZDvJ9/ye6/r+JB9ptH+NhdOIT3AbeE60eViNp9EN+eig9nnjUR37mXYJQd7LrXNfM+XV9FOE6ayFZpAYXSREb2wRIgltJGq/Pa+xiQkZKzQw463NAnWAx+SeNPpA0fpItm0mDeho9w+iQ1bLU/hUyMBFPZe3e6/5CvPzpscEufurjVkn24lMp/kWr3LBXGnOf+XJK3J7WXlGAu2eujlNhTB4urCCsPkCzpxspRag+HkOjidSbV27NE9kSS1VS8558qKfJWbZ8kRi5T5Hq4rDIdlv7CwMZNlC7fSAvKMHfMaYX1cjfH4XsJl3eSbx50fw6n3HNZB4WcI6IOkKuYhwHHe5YCUGpGC4e1psIC1AXgvyBFtgrT0UJ/dIgIqxEyK5a9wtnbi6Yh9+ZS7Ja4YCHpjlEuMIcObCl8C3mdA511m8MSlNAcxgtAxQvIXJU2dTBHNISPSNp0pbYGjKgZIaSOrT8VxQFVoAGRFKJuR2mQpwppaQgR0KmrHVAgr7QfrotCGIRryOoY+Bjz/VaRI0mwkjy0pQxXoBIjc1RK7CmjG2J7SL5tXgWYX+JGVrVmhQk1Yr4WcGRppSm6HtlaqH34SVEYVR0ziqUkqGKGau4Bv4RUyFFBgjNnrDaE+SOtas2hfUubDOQlbUwhUBzoAc+pwqEGcz6tHu2NNq71nIOrDYuGQn3Cw7nmTfscexwLxIgAjQXoAH9I3bH/8c3DBjvH3H+8oQ2Kom+ZDSImhWxstJS0Z0moATec67we333zGW0qtiY8pSzBc4JksauaEqKyxraWBPYodCRm5aP3cXtDG0Bmkk+8U06yAyWmC3XaGxEV+ap2V9cGXXP+3G2UxOw4IweVl2qzz02Vl5EV2nBjs+/4mcMGDkt2kIRwHSmga0DZpxupYC/U7uq4RAqSyOxpsOdwQxs0hJYOeQhR5Li1IDdT0mSjlOkgnLeZEdqZO9puHDJCfmg6rbRj9Cha/ZjVRPW1Way0ys2J3EjJzTelCpZjXkAFUKhCkUq0sJPk25lkm5nqHGioE3RqSoTu/bFjY5BiU4ebB7SvHpEMkD7CtyLlx95W6aMXyBzjpbFhzwH6kPLpbW87ttKD7YtQ2BiCxfklKG3wxlu+Gm1xlmlj6O7t9UdK3yEbRGgp7CHbaqdhTgml9s24x5h9UX9LUDymxvyiuHqWPj5+6HnLxZjOzn2Rb3wckw1cO3GPZ47XRXnvFmZ85M/TGEkHzp0c8ktHzbXjeO6y01D/BtAN06Q2n030AAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;full view&quot; title=&quot;full view&quot; src=&quot;/static/570749e340d82be6aea1c9f5501af8d2/6af66/full-view.png&quot; srcset=&quot;/static/570749e340d82be6aea1c9f5501af8d2/69538/full-view.png 160w,
+/static/570749e340d82be6aea1c9f5501af8d2/72799/full-view.png 320w,
+/static/570749e340d82be6aea1c9f5501af8d2/6af66/full-view.png 640w,
+/static/570749e340d82be6aea1c9f5501af8d2/d9199/full-view.png 960w,
+/static/570749e340d82be6aea1c9f5501af8d2/21b4d/full-view.png 1280w,
+/static/570749e340d82be6aea1c9f5501af8d2/29114/full-view.png 1920w&quot; sizes=&quot;(max-width: 640px) 100vw, 640px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/downloads/80dc507fea4d2601539b163793bf287e/poster.pdf&quot; class=&quot;cta&quot;&gt;Download Poster as PDF&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;co-authors&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#co-authors&quot; aria-label=&quot;co authors permalink&quot; class=&quot;header-link before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Co-Authors&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Juste Ziliute&lt;/li&gt;
+&lt;li&gt;Augustinas Paukste&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;tech-stack&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#tech-stack&quot; aria-label=&quot;tech stack permalink&quot; class=&quot;header-link before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Tech Stack&lt;/h4&gt;
+&lt;ul class=&quot;tag-list&quot;&gt;
+&lt;li&gt;Nodebox&lt;/li&gt; &lt;li&gt;Ruby&lt;/li&gt; &lt;li&gt;Python Patterns library&lt;/li&gt; &lt;li&gt;ruby-osdb&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[CryptoProof]]></title><description><![CDATA[CryptoProof is a free service that allows posting “proof of existence” to the Ethereum blockchain for free. Blockchains are a fantastic way…]]></description><link>https://lekevicius.comnull</link><guid isPermaLink="false">https://lekevicius.comnull</guid><content:encoded>&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 78.125%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsSAAALEgHS3X78AAAC3klEQVQ4y3VUyVLbQBD1fwBepJFGi3fLsiRbxtjYxglxbBxIUcWFKgJJFRX4AYpjbvkPdEu+IuGY7ZRTLjnkC4hkdbrHC6ZSHF51T8/06349IyV83+8MBoOPk73JzfDps8C27cCyrABjweHhocDJyYnA0dFRcHBwIGJ+ww/sih04NSdwHffG87wPmPs+wRg7N0wTsrkcVBpVKJXLUEa4nidQKBSgatuw1W6DXauB47rguh7kKnnI1YtglLPATQ0455CRpF+JjWTyVTKVgo108k7KslDlPOSaFmq6HjJFCdfW18NUOh1i0VCS5VDhaqgqasgMNeRVI5RNJUwz6S6VSgOe+5ZAgjPdMAARuY4X1xsN0RmSCSiqKiySLWNMxbiCcYkBYwp2p0XEgY38SGDCGXYDiAhlCUKvXodiqQSFYnEpk1BzHBHP4xgIFcsCq1oFbCoiDrT3hMgebbZacXNzE1pbW9DudAQZkTd8HyhOxYiUZkogUirwKGEun4/JX0iTGRNSV0Gx1Tj5/xGSfrQRDj6mylR1IVnceqWytAufztHLkJAQi4sZPiCkIHVI0hyURXLrKJdmRIkE3BcyySebQ7vIfUCozRaRrLAYcX+b89tNZzL0xoRNS+gzCTIygskCj86wXCzHllUFy66KzkgWdbV4PqrGQZFUkNfwCSWZAPmKrEaasUpIC5VHnVE3bg860N3uQX9nR6DZbIrnUa3hbHMlqO01oHc1hNZFH1qXfehfP4dSx4pUmQPXtRVChUfd109ib9eHXrsLo/EIhsMhjMdjmEwmsP9yH3rNLuy+ewHnv6/g+PMFHN9ewts/19A83Y7kDRk/QV0Qns4l/8UXP0U7xbUADlrYRUxYA+MFc2qWs1OzlBU+N/RQ04Tk70T4hn4OeBh0tMYc869nCbpFsWeYoGMyV7UZuDbLnV3szwQOfISkXxGfMPEWN27J4voBMEnsLfe5eg/MRXxB3PwDRqTcjTXaLmkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;CryptoProof Proof Posting&quot;
+        title=&quot;CryptoProof Proof Posting&quot;
+        src=&quot;/static/5291f73ad2221745513aa5b2bba70a58/6af66/screenshot.png&quot;
+        srcset=&quot;/static/5291f73ad2221745513aa5b2bba70a58/69538/screenshot.png 160w,
+/static/5291f73ad2221745513aa5b2bba70a58/72799/screenshot.png 320w,
+/static/5291f73ad2221745513aa5b2bba70a58/6af66/screenshot.png 640w,
+/static/5291f73ad2221745513aa5b2bba70a58/d9199/screenshot.png 960w,
+/static/5291f73ad2221745513aa5b2bba70a58/21b4d/screenshot.png 1280w&quot;
+        sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;CryptoProof Proof Posting&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;CryptoProof is a free service that allows posting “proof of existence” to the Ethereum blockchain for free.&lt;/p&gt;
+&lt;p&gt;Blockchains are a fantastic way to prove ownership of of some kind of data at a certain point in time. By being unmodifiable and timestamped, every message posted to the blockchain is guaranteed to have existed at the time block was created: it’s impossible to change, delete or back-date anything.&lt;/p&gt;
+&lt;p&gt;However, actually using this feature of the Blockchain is difficult. A person needs to not only own cryptocurrencies, but know how to send a transaction with additional (“input”) data attached.&lt;/p&gt;
+&lt;p&gt;There are some services online that provide this, but they charge a couple of dollars for each “proof”, even when the actual price of one message proof is just a couple of cents.&lt;/p&gt;
+&lt;p&gt;My goal with CryptoProof is to provide a free proof submitting service that anyone can use instantly and submit an unlimimted number for proofs. It can be offered for free because it hashes the content (message text or file content) and collects all the hashes posted during the same hour into a Release.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/downloads/bab1077872222b3d65474e1ecca8693d/hashing.svg&quot; alt=&quot;CryptoProof Hashing&quot;&gt;&lt;/p&gt;
+&lt;p&gt;You can read more about &lt;a href=&quot;https://cryptoproof.org/help&quot;&gt;how CryptoProof works&lt;/a&gt; and if you enjoy this service you can &lt;a href=&quot;https://cryptoproof.org/support&quot;&gt;support it with Ethereum donations&lt;/a&gt;. There is also a free &lt;a href=&quot;https://cryptoproof.org/support&quot;&gt;developer API&lt;/a&gt; available.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;cta&quot; href=&quot;https://cryptoproof.org&quot;&gt;Go to CryptoProof&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;tech-stack&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#tech-stack&quot; aria-label=&quot;tech stack permalink&quot; class=&quot;header-link before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Tech Stack&lt;/h4&gt;
+&lt;ul class=&quot;tag-list&quot;&gt;
+&lt;li&gt;Vue&lt;/li&gt; &lt;li&gt;Express&lt;/li&gt; &lt;li&gt;Web3.js&lt;/li&gt; &lt;li&gt;Ethereum&lt;/li&gt; &lt;li&gt;PostgreSQL&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Infinite Loop]]></title><description><![CDATA[Infinite Loop is a very simple, relaxing and never ending game for iPhone, iPad and Android. Your goal is to turn all forms on the grid so…]]></description><link>https://lekevicius.comnull</link><guid isPermaLink="false">https://lekevicius.comnull</guid><content:encoded>&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAACsElEQVQoz4WTzWvTYBzHn/myaQ+6CQ52csODF918GyKIyJwevAiC/4iCePDgRVAYXr2IpyF2Oi8epqij2xxzm2uSrt1LmrR9kidJ2/VlaYc42+TrL10UkYGBD9+HwPPhm+f3hLHwMQ3rtilsKSfsmCGc6f9hWs40F/Z0hospg4t5RUr0t0Slkju4UXJvOXYx1vCAbLUKdbOK9D+of6cbZAXZeg0b2z8QPLWt7y8objDTFGq9XgfnOQhhNgwhmopjNeV8gB1iNRVKyQnfBVlwmsu61lyITTZnJz81FmZiSMW/gWmaZOQLCixb9mxHgpaJ+7IlfBKANv5hyTKRLOZBUsRpvVbbxOvxqH+qg/mDRzowEGHelWNHPabpEi+VU7AdxQvEelbyZWFCKdiI2wIzWQ0xTcVndQ1TuooPqyksmpyELsbGozjZzvxznfvRH2E+CX2m61KuXElRQ8nL5+VACGrYEgYbJ9NrLeHEynKLr0YOUtgwEA4cYBjqPoiLh9ow1NcNlsnIerGUQHJlwuPGHDI5pSVMFBwsCo73q0m8SyrULo3ZnN5quGBksV53EX0TxVkS3uyJ4FrXXgwHQp2EpXISmeysZ9lLJJR3GtIZSo7AHM/g4/oKpjNpzFO7yfQ6FinX6ZOj1PA0Ca9Tw8uH9+BqLwnpDPVyZQVOPhGeoQwlFAbDCDJom6BUQuTfQ3k7hjMRhkvdEVzo3Ifh4z1gaW0pXa4kaShSM1+QfD0b9yS6PlLeJqwdnJBwTRNvrNbdxstXo81exvwTbczrY8w739XuMVVNmoWiDm6s0j1cgyE0cNeFsbVF1HeF04W2f25DWlYwcv8Onj64R3kXzx49DIZiPOfc3uDc0intXE58oV/piSWcEWE6I0HuhjDtx45TGN2s1fVSpaqWq5ta1a2lfgGP4QE3tgoxrwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Infinite Loop for iOS&quot;
+        title=&quot;Infinite Loop for iOS&quot;
+        src=&quot;/static/ba16df3550f9f96a4fb9f9a058fb43b5/6af66/devices.png&quot;
+        srcset=&quot;/static/ba16df3550f9f96a4fb9f9a058fb43b5/69538/devices.png 160w,
+/static/ba16df3550f9f96a4fb9f9a058fb43b5/72799/devices.png 320w,
+/static/ba16df3550f9f96a4fb9f9a058fb43b5/6af66/devices.png 640w,
+/static/ba16df3550f9f96a4fb9f9a058fb43b5/d9199/devices.png 960w,
+/static/ba16df3550f9f96a4fb9f9a058fb43b5/21b4d/devices.png 1280w&quot;
+        sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;Infinite Loop for iOS&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Infinite Loop is a very simple, relaxing and never ending game for iPhone, iPad and Android. Your goal is to turn all forms on the grid so that there would be no open connections. Most levels are algorithmically generated and randomly colored, and after successfully completing each level you will be rewarded with a beautiful design of your own making.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Released in 2015, this project has grown to become my most successful creation to date. Over 50 million people have played the game all over the world. In 2016 we sold the game to a company that has grown to become &lt;a href=&quot;https://www.infinitygames.io/&quot;&gt;Infinity Games&lt;/a&gt; and released many more games following the footsteps of Loop.&lt;/p&gt;
+&lt;p&gt;I have spoken at many conferences about the growth and success of Loop. &lt;a href=&quot;https://speakerdeck.com/lekevicius/loop-apie-begalini-zaidima-nuo-pradzios-iki-pabaigos&quot;&gt;Here you can find slides&lt;/a&gt; of my talk at Penketai event at National Gallery of Art, Vilnius, Lithuania.&lt;/p&gt;
+&lt;p&gt;Seeing the massive success of Loop was a humbling experience. We received hundreds of letters, read thousands of reviews, and to this day you can find people sharing their most loved levels on Twitter. Thank you to all the players.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://loopgame.co&quot; class=&quot;cta&quot;&gt;Download Infinite Loop&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;authors&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#authors&quot; aria-label=&quot;authors permalink&quot; class=&quot;header-link before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Authors&lt;/h4&gt;
+&lt;dl&gt;
+  &lt;dt&gt;Idea, design, music and iOS development&lt;/dt&gt;
+  &lt;dd&gt;Jonas Lekevicius&lt;/dd&gt;
+  &lt;dt&gt;Android development&lt;/dt&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/balysv&quot;&gt;Balys Valentukevicius&lt;/a&gt;&lt;/dd&gt;
+  &lt;dt&gt;Custom level design&lt;/dt&gt;
+  &lt;dd&gt;Juste Ziliute&lt;/dd&gt;
+  &lt;dd&gt;Jonas Lekevicius&lt;/dd&gt;
+  &lt;dt&gt;Inspired by&lt;/dt&gt;
+  &lt;dd&gt;Flash game &quot;Loops of Zen&quot; by Dr. Arend Hintze&lt;/dd&gt;
+&lt;/dl&gt;</content:encoded></item></channel></rss>
