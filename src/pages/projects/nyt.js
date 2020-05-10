@@ -6,31 +6,31 @@ import { graphql } from 'gatsby'
 // import { Link } from 'gatsby'
 
 import excerptImage from './nyt/excerpt.png'
-import emptyImage from './nyt/empty.png'
+import shareImage from './nyt/feature-image.png'
 
 import "./nyt/nyt.css"
 import Layout from '../../templates/Layout'
 
 const weekCommentary = [
   "The first big story of the year was the airstrike killing Gen. Suleimani, and the resulting [Conflict with Iran].",
-  "[Conflict with Iran] dominated the headlines, with a lot of worrying about possible escalation to war. Iran downed a passenger jet.",
-  "As it de-escalated, [Conflict with Iran] disappeared from headlines. The biggest news of the week was Senate taking up Trump’s [Impeachment] case. New debates in [Democratic Primaries] race.",
-  "With most news covering [Impeachment] trial, the very first frontpage news about [Coronavirus] appeared: “Fear of Pandemic Rises” mentioned “at least 3 people dead”. First case in US, and lockdown of Wuhan.",
-  "Trump’s [Impeachment] news about witness blocking tussled for attention with [Coronavirus]. US restricted travel from China.",
-  "Iowa caucuses in [Democratic Primaries] and Trump’s acquittal in [Impeachment] trial dominated this week. [Coronavirus] news still appeared on every frontpage.",
-  "From this week on, no new bigger stories emerged. Sanders won New Hampshire in [Democratic Primaries], and the world focused on China battling the outbreak.",
-  "Debates, and Sanders won Nevada in [Democratic Primaries]. Most of [Coronavirus] coverage is about Diamond Princess. Concerns over the threat of pandemic raised.",
-  "More debates in [Democratic Primaries]. [Coronavirus] coverage increased: Italy in lockdown, Pence tasked with leading virus response, and big stock dive.",
-  "Biden won Super Tuesday in [Democratic Primaries], Warren and Bloomberg left the race. Slight increase in [Coronavirus] coverage.",
-  "This was the week when [Coronavirus] decisively took over the news. Italy's lockdown, stocks tumbling down even further, WHO naming the outbreak a pandemic.",
-  "[Coronavirus] coverage turns to US. Shelter in place orders, FED cutting interest rate to 0, and early discussions of a stimulus package.",
-  "The only week when every single article on the frontpage, all week long, was only about the [Coronavirus]. Senate approved $2B package, massive jobless claims, US became a country with most cases.",
+  "[Conflict with Iran] dominated the headlines, with a lot of worry about a possible escalation to war. Iran downed a passenger jet.",
+  "As it de-escalated, [Conflict with Iran] disappeared from the headlines. The biggest news of the week was Senate taking up Trump’s [Impeachment] case. New debates in the [Democratic Primaries] race.",
+  "With most news covering [Impeachment] trial, the very first mention of [Coronavirus] appeared on the front page: “Fear of Pandemic Rises” mentioned “at least 3 people dead”. First case in the US, and lockdown in Wuhan.",
+  "Trump’s [Impeachment] news about witness blocking competed for attention against [Coronavirus]. US restricted travel from China.",
+  "Iowa caucuses in [Democratic Primaries] and Trump’s acquittal in [Impeachment] trial dominated this week. [Coronavirus] news consistently appeared on every front page.",
+  "From this week on, no new larger stories emerged. Sanders won New Hampshire in [Democratic Primaries], and the world focused on China battling the outbreak.",
+  "Debates, and Sanders won Nevada in [Democratic Primaries]. Most of [Coronavirus] coverage was focused on Diamond Princess. Concerns over the threat of pandemic were raised.",
+  "More debates in [Democratic Primaries]. [Coronavirus] coverage increased: Italy in lockdown, Pence tasked with leading the virus response force, and a big stock dive.",
+  "Biden won Super Tuesday in [Democratic Primaries], Warren and Bloomberg left the race. Slight increase again in [Coronavirus] coverage.",
+  "This was the week when [Coronavirus] decisively took over the news. Italy's lockdown, stocks tumbling down even further, WHO declared the outbreak a pandemic.",
+  "[Coronavirus] coverage turns to the US. Shelter-in-place orders, FED cutting interest rate to zero, and early discussions of a stimulus package.",
+  "An exceptional week with every single article on the front page was only about [Coronavirus]. Senate approved a $2T stimulus package, massive jobless claims, US became the country with the most cases.",
   "Another single-topic week, with almost all stories focusing on [Coronavirus]. Even more job losses, grim death estimates, New York overwhelmed with cases.",
-  "[Coronavirus] maintained complete hold over the frontpage. What would be major news during normal years, Sanders dropping out of [Democratic Primaries] and making Biden a presumptive nominee, only got a sliver of the page.",
-  "With [Coronavirus] cases still increasing rapidly, coverage turned to reopening, and who has the power to do so.",
-  "More [Coronavirus]-covered frontpages. Topics included unaccounted deaths, comparison between states and Trump pushing suspect cures.",
-  "[Coronavirus] coverage continues. Reopening and shrinking of economy was the most common thread.",
-  "[Coronavirus] has impacted every aspect of life so much that it is unavoidable in almost every story. Only Justice Dept. dropping Flynn’s case breaked through.",
+  "[Coronavirus] maintained complete hold over the front page. What would be headline news during normal times, Sanders dropping out of the [Democratic Primaries] and making Biden a presumptive nominee, only got a sliver of the page.",
+  "With [Coronavirus] cases still increasing rapidly, coverage turned to reopening, and who who would be in power to command it.",
+  "More [Coronavirus]-covered front pages. Topics included unattributed deaths, comparison between states and Trump pushing suspect cures.",
+  "[Coronavirus] coverage continues. Reopening and expected shrinking of the economy were the most common threads.",
+  "[Coronavirus] has impacted every aspect of our lives so much that it is unavoidable in nearly every story. The only article that broke the trend was about the Justice Department dropping Flynn’s case.",
 ]
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -94,11 +94,11 @@ class NYTPage extends React.Component {
     }
 
     return (
-      <Layout location={this.props.location} title="Pandemic Rises" bodyClass="light">
+      <Layout location={this.props.location} title="Pandemic Rises" bodyClass="light" shareImage={shareImage}>
         <div className="page-header">
             <div className="page-header-text">
             <h1>“Fear of Pandemic Rises”</h1>
-            <p className="page-lead">So called was the very first article about the Coronavirus that appeared on New York Times frontpage on January 21st. This page takes a look at every frontpage published in 2020, tracking bigger stories, and illustrating how our news coverage became about one thing only.</p>
+            <p className="page-lead">…was the very first article about the Coronavirus that appeared on the New York Times’ front page on January 21st. This analysis takes a look at every front page from 2020, tracking stories and illustrating how our news coverage became about one thing only.</p>
           </div>
           <div className="page-header-append">
             <img alt="Fear of Pandemic Rises" src={excerptImage} />
@@ -128,7 +128,7 @@ class NYTPage extends React.Component {
           🖥 For the clearest look at the analysis, view this page on a desktop.
         </p>
         <p className="notes">
-          <strong>Notes on methodology:</strong> annotated are clearly single-theme stories that consistently appear on  NYT frontpage for more than a week. Small stories at the bottom of the frontpage are not annotated. Coronavirus-related stories are not split into sub-topics (health, economics, politics) because New York Times themselves don’t split them (they usually split story groups with double lines, not so with Coronavirus-related stories) and articles themselves often touch on multiple sub-topics.
+          <strong>Notes on the methodology:</strong> each 2020 New York Times front page has been annotated by single-theme stories that have consistently appeared for more than a week. Minor stories at the bottom of the front page have not been annotated. Coronavirus-related stories are not further split into subtopics (e.g. health, economics, or politics) because New York Times themselves don’t. The usual double-line marking hasn’t been used for Coronavirus, because articles often touch on multiple subtopics.
         </p>
         <div className="week-grid">
           { weeks.map((week, index) => 
@@ -152,13 +152,13 @@ class NYTPage extends React.Component {
             </div>
           )}
           <div className="week week-row week-future">
-            <div className="cover empty"><img alt="" src={emptyImage} /></div>
-            <div className="cover empty"><img alt="" src={emptyImage} /></div>
-            <div className="cover empty"><img alt="" src={emptyImage} /></div>
-            <div className="cover empty"><img alt="" src={emptyImage} /></div>
-            <div className="cover empty"><img alt="" src={emptyImage} /></div>
-            <div className="cover empty"><img alt="" src={emptyImage} /></div>
-            <div className="cover empty"><img alt="" src={emptyImage} /></div>
+            <div className="cover empty"></div>
+            <div className="cover empty"></div>
+            <div className="cover empty"></div>
+            <div className="cover empty"></div>
+            <div className="cover empty"></div>
+            <div className="cover empty"></div>
+            <div className="cover empty"></div>
 
             <div className="commentary">
               {/* <h4><strong>There is more to this</strong></h4> */}

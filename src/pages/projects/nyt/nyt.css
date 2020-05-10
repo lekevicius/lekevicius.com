@@ -181,6 +181,11 @@ body.projects-nyt .cover.empty {
   display: flex;
 }
 
+body.projects-nyt .week-future .cover.empty {
+  width: 100%;
+  padding-bottom: 180%;
+}
+
 body.projects-nyt .cover.empty img {
   margin-bottom: 0;
 }

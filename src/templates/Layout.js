@@ -54,6 +54,11 @@ class Layout extends React.Component {
 
           const url = data.site.siteMetadata.siteUrl
 
+          let shareImage = `${url}${image}`
+          if (this.props.shareImage) {
+            shareImage = this.props.shareImage
+          }
+
           let location
           if (this.props.location) {
             if (this.props.location.href) {
@@ -87,8 +92,8 @@ class Layout extends React.Component {
               <meta name="twitter:creator" content="@lekevicius" />
               <link type="text/plain" rel="author" href={`${url}/humans.txt`} />
 
-              <meta property="og:image" content={`${url}${image}`} />
-              <meta name="twitter:image" content={`${url}${image}`} />
+              <meta property="og:image" content={shareImage} />
+              <meta name="twitter:image" content={shareImage} />
 
               { !isArticle && <meta property="og:type" content="website" /> }
               { isArticle && <meta property="og:type" content="article" /> }
