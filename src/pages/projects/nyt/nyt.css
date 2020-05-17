@@ -16,7 +16,7 @@ body.projects-nyt {
   background: #E9E9E9;
 }
 
-body.projects-nyt h1 {
+body.projects-nyt h1, body.projects-nyt h2 {
   font-family: 'Noticia Text', serif;
   font-weight: normal;
 }
@@ -108,6 +108,16 @@ body.projects-nyt .desktop-notice {
     display: none;
   }
 
+  body.projects-nyt .overview-layout {
+    display: flex;
+  }
+
+  body.projects-nyt .overview-commentary {
+    width: 248px;
+    flex-shrink: 0;
+    margin-left: 32px;
+  }
+
   body.projects-nyt .page-header-text {
     flex-grow: 1;
   }
@@ -194,32 +204,38 @@ body.projects-nyt .commentary p {
   margin: 0;
 }
 
-body.projects-nyt .commentary p span {
+body.projects-nyt .article-footer p {
+  font-size: 14px;
+  line-height: 24px;
+  color: #444;
+}
+
+body.projects-nyt p span {
   font-weight: 600;
 }
 body.projects-nyt .page-legend li.ir,
-body.projects-nyt .commentary p span.ir {
+body.projects-nyt p span.ir {
   color: #547E53;
 }
 body.projects-nyt .page-legend li.ir .dot-icon {
   background: #547E53;
 }
 body.projects-nyt .page-legend li.im,
-body.projects-nyt .commentary p span.im {
+body.projects-nyt p span.im {
   color: #A95813;
 }
 body.projects-nyt .page-legend li.im .dot-icon {
   background: #A95813;
 }
 body.projects-nyt .page-legend li.dp,
-body.projects-nyt .commentary p span.dp {
+body.projects-nyt p span.dp {
   color: #0026A8;
 }
 body.projects-nyt .page-legend li.dp .dot-icon {
   background: #0026A8;
 }
 body.projects-nyt .page-legend li.cv,
-body.projects-nyt .commentary p span.cv {
+body.projects-nyt p span.cv {
   color: #A80000;
 }
 body.projects-nyt .page-legend li.cv .dot-icon {
