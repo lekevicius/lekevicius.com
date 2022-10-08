@@ -1,0 +1,26 @@
+[
+  {
+    "icon": "telegram",
+    "title": "Telegram",
+    "description": "My preferred messaging app.",
+    "link": "https://t.me/lekevicius"
+  },
+  {
+    "icon": "messenger",
+    "title": "Messenger",
+    "description": "If you are on Facebook, this is fine.",
+    "link": "https://m.me/lekevicius"
+  },
+  {
+    "icon": "discord",
+    "title": "Discord",
+    "description": "Community participation.",
+    "link": "https://discord.com/users/jonas.eth#5009"
+  },
+  {
+    "icon": "ens",
+    "title": "jonas.eth",
+    "description": "Public Ethereum wallet.",
+    "link": "https://app.ens.domains/name/jonas.eth/details"
+  }
+]

@@ -1,0 +1,351 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------------------------------
+[EXPERIMENTAL] Multi-axis, single variable font.
+
+Slant axis is not yet widely supported (as of February 2019) and thus this
+multi-axis single variable font is opt-in rather than the default.
+
+When using this, you will probably need to set font-variation-settings
+explicitly, e.g.
+
+  * { font-variation-settings: "slnt" 0deg }
+  .italic { font-variation-settings: "slnt" 10deg }
+
+*/
+
+:root {
+  --font-main: 'Inter-Var', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;
+  --font-mono: 'IBMPlex Mono', 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Menlo,
+    Courier, monospace;
+
+  /* LIGHT */
+
+  --light-background-values: 191, 45%, 93%;
+  --light-background-color: hsl(var(--light-background-values));
+
+  --light-text-values: 32, 28%, 28%;
+  --light-text-color: hsl(var(--light-text-values));
+
+  --light-surface-background-values: 0, 0%, 98%;
+  --light-surface-background-color: hsl(var(--light-surface-background-values));
+
+  --light-surface-text-values: 248, 25%, 20%;
+  --light-surface-text-color: hsl(var(--light-surface-text-values));
+
+  --light-link-block-background-opacity: 0.06;
+  --light-tag-background-opacity: 0.09;
+  --light-pillar-separators-opacity: 0.15;
+  --light-link-underline-opacity: 0.4;
+  --light-faded-text-opacity: 0.65;
+
+  --light-gradient-color-1: #F5F4F2;
+  --light-gradient-color-2: #F9E9AA;
+  --light-gradient-color-3: #F2D25E;
+  --light-gradient-color-4: #EFD9D1;
+
+  /* DARK */
+
+  --dark-background-values: 266, 21%, 23%;
+  --dark-background-color: hsl(var(--dark-background-values));
+
+  --dark-text-values: 216, 39%, 81%;
+  --dark-text-color: hsl(var(--dark-text-values));
+
+  --dark-surface-background-values: 0, 0%, 7%;
+  --dark-surface-background-color: hsl(var(--dark-surface-background-values));
+
+  --dark-surface-text-values: 248, 22%, 100%;
+  --dark-surface-text-color: hsl(var(--dark-surface-text-values));
+
+  --dark-link-block-background-opacity: 0.09;
+  --dark-tag-background-opacity: 0.15;
+  --dark-pillar-separators-opacity: 0.25;
+  --dark-link-underline-opacity: 0.6;
+  --dark-faded-text-opacity: 0.7;
+
+  --dark-gradient-color-1: #33324e;
+  --dark-gradient-color-2: #585188;
+  --dark-gradient-color-3: #475985;
+  --dark-gradient-color-4: #212741;
+
+  /* IMPLEMENTATION, default = light */
+
+  --background-values: var(--light-background-values);
+  --background-color: var(--light-background-color);
+
+  --text-values: var(--light-text-values);
+  --text-color: var(--light-text-color);
+
+  --surface-background-values: var(--light-surface-background-values);
+  --surface-background-color: var(--light-surface-background-color);
+
+  --surface-text-values: var(--light-surface-text-values);
+  --surface-text-color: var(--light-surface-text-color);
+
+  --link-block-background-opacity: var(--light-link-block-background-opacity);
+  --tag-background-opacity: var(--light-tag-background-opacity);
+  --pillar-separators-opacity: var(--light-pillar-separators-opacity);
+  --link-underline-opacity: var(--light-link-underline-opacity);
+  --faded-text-opacity: var(--light-faded-text-opacity);
+
+  --gradient-color-1: var(--light-gradient-color-1);
+  --gradient-color-2: var(--light-gradient-color-2);
+  --gradient-color-3: var(--light-gradient-color-3);
+  --gradient-color-4: var(--light-gradient-color-4);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-values: var(--dark-background-values);
+    --background-color: var(--dark-background-color);
+
+    --text-values: var(--dark-text-values);
+    --text-color: var(--dark-text-color);
+
+    --surface-background-values: var(--dark-surface-background-values);
+    --surface-background-color: var(--dark-surface-background-color);
+
+    --surface-text-values: var(--dark-surface-text-values);
+    --surface-text-color: var(--dark-surface-text-color);
+
+    --link-block-background-opacity: var(--dark-link-block-background-opacity);
+    --tag-background-opacity: var(--dark-tag-background-opacity);
+    --pillar-separators-opacity: var(--dark-pillar-separators-opacity);
+    --link-underline-opacity: var(--dark-link-underline-opacity);
+    --faded-text-opacity: var(--dark-faded-text-opacity);
+
+    --gradient-color-1: var(--dark-gradient-color-1);
+    --gradient-color-2: var(--dark-gradient-color-2);
+    --gradient-color-3: var(--dark-gradient-color-3);
+    --gradient-color-4: var(--dark-gradient-color-4);
+  }
+}
+
+.pagewrap.force-light {
+  --background-values: var(--light-background-values);
+  --background-color: var(--light-background-color);
+
+  --text-values: var(--light-text-values);
+  --text-color: var(--light-text-color);
+
+  --surface-background-values: var(--light-surface-background-values);
+  --surface-background-color: var(--light-surface-background-color);
+
+  --surface-text-values: var(--light-surface-text-values);
+  --surface-text-color: var(--light-surface-text-color);
+
+  --link-block-background-opacity: var(--light-link-block-background-opacity);
+  --tag-background-opacity: var(--light-tag-background-opacity);
+  --pillar-separators-opacity: var(--light-pillar-separators-opacity);
+  --link-underline-opacity: var(--light-link-underline-opacity);
+  --faded-text-opacity: var(--light-faded-text-opacity);
+
+  --gradient-color-1: var(--light-gradient-color-1);
+  --gradient-color-2: var(--light-gradient-color-2);
+  --gradient-color-3: var(--light-gradient-color-3);
+  --gradient-color-4: var(--light-gradient-color-4);
+}
+
+.pagewrap.force-dark {
+  --background-values: var(--dark-background-values);
+  --background-color: var(--dark-background-color);
+
+  --text-values: var(--dark-text-values);
+  --text-color: var(--dark-text-color);
+
+  --surface-background-values: var(--dark-surface-background-values);
+  --surface-background-color: var(--dark-surface-background-color);
+
+  --surface-text-values: var(--dark-surface-text-values);
+  --surface-text-color: var(--dark-surface-text-color);
+
+  --link-block-background-opacity: var(--dark-link-block-background-opacity);
+  --tag-background-opacity: var(--dark-tag-background-opacity);
+  --pillar-separators-opacity: var(--dark-pillar-separators-opacity);
+  --link-underline-opacity: var(--dark-link-underline-opacity);
+  --faded-text-opacity: var(--dark-faded-text-opacity);
+
+  --gradient-color-1: var(--dark-gradient-color-1);
+  --gradient-color-2: var(--dark-gradient-color-2);
+  --gradient-color-3: var(--dark-gradient-color-3);
+  --gradient-color-4: var(--dark-gradient-color-4);
+}
+
+@font-face {
+  font-family: 'Inter-Var';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: oblique 0deg 10deg;
+  src: url('../../assets/fonts/Inter.var.woff2') format('woff2');
+}
+
+* {
+  font-variation-settings: 'slnt' 0deg;
+}
+.italic {
+  font-variation-settings: 'slnt' 10deg;
+}
+
+* {
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  background: #e1e8f7;
+  color: var(--text-color);
+  overscroll-behavior-y: none;
+}
+
+a,
+a:visited {
+  color: inherit;
+}
+
+p a {
+  text-decoration: underline;
+  text-decoration-thickness: 0.1px;
+  text-underline-offset: 2px;
+  text-decoration-color: inherit;
+  /* hsla(var(--text-values), var(--link-underline-opacity)); */
+  /* transition: text-decoration-color 0.2; */
+}
+p a:hover {
+  text-decoration-color: inherit;
+  text-decoration-thickness: 0.3px;
+  /* hsla(var(--text-values), 1) */
+}
+
+.tippy-box[data-animation='fade'][data-state='hidden'] {
+  opacity: 0;
+}
+
+[data-tippy-root] {
+  max-width: calc(100vw - 10px);
+}
+
+.tippy-box {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  position: relative;
+  background-color: hsla(var(--surface-background-values), 0.9);
+  color: var(--surface-text-color);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: calc(10 / 7);
+  white-space: normal;
+  outline: 0;
+  transition-property: transform, visibility, opacity;
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .tippy-box {
+    backdrop-filter: saturate(180%) blur(20px);
+    background-color: hsla(var(--surface-background-values), 0.6);
+  }
+}
+
+.tippy-box[data-inertia][data-state='visible'] {
+  transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
+}
+
+.tippy-content {
+  position: relative;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+}
+
+/* .tippy-box[data-placement^="top"] > .tippy-arrow {
+  bottom: 0;
+}
+.tippy-box[data-placement^="top"] > .tippy-arrow:before {
+  bottom: -7px;
+  left: 0;
+  border-width: 8px 8px 0;
+  border-top-color: initial;
+  transform-origin: center top;
+}
+.tippy-box[data-placement^="bottom"] > .tippy-arrow {
+  top: 0;
+}
+.tippy-box[data-placement^="bottom"] > .tippy-arrow:before {
+  top: -7px;
+  left: 0;
+  border-width: 0 8px 8px;
+  border-bottom-color: initial;
+  transform-origin: center bottom;
+}
+.tippy-box[data-placement^="left"] > .tippy-arrow {
+  right: 0;
+}
+.tippy-box[data-placement^="left"] > .tippy-arrow:before {
+  border-width: 8px 0 8px 8px;
+  border-left-color: initial;
+  right: -7px;
+  transform-origin: center left;
+}
+.tippy-box[data-placement^="right"] > .tippy-arrow {
+  left: 0;
+}
+.tippy-box[data-placement^="right"] > .tippy-arrow:before {
+  left: -7px;
+  border-width: 8px 8px 8px 0;
+  border-right-color: initial;
+  transform-origin: center right;
+} */
+/* .tippy-arrow {
+  width: 16px;
+  height: 16px;
+  color: #333;
+}
+.tippy-arrow:before {
+  content: "";
+  position: absolute;
+  border-color: transparent;
+  border-style: solid;
+} */
+
+.ReactModal__Overlay {
+  @apply fixed inset-0 overflow-scroll flex flex-col items-center py-16 transition-all;
+}
+.ReactModal__Overlay--after-open {
+  @apply backdrop-blur-lg bg-white/25;
+}
+.ReactModal__Content {
+  @apply bg-white border-0 rounded-3xl outline-none p-16 max-w-[1000px] transition-all duration-500 translate-y-16 opacity-0 prose relative;
+}
+.ReactModal__Content--after-open {
+  @apply transform-none opacity-100;
+}
+
+.ReactModal__Content .gatsby-resp-image-background-image {
+  opacity: 0;
+}
+
+.pagewrap .cta {
+  @apply inline-block px-4 py-2 no-underline text-white bg-slate-500 font-semibold rounded-lg;
+}
+.tag-list {
+  @apply flex flex-row gap-3;
+}
+.tag-list li {
+  @apply block px-3 py-1 bg-slate-200 rounded-lg;
+}
+.prose-invert .tag-list li {
+  @apply bg-slate-700 text-white;
+}
+
+dl dt {
+  @apply mt-4 first:mt-0 font-semibold;
+}

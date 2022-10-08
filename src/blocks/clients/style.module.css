@@ -1,0 +1,27 @@
+.clientGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3rem -0.5rem 0 -0.5rem;
+  justify-content: space-between;
+  row-gap: 24px;
+}
+
+.clientName {
+  display: none;
+}
+
+.clientContribution {
+  display: none;
+}
+
+.clientLink {
+  display: block;
+  border-radius: 12px;
+  margin: -0.5rem;
+  padding: 0.5rem;
+  transition: background 0.2;
+}
+
+.clientLink:hover {
+  background: hsla(var(--text-values), var(--link-block-background-opacity));
+}

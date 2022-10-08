@@ -1,0 +1,100 @@
+{
+  "clients": [
+    {
+      "logo": "coca-cola",
+      "name": "Coca-Cola",
+      "link": "https://www.coca-cola.lt/",
+      "contribution": "Created a promotional hardware product, interactive music cube, that toured multiple countries over a summer."
+    },
+    {
+      "logo": "barclays",
+      "name": "Barclays",
+      "link": "https://www.barclays.co.uk/help/pingit/closure/",
+      "contribution": "UX and UI contributions to Pingit money transfer app."
+    },
+    {
+      "logo": "hitachi",
+      "name": "Hitachi Enterprise Cloud",
+      "link": "https://www.hitachivantara.com/en-us/services/edge-to-cloud-infrastructure-services/enterprise-cloud.html",
+      "contribution": "Designed and developed a promotional game."
+    },
+    {
+      "logo": "vinted",
+      "name": "Vinted",
+      "link": "https://www.vinted.lt/",
+      "contribution": "Created UX and UI for the first released Vinted app."
+    },
+    {
+      "logo": "brussels-airlines",
+      "name": "Brussels Airlines",
+      "link": "https://www.brusselsairlines.com/",
+      "contribution": "Designed and developed a promotional game."
+    },
+    {
+      "logo": "trafi",
+      "name": "Trafi",
+      "link": "https://www.trafi.com/",
+      "contribution": "Created UX and UI for the first version of Trafi app."
+    },
+    {
+      "logo": "paysera",
+      "name": "Paysera",
+      "link": "https://www.paysera.lt/v2/en-LT/mobile-application",
+      "contribution": "Created UX and UI for the Paysera app."
+    },
+    {
+      "logo": "millo",
+      "name": "Millo",
+      "link": "https://google.com",
+      "contribution": "Created UX and UI for the first released version of Millo app and defined blender hardware interaction design."
+    },
+    {
+      "logo": "mev-boost",
+      "name": "Flashbots mev-boost",
+      "link": "https://github.com/flashbots/mev-boost",
+      "contribution": "Designed project logo."
+    },
+    {
+      "logo": "hyperscale",
+      "name": "Hyperscale Fund",
+      "link": "https://www.hyperscalefund.com",
+      "contribution": "Contributed to brand and web design, DAO organization."
+    },
+    {
+      "logo": "tipi",
+      "name": "Tipi - Asynchronous team communication",
+      "link": "https://tipihub.com",
+      "contribution": "Created brand, entire product design."
+    },
+    {
+      "logo": "teachers-lead-tech",
+      "name": "Teachers Lead Tech",
+      "link": "https://www.teachersleadtech.com/en/",
+      "contribution": "Created UX and UI of the product, brand design, website and marketing materials."
+    },
+    {
+      "logo": "oxygen",
+      "name": "Oxygen Healthcare",
+      "link": "https://www.oxygen.healthcare/",
+      "contribution": "Defined UX and UI of Doctor web app and Patient mobile app, contributed to brand redesign."
+    },
+    {
+      "logo": "banklinq",
+      "name": "Banklinq",
+      "link": "https://banklinq.eu/",
+      "contribution": "Designed website and marketing materials, contributed to brand design."
+    },
+    {
+      "logo": "cast",
+      "name": "Cast.AI",
+      "link": "https://cast.ai/",
+      "contribution": "Contributed to the UX of management panel and brand redesign."
+    },
+    {
+      "logo": "bpti",
+      "name": "Baltic Institute of Advanced Technology",
+      "link": "https://www.bpti.eu",
+      "contribution": "UI research and design."
+    }
+  ]
+}

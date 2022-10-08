@@ -1,4 +1,4 @@
 # robotstxt.org/
 
-Sitemap: http://lekevicius.com/sitemap.xml
+Sitemap: http://lekevicius.com/sitemap/sitemap-index.xml
 User-agent: *

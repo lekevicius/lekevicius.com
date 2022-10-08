@@ -1,0 +1,74 @@
+[
+  {
+    "icon": "newsletter",
+    "title": "Newsletter",
+    "description": "Free. Sharing learnings every month.",
+    "link": "https://buttondown.email/lekevicius"
+  },
+  {
+    "icon": "twitter",
+    "title": "Twitter",
+    "description": "Brief and regular thoughts.",
+    "link": "https://twitter.com/lekevicius"
+  },
+  {
+    "icon": "lens",
+    "title": "Lens Protocol",
+    "description": "Decentralized social media.",
+    "link": "https://www.lensfrens.xyz/jonas.lens"
+  },
+  {
+    "icon": "medium",
+    "title": "Medium",
+    "description": "Irregular writing on design, technology and media.",
+    "link": "https://lekevicius.medium.com"
+  },
+  {
+    "icon": "instagram",
+    "title": "Instagram",
+    "description": "Photos and stories.",
+    "link": "https://instagram.com/lekevicius"
+  },
+  {
+    "icon": "linkedin",
+    "title": "LinkedIn",
+    "description": "Necessary evil.",
+    "link": "https://linkedin.com/in/lekevicius"
+  },
+  {
+    "icon": "reddit",
+    "title": "Reddit",
+    "description": "Kinda weird sharing my reddit account.",
+    "link": "https://reddit.com/u/username_error"
+  },
+  {
+    "icon": "github",
+    "title": "GitHub",
+    "description": "All open source.",
+    "link": "https://github.com/lekevicius"
+  },
+  {
+    "icon": "hacker-news",
+    "title": "Hacker News",
+    "description": "Favorite website, 2011-2021.",
+    "link": "https://news.ycombinator.com/user?id=lekevicius"
+  },
+  {
+    "icon": "youtube",
+    "title": "YouTube",
+    "description": "Explanations and experiments.",
+    "link": "https://www.youtube.com/channel/UCTefO_XCv5MTTFKlaPnanmQ"
+  },
+  {
+    "icon": "letterboxd",
+    "title": "Letterboxd",
+    "description": "Movie reviews.",
+    "link": "https://letterboxd.com/lekevicius"
+  },
+  {
+    "icon": "facebook",
+    "title": "Facebook",
+    "description": "Still haven’t deleted. In Lithuanian.",
+    "link": "https://facebook.com/lekevicius"
+  }
+]

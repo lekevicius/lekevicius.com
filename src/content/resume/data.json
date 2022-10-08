@@ -1,0 +1,164 @@
+{
+  "work": [
+    {
+      "logo": "cube",
+      "link": "https://www.cube.do/",
+      "place": "CUBE Security",
+      "role": "Co-Founder, Head of Product",
+      "time": "2022 - Present",
+      "description": "I joined Cube in mid-2022 as the Head of Product. While I was following crypto research since 2016 and helped many crypto projects as a contractor, I have never worked on a blockchain project full-time. Working on Cube allowed me to focus on this new frontier and deepen my product thinking and crypto research skills.",
+      "achievements": [
+        "Helped define the product structure, from technical definitions to user experience",
+        "Authored company’s first patent",
+        "Designed the UI for adminisrative interfaces"
+      ]
+    },
+    {
+      "logo": "bpti",
+      "link": "https://www.bpti.eu/",
+      "place": "BPTI",
+      "role": "Lead Designer",
+      "time": "2019 - 2021",
+      "description": "I joined BPTI for a specific project: OCEAN 2020 was a large-scale technology demonstration project implemented by the European Defence Agency. During the project I worked on human-computer interaction research and building interactive prototypes.",
+      "achievements": []
+    },
+    {
+      "logo": "jonas-lekevicius",
+      "place": "Self-Employed",
+      "role": "Contracting as a Product Designer",
+      "time": "2019 - 2021",
+      "description": "From early 2019, I was looking to find a good balance between product design contracting and building my own projects. During these years I selectively took on some of the most interesting contracting opportunities and helped build new products. Some of the most interesting projects include:",
+      "achievements": [
+        "Teachers Lead Tech, a teachers eduction platform",
+        "Millo, a portable blender with a minimal hardware design",
+        "Oxygen, a telehealth platform"
+      ]
+    },
+
+    {
+      "logo": "tipi",
+      "link": "https://tipihub.com/",
+      "place": "Tipi",
+      "role": "Co-Founder, Designer",
+      "time": "2017 - 2018",
+      "description": "I helped Tipi define an alternative team communication platform, focused on meaningful disucssions and focused attention management. At Tipi I designed both the product side (web, mobile apps) and brand / communication side (from the brand itself to ads). In addition to that, I conducted over 30 user interviews to help identify most promising product development directions.",
+      "achievements": []
+    },
+    {
+      "logo": "treatwell",
+      "link": "https://www.treatwell.co.uk/",
+      "place": "Treatwell",
+      "role": "Head of Product Design",
+      "time": "2015 - 2018",
+      "description": "With Treatwell having acquired Lemon Labs in 2015, I joined the team as the Head of Product Design, and over 3.5 years led the product design behind all Treatwell products: health and beauty services Marketplace, and the salon management software Connect. Both sides of the business were available as web apps and native mobile apps. I have also contributed to Treatwell rebrand in 2016, and helped establish design systems for both Marketplace and Connect.",
+      "achievements": []
+    },
+    {
+      "logo": "lemon-labs",
+      "link": "http://lemonlabs.co/",
+      "place": "Lemon Labs",
+      "role": "Co-Founder, Lead Designer",
+      "time": "2012 - 2015 (Acquired by Treatwell)",
+      "description": "In late 2011 I have met the wonderful Lemon Labs team that would grow into the most prominent app design and development agency in Lithuania. Apps were booming, and I joined the team as the lead designer. Over 4 years I have designed over 10 apps for our clients, with many winning multiple awards. I have also enjoyed the freedom to experiment with new ideas, build internal apps and products, and just have fun with friends and technologies. Lemon Labs were acquired by Treatwell in 2015.",
+      "achievements": [
+        "Worked on first versions of Vinted, Trafi, Memorado apps",
+        "Built fun internal projects: Mr. Word game, Coffee Button, interactive Christmas greetings",
+        "Recognized by Apple as App of the Week, featured in multiple TV ads",
+        "Won multiple LOGIN Awards",
+        "LOGIN 2015 Speaker"
+      ]
+    },
+    {
+      "logo": "socilyzer",
+      "link": "https://socilyzer.com/",
+      "place": "Socilyzer",
+      "role": "Co-Founder, Lead Developer",
+      "time": "2011 - 2012",
+      "description": "While studying at Aarhus I helped build Socilyzer, an organisational network analysis tool. For about a year I was both designing and developing the product, both frontend (network visualization tool, initially in Flash) and backend.",
+      "achievements": [
+        "Developed an interactive results visualizer in Flash",
+        "Developed the backend system in Ruby on Rails",
+        "Worked on brand and communication"
+      ]
+    },
+
+    {
+      "logo": "x-team",
+      "link": "https://x-team.com/",
+      "place": "X-Team",
+      "role": "Game Designer and Developer",
+      "time": "2011",
+      "description": "My first job was with X-Team, as a Flash game designer and developer. I worked on mini-games for X-Team clients, and helped establish a re-usable base for all Flash projects within the company. Usually I would work on a game from idea to release, suggesting gameplay ideas, prototyping and developing the game, creating design assets, even composing music and creating sound effects.",
+      "achievements": [
+        "Worked on Flash experiences for Brussels Airlines, Hitachi, Flash Gaming Summit",
+        "Built an internal framework for “Gameized”, the agency sub-brand",
+        "Designed and developed multiple games for X-Worlds, an internally-initiated product"
+      ]
+    },
+    {
+      "logo": "sniegas",
+      "place": "Self-Employed",
+      "role": "Freelance Web Designer and Developer",
+      "time": "2004 - 2011",
+      "description": "During my middle school, high school and early study years I was available as a freelance web designer and developer. Over these years I have built many websites, most with WordPress. I also experimented a lot with Flash and created many small games. Some of these games were sold or licensed.",
+      "achievements": [
+        "Designed and developed 100+ websites, some for clients, some as my own ideas",
+        "Created 20+ Flash games and online experiments, mostly as my own ideas",
+        "Designed a couple of print magazines: “Che Guevara”, Pašvaistė”",
+        "Developed WordPress plugins and various PHP tools"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "logo": "vilnius-academy-of-arts",
+      "link": "https://www.vda.lt/en/",
+      "place": "Vilnius Academy of Arts",
+      "role": "BA, Graphic Design",
+      "time": "2012 - 2014",
+      "description": "Moved back to Lithuania to continue my studies for a Bachelor's degree. Studies were a lot more challenging, and produced many interesting side projects.",
+      "achievements": [
+        "5/5/Junior Speaker",
+        "Penketai Speaker",
+        "Participated in a 2013 gallery exhibition with a series of Augmented Reality pieces",
+        "PosterHeroes 2013 Winner",
+        "Developed Sound Shapes music cube"
+      ]
+    },
+    {
+      "logo": "business-academy-aarhus",
+      "link": "https://www.baaa.dk/",
+      "place": "Business Academy Aarhus",
+      "role": "AP, Multimedia Design and Communication",
+      "time": "2009 - 2011",
+      "description": "Moved to Denmark to study for a Academy Profession degree. Living abroad was a much more impactful lesson than the courses.",
+      "achievements": [
+        "2009 Multimedia Days Speaker",
+        "2010 Multimedia Days Speaker"
+      ]
+    },
+    {
+      "logo": "vilnius-jesuit-gymnasium",
+      "link": "https://www.vjg.lt/en/",
+      "place": "Vilnius Jesuit Gymnasium",
+      "role": "High School",
+      "time": "2004 - 2009",
+      "description": "At the time, second best high school in the country. I enjoyed both the people and the quality of education, so I participated fully in school’s life.",
+      "achievements": [
+        "Established “art days”, a week-long celebration that is continued to this day",
+        "Member of School Parliament",
+        "Elected Students’ President",
+        "Leader of multiple students’ camps"
+      ]
+    },
+    {
+      "logo": "vilnius-justinas-vienozinskis-art-school",
+      "link": "https://vienozinskis.lt/english",
+      "place": "Vilnius Justinas Vienožinskis Art School",
+      "role": "Art School",
+      "time": "2005 - 2008",
+      "description": "Attended during high school, completed 3 of 4 years. Disciplines: drawing, painting, sculpture. Friends were great, education wasn’t.",
+      "achievements": []
+    }
+  ]
+}

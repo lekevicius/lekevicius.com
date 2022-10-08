@@ -1,83 +1,39 @@
-import React from 'react'
+import React from "react"
 import { Link } from 'gatsby'
-import Logo from './graphics/Logo'
-import './Header.css'
+import Logo from '../assets/images/logo.inline.svg'
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isOpen: false };
-    this.toggleOpenClass = this.toggleOpenClass.bind(this);
-    this.collapseMenu = this.collapseMenu.bind(this);
-  }
-
-  toggleOpenClass(e) {
-    e.preventDefault()
-    this.setState(state => ({ isOpen: !state.isOpen }))
-  }
-
-  collapseMenu() {
-    this.setState(() => ({ isOpen: false }))
-  }
-
-  render() {
-    const rootPath = `${__PATH_PREFIX__}/`
-    let heading
-    let headerClass = 'page'
-
-    let headerBackground = this.props.headerBackground ?
-      this.props.headerBackground :
-      null;
-
-    let headerText = this.props.headerText ?
-      this.props.headerText :
-      null;
-
-    if (this.props.location.pathname === rootPath) {
-      heading = (
-        <h1>
-          <Link onClick={this.collapseMenu} to={'/'}>
-            <Logo />
-            <span>{this.props.siteTitle}</span>
-          </Link>
-        </h1>
-      )
-      headerClass = 'homepage'
-    } else {
-      heading = (
-        <h3>
-          <Link onClick={this.collapseMenu} to={'/'}>
-            <Logo />
-            <span>{this.props.siteTitle}</span>
-          </Link>
-        </h3>
-      )
-    }
-
-    return (
-      <header style={{
-        '--header-background': headerBackground,
-        '--header-color': headerText,
-      }} className={`${headerClass}${this.state.isOpen ? ' open' : ''}`}>
-        <div className="container">
-          {heading}
-          <p className="tagline">designs and builds digital things.</p>
-          <nav>
-            <ul>
-              <li><Link onClick={this.collapseMenu} to={'/projects/'}>Projects</Link></li>
-              <li><Link onClick={this.collapseMenu} to={'/journal/'}>Journal</Link></li>
-              <li><Link onClick={this.collapseMenu} to={'/profile/'}>Profile</Link></li>
-              {/* <li><Link onClick={this.collapseMenu} to={'/now/'}>Now</Link></li> */}
-            </ul>
-          </nav>
-        </div>
-        <a href="#link" onClick={this.toggleOpenClass} className="menu-toggle">
-          <div className="line top-line"></div>
-          <div className="line bottom-line"></div>
-        </a>
-      </header>
-    )
-  }
+const blend = "mix-blend-color-burn dark:mix-blend-color-dodge text-[#242424] dark:text-[#9A9A9A]"
+// 1F1F1F
+const HeaderName = ({ isHome = false, data }) => {
+  const HeaderTag = `h${isHome ? '1' : '3'}`
+  return (
+    <>
+      <Logo className={`h-8 w-8 lg:h-10 lg:w-10 ${blend}`} />
+      <div className='flex flex-col items-start lg:flex-row lg:items-center'>
+        <HeaderTag className={`text-2xl lg:text-4xl font-bold tracking-tight ${blend}`}>{data.title}</HeaderTag>
+        {
+          data.shoutout && data.shoutout !== '' &&
+          <div className="mt-2 lg:mt-1 lg:ml-4 px-3 py-1 bg-white/50 dark:bg-black/30 font-semibold rounded-md shadow">{data.shoutout}</div>
+        }
+      </div>
+    </>
+  )
 }
 
-export default Header
+export default function Header({ isHome = false, data }) {
+  return (
+    <header className={`p-6 pb-8 ${ 
+      isHome ? 'lg:pb-16 pt-12 lg:pt-32' : 'lg:p-16 lg:pb-12 pt-8 lg:pt-12' 
+    }`}>
+      {
+        isHome ?
+        <div className="flex space-x-2 lg:space-x-4 lg:items-center"><HeaderName isHome={isHome} data={data} /></div> :
+        <Link to="/" className="flex space-x-2 lg:space-x-4 lg:items-center"><HeaderName isHome={isHome} data={data} /></Link>
+      }
+      {
+        isHome &&
+        <p className={`text-xl lg:text-2xl mt-8 lg:mt-16 lg:max-w-none ${blend}`}>I am inventing on the internet. Previously a product designer,<br className='hidden lg:inline' /> now independent maker building my own ideas.</p>
+      }
+    </header>
+  )
+}

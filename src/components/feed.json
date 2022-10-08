@@ -1,0 +1,23 @@
+[
+  [
+    "newsletter"
+  ],
+  [
+    "du-bitai",
+    "loop"
+  ],
+  [
+    "jobs",
+    {
+      "w": 8,
+      "c": "clients"
+    }
+  ],
+  [
+    [
+      "profile",
+      "contact"
+    ],
+    "social"
+  ]
+]

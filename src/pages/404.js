@@ -1,47 +1,54 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import Layout from '../templates/Layout'
-import './404.css'
+import * as React from "react"
+import { Link } from "gatsby"
 
-class NotFoundPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.searchRef = React.createRef()
-    this.submitSearch = this.submitSearch.bind(this)
-  }
-  submitSearch(e) {
-    e.preventDefault()
-    if (this.searchRef.current.value !== '') {
-      const url = `https://duckduckgo.com/?q=site%3Alekevicius.com+${ encodeURI(this.searchRef.current.value) }`
-      window.location.href = url
-    }
-    return false
-  }
-  render() {
-    return (
-      <Layout location={this.props.location} title="Not Found">
-        <div className="page-header">
-          <h1>Page Not Found</h1>
-          <p className="page-lead">As awkward as it sounds, this page doesn't exist.</p>
-        </div>
-        <div className="content-layout">
-        <div className="content">
-        <p>We could debate for quite some time how a page that <em>“doesn't exist”</em> can explain that it <em>“doesn't exist”</em>, evidently by existing. Or we could move on to more practical matters.</p>
-        <p>You might have followed a dead link or mistyped something. Either way, you can <Link to="/">go to the home page</Link> or search the site for what you are looking for.</p>
-        
-        <form onSubmit={this.submitSearch} className="site-search" action="/">
-          <input type='text' ref={this.searchRef} name='q' placeholder='Search Lekevicius.com' />
-          <input type='submit' value='Search' />
-        </form>
-        
-        <p>
-          Also, if you think I should know about this nonexistent page, please tweet me <a href='http://twitter.com/lekevicius'>@lekevicius</a>.
-        </p>
-        </div>
-        </div>
-      </Layout>
-    )
-  }
+// styles
+const pageStyles = {
+  color: "#232129",
+  padding: "96px",
+  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+}
+const headingStyles = {
+  marginTop: 0,
+  marginBottom: 64,
+  maxWidth: 320,
+}
+
+const paragraphStyles = {
+  marginBottom: 48,
+}
+const codeStyles = {
+  color: "#8A6534",
+  padding: 4,
+  backgroundColor: "#FFF4DB",
+  fontSize: "1.25rem",
+  borderRadius: 4,
+}
+
+// markup
+const NotFoundPage = () => {
+  return (
+    <main style={pageStyles}>
+      <title>Not found</title>
+      <h1 style={headingStyles}>Page not found</h1>
+      <p style={paragraphStyles}>
+        Sorry{" "}
+        <span role="img" aria-label="Pensive emoji">
+          😔
+        </span>{" "}
+        we couldn’t find what you were looking for.
+        <br />
+        {process.env.NODE_ENV === "development" ? (
+          <>
+            <br />
+            Try creating a page in <code style={codeStyles}>src/pages/</code>.
+            <br />
+          </>
+        ) : null}
+        <br />
+        <Link to="/">Go home</Link>.
+      </p>
+    </main>
+  )
 }
 
 export default NotFoundPage
