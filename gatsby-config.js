@@ -153,6 +153,8 @@ module.exports = {
       },
     },
 
+    `gatsby-plugin-netlify`,
+
     `gatsby-plugin-client-side-redirect`,
     `gatsby-plugin-meta-redirect`,
 
