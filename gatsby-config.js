@@ -4,7 +4,7 @@ module.exports = {
     title: "Jonas Lekevicius",
     author: 'Jonas Lekevicius',
     description: `I design and build digital things.`,
-    shoutout: "is in 🇨🇴 Devcon Bogotá"
+    shoutout: ""
   },
   plugins: [
 
