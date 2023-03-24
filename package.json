@@ -5,7 +5,6 @@
   "description": "Lekevicius.com v7 - Blocks",
   "author": "Jonas Lekevicius",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
