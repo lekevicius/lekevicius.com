@@ -17,17 +17,17 @@ explicitly, e.g.
 */
 
 :root {
-  --font-main: 'Inter-Var', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
-    Droid Sans, Helvetica Neue, sans-serif;
-  --font-mono: 'IBMPlex Mono', 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Menlo,
-    Courier, monospace;
+  --font-main: 'Inter-Var', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --font-mono: 'IBMPlex Mono', 'SFMono-Regular', Consolas, 'Roboto Mono',
+    'Droid Sans Mono', 'Liberation Mono', Menlo, Courier, monospace;
 
   /* LIGHT */
 
-  --light-background-values: 191, 45%, 93%;
+  --light-background-values: 279, 48%, 89%;
   --light-background-color: hsl(var(--light-background-values));
 
-  --light-text-values: 202, 15%, 24%;
+  --light-text-values: 266, 100%, 7%;
   --light-text-color: hsl(var(--light-text-values));
 
   --light-surface-background-values: 0, 0%, 98%;
@@ -42,17 +42,17 @@ explicitly, e.g.
   --light-link-underline-opacity: 0.4;
   --light-faded-text-opacity: 0.65;
 
-  --light-gradient-color-1: #C7DBE0;
-  --light-gradient-color-2: #F0F3F5;
-  --light-gradient-color-3: #D7EAF5;
-  --light-gradient-color-4: #F8F2E7;
+  --light-gradient-color-1: #d8c7e0;
+  --light-gradient-color-2: #f9edf6;
+  --light-gradient-color-3: #e4d7f5;
+  --light-gradient-color-4: #ead0f6;
 
   /* DARK */
 
-  --dark-background-values: 266, 21%, 23%;
+  --dark-background-values: 284, 23%, 32%;
   --dark-background-color: hsl(var(--dark-background-values));
 
-  --dark-text-values: 216, 39%, 81%;
+  --dark-text-values: 300, 54%, 94%;
   --dark-text-color: hsl(var(--dark-text-values));
 
   --dark-surface-background-values: 0, 0%, 7%;
@@ -67,10 +67,10 @@ explicitly, e.g.
   --dark-link-underline-opacity: 0.6;
   --dark-faded-text-opacity: 0.7;
 
-  --dark-gradient-color-1: #33324e;
-  --dark-gradient-color-2: #585188;
-  --dark-gradient-color-3: #475985;
-  --dark-gradient-color-4: #212741;
+  --dark-gradient-color-1: #47324e;
+  --dark-gradient-color-2: #885172;
+  --dark-gradient-color-3: #574785;
+  --dark-gradient-color-4: #312141;
 
   /* IMPLEMENTATION, default = light */
 

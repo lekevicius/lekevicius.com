@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from 'gatsby'
 import Logo from '../assets/images/logo.inline.svg'
 
-const blend = "mix-blend-color-burn dark:mix-blend-color-dodge text-[#242424] dark:text-[#9A9A9A]"
+const blend = "mix-blend-color-burn dark:mix-blend-color-dodge text-[#323232] dark:text-[#9A9A9A]"
 // 1F1F1F
 const HeaderName = ({ isHome = false, data }) => {
   const HeaderTag = `h${isHome ? '1' : '3'}`
@@ -22,13 +22,12 @@ const HeaderName = ({ isHome = false, data }) => {
 
 export default function Header({ isHome = false, data }) {
   return (
-    <header className={`p-6 pb-8 ${ 
-      isHome ? 'lg:pb-16 pt-12 lg:pt-32' : 'lg:p-16 lg:pb-12 pt-8 lg:pt-12' 
-    }`}>
+    <header className={`p-6 pb-8 ${isHome ? 'lg:pb-16 pt-12 lg:pt-32' : 'lg:p-16 lg:pb-12 pt-8 lg:pt-12'
+      }`}>
       {
         isHome ?
-        <div className="flex space-x-2 lg:space-x-4 lg:items-center"><HeaderName isHome={isHome} data={data} /></div> :
-        <Link to="/" className="flex space-x-2 lg:space-x-4 lg:items-center"><HeaderName isHome={isHome} data={data} /></Link>
+          <div className="flex space-x-2 lg:space-x-4 lg:items-center"><HeaderName isHome={isHome} data={data} /></div> :
+          <Link to="/" className="flex space-x-2 lg:space-x-4 lg:items-center"><HeaderName isHome={isHome} data={data} /></Link>
       }
       {
         isHome &&
