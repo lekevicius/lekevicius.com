@@ -12,6 +12,7 @@ specifiers:
   anser: ^2.1.1
   autoprefixer: ^10.4.14
   css.escape: ^1.5.1
+  deepmerge: ^4.3.1
   error-stack-parser: ^2.1.4
   gatsby: ^5.8.0
   gatsby-core-utils: ^4.8.0
@@ -39,6 +40,7 @@ specifiers:
   gatsby-transformer-sharp: ^5.8.0
   lodash: ^4.17.21
   mitt: ^3.0.0
+  node-html-parser: ^6.1.5
   platform: ^1.3.6
   postcss: ^8.4.21
   prop-types: ^15.8.1
@@ -58,6 +60,7 @@ dependencies:
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@tippyjs/react': 4.2.6_biqbaboplfbrettd7655fr4n2y
   autoprefixer: 10.4.14_postcss@8.4.21
+  deepmerge: 4.3.1
   gatsby: 5.8.0_biqbaboplfbrettd7655fr4n2y
   gatsby-core-utils: 4.8.0
   gatsby-plugin-catch-links: 5.8.0_gatsby@5.8.0
@@ -80,6 +83,7 @@ dependencies:
   gatsby-source-filesystem: 5.8.0_gatsby@5.8.0
   gatsby-transformer-sharp: 5.8.0_dh5i24yw3zb3vghtvixbkifx4u
   lodash: 4.17.21
+  node-html-parser: 6.1.5
   postcss: 8.4.21
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -8864,6 +8868,13 @@ packages:
     resolution: {integrity: sha512-RaBPP3+51hPne/OolXxcz89iYvQvKOydaqoePpOgXcrOKZhjVIzmpKZz+Hd/RBO2/zN2q6CNJhQzucVz+u3Jyw==}
     dependencies:
       css-select: 4.3.0
+      he: 1.2.0
+    dev: false
+
+  /node-html-parser/6.1.5:
+    resolution: {integrity: sha512-fAaM511feX++/Chnhe475a0NHD8M7AxDInsqQpz6x63GRF7xYNdS8Vo5dKsIVPgsOvG7eioRRTZQnWBrhDHBSg==}
+    dependencies:
+      css-select: 5.1.0
       he: 1.2.0
     dev: false
 
