@@ -24,7 +24,7 @@ explicitly, e.g.
 
   /* LIGHT */
 
-  --light-background-values: 279, 48%, 89%;
+  --light-background-values: 272, 44%, 92%;
   --light-background-color: hsl(var(--light-background-values));
 
   --light-text-values: 266, 100%, 7%;
@@ -42,10 +42,10 @@ explicitly, e.g.
   --light-link-underline-opacity: 0.4;
   --light-faded-text-opacity: 0.65;
 
-  --light-gradient-color-1: #d8c7e0;
-  --light-gradient-color-2: #f9edf6;
-  --light-gradient-color-3: #e4d7f5;
-  --light-gradient-color-4: #ead0f6;
+  --light-gradient-color-1: #e1d2e8;
+  --light-gradient-color-2: #f9edef;
+  --light-gradient-color-3: #f3edfc;
+  --light-gradient-color-4: #d8d0f7;
 
   /* DARK */
 
