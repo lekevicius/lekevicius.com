@@ -49,7 +49,7 @@ explicitly, e.g.
 
   /* DARK */
 
-  --dark-background-values: 284, 23%, 32%;
+  --dark-background-values: 292, 38%, 41%;
   --dark-background-color: hsl(var(--dark-background-values));
 
   --dark-text-values: 300, 54%, 94%;
@@ -67,10 +67,10 @@ explicitly, e.g.
   --dark-link-underline-opacity: 0.6;
   --dark-faded-text-opacity: 0.7;
 
-  --dark-gradient-color-1: #47324e;
-  --dark-gradient-color-2: #885172;
-  --dark-gradient-color-3: #574785;
-  --dark-gradient-color-4: #312141;
+  --dark-gradient-color-1: #bd64aa;
+  --dark-gradient-color-2: #a6467f;
+  --dark-gradient-color-3: #4e31a2;
+  --dark-gradient-color-4: #40116f;
 
   /* IMPLEMENTATION, default = light */
 
