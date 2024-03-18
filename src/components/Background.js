@@ -615,7 +615,7 @@ class Gradient {
         playing: true
       }),
       document.querySelectorAll(".pagewrap").length < 1
-        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        ? console.log("DID NOT LOAD CANVAS")
         : ((this.minigl = new MiniGl(this.el, null, null, !0)),
           requestAnimationFrame(() => {
             document.querySelectorAll(".pagewrap div")[0] &&
