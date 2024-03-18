@@ -1,12 +1,25 @@
 {
   "work": [
     {
+      "logo": "orb-land",
+      "link": "https://orb.land/",
+      "place": "Orb Land",
+      "role": "Co-Founder",
+      "time": "2023 - Present",
+      "description": "In early 2023 I helped build Eric Wall's Orb, with the intention of growing the early expirement to a platform. Orb Land is this platform, designed to give tradable access to leading experts, and monetized with a unique Harberger tax model. We tend not to define specific roles, and I am building all parts of Orb Land, from smart contract protocol to the user interface.",
+      "achievements": [
+        "Multiple versions of the Orb Land protocol, open-sourced",
+        "Frotend, currently implemented in React and Next.js",
+        "Art direction for WebGL Orbs"
+      ]
+    },
+    {
       "logo": "cube",
-      "link": "https://www.cube.do/",
-      "place": "CUBE Security",
+      "link": "https://www.cube3.ai/",
+      "place": "CUBE3",
       "role": "Co-Founder, Head of Product",
-      "time": "2022 - Present",
-      "description": "I joined Cube in mid-2022 as the Head of Product. While I was following crypto research since 2016 and helped many crypto projects as a contractor, I have never worked on a blockchain project full-time. Working on Cube allowed me to focus on this new frontier and deepen my product thinking and crypto research skills.",
+      "time": "2022 - 2023",
+      "description": "I joined Cube3 in mid-2022 as the Head of Product. While I was following crypto research since 2016 and helped many crypto projects as a contractor, I have never worked on a blockchain project full-time. Working on Cube3 allowed me to focus on this new frontier and deepen my product thinking and crypto research skills.",
       "achievements": [
         "Helped define the product structure, from technical definitions to user experience",
         "Authored company’s first patent",
@@ -34,7 +47,6 @@
         "Oxygen, a telehealth platform"
       ]
     },
-
     {
       "logo": "tipi",
       "link": "https://tipihub.com/",
@@ -81,7 +93,6 @@
         "Worked on brand and communication"
       ]
     },
-
     {
       "logo": "x-team",
       "link": "https://x-team.com/",
