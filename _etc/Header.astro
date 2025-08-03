@@ -1,0 +1,49 @@
+---
+import { getEntry } from 'astro:content'
+import HeaderName from './HeaderName.astro'
+import ContactLink from './ContactLink.tsx'
+import MenuLink from './MenuLink.tsx'
+
+export const blend = 'mix-blend-color-burn dark:mix-blend-color-dodge text-[#323232] dark:text-[#9A9A9A]'
+const contactLinks = await getEntry('contact', 'data')
+
+const { title, layout } = Astro.props
+const isHome = Astro.url.pathname === '/'
+---
+
+<!-- open:    12 6 8 6 lg: 32 6  16 6
+     default: 8  6 8 6 lg: 12 16 12 16 -->
+<header class={`relative p-6 pb-8 ${layout === 'open' ? 'pb-0 pt-12 lg:pt-32' : 'lg:p-16 lg:pb-12 pt-8 lg:pt-12'}`}>
+  <div class=`flex justify-between items-center left-6 right-6 absolute z-[1000] ${blend}`>
+    {
+      isHome ? (
+        <div class="flex space-x-2 lg:space-x-4 items-center">
+          <HeaderName isHome={isHome} title={title} />
+        </div>
+      ) : (
+        <a class="flex space-x-2 lg:space-x-4 items-center" href="/">
+          <HeaderName isHome={isHome} title={title} />
+        </a>
+      )
+    }
+    <nav class=`hidden lg:block ${blend}`>
+      <ul class=`flex flex-row items-center space-x-1 -mr-4` transition:name="menu">
+        <li>
+          <a
+            href="/updates"
+            class=`flex flex-row items-center space-x-2 block px-4 text-base lg:text-xl py-1.5 font-semibold ${ Astro.url.pathname.startsWith('/updates') ? 'bg-[#999999] dark:bg-[#333333]' : '' } rounded-lg`
+          >
+            <span>Updates</span>
+            <!-- <div class="w-2 h-2 bg-[#313131] dark:bg-[#9A9A9A] rounded-full"></div> TODO counter -->
+          </a>
+        </li>
+        <li>
+          <ContactLink contact={contactLinks.data.menu} client:visible />
+        </li>
+      </ul>
+    </nav>
+    <nav class=`block lg:hidden ${blend}`>
+      <MenuLink contact={contactLinks.data.menu} client:visible />
+    </nav>
+  </div>
+</header>

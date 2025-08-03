@@ -1,0 +1,33 @@
+---
+import Background from '../components/Background.tsx'
+import Head from '../components/Head.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+  layout: 'default' | 'open'
+}
+const { title, description, image, layout } = Astro.props
+// const isHome = Astro.url.pathname === '/'
+---
+
+<!doctype html>
+<html lang="en">
+  <Head title={title} description={description} image={image} />
+  <body>
+    <Background client:load transition:persist />
+    <div class="pagewrap relative top-0 left-0 w-full h-full">
+      <div
+        class={`max-w-[480px] ${layout === 'open' ? 'lg:max-w-[1000px]' : 'lg:max-w-[1080px]'} mx-auto px-4 lg:px-10`}
+      >
+        <Header layout={layout} />
+        <slot />
+        <Footer layout={layout} />
+      </div>
+    </div>
+  </body>
+</html>

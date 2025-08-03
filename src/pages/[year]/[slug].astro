@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({
+    params: {
+      year: new Date(article.data.date).getFullYear().toString(),
+      slug: article.id.replace('/post', ''),
+    },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<Layout>
+  <h1>{article.data.title}</h1>
+
+  <div class="date">
+    {new Date(article.data.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+  </div>
+
+  <Fragment set:html={article.rendered?.html} />
+</Layout>

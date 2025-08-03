@@ -1,0 +1,24 @@
+---
+import logoImage from '../assets/images/logo.svg?raw'
+import siteData from '../../metadata.json'
+
+const { isHome } = Astro.props
+
+const HeaderTag = isHome ? 'h1' : 'h2'
+const shoutout: string = isHome ? siteData.shoutout : ''
+const blend = 'mix-blend-color-burn dark:mix-blend-color-dodge text-[#242424] dark:text-[#9A9A9A]'
+---
+
+<div class={`h-8 w-8 lg:h-10 lg:w-10`} transition:name="logo-symbol" set:html={logoImage} />
+<div class="flex flex-col items-start lg:flex-row lg:items-center">
+  <HeaderTag class={`text-2xl lg:text-4xl font-bold tracking-tight`} transition:name="logo-name"
+    >{siteData.title}</HeaderTag
+  >
+  {
+    shoutout && shoutout !== '' && (
+      <div class="mt-2 lg:mt-1 lg:ml-4 px-3 py-1 bg-white/50 dark:bg-black/30 font-semibold rounded-md shadow">
+        {shoutout}
+      </div>
+    )
+  }
+</div>

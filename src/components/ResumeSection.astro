@@ -1,0 +1,55 @@
+---
+import { getEntry } from 'astro:content';
+import { readFileSync } from 'fs';
+
+const experienceData = await getEntry('resume', 'data');
+const resumeLogos = await Astro.glob('../content/resume/images/*.svg');
+
+const resumeLogoObject: Record<string, string> = {};
+for (const logo of resumeLogos) {
+  const logoId = logo.default.src.match(/\/([a-zA-Z0-9-]+)\.?([a-zA-Z0-9-_]*)\.svg/);
+  if (logoId && logoId[1]) {
+    resumeLogoObject[logoId[1]] = readFileSync(`./src/content/resume/images/${logoId[1]}.svg`, 'utf-8');
+  } else {
+    console.error(logo);
+  }
+}
+
+const { section } = Astro.props;
+---
+
+<div class="not-prose">
+  <ul class="list-none pl-0 m-0 mt-12">
+    {
+      experienceData.data[section].map((item) => {
+        return (
+          <li class="flex flex-col lg:flex-row gap-2 lg:gap-8 mb-12">
+            <figure
+              class=" bg-slate-300/20 dark:bg-slate-300/10 py-4 h-[96px] rounded-lg flex justify-center"
+              set:html={resumeLogoObject[item.logo]}
+            />
+            <div>
+              {item.link ? (
+                <a href={item.link}>
+                  <h4 class="font-bold underline underline-offset-2">{item.place}</h4>
+                </a>
+              ) : (
+                <h4 class="font-bold">{item.place}</h4>
+              )}
+              <h5>{item.role}</h5>
+              <h6 class="text-sm mt-1 opacity-80">{item.time}</h6>
+              <p class="mt-3 opacity-80">{item.description}</p>
+              {item.achievements && item.achievements.length > 0 && (
+                <ul class="list-disc mt-4 pl-4 opacity-80">
+                  {item.achievements.map((achievement) => (
+                    <li>{achievement}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+</div>
