@@ -78,6 +78,12 @@ export const Head = ({
 
     <meta name="apple-mobile-web-app-title" content="Lekevicius" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="icon" href="/favicons/light.png" type="image/png" />
+    <link rel="icon" href="/favicons/dark.png" type="image/png" media="(prefers-color-scheme: dark)" />
+
+    <script defer data-domain="lekevicius.com" src="https://clicks.jonas.zip/js/script.outbound-links.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
   </>)
 }
 
