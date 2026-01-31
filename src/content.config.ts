@@ -1,24 +1,81 @@
-// Import the glob loader
-import { glob } from 'astro/loaders'
+import { generateCollections } from '@sensinum/astro-strapi-loader'
+
+let strapiCollections: any = {}
+try {
+  strapiCollections = await generateCollections(
+    {
+      url: import.meta.env.STRAPI_URL,
+      token: import.meta.env.STRAPI_TOKEN,
+    },
+    [
+      {
+        name: 'pages',
+        query: {
+          populate: {
+            content: {
+              populate: '*',
+            },
+            cover: true,
+          },
+        },
+      },
+      {
+        name: 'projects',
+        query: {
+          populate: {
+            content: {
+              populate: '*',
+            },
+            image: true,
+            cover: true,
+          },
+        },
+      },
+      {
+        name: 'articles',
+        query: {
+          populate: {
+            content: {
+              populate: '*',
+            },
+            cover: true,
+          },
+        },
+      },
+      {
+        name: 'featureds',
+        query: {
+          populate: {
+            image: true,
+          },
+        },
+      },
+      'moments',
+    ]
+  )
+} catch (error) {
+  console.error(error)
+}
+
 // Import utilities from `astro:content`
-import { z, defineCollection } from 'astro:content'
+// import { z, defineCollection } from 'astro:content'
 // Define a `loader` and `schema` for each collection
-const articles = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/articles' }),
-  schema: z.object({
-    title: z.string(),
-    date: z.date(),
-    description: z.string(),
-    tag: z.string().optional(),
-    note: z.string().optional(),
-    // image: z.object({
-    //   url: z.string(),
-    //   alt: z.string()
-    // })
-  }),
-})
+// const articles = defineCollection({
+//   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/articles' }),
+//   schema: z.object({
+//     title: z.string(),
+//     date: z.date(),
+//     description: z.string(),
+//     tag: z.string().optional(),
+//     note: z.string().optional(),
+//     // image: z.object({
+//     //   url: z.string(),
+//     //   alt: z.string()
+//     // })
+//   }),
+// })
 // Export a single `collections` object to register your collection(s)
-export const collections = { articles }
+export const collections = { ...strapiCollections }
 
 // ---
 

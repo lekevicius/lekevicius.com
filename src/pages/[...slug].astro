@@ -1,19 +1,31 @@
 ---
 import { getCollection } from 'astro:content'
 import Page from '../layouts/Page.astro'
+import BlockListRenderer from '../components/blocks/BlockListRenderer.astro'
+import type { StrapiContentComponents } from '../lib/strapiTypes'
 
 export async function getStaticPaths() {
-  const pageEntries = await getCollection('pages')
-  return pageEntries.map(entry => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }))
+  const pages = await getCollection('pages')
+  const projects = await getCollection('projects')
+  return [
+    ...pages.map((page) => ({
+      params: {
+        slug: page.data.slug,
+      },
+      props: { page },
+    })),
+    ...projects.map((project) => ({
+      params: {
+        slug: project.data.slug,
+      },
+      props: { page: project },
+    })),
+  ]
 }
 
-const { entry } = Astro.props
-const { Content } = await entry.render()
+const { page } = Astro.props
 ---
 
-<Page title={entry.data.title} description={entry.data.description} image={entry.data.image}>
-  <Content />
+<Page title={page.data.title} description={page.data.description} image={page.data.cover?.url}>
+  {page.data.content && <BlockListRenderer data={page.data.content as StrapiContentComponents} />}
 </Page>

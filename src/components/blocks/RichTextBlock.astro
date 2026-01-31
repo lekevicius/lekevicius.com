@@ -1,0 +1,14 @@
+---
+import type { StrapiContentRichTextComponent } from '../../lib/strapiTypes'
+import { markdownToHtml } from '../../lib/markdown'
+
+type Props = {
+  data: StrapiContentRichTextComponent
+}
+
+const { data } = Astro.props
+---
+
+<div class="mt-8 prose dark:prose-invert">
+  {data.body && <div set:html={markdownToHtml(data.body)} />}
+</div>

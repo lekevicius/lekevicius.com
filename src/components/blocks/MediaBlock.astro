@@ -1,0 +1,13 @@
+---
+import type { StrapiContentMediaComponent } from '../../lib/strapiTypes'
+
+type Props = {
+  data: StrapiContentMediaComponent
+}
+
+const { data } = Astro.props
+---
+
+<div class="mt-8 prose dark:prose-invert">
+  {data.file.url && <img src={data.file.url} alt={data.file.alternativeText} />}
+</div>

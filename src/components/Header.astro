@@ -1,0 +1,25 @@
+---
+import Logo from '../assets/images/logo.svg'
+import siteData from '../content/metadata.json'
+
+const isHome = Astro.url.pathname === '/'
+---
+
+<header class="site-header">
+  <a href="/" aria-label="Home" class="site-header-brand">
+    <div class="site-logo">
+      <Logo />
+    </div>
+    <div class="site-header-title">
+      <h1 class="site-name">
+        {siteData.title}{siteData.subtitle && isHome && <span class="site-name-comma">, </span>}
+        {siteData.subtitle && isHome && <span class="site-subtitle">{siteData.subtitle}</span>}
+      </h1>
+    </div>
+  </a>
+  <!-- <p class="site-description">
+    We live in the age of magic. For now, we call it AI.<br /> I&nbsp;<a href="/writing">write</a> and <a href="/talks">speak</a> about it, and <a href="/projects">build tools</a> with it.
+  </p> -->
+  {isHome && <p class="site-description">{siteData.description}</p>}
+</header>
+<!-- <span class="site-subtitle">taming magic</span> -->

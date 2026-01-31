@@ -1,58 +1,32 @@
 ---
 import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
-import ContactLinks from '../components/ContactLinks.astro'
-import Now from '../components/Now.astro'
-import Logo from '../assets/images/logo.svg'
-import SilentLogo from '../assets/images/silent.svg'
+// import Now from '../components/Now.astro'
+
+// import RSSIcon from '../assets/services/rss.svg'
+
 // import siteData from '../../metadata.json'
 
+import { markdownToHtml } from '../lib/markdown'
 import featuredItems from '../content/featured.ts'
+import featuredExperience from '../content/featuredExperience.ts'
+import NewsletterSection from '../components/NewsletterSection.astro'
+import FocusSection from '../components/FocusSection.astro'
+import { formatDate } from '../lib/utils'
 
 const allArticles = await getCollection('articles')
+const allFeatureds = (await getCollection('featureds')).sort((a, b) => a.data.priority - b.data.priority)
+const allProjects = (await getCollection('projects')).sort((a, b) => a.data.releaseDate - b.data.releaseDate)
 // console.log(allArticles)
 ---
 
 <Layout>
-  <header class="site-header">
-    <div class="site-header-brand">
-      <div class="site-logo">
-        <Logo />
-      </div>
-      <div class="site-header-title">
-        <h1 class="site-name">
-          Jonas Lekevicius<span class="site-name-comma">, </span>
-          <span class="site-subtitle">taming magic</span>
-        </h1>
-      </div>
-    </div>
-    <p class="site-description">
-      We live in the age of magic. For now, we call it AI.<br /> I&nbsp;<a href="/writing">write</a> and <a href="/talks">speak</a> about it, and <a href="/projects">build tools</a> with it.
-    </p>
-  </header>
-
-  <section class="featured-block">
-    <div class="logo-placement featured-block-graphic bg-[#7A88B330]/30 text-[#6C707A] dark:text-[#C2C8DB]">
-      <SilentLogo />
-    </div>
-    <div class="side-title-section">
-      <div class="side-title-title">
-        <h2>Focus</h2>
-      </div>
-      <div class="featured-block-content">
-        <p>
-          I’m a founder of Silent, a team communications platform designed for the highest level of privacy and security, using the most advanced messaging protocol and and post-quantum safe
-          end-to-end encryption. In limited testing within defence industry.
-        </p>
-        <div class="featured-block-footer">
-          <a href="https://silent.app" class="arrow-link">silent.app</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr />
-
+  <NewsletterSection />
+  <FocusSection />
+  <!-- <hr /> -->
+  <!-- <Now /> -->
+  <!-- <hr /> -->
+  <!-- Featured -->
   <section class="side-title-section">
     <div class="side-title-title">
       <h2>Featured</h2>
@@ -60,15 +34,22 @@ const allArticles = await getCollection('articles')
     <div class="side-title-content">
       <ul class="link-grid">
         {
-          featuredItems.map((item) => (
+          allFeatureds.map((item) => (
             <li class="link-grid-item">
-              <a href={`${item.url}`}>
-                <h3 class="item-title">
-                  {item.tag && <span class="item-tag">{item.tag}</span>}
-                  {item.title}
-                  {item.note && <span class="item-note">{item.note}</span>}
-                </h3>
-                <p class="item-description">{item.description}</p>
+              <a href={`${item.data.link}`}>
+                {item.data.image && (
+                  <div class="link-grid-item-image">
+                    <img src={item.data.image.formats.thumbnail.url} alt={item.data.title} />
+                  </div>
+                )}
+                <div class="link-grid-item-content">
+                  <h3 class="item-title">
+                    {item.data.tag && <span class="item-tag">{item.data.tag}</span>}
+                    {item.data.title}
+                    {item.data.note && <span class="item-note">{item.data.note}</span>}
+                  </h3>
+                  <p class="item-description">{item.data.description}</p>
+                </div>
               </a>
             </li>
           ))
@@ -76,27 +57,28 @@ const allArticles = await getCollection('articles')
       </ul>
     </div>
   </section>
-
+  <hr />
+  <!-- Writing -->
   <section class="stacked-title-section">
     <div class="stacked-title-title">
       <h2>Writing</h2>
     </div>
     <div class="stacked-title-content">
-      <ul class="entry-grid">
+      <ul class="entry-grid articles-grid">
         {
           allArticles.map((article, index) => {
-            const year = new Date(article.data.date).getFullYear()
+            const year = new Date(article.data.createdAt).getFullYear()
             return (
-              <li class="entry-grid-item">
-                <a href={`/${year}/${article.id.replace('/post', '')}/`} title={article.data.title}>
-                  <div class="article-date entry-grid-side-title">{new Date(article.data.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</div>
-                  <div class="entry-grid-content">
+              <li class="entry-grid-item articles-grid-item">
+                <a href={`/${year}/${article.data.slug}`} title={article.data.title}>
+                  <div class="article-date entry-grid-side-title">{formatDate(article.data.createdAt)}</div>
+                  <div class="entry-grid-content-subgrid">
                     <h3 class="item-title">
                       {article.data.tag && <span class="item-tag">{article.data.tag}</span>}
                       {article.data.title}
                       {article.data.note && <span class="item-note">{article.data.note}</span>}
                     </h3>
-                    {index === 0 && <p class="item-description">{article.data.description}</p>}
+                    {index < 3 && <p class="item-description">{article.data.description}</p>}
                   </div>
                 </a>
               </li>
@@ -104,53 +86,81 @@ const allArticles = await getCollection('articles')
           })
         }
       </ul>
+      <!-- <div class="entry-grid-footer justify-between">
+        <a href="/writing/" class="inline-block-link">Show All Articles…</a>
+        <a href="/feed.xml" class="inline-block-link flex! items-center gap-x-1 text-text/30!"><RSSIcon class="size-4" /> RSS</a>
+      </div> -->
+    </div>
+  </section>
+  <hr />
+  <!-- Projects -->
+  <section class="side-title-section">
+    <div class="side-title-title">
+      <h2>Projects</h2>
+    </div>
+    <div class="side-title-content">
+      <ul class="link-grid">
+        {
+          allProjects.map((item) => (
+            <li class="link-grid-item">
+              <a href={`/${item.data.slug}`}>
+                {item.data.image && (
+                  <div class="link-grid-item-image">
+                    <img src={item.data.image.formats.thumbnail.url} alt={item.data.title} />
+                  </div>
+                )}
+                <div class="link-grid-item-content">
+                  <h3 class="item-title">
+                    {item.data.tag && <span class="item-tag">{item.data.tag}</span>}
+                    {item.data.title}
+                    {item.data.note && <span class="item-note">{item.data.note}</span>}
+                  </h3>
+                  <p class="item-description">{item.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <!-- <div class="side-title-footer">
+        <a href="/projects/" class="inline-block-link">Show All Projects…</a>
+      </div> -->
+    </div>
+  </section>
+  <hr />
+  <!-- Experience -->
+  <section class="stacked-title-section">
+    <div class="stacked-title-title">
+      <h2>Experience</h2>
+    </div>
+    <div class="stacked-title-content">
+      <ul class="entry-grid">
+        {
+          featuredExperience.map((experience) => {
+            return (
+              <li class="entry-grid-item featured-experience-item">
+                <div class="featured-experience-date entry-grid-side-title">{experience.period}</div>
+                <div class="entry-grid-content">
+                  {experience.role && experience.company && (
+                    <h3 class="featured-experience-title font-bold">
+                      {experience.role}, {experience.company}
+                    </h3>
+                  )}
+                  <div set:html={markdownToHtml(experience.description)} />
+                </div>
+              </li>
+            )
+          })
+        }
+      </ul>
       <div class="entry-grid-footer">
-        <a href="/writing/" class="arrow-link">View All</a>
-        <a href="/feed.xml" class="arrow-link">Subscribe</a>
+        <a href="/resume" class="arrow-link">Full Resume</a>
+        <!-- <a href="/profile/" class="arrow-link">Read Profile</a> -->
       </div>
     </div>
   </section>
 
   <hr />
-
-  <section class="column-blocks column-blocks-primary">
-    <div class="column-block column-block-newsletter">
-      <h3>Newsletter</h3>
-      <div class="column-block-content">
-        <p>Monthly issue about new stuff from me.</p>
-        <form action="https://buttondown.email/api/emails/embed-subscribe/lekevicius" method="post" target="popupwindow">
-          <input type="email" placeholder="your@email" name="email" autocomplete="email" />
-          <button>Subscribe</button>
-        </form>
-      </div>
-      <div class="column-block-footer">
-        <a href="https://buttondown.com/lekevicius/archive/" class="arrow-link">Previous Issues</a>
-      </div>
-    </div>
-
-    <div class="column-block">
-      <h3>Work</h3>
-      <div class="column-block-content">
-        <p>Currently: Building the most secure team communication platform, <a href="https://silent.app">Silent</a>.</p>
-      </div>
-      <div class="column-block-footer">
-        <a href="/resume" class="arrow-link">Past Experience</a>
-      </div>
-    </div>
-
-    <div class="column-block">
-      <h3>Projects</h3>
-      <div class="column-block-content">
-        <p>Ongoing: <a href="https://dubitai.com">Du Bitai</a> radio show, weekly tech news in Lithuanian.</p>
-      </div>
-      <div class="column-block-footer">
-        <a href="/projects" class="arrow-link">View All</a>
-      </div>
-    </div>
-  </section>
-
-  <hr />
-
   <section class="column-blocks column-blocks-links">
     <a href="/profile" class="column-block block-link">
       <h4>Profile</h4>
@@ -165,39 +175,20 @@ const allArticles = await getCollection('articles')
       <p>Media featuring me.</p>
     </a>
   </section>
-
   <hr />
-
   <section class="column-blocks column-blocks-links">
-    <a href="/best" class="column-block block-link">
-      <h4>Best</h4>
-      <p>My favorite brands, gear and tools.</p>
-    </a>
-    <a href="/media" class="column-block block-link">
-      <h4>Media</h4>
-      <p>Movies, games and more I recommend to all.</p>
-    </a>
     <a href="/people" class="column-block block-link">
       <h4>People</h4>
       <p>Wonderful makers and thinkers to follow.</p>
     </a>
+    <a href="/media" class="column-block block-link">
+      <h4>Media</h4>
+      <p>Movies, games and more I recommend to everyone.</p>
+    </a>
+    <a href="/gear" class="column-block block-link">
+      <h4>Gear</h4>
+      <p>My favorite brands, gear, apps and tools.</p>
+    </a>
   </section>
-
   <hr />
-
-  <Now />
-
-  <hr />
-
-  <ContactLinks />
-
-  <footer class="site-footer">
-    <p class="colophon">
-      <strong>Lekevicius v8</strong>. Available on IPFS as <a href="https://jonas.eth.limo/">jonas.eth</a>.
-      <a href="/colophon">Colophon</a>.
-    </p>
-    <p class="copyright">
-      &copy; Jonas Lekevicius 2005-{new Date().getFullYear()}.
-    </p>
-  </footer>
 </Layout>

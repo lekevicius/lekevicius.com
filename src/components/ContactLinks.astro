@@ -13,14 +13,20 @@ import LinkedInIcon from '../assets/services/linkedin.svg'
 import GitHubIcon from '../assets/services/github.svg'
 import LetterboxdIcon from '../assets/services/letterboxd.svg'
 import ENSIcon from '../assets/services/ens.svg'
+
+// Email copy config
+const email = 'jonas@lekevicius.com'
+const tooltip = 'Copy email address'
+const tooltipCopied = 'Email copied!'
+const encodedEmail = Buffer.from(email).toString('base64')
 ---
 
 <section class="column-blocks contact-section">
   <div class="column-block">
     <h4>Contact</h4>
     <ul class="contact-links">
-      <li>
-        <a href="mailto:jonas@lekevicius.com" title="Email" aria-label="Email">
+      <li class="service-link service-link-email">
+        <a href="#" aria-label={tooltip} data-title={tooltip} data-email-b64={encodedEmail}>
           <EmailIcon />
         </a>
       </li>
@@ -92,3 +98,80 @@ import ENSIcon from '../assets/services/ens.svg'
     </ul>
   </div>
 </section>
+
+<script define:vars={{ tooltipCopied }} lang="js">
+  const TOAST_COPIED = tooltipCopied || 'Email copied!'
+
+  const handleClick = (event) => {
+    const anchor = event.target?.closest('a[data-email-b64]')
+    if (!anchor) return
+    event.preventDefault()
+
+    const b64 = anchor.getAttribute('data-email-b64')
+    if (!b64) return
+    let decoded = ''
+    try {
+      decoded = atob(b64)
+    } catch (e) {}
+    if (!decoded) return
+
+    const showToast = (message) => {
+      const existingToast = document.querySelector('.toast')
+      if (existingToast) {
+        existingToast.remove()
+      }
+
+      const toast = document.createElement('div')
+      toast.className = 'toast'
+      toast.textContent = message
+      document.body.appendChild(toast)
+
+      toast.offsetHeight
+      requestAnimationFrame(() => {
+        toast.classList.add('toast-show')
+      })
+
+      setTimeout(() => {
+        toast.classList.add('toast-hide')
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast)
+          }
+        }, 200)
+      }, 2000)
+    }
+
+    const copyText = async (text) => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text)
+        return true
+      }
+      const textarea = document.createElement('textarea')
+      textarea.value = text
+      textarea.setAttribute('readonly', '')
+      textarea.style.position = 'absolute'
+      textarea.style.left = '-9999px'
+      document.body.appendChild(textarea)
+      textarea.select()
+      try {
+        const ok = document.execCommand('copy')
+        document.body.removeChild(textarea)
+        return ok
+      } catch (err) {
+        document.body.removeChild(textarea)
+        return false
+      }
+    }
+
+    copyText(decoded).then((ok) => {
+      if (ok) {
+        showToast(TOAST_COPIED)
+      }
+    })
+  }
+
+  if (!window.__emailCopyHandlersAdded__) {
+    document.addEventListener('click', handleClick)
+    window.__emailCopyHandlersAdded__ = true
+  }
+</script>

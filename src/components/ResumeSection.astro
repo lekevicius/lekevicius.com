@@ -1,55 +1,64 @@
 ---
-import { getEntry } from 'astro:content';
-import { readFileSync } from 'fs';
+import { readFileSync } from 'fs'
+import resumeData from '../content/resume'
+import { markdownToHtml } from '../lib/markdown'
 
-const experienceData = await getEntry('resume', 'data');
-const resumeLogos = await Astro.glob('../content/resume/images/*.svg');
-
-const resumeLogoObject: Record<string, string> = {};
-for (const logo of resumeLogos) {
-  const logoId = logo.default.src.match(/\/([a-zA-Z0-9-]+)\.?([a-zA-Z0-9-_]*)\.svg/);
+const resumeLogos = import.meta.glob('../assets/resume/*.svg')
+const resumeLogoObject: Record<string, string> = {}
+for (const logoKey of Object.keys(resumeLogos)) {
+  const logo = await resumeLogos[logoKey]()
+  const logoId = logoKey.match(/\/([a-zA-Z0-9-]+)\.?([a-zA-Z0-9-_]*)\.svg/)
   if (logoId && logoId[1]) {
-    resumeLogoObject[logoId[1]] = readFileSync(`./src/content/resume/images/${logoId[1]}.svg`, 'utf-8');
+    resumeLogoObject[logoId[1]] = readFileSync(`./src/assets/resume/${logoId[1]}.svg`, 'utf-8')
   } else {
-    console.error(logo);
+    console.error(logo)
   }
 }
 
-const { section } = Astro.props;
+const { section } = Astro.props
 ---
 
-<div class="not-prose">
-  <ul class="list-none pl-0 m-0 mt-12">
-    {
-      experienceData.data[section].map((item) => {
-        return (
-          <li class="flex flex-col lg:flex-row gap-2 lg:gap-8 mb-12">
-            <figure
-              class=" bg-slate-300/20 dark:bg-slate-300/10 py-4 h-[96px] rounded-lg flex justify-center"
-              set:html={resumeLogoObject[item.logo]}
-            />
-            <div>
-              {item.link ? (
-                <a href={item.link}>
-                  <h4 class="font-bold underline underline-offset-2">{item.place}</h4>
-                </a>
-              ) : (
-                <h4 class="font-bold">{item.place}</h4>
-              )}
-              <h5>{item.role}</h5>
-              <h6 class="text-sm mt-1 opacity-80">{item.time}</h6>
-              <p class="mt-3 opacity-80">{item.description}</p>
-              {item.achievements && item.achievements.length > 0 && (
-                <ul class="list-disc mt-4 pl-4 opacity-80">
-                  {item.achievements.map((achievement) => (
-                    <li>{achievement}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </li>
-        );
-      })
-    }
-  </ul>
-</div>
+<!-- .side-title-section {
+  @apply md:grid grid-cols-subgrid col-span-12;
+
+  .side-title-title {
+    @apply col-span-2 px-4 py-3;
+  }
+  .side-title-content {
+    @apply md:grid grid-cols-subgrid col-span-10;
+  }
+
+  .side-title-footer {
+    @apply flex gap-x-6 col-span-10 px-4 py-3;
+  }
+} -->
+<ul class="md:grid grid-cols-subgrid col-span-12">
+  {
+    resumeData[section as keyof typeof resumeData].map((item: any) => {
+      return (
+        <li class="md:grid grid-cols-subgrid col-span-12 mb-4">
+          <figure class="bg-text/3 h-18 p-1 rounded-lg col-span-2 flex justify-center mt-3" set:html={resumeLogoObject[item.logo]} />
+          <div class="col-span-10 px-4 py-3">
+            {item.link ? (
+              <a href={item.link}>
+                <h4 class="font-bold underline underline-offset-2">{item.place}</h4>
+              </a>
+            ) : (
+              <h4 class="font-bold">{item.place}</h4>
+            )}
+            <h5>{item.role}</h5>
+            <h6 class="mt-1 mb-3 opacity-80">{item.time}</h6>
+            <Fragment set:html={markdownToHtml(item.description)} />
+            {item.achievements && item.achievements.length > 0 && (
+              <ul class="list-disc mt-4 pl-4">
+                {item.achievements.map((achievement: string) => (
+                  <li class="my-1.5">{achievement}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </li>
+      )
+    })
+  }
+</ul>

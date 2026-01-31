@@ -1,26 +1,20 @@
 ---
-// import siteData from '../../metadata.json'
-// import { ViewTransitions } from 'astro:transitions'
-
-const siteData = {
-  title: 'Jonas Lekevicius',
-  description:
-    'We live in the age of magic. For now, we call it AI. I write and speak about it, and build tools with it.',
-  siteUrl: 'https://lekevicius.com',
-  author: 'Jonas Lekevicius',
-};
+import '../styles/global.css'
+import siteData from '../content/metadata.json'
+import { ClientRouter } from 'astro:transitions'
+import Analytics from './Analytics.astro'
 
 interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
+  title?: string
+  description?: string
+  image?: string
 }
-const { title, description, image } = Astro.props;
+const { title, description, image } = Astro.props
 
-let pageTitle = title ? `${title} - ${siteData.title}` : siteData.title;
-const pageDescription = description ? description.replace(/<[^>]+>/g, '').trim() : siteData.description;
-let pageImage = `${siteData.siteUrl}${image ? image : '/share-image.png'}`;
-let pageLocation = `${siteData.siteUrl}${Astro.url.pathname}`;
+let pageTitle = title ? `${title} - ${siteData.title}` : siteData.title
+const pageDescription = description ? description.replace(/<[^>]+>/g, '').trim() : siteData.description
+let pageImage = `${siteData.siteUrl}${image ? image : '/share-image.png'}`
+let pageLocation = `${siteData.siteUrl}${Astro.url.pathname}`
 ---
 
 <head>
@@ -59,5 +53,6 @@ let pageLocation = `${siteData.siteUrl}${Astro.url.pathname}`;
 
   <link rel="sitemap" href="/sitemap-index.xml" />
 
-  <!-- <ViewTransitions fallback="none" /> -->
+  <Analytics />
+  <ClientRouter />
 </head>
