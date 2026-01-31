@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "appearances",
+  "info": {
+    "singularName": "appearance",
+    "pluralName": "appearances",
+    "displayName": "Appearance"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
