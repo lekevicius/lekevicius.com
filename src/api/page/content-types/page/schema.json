@@ -33,9 +33,8 @@
       "type": "dynamiczone",
       "components": [
         "shared.rich-text",
-        "shared.quote",
         "shared.media",
-        "shared.slider"
+        "shared.slide"
       ]
     }
   }

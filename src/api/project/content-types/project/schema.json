@@ -19,24 +19,8 @@
       "type": "uid",
       "targetField": "title"
     },
-    "releaseDate": {
-      "type": "date"
-    },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "description": {
       "type": "text"
-    },
-    "tag": {
-      "type": "string"
-    },
-    "note": {
-      "type": "string"
     },
     "cover": {
       "type": "media",
@@ -45,13 +29,33 @@
         "images"
       ]
     },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "tag": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "releasedAt": {
+      "type": "date"
+    },
+    "active": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
     "content": {
       "type": "dynamiczone",
       "components": [
-        "shared.slider",
         "shared.rich-text",
-        "shared.quote",
-        "shared.media"
+        "shared.media",
+        "shared.slide"
       ]
     }
   }

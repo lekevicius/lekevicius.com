@@ -15,19 +15,29 @@
       "type": "date",
       "required": true
     },
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "publisher": {
-      "type": "string"
-    },
     "link": {
       "type": "string",
       "required": false
     },
+    "publisher": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
     "description": {
       "type": "text"
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "Lithuanian",
+        "English"
+      ]
+    },
+    "type": {
+      "type": "string"
     }
   }
 }

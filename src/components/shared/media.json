@@ -2,7 +2,7 @@
   "collectionName": "components_shared_media",
   "info": {
     "displayName": "Media",
-    "icon": "file-video"
+    "icon": "picture"
   },
   "options": {},
   "attributes": {
@@ -15,6 +15,21 @@
         "files",
         "videos"
       ]
+    },
+    "display": {
+      "type": "enumeration",
+      "enum": [
+        "plain",
+        "full",
+        "boxed",
+        "website"
+      ]
+    },
+    "caption": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
     }
   }
 }

@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "text": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "location": {
       "type": "string"

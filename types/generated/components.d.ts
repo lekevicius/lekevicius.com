@@ -4,23 +4,16 @@ export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
     displayName: 'Media';
-    icon: 'file-video';
+    icon: 'picture';
   };
   attributes: {
+    caption: Schema.Attribute.String;
+    display: Schema.Attribute.Enumeration<
+      ['plain', 'full', 'boxed', 'website']
+    >;
     file: Schema.Attribute.Media<'images' | 'files' | 'videos'> &
       Schema.Attribute.Required;
-  };
-}
-
-export interface SharedQuote extends Struct.ComponentSchema {
-  collectionName: 'components_shared_quotes';
-  info: {
-    displayName: 'Quote';
-    icon: 'indent';
-  };
-  attributes: {
-    body: Schema.Attribute.Text & Schema.Attribute.Required;
-    title: Schema.Attribute.String;
+    link: Schema.Attribute.String;
   };
 }
 
@@ -29,7 +22,7 @@ export interface SharedRichText extends Struct.ComponentSchema {
   info: {
     description: '';
     displayName: 'Rich text';
-    icon: 'align-justify';
+    icon: 'layer';
   };
   attributes: {
     body: Schema.Attribute.RichText & Schema.Attribute.Required;
@@ -51,15 +44,15 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedSlider extends Struct.ComponentSchema {
-  collectionName: 'components_shared_sliders';
+export interface SharedSlide extends Struct.ComponentSchema {
+  collectionName: 'components_shared_slides';
   info: {
-    description: '';
-    displayName: 'Slider';
-    icon: 'address-book';
+    displayName: 'Slide';
+    icon: 'slideshow';
   };
   attributes: {
-    files: Schema.Attribute.Media<'images', true>;
+    image: Schema.Attribute.Media<'images'>;
+    text: Schema.Attribute.RichText;
   };
 }
 
@@ -67,10 +60,9 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.media': SharedMedia;
-      'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
-      'shared.slider': SharedSlider;
+      'shared.slide': SharedSlide;
     }
   }
 }
