@@ -1,13 +1,74 @@
 ---
-import type { StrapiContentMediaComponent } from '../../lib/strapiTypes'
+import type { StrapiMediaComponent } from '../../lib/strapiTypes';
 
 type Props = {
-  data: StrapiContentMediaComponent
-}
+  data: StrapiMediaComponent;
+};
 
-const { data } = Astro.props
+const { data } = Astro.props;
+const display = data.display || 'plain';
+const caption = data.caption || data.file.caption;
+const alt = data.file.alternativeText || caption || '';
+
+// Extract hostname from link for website display
+const getHostname = (url: string) => {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return url;
+  }
+};
 ---
 
-<div class="mt-8 prose dark:prose-invert">
-  {data.file.url && <img src={data.file.url} alt={data.file.alternativeText} />}
-</div>
+{
+  display === 'plain' && (
+    <figure class="media-block media-block-plain my-4">
+      <img src={data.file.url} alt={alt} class="w-full h-auto rounded-md" />
+      {caption && <figcaption class="mt-2 text-sm opacity-60">{caption}</figcaption>}
+    </figure>
+  )
+}
+
+{
+  display === 'full' && (
+    <figure class="media-block media-block-full my-4">
+      <img src={data.file.url} alt={alt} class="w-full h-auto" />
+      {caption && <figcaption class="mt-2 text-sm opacity-60">{caption}</figcaption>}
+    </figure>
+  )
+}
+
+{
+  display === 'boxed' && (
+    <figure class="media-block media-block-boxed my-4 bg-text/8 rounded-2xl overflow-hidden">
+      <img src={data.file.url} alt={alt} class="w-full h-auto" />
+      {caption && <figcaption class="text-sm opacity-80 mt-0 p-3">{caption}</figcaption>}
+    </figure>
+  )
+}
+
+{
+  display === 'website' && (
+    <figure class="media-block media-block-website my-4 bg-text/8 rounded-2xl overflow-hidden shadow-lg">
+      <div class="website-titlebar flex items-center gap-3 px-4 py-3">
+        <div class="traffic-lights flex gap-2">
+          <span class="size-3 rounded-full bg-text/20 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]" />
+          <span class="size-3 rounded-full bg-text/20 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]" />
+          <span class="size-3 rounded-full bg-text/20 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]" />
+        </div>
+        {caption && (
+          <div class="website-title text-sm truncate flex-1">
+            {data.link ? (
+              <a href={data.link} target="_blank" rel="noopener noreferrer" class="decoration-none">
+                {caption} &middot; <span class="opacity-50">{getHostname(data.link)}</span>
+              </a>
+            ) : (
+              caption
+            )}
+          </div>
+        )}
+      </div>
+      <img src={data.file.url} alt={alt} class="w-full h-auto" />
+    </figure>
+  )
+}

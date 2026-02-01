@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  sideLabel?: string;
+}
+
+const { title, description, sideLabel } = Astro.props;
+---
+
+<hr />
+<main class="content-container">
+  <div class="content-side-label opacity-60">{sideLabel}</div>
+  <div class="content-main">
+    <h1 class="text-3xl leading-8 font-bold mb-2">{title}</h1>
+    {description && <p class="text-xl leading-8 mt-4">{description}</p>}
+    <slot />
+  </div>
+</main>

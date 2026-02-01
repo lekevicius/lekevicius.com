@@ -1,32 +1,22 @@
 ---
-// import TextBlock from './TextBlock.astro'
-import RichTextBlock from './RichTextBlock.astro'
-import MediaBlock from './MediaBlock.astro'
-// import QuoteBlock from './QuoteBlock.astro'
-// import CTABlock from './CTABlock.astro'
-// import HeroBlock from './HeroBlock.astro'
+import RichTextBlock from './RichTextBlock.astro';
+import MediaBlock from './MediaBlock.astro';
+import SlideBlock from './SlideBlock.astro';
 
 import type {
   StrapiContentComponent,
-  StrapiContentRichTextComponent,
-  StrapiContentMediaComponent,
-  // StrapiContentQuoteComponent,
-} from '../../lib/strapiTypes'
+  StrapiRichTextComponent,
+  StrapiMediaComponent,
+  StrapiSlideComponent,
+} from '../../lib/strapiTypes';
 
 type Props = {
-  data: StrapiContentComponent
-}
+  data: StrapiContentComponent;
+};
 
-const { data } = Astro.props
+const { data } = Astro.props;
 ---
 
-{data.__component === 'shared.rich-text' && <RichTextBlock data={data as StrapiContentRichTextComponent} />}
-{data.__component === 'shared.media' && <MediaBlock data={data as StrapiContentMediaComponent} />}
-<!-- {data.__component === 'shared.quote' && <QuoteBlock data={data as StrapiContentQuoteComponent} />} -->
-<!-- {data.__component === 'shared.slider' && <SliderBlock data={data as StrapiContentSliderComponent} />} -->
-
-<!-- {data.__component === 'blocks.text' && <TextBlock data={data as StrapiContentTextComponent} />} -->
-<!-- {data.__component === 'blocks.quote' && <QuoteBlock data={data as StrapiContentQuoteComponent} />}
-{data.__component === 'blocks.media' && <MediaBlock data={data as StrapiContentMediaComponent} />}
-{data.__component === 'blocks.cta' && <CTABlock data={data as StrapiContentCTAComponent} />}
-{data.__component === 'blocks.hero' && <HeroBlock data={data as StrapiContentHeroComponent} />} -->
+{data.__component === 'shared.rich-text' && <RichTextBlock data={data as StrapiRichTextComponent} />}
+{data.__component === 'shared.media' && <MediaBlock data={data as StrapiMediaComponent} />}
+{data.__component === 'shared.slide' && <SlideBlock data={data as StrapiSlideComponent} />}

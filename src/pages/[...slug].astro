@@ -1,12 +1,14 @@
 ---
-import { getCollection } from 'astro:content'
-import Page from '../layouts/Page.astro'
-import BlockListRenderer from '../components/blocks/BlockListRenderer.astro'
-import type { StrapiContentComponents } from '../lib/strapiTypes'
+import { getCollection } from 'astro:content';
+import Page from '../layouts/Page.astro';
+import BlockListRenderer from '../components/blocks/BlockListRenderer.astro';
+import type { StrapiContentComponents, PageEntry, ProjectEntry, TalkEntry, VideoEntry } from '../lib/strapiTypes';
 
 export async function getStaticPaths() {
-  const pages = await getCollection('pages')
-  const projects = await getCollection('projects')
+  const pages = (await getCollection('pages')) as PageEntry[];
+  const projects = (await getCollection('projects')) as ProjectEntry[];
+  const talks = (await getCollection('talks')) as TalkEntry[];
+  const videos = (await getCollection('videos')) as VideoEntry[];
   return [
     ...pages.map((page) => ({
       params: {
@@ -20,12 +22,28 @@ export async function getStaticPaths() {
       },
       props: { page: project },
     })),
-  ]
+    ...talks.map((talk) => ({
+      params: {
+        slug: talk.data.slug,
+      },
+      props: { page: talk },
+    })),
+    ...videos.map((video) => ({
+      params: {
+        slug: video.data.slug,
+      },
+      props: { page: video },
+    })),
+  ];
 }
 
-const { page } = Astro.props
+const { page } = Astro.props as { page: PageEntry | ProjectEntry | TalkEntry | VideoEntry };
 ---
 
-<Page title={page.data.title} description={page.data.description} image={page.data.cover?.url}>
+<Page
+  title={page.data.title ?? ''}
+  description={page.data.description ?? undefined}
+  image={page.data.cover?.url ?? undefined}
+>
   {page.data.content && <BlockListRenderer data={page.data.content as StrapiContentComponents} />}
 </Page>

@@ -1,31 +1,44 @@
 ---
-import { getCollection } from 'astro:content'
-import Layout from '../layouts/Layout.astro'
-// import Now from '../components/Now.astro'
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Now from '../components/Now.astro';
+import type { ArticleEntry, ProjectEntry, TalkEntry, VideoEntry } from '../lib/strapiTypes';
 
 // import RSSIcon from '../assets/services/rss.svg'
 
 // import siteData from '../../metadata.json'
 
-import { markdownToHtml } from '../lib/markdown'
-import featuredItems from '../content/featured.ts'
-import featuredExperience from '../content/featuredExperience.ts'
-import NewsletterSection from '../components/NewsletterSection.astro'
-import FocusSection from '../components/FocusSection.astro'
-import { formatDate } from '../lib/utils'
+import { markdownToHtml } from '../lib/markdown';
+import featuredItems from '../content/featured.ts';
+import featuredExperience from '../content/featuredExperience.ts';
+import NewsletterSection from '../components/NewsletterSection.astro';
+import FocusSection from '../components/FocusSection.astro';
+import { formatDate } from '../lib/utils';
 
-const allArticles = await getCollection('articles')
-const allFeatureds = (await getCollection('featureds')).sort((a, b) => a.data.priority - b.data.priority)
-const allProjects = (await getCollection('projects')).sort((a, b) => a.data.releaseDate - b.data.releaseDate)
-// console.log(allArticles)
+const allArticles = ((await getCollection('articles')) as ArticleEntry[])
+  .sort((a, b) => new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime())
+  .slice(0, 5);
+const allProjects = ((await getCollection('projects')) as ProjectEntry[])
+  .sort((a, b) => new Date(b.data.releasedAt ?? 0).getTime() - new Date(a.data.releasedAt ?? 0).getTime())
+  .slice(0, 8);
+const featuredProjectIDs = (await import('../content/featuredProjects')).default;
+const featuredProjects = featuredProjectIDs
+  .map((id) => allProjects.find((project) => project.data.slug === id))
+  .filter((project): project is ProjectEntry => project !== undefined);
+const allTalks = ((await getCollection('talks')) as TalkEntry[])
+  .sort((a, b) => new Date(b.data.presentedAt ?? 0).getTime() - new Date(a.data.presentedAt ?? 0).getTime())
+  .slice(0, 3);
+const allVideos = ((await getCollection('videos')) as VideoEntry[])
+  .sort((a, b) => new Date(b.data.releasedAt ?? 0).getTime() - new Date(a.data.releasedAt ?? 0).getTime())
+  .slice(0, 3);
 ---
 
 <Layout>
   <NewsletterSection />
   <FocusSection />
   <!-- <hr /> -->
-  <!-- <Now /> -->
-  <!-- <hr /> -->
+  <!-- <Now />
+  <hr /> -->
   <!-- Featured -->
   <section class="side-title-section">
     <div class="side-title-title">
@@ -34,21 +47,21 @@ const allProjects = (await getCollection('projects')).sort((a, b) => a.data.rele
     <div class="side-title-content">
       <ul class="link-grid">
         {
-          allFeatureds.map((item) => (
+          featuredItems.map((item) => (
             <li class="link-grid-item">
-              <a href={`${item.data.link}`}>
-                {item.data.image && (
+              <a href={`${item.url}`}>
+                {item.image && (
                   <div class="link-grid-item-image">
-                    <img src={item.data.image.formats.thumbnail.url} alt={item.data.title} />
+                    <img src={item.image} alt={item.title ?? ''} />
                   </div>
                 )}
                 <div class="link-grid-item-content">
                   <h3 class="item-title">
-                    {item.data.tag && <span class="item-tag">{item.data.tag}</span>}
-                    {item.data.title}
-                    {item.data.note && <span class="item-note">{item.data.note}</span>}
+                    {item.tag && <span class="item-tag">{item.tag}</span>}
+                    {item.title}
+                    {item.note && <span class="item-note">{item.note}</span>}
                   </h3>
-                  <p class="item-description">{item.data.description}</p>
+                  <p class="item-description">{item.description}</p>
                 </div>
               </a>
             </li>
@@ -57,6 +70,8 @@ const allProjects = (await getCollection('projects')).sort((a, b) => a.data.rele
       </ul>
     </div>
   </section>
+  {allArticles.length > 0 && (
+  <>
   <hr />
   <!-- Writing -->
   <section class="stacked-title-section">
@@ -67,31 +82,29 @@ const allProjects = (await getCollection('projects')).sort((a, b) => a.data.rele
       <ul class="entry-grid articles-grid">
         {
           allArticles.map((article, index) => {
-            const year = new Date(article.data.createdAt).getFullYear()
+            const year = new Date(article.data.createdAt).getFullYear();
             return (
               <li class="entry-grid-item articles-grid-item">
-                <a href={`/${year}/${article.data.slug}`} title={article.data.title}>
+                <a href={`/${year}/${article.data.slug}`} title={article.data.title ?? undefined}>
                   <div class="article-date entry-grid-side-title">{formatDate(article.data.createdAt)}</div>
                   <div class="entry-grid-content-subgrid">
-                    <h3 class="item-title">
-                      {article.data.tag && <span class="item-tag">{article.data.tag}</span>}
-                      {article.data.title}
-                      {article.data.note && <span class="item-note">{article.data.note}</span>}
-                    </h3>
+                    <h3 class="item-title">{article.data.title}</h3>
                     {index < 3 && <p class="item-description">{article.data.description}</p>}
                   </div>
                 </a>
               </li>
-            )
+            );
           })
         }
       </ul>
-      <!-- <div class="entry-grid-footer justify-between">
-        <a href="/writing/" class="inline-block-link">Show All Articles…</a>
-        <a href="/feed.xml" class="inline-block-link flex! items-center gap-x-1 text-text/30!"><RSSIcon class="size-4" /> RSS</a>
-      </div> -->
+      <div class="entry-grid-footer justify-between">
+        <a href="/writing" class="inline-block-link">All Articles…</a>
+        <!-- <a href="/feed.xml" class="inline-block-link flex! items-center gap-x-1 text-text/30!"><RSSIcon class="size-4" /> RSS</a> -->
+      </div>
     </div>
   </section>
+  </>
+  )}
   <hr />
   <!-- Projects -->
   <section class="side-title-section">
@@ -101,12 +114,12 @@ const allProjects = (await getCollection('projects')).sort((a, b) => a.data.rele
     <div class="side-title-content">
       <ul class="link-grid">
         {
-          allProjects.map((item) => (
+          featuredProjects.map((item) => (
             <li class="link-grid-item">
               <a href={`/${item.data.slug}`}>
-                {item.data.image && (
+                {item.data.image?.formats?.thumbnail && (
                   <div class="link-grid-item-image">
-                    <img src={item.data.image.formats.thumbnail.url} alt={item.data.title} />
+                    <img src={item.data.image.formats.thumbnail.url} alt={item.data.title ?? ''} />
                   </div>
                 )}
                 <div class="link-grid-item-content">
@@ -122,11 +135,100 @@ const allProjects = (await getCollection('projects')).sort((a, b) => a.data.rele
           ))
         }
       </ul>
-      <!-- <div class="side-title-footer">
-        <a href="/projects/" class="inline-block-link">Show All Projects…</a>
-      </div> -->
+      <div class="side-title-footer">
+        <a href="/projects" class="inline-block-link">All Projects…</a>
+      </div>
     </div>
   </section>
+  {allTalks.length > 0 && (
+  <>
+  <hr />
+  <!-- Talks -->
+  <section class="stacked-title-section">
+    <div class="stacked-title-title">
+      <h2>Talks</h2>
+    </div>
+    <div class="stacked-title-content">
+      <ul class="entry-grid media-grid">
+        {
+          allTalks.map((talk) => {
+            return (
+              <li class="entry-grid-item media-grid-item">
+                <a href={`/${talk.data.slug}`} title={talk.data.title ?? undefined}>
+                  <div class="media-date entry-grid-side-title">{formatDate(talk.data.presentedAt ?? '')}</div>
+                  <div class="entry-grid-content-subgrid">
+                    {talk.data.image?.formats?.small && (
+                      <div class="media-thumbnail">
+                        <img src={talk.data.image.formats.small.url} alt={talk.data.title ?? ''} />
+                      </div>
+                    )}
+                    <div class="media-info">
+                      <h3 class="item-title">
+                        {talk.data.tag && <span class="item-tag">{talk.data.tag}</span>}
+                        {talk.data.title}
+                        {talk.data.note && <span class="item-note">{talk.data.note}</span>}
+                      </h3>
+                      <p class="item-description">{talk.data.description}</p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <div class="entry-grid-footer">
+        <a href="/talks" class="inline-block-link">All Talks…</a>
+      </div>
+    </div>
+  </section>
+  </>
+  )}
+  {allVideos.length > 0 && (
+  <>
+  <hr />
+  <!-- Videos -->
+  <section class="stacked-title-section">
+    <div class="stacked-title-title">
+      <h2>Videos</h2>
+    </div>
+    <div class="stacked-title-content">
+      <ul class="entry-grid media-grid">
+        {
+          allVideos.map((video) => {
+            return (
+              <li class="entry-grid-item media-grid-item">
+                <a href={`/${video.data.slug}`} title={video.data.title ?? undefined}>
+                  <div class="media-date entry-grid-side-title">{formatDate(video.data.releasedAt ?? '')}</div>
+                  <div class="entry-grid-content-subgrid">
+                    {video.data.image?.formats?.small && (
+                      <div class="media-thumbnail">
+                        <img src={video.data.image.formats.small.url} alt={video.data.title ?? ''} />
+                      </div>
+                    )}
+                    <div class="media-info">
+                      <h3 class="item-title">
+                        {video.data.tag && <span class="item-tag">{video.data.tag}</span>}
+                        {video.data.title}
+                        {video.data.note && <span class="item-note">{video.data.note}</span>}
+                      </h3>
+                      <p class="item-description">{video.data.description}</p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <div class="entry-grid-footer">
+        <a href="/videos" class="inline-block-link">All Videos…</a>
+        <a href="https://www.youtube.com/@FromFirstPrinciples" class="inline-block-link">Subscribe on YouTube</a>
+      </div>
+    </div>
+  </section>
+  </>
+  )}
   <hr />
   <!-- Experience -->
   <section class="stacked-title-section">
@@ -142,34 +244,34 @@ const allProjects = (await getCollection('projects')).sort((a, b) => a.data.rele
                 <div class="featured-experience-date entry-grid-side-title">{experience.period}</div>
                 <div class="entry-grid-content">
                   {experience.role && experience.company && (
-                    <h3 class="featured-experience-title font-bold">
+                    <h3 class="featured-experience-title font-bold mb-1">
                       {experience.role}, {experience.company}
                     </h3>
                   )}
-                  <div set:html={markdownToHtml(experience.description)} />
+                  <div class="opacity-80" set:html={markdownToHtml(experience.description)} />
                 </div>
               </li>
-            )
+            );
           })
         }
       </ul>
-      <div class="entry-grid-footer">
-        <a href="/resume" class="arrow-link">Full Resume</a>
-        <!-- <a href="/profile/" class="arrow-link">Read Profile</a> -->
-      </div>
     </div>
   </section>
 
   <hr />
   <section class="column-blocks column-blocks-links">
+    <a href="/resume" class="column-block block-link">
+      <h4>Resume</h4>
+      <p>Work and education.</p>
+    </a>
     <a href="/profile" class="column-block block-link">
       <h4>Profile</h4>
       <p>Brief auto-biography.</p>
     </a>
-    <a href="/talks" class="column-block block-link">
+    <!-- <a href="/talks" class="column-block block-link">
       <h4>Talks</h4>
       <p>My talks.</p>
-    </a>
+    </a> -->
     <a href="/appearances" class="column-block block-link">
       <h4>Appearances</h4>
       <p>Media featuring me.</p>
@@ -179,15 +281,15 @@ const allProjects = (await getCollection('projects')).sort((a, b) => a.data.rele
   <section class="column-blocks column-blocks-links">
     <a href="/people" class="column-block block-link">
       <h4>People</h4>
-      <p>Wonderful makers and thinkers to follow.</p>
+      <p>Wonderful makers and thinkers to follow on the web.</p>
+    </a>
+    <a href="/gear" class="column-block block-link">
+      <h4>Gear</h4>
+      <p>My favorite brands, apps, tools and my setup for home and work.</p>
     </a>
     <a href="/media" class="column-block block-link">
       <h4>Media</h4>
       <p>Movies, games and more I recommend to everyone.</p>
-    </a>
-    <a href="/gear" class="column-block block-link">
-      <h4>Gear</h4>
-      <p>My favorite brands, gear, apps and tools.</p>
     </a>
   </section>
   <hr />

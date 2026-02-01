@@ -1,1 +1,41 @@
-List all articles
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import type { ArticleEntry } from '../lib/strapiTypes';
+import { formatDate } from '../lib/utils';
+
+const allArticles = ((await getCollection('articles')) as ArticleEntry[]).sort(
+  (a, b) => new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime(),
+);
+
+const title = 'Writing';
+const description = 'Articles, essays, and thoughts.';
+---
+
+<Layout title={title} description={description}>
+  <PageHeading title={title} description={description} />
+  <section class="stacked-title-section">
+    <div class="stacked-title-content">
+      <ul class="entry-grid articles-grid">
+        {
+          allArticles.map((article) => {
+            const year = new Date(article.data.createdAt).getFullYear();
+            return (
+              <li class="entry-grid-item articles-grid-item">
+                <a href={`/${year}/${article.data.slug}`} title={article.data.title ?? undefined}>
+                  <div class="article-date entry-grid-side-title">{formatDate(article.data.createdAt)}</div>
+                  <div class="entry-grid-content-subgrid">
+                    <h3 class="item-title">{article.data.title}</h3>
+                    <p class="item-description">{article.data.description}</p>
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+  <hr />
+</Layout>

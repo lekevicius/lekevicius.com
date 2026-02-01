@@ -8,49 +8,13 @@ try {
       token: import.meta.env.STRAPI_TOKEN,
     },
     [
-      {
-        name: 'pages',
-        query: {
-          populate: {
-            content: {
-              populate: '*',
-            },
-            cover: true,
-          },
-        },
-      },
-      {
-        name: 'projects',
-        query: {
-          populate: {
-            content: {
-              populate: '*',
-            },
-            image: true,
-            cover: true,
-          },
-        },
-      },
-      {
-        name: 'articles',
-        query: {
-          populate: {
-            content: {
-              populate: '*',
-            },
-            cover: true,
-          },
-        },
-      },
-      {
-        name: 'featureds',
-        query: {
-          populate: {
-            image: true,
-          },
-        },
-      },
-      'moments',
+      { name: 'pages', query: { populate: { content: { populate: '*' }, cover: true } } },
+      { name: 'projects', query: { populate: { content: { populate: '*' }, image: true, cover: true } } },
+      { name: 'articles', query: { populate: { content: { populate: '*' }, cover: true } } },
+      { name: 'talks', query: { populate: { content: { populate: '*' }, image: true, cover: true } } },
+      { name: 'videos', query: { populate: { content: { populate: '*' }, image: true, cover: true } } },
+      { name: 'moments', query: {  } },
+      { name: 'appearances', query: {  } },
     ]
   )
 } catch (error) {

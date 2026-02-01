@@ -1,24 +1,24 @@
 ---
-import EmailIcon from '../assets/services/email.svg'
-import SignalIcon from '../assets/services/signal.svg'
-import TelegramIcon from '../assets/services/telegram.svg'
-import MessengerIcon from '../assets/services/messenger.svg'
+import EmailIcon from '../assets/services/email.svg';
+import SignalIcon from '../assets/services/signal.svg';
+import TelegramIcon from '../assets/services/telegram.svg';
+import MessengerIcon from '../assets/services/messenger.svg';
 
-import BlueskyIcon from '../assets/services/bluesky.svg'
-import MastodonIcon from '../assets/services/mastodon.svg'
-import XIcon from '../assets/services/x.svg'
-import InstagramIcon from '../assets/services/instagram.svg'
+import BlueskyIcon from '../assets/services/bluesky.svg';
+import MastodonIcon from '../assets/services/mastodon.svg';
+import XIcon from '../assets/services/x.svg';
+import InstagramIcon from '../assets/services/instagram.svg';
 
-import LinkedInIcon from '../assets/services/linkedin.svg'
-import GitHubIcon from '../assets/services/github.svg'
-import LetterboxdIcon from '../assets/services/letterboxd.svg'
-import ENSIcon from '../assets/services/ens.svg'
+import LinkedInIcon from '../assets/services/linkedin.svg';
+import GitHubIcon from '../assets/services/github.svg';
+import LetterboxdIcon from '../assets/services/letterboxd.svg';
+import ENSIcon from '../assets/services/ens.svg';
+
+import Tooltip from './Tooltip.astro';
 
 // Email copy config
-const email = 'jonas@lekevicius.com'
-const tooltip = 'Copy email address'
-const tooltipCopied = 'Email copied!'
-const encodedEmail = Buffer.from(email).toString('base64')
+const email = 'jonas@lekevicius.com';
+const encodedEmail = Buffer.from(email).toString('base64');
 ---
 
 <section class="column-blocks contact-section">
@@ -26,24 +26,40 @@ const encodedEmail = Buffer.from(email).toString('base64')
     <h4>Contact</h4>
     <ul class="contact-links">
       <li class="service-link service-link-email">
-        <a href="#" aria-label={tooltip} data-title={tooltip} data-email-b64={encodedEmail}>
-          <EmailIcon />
-        </a>
+        <Tooltip id="contact-email" text="Copy email address">
+          <a
+            href="mailto:click-to-copy@spam-prevention.com"
+            aria-label="Copy email address"
+            data-email-b64={encodedEmail}
+          >
+            <EmailIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://signal.me/#eu/519y9OoMmKjPzHFsP0XUP5MNP8lnBpytNLLocKpiIcX-x_LnkrpOu7Zs7uH96Ka7" title="Signal" aria-label="Signal">
-          <SignalIcon />
-        </a>
+        <Tooltip id="contact-signal" text="Message on Signal">
+          <a
+            href="https://signal.me/#eu/519y9OoMmKjPzHFsP0XUP5MNP8lnBpytNLLocKpiIcX-x_LnkrpOu7Zs7uH96Ka7"
+            title="Signal"
+            aria-label="Signal"
+          >
+            <SignalIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://t.me/lekevicius" title="Telegram" aria-label="Telegram">
-          <TelegramIcon />
-        </a>
+        <Tooltip id="contact-telegram" text="Message on Telegram">
+          <a href="https://t.me/lekevicius" title="Telegram" aria-label="Telegram">
+            <TelegramIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://m.me/lekevicius" title="Messenger" aria-label="Messenger">
-          <MessengerIcon />
-        </a>
+        <Tooltip id="contact-messenger" text="Message on Messenger">
+          <a href="https://m.me/lekevicius" title="Messenger" aria-label="Messenger">
+            <MessengerIcon />
+          </a>
+        </Tooltip>
       </li>
     </ul>
   </div>
@@ -51,24 +67,32 @@ const encodedEmail = Buffer.from(email).toString('base64')
     <h4>Follow</h4>
     <ul class="contact-links">
       <li>
-        <a href="https://bsky.app/profile/lekevicius.com" title="Bluesky" aria-label="Bluesky">
-          <BlueskyIcon />
-        </a>
+        <Tooltip id="contact-bluesky" text="Follow on Bluesky">
+          <a href="https://bsky.app/profile/lekevicius.com" title="Bluesky" aria-label="Bluesky">
+            <BlueskyIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://mastodon.social/@lekevicius" title="Mastodon" aria-label="Mastodon">
-          <MastodonIcon />
-        </a>
+        <Tooltip id="contact-mastodon" text="Follow on Mastodon">
+          <a href="https://mastodon.social/@lekevicius" title="Mastodon" aria-label="Mastodon">
+            <MastodonIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://x.com/lekevicius" title="X" aria-label="X">
-          <XIcon />
-        </a>
+        <Tooltip id="contact-x" text="Follow on X">
+          <a href="https://x.com/lekevicius" title="X" aria-label="X">
+            <XIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://instagram.com/lekevicius" title="Instagram" aria-label="Instagram">
-          <InstagramIcon />
-        </a>
+        <Tooltip id="contact-instagram" text="Follow on Instagram">
+          <a href="https://instagram.com/lekevicius" title="Instagram" aria-label="Instagram">
+            <InstagramIcon />
+          </a>
+        </Tooltip>
       </li>
     </ul>
   </div>
@@ -76,102 +100,110 @@ const encodedEmail = Buffer.from(email).toString('base64')
     <h4>Elsewhere</h4>
     <ul class="contact-links">
       <li>
-        <a href="https://linkedin.com/in/lekevicius" title="LinkedIn" aria-label="LinkedIn">
-          <LinkedInIcon />
-        </a>
+        <Tooltip id="contact-linkedin" text="Connect on LinkedIn">
+          <a href="https://linkedin.com/in/lekevicius" title="LinkedIn" aria-label="LinkedIn">
+            <LinkedInIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://github.com/lekevicius" title="GitHub" aria-label="GitHub">
-          <GitHubIcon />
-        </a>
+        <Tooltip id="contact-github" text="Follow on GitHub">
+          <a href="https://github.com/lekevicius" title="GitHub" aria-label="GitHub">
+            <GitHubIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://letterboxd.com/lekevicius" title="Letterboxd" aria-label="Letterboxd">
-          <LetterboxdIcon />
-        </a>
+        <Tooltip id="contact-letterboxd" text="Follow on Letterboxd">
+          <a href="https://letterboxd.com/lekevicius" title="Letterboxd" aria-label="Letterboxd">
+            <LetterboxdIcon />
+          </a>
+        </Tooltip>
       </li>
       <li>
-        <a href="https://keybase.io/lekevicius" title="GPG Key" aria-label="GPG Key">
-          <ENSIcon />
-        </a>
+        <Tooltip id="contact-gpg" text="View GPG Key">
+          <a href="https://keybase.io/lekevicius" title="GPG Key" aria-label="GPG Key">
+            <ENSIcon />
+          </a>
+        </Tooltip>
       </li>
     </ul>
   </div>
 </section>
 
-<script define:vars={{ tooltipCopied }} lang="js">
-  const TOAST_COPIED = tooltipCopied || 'Email copied!'
+<script lang="js">
+  const TOAST_COPIED = 'Email copied!';
 
   const handleClick = (event) => {
-    const anchor = event.target?.closest('a[data-email-b64]')
-    if (!anchor) return
-    event.preventDefault()
+    const anchor = event.target?.closest('a[data-email-b64]');
+    if (!anchor) return;
+    event.preventDefault();
 
-    const b64 = anchor.getAttribute('data-email-b64')
-    if (!b64) return
-    let decoded = ''
+    const b64 = anchor.getAttribute('data-email-b64');
+    if (!b64) return;
+    let decoded = '';
     try {
-      decoded = atob(b64)
+      decoded = atob(b64);
     } catch (e) {}
-    if (!decoded) return
+    if (!decoded) return;
 
     const showToast = (message) => {
-      const existingToast = document.querySelector('.toast')
+      const existingToast = document.querySelector('.toast');
       if (existingToast) {
-        existingToast.remove()
+        existingToast.remove();
       }
 
-      const toast = document.createElement('div')
-      toast.className = 'toast'
-      toast.textContent = message
-      document.body.appendChild(toast)
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
 
-      toast.offsetHeight
+      toast.offsetHeight;
       requestAnimationFrame(() => {
-        toast.classList.add('toast-show')
-      })
+        toast.classList.add('toast-show');
+      });
 
       setTimeout(() => {
-        toast.classList.add('toast-hide')
+        toast.classList.add('toast-hide');
         setTimeout(() => {
           if (toast.parentNode) {
-            toast.parentNode.removeChild(toast)
+            toast.parentNode.removeChild(toast);
           }
-        }, 200)
-      }, 2000)
-    }
+        }, 200);
+      }, 2000);
+    };
 
     const copyText = async (text) => {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(text)
-        return true
+        await navigator.clipboard.writeText(text);
+        return true;
       }
-      const textarea = document.createElement('textarea')
-      textarea.value = text
-      textarea.setAttribute('readonly', '')
-      textarea.style.position = 'absolute'
-      textarea.style.left = '-9999px'
-      document.body.appendChild(textarea)
-      textarea.select()
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'absolute';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
       try {
-        const ok = document.execCommand('copy')
-        document.body.removeChild(textarea)
-        return ok
+        const ok = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        return ok;
       } catch (err) {
-        document.body.removeChild(textarea)
-        return false
+        document.body.removeChild(textarea);
+        return false;
       }
-    }
+    };
 
     copyText(decoded).then((ok) => {
       if (ok) {
-        showToast(TOAST_COPIED)
+        showToast(TOAST_COPIED);
       }
-    })
-  }
+    });
+  };
 
   if (!window.__emailCopyHandlersAdded__) {
-    document.addEventListener('click', handleClick)
-    window.__emailCopyHandlersAdded__ = true
+    document.addEventListener('click', handleClick);
+    window.__emailCopyHandlersAdded__ = true;
   }
 </script>

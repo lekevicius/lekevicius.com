@@ -1,26 +1,22 @@
 ---
-import Layout from './Layout.astro'
-import NewsletterSection from '../components/NewsletterSection.astro'
+import Layout from './Layout.astro';
+import NewsletterSection from '../components/NewsletterSection.astro';
+import PageHeading from '../components/PageHeading.astro';
 
 interface Props {
-  title?: string
-  description?: string
-  image?: string
-  sideLabel?: string
+  title: string;
+  description?: string;
+  image?: string;
+  sideLabel?: string;
 }
-const { title, description, image, sideLabel } = Astro.props
+const { title, description, image, sideLabel } = Astro.props;
 ---
 
 <Layout title={title} description={description} image={image}>
-  <hr />
-  <main class="content-container">
-    <div class="content-side-label opacity-60">{sideLabel}</div>
-    <div class="content-main">
-      <h1 class="text-3xl leading-8 font-bold mb-2">{title}</h1>
-      {description && <p class="text-xl leading-8 font-light mt-4">{description}</p>}
-      <div class="mt-8 prose dark:prose-invert"><slot /></div>
-    </div>
-  </main>
+  <PageHeading title={title} description={description} sideLabel={sideLabel} />
+  <div class="content-container">
+    <div class="content-blocks"><slot /></div>
+  </div>
   <hr />
   <NewsletterSection />
   <hr />

@@ -1,11 +1,13 @@
 ---
 import { getCollection } from 'astro:content'
 import { markdownToHtml } from '../lib/markdown'
-const nowContent = await getCollection('moments')
+import type { MomentEntry } from '../lib/strapiTypes'
+
+const nowContent = await getCollection('moments') as MomentEntry[]
 
 const lastEntry = nowContent.sort((a, b) => new Date(a.data.createdAt).getTime() - new Date(b.data.createdAt).getTime())[0]
 
-const rawContent = markdownToHtml(lastEntry.data.text)
+const rawContent = markdownToHtml(lastEntry.data.text ?? '')
 const unwrappedContent = rawContent.replace(/^<p>/, '').replace(/<\/p>$/, '')
 const updatedDaysAgo = Math.floor((Date.now() - new Date(lastEntry.data.updatedAt).getTime()) / (1000 * 60 * 60 * 24))
 ---

@@ -1,14 +1,14 @@
 ---
-import type { StrapiContentRichTextComponent } from '../../lib/strapiTypes'
-import { markdownToHtml } from '../../lib/markdown'
+import type { StrapiRichTextComponent } from '../../lib/strapiTypes';
+import { markdownToHtml } from '../../lib/markdown';
 
 type Props = {
-  data: StrapiContentRichTextComponent
-}
+  data: StrapiRichTextComponent;
+};
 
-const { data } = Astro.props
+const { data } = Astro.props;
 ---
 
-<div class="mt-8 prose dark:prose-invert">
+<div class="prose rich-text-block">
   {data.body && <div set:html={markdownToHtml(data.body)} />}
 </div>

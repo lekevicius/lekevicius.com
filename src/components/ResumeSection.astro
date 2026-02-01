@@ -1,21 +1,21 @@
 ---
-import { readFileSync } from 'fs'
-import resumeData from '../content/resume'
-import { markdownToHtml } from '../lib/markdown'
+import { readFileSync } from 'fs';
+import resumeData from '../content/resume';
+import { markdownToHtml } from '../lib/markdown';
 
-const resumeLogos = import.meta.glob('../assets/resume/*.svg')
-const resumeLogoObject: Record<string, string> = {}
+const resumeLogos = import.meta.glob('../assets/resume/*.svg');
+const resumeLogoObject: Record<string, string> = {};
 for (const logoKey of Object.keys(resumeLogos)) {
-  const logo = await resumeLogos[logoKey]()
-  const logoId = logoKey.match(/\/([a-zA-Z0-9-]+)\.?([a-zA-Z0-9-_]*)\.svg/)
+  const logo = await resumeLogos[logoKey]();
+  const logoId = logoKey.match(/\/([a-zA-Z0-9-]+)\.?([a-zA-Z0-9-_]*)\.svg/);
   if (logoId && logoId[1]) {
-    resumeLogoObject[logoId[1]] = readFileSync(`./src/assets/resume/${logoId[1]}.svg`, 'utf-8')
+    resumeLogoObject[logoId[1]] = readFileSync(`./src/assets/resume/${logoId[1]}.svg`, 'utf-8');
   } else {
-    console.error(logo)
+    console.error(logo);
   }
 }
 
-const { section } = Astro.props
+const { section } = Astro.props;
 ---
 
 <!-- .side-title-section {
@@ -37,7 +37,10 @@ const { section } = Astro.props
     resumeData[section as keyof typeof resumeData].map((item: any) => {
       return (
         <li class="md:grid grid-cols-subgrid col-span-12 mb-4">
-          <figure class="bg-text/3 h-18 p-1 rounded-lg col-span-2 flex justify-center mt-3" set:html={resumeLogoObject[item.logo]} />
+          <figure
+            class="h-18 p-1 col-span-2 flex justify-start md:justify-center mt-3 md:border-r-text/15 md:border-r"
+            set:html={resumeLogoObject[item.logo]}
+          />
           <div class="col-span-10 px-4 py-3">
             {item.link ? (
               <a href={item.link}>
@@ -58,7 +61,7 @@ const { section } = Astro.props
             )}
           </div>
         </li>
-      )
+      );
     })
   }
 </ul>
