@@ -1,12 +1,12 @@
 import { MiniGl, normalizeColor } from "./MiniGL.js";
-// import WavesShader from "./shaders/WavesShader.js";
+import WavesShader from "./shaders/WavesShader.js";
 import WarpShader from "./shaders/WarpShader.js";
 
 /**
  * Gradient class - manages the animated background
  */
 class Gradient {
-  constructor(shader = WarpShader) {
+  constructor(shader = WavesShader) {
     // Shader configuration
     this.shader = shader;
 

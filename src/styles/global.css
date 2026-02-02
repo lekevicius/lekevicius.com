@@ -351,6 +351,14 @@ a:focus-visible {
     @apply col-start-3 col-span-10 px-4;
   }
 
+  .youtube-embed {
+    @apply col-start-3 col-span-10 px-4 mb-8;
+
+    iframe {
+      @apply w-full aspect-video rounded-lg border-0;
+    }
+  }
+
   /* Boxed blocks need margin instead of padding so the box itself aligns */
   .media-block-boxed,
   .media-block-website {

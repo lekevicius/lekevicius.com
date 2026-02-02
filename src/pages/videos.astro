@@ -22,7 +22,7 @@ const description = 'Video content, recordings, and more.';
           allVideos.map((video) => {
             return (
               <li class="entry-grid-item media-grid-item">
-                <a href={`/${video.data.slug}`} title={video.data.title ?? undefined}>
+                <a href={`/${video.data.slug}`}>
                   <div class="media-date entry-grid-side-title">{formatDate(video.data.releasedAt ?? '')}</div>
                   <div class="entry-grid-content-subgrid">
                     {video.data.image?.formats?.small && (

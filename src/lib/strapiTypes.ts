@@ -85,7 +85,7 @@ export type StrapiContentComponents = StrapiContentComponent[]
 /** Page collection data */
 export interface PageData extends StrapiBaseFields {
   title: string | null
-  slug?: string | null
+  slug: string | null
   description?: string | null
   cover?: StrapiMedia | null
   content?: StrapiContentComponents | null
@@ -94,7 +94,7 @@ export interface PageData extends StrapiBaseFields {
 /** Project collection data */
 export interface ProjectData extends StrapiBaseFields {
   title: string | null
-  slug?: string | null
+  slug: string | null
   description?: string | null
   cover?: StrapiMedia | null
   image?: StrapiMedia | null
@@ -108,7 +108,7 @@ export interface ProjectData extends StrapiBaseFields {
 /** Article collection data */
 export interface ArticleData extends StrapiBaseFields {
   title: string | null
-  slug?: string | null
+  slug: string | null
   description?: string | null
   cover?: StrapiMedia | null
   content?: StrapiContentComponents | null
@@ -119,9 +119,8 @@ export interface ArticleData extends StrapiBaseFields {
 /** Talk collection data */
 export interface TalkData extends StrapiBaseFields {
   title: string | null
-  slug?: string | null
-  link?: string | null
-  embedURL?: string | null
+  slug: string | null
+  recordingLink?: string | null
   presentedAt?: string | null
   description?: string | null
   cover?: StrapiMedia | null
@@ -134,9 +133,8 @@ export interface TalkData extends StrapiBaseFields {
 /** Video collection data */
 export interface VideoData extends StrapiBaseFields {
   title: string | null
-  slug?: string | null
-  link?: string | null
-  embedURL: string | null
+  slug: string | null
+  link: string | null
   releasedAt: string | null
   description?: string | null
   cover?: StrapiMedia | null

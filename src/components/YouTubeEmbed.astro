@@ -1,0 +1,26 @@
+---
+import { extractYoutubeId } from '../lib/utils';
+
+interface Props {
+  url: string;
+  title: string;
+}
+
+const { url, title } = Astro.props;
+const videoId = extractYoutubeId(url);
+---
+
+{
+  videoId && (
+    <div class="youtube-embed">
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}`}
+        style="border: 0;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        title={title}
+        loading="lazy"
+      />
+    </div>
+  )
+}

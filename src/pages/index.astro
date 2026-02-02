@@ -40,7 +40,7 @@ const allVideos = ((await getCollection('videos')) as VideoEntry[])
   <!-- <Now />
   <hr /> -->
   <!-- Featured -->
-  <section class="side-title-section">
+  <!-- <section class="side-title-section">
     <div class="side-title-title">
       <h2>Featured</h2>
     </div>
@@ -69,43 +69,8 @@ const allVideos = ((await getCollection('videos')) as VideoEntry[])
         }
       </ul>
     </div>
-  </section>
-  {allArticles.length > 0 && (
-  <>
-  <hr />
-  <!-- Writing -->
-  <section class="stacked-title-section">
-    <div class="stacked-title-title">
-      <h2>Writing</h2>
-    </div>
-    <div class="stacked-title-content">
-      <ul class="entry-grid articles-grid">
-        {
-          allArticles.map((article, index) => {
-            const year = new Date(article.data.createdAt).getFullYear();
-            return (
-              <li class="entry-grid-item articles-grid-item">
-                <a href={`/${year}/${article.data.slug}`} title={article.data.title ?? undefined}>
-                  <div class="article-date entry-grid-side-title">{formatDate(article.data.createdAt)}</div>
-                  <div class="entry-grid-content-subgrid">
-                    <h3 class="item-title">{article.data.title}</h3>
-                    {index < 3 && <p class="item-description">{article.data.description}</p>}
-                  </div>
-                </a>
-              </li>
-            );
-          })
-        }
-      </ul>
-      <div class="entry-grid-footer justify-between">
-        <a href="/writing" class="inline-block-link">All Articles…</a>
-        <!-- <a href="/feed.xml" class="inline-block-link flex! items-center gap-x-1 text-text/30!"><RSSIcon class="size-4" /> RSS</a> -->
-      </div>
-    </div>
-  </section>
-  </>
-  )}
-  <hr />
+  </section> -->
+
   <!-- Projects -->
   <section class="side-title-section">
     <div class="side-title-title">
@@ -140,54 +105,11 @@ const allVideos = ((await getCollection('videos')) as VideoEntry[])
       </div>
     </div>
   </section>
-  {allTalks.length > 0 && (
-  <>
-  <hr />
-  <!-- Talks -->
-  <section class="stacked-title-section">
-    <div class="stacked-title-title">
-      <h2>Talks</h2>
-    </div>
-    <div class="stacked-title-content">
-      <ul class="entry-grid media-grid">
-        {
-          allTalks.map((talk) => {
-            return (
-              <li class="entry-grid-item media-grid-item">
-                <a href={`/${talk.data.slug}`} title={talk.data.title ?? undefined}>
-                  <div class="media-date entry-grid-side-title">{formatDate(talk.data.presentedAt ?? '')}</div>
-                  <div class="entry-grid-content-subgrid">
-                    {talk.data.image?.formats?.small && (
-                      <div class="media-thumbnail">
-                        <img src={talk.data.image.formats.small.url} alt={talk.data.title ?? ''} />
-                      </div>
-                    )}
-                    <div class="media-info">
-                      <h3 class="item-title">
-                        {talk.data.tag && <span class="item-tag">{talk.data.tag}</span>}
-                        {talk.data.title}
-                        {talk.data.note && <span class="item-note">{talk.data.note}</span>}
-                      </h3>
-                      <p class="item-description">{talk.data.description}</p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            );
-          })
-        }
-      </ul>
-      <div class="entry-grid-footer">
-        <a href="/talks" class="inline-block-link">All Talks…</a>
-      </div>
-    </div>
-  </section>
-  </>
-  )}
+
+  <!-- Videos -->
   {allVideos.length > 0 && (
   <>
   <hr />
-  <!-- Videos -->
   <section class="stacked-title-section">
     <div class="stacked-title-title">
       <h2>Videos</h2>
@@ -198,7 +120,7 @@ const allVideos = ((await getCollection('videos')) as VideoEntry[])
           allVideos.map((video) => {
             return (
               <li class="entry-grid-item media-grid-item">
-                <a href={`/${video.data.slug}`} title={video.data.title ?? undefined}>
+                <a href={`/${video.data.slug}`}>
                   <div class="media-date entry-grid-side-title">{formatDate(video.data.releasedAt ?? '')}</div>
                   <div class="entry-grid-content-subgrid">
                     {video.data.image?.formats?.small && (
@@ -229,7 +151,90 @@ const allVideos = ((await getCollection('videos')) as VideoEntry[])
   </section>
   </>
   )}
+
+  <!-- Writing -->
+  {allArticles.length > 0 && (
+  <>
   <hr />
+  <section class="stacked-title-section">
+    <div class="stacked-title-title">
+      <h2>Writing</h2>
+    </div>
+    <div class="stacked-title-content">
+      <ul class="entry-grid articles-grid">
+        {
+          allArticles.map((article, index) => {
+            const year = new Date(article.data.createdAt).getFullYear();
+            return (
+              <li class="entry-grid-item articles-grid-item">
+                <a href={`/${year}/${article.data.slug}`}>
+                  <div class="article-date entry-grid-side-title">{formatDate(article.data.createdAt)}</div>
+                  <div class="entry-grid-content-subgrid">
+                    <h3 class="item-title">{article.data.title}</h3>
+                    {index < 3 && <p class="item-description">{article.data.description}</p>}
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <div class="entry-grid-footer justify-between">
+        <a href="/writing" class="inline-block-link">All Articles…</a>
+        <!-- <a href="/feed.xml" class="inline-block-link flex! items-center gap-x-1 text-text/30!"><RSSIcon class="size-4" /> RSS</a> -->
+      </div>
+    </div>
+  </section>
+  </>
+  )}
+
+  <!-- Talks -->
+  {allTalks.length > 0 && (
+  <>
+  <hr />
+  <section class="stacked-title-section">
+    <div class="stacked-title-title">
+      <h2>Talks</h2>
+    </div>
+    <div class="stacked-title-content">
+      <ul class="entry-grid media-grid">
+        {
+          allTalks.map((talk) => {
+            return (
+              <li class="entry-grid-item media-grid-item">
+                <a href={`/${talk.data.slug}`}>
+                  <div class="media-date entry-grid-side-title">{formatDate(talk.data.presentedAt ?? '')}</div>
+                  <div class="entry-grid-content-subgrid">
+                    {talk.data.image?.formats?.small && (
+                      <div class="media-thumbnail">
+                        <img src={talk.data.image.formats.small.url} alt={talk.data.title ?? ''} />
+                      </div>
+                    )}
+                    <div class="media-info">
+                      <h3 class="item-title">
+                        {talk.data.tag && <span class="item-tag">{talk.data.tag}</span>}
+                        {talk.data.title}
+                        {talk.data.note && <span class="item-note">{talk.data.note}</span>}
+                      </h3>
+                      <p class="item-description">{talk.data.description}</p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <div class="entry-grid-footer">
+        <a href="/talks" class="inline-block-link">All Talks…</a>
+      </div>
+    </div>
+  </section>
+  </>
+  )}
+
+  <hr />
+
   <!-- Experience -->
   <section class="stacked-title-section">
     <div class="stacked-title-title">
@@ -259,6 +264,7 @@ const allVideos = ((await getCollection('videos')) as VideoEntry[])
   </section>
 
   <hr />
+
   <section class="column-blocks column-blocks-links">
     <a href="/resume" class="column-block block-link">
       <h4>Resume</h4>

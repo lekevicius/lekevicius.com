@@ -23,7 +23,7 @@ const description = 'Articles, essays, and thoughts.';
             const year = new Date(article.data.createdAt).getFullYear();
             return (
               <li class="entry-grid-item articles-grid-item">
-                <a href={`/${year}/${article.data.slug}`} title={article.data.title ?? undefined}>
+                <a href={`/${year}/${article.data.slug}`}>
                   <div class="article-date entry-grid-side-title">{formatDate(article.data.createdAt)}</div>
                   <div class="entry-grid-content-subgrid">
                     <h3 class="item-title">{article.data.title}</h3>

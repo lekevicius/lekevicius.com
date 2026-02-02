@@ -2,20 +2,25 @@
 import Layout from './Layout.astro';
 import NewsletterSection from '../components/NewsletterSection.astro';
 import PageHeading from '../components/PageHeading.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
   sideLabel?: string;
+  videoUrl?: string;
 }
-const { title, description, image, sideLabel } = Astro.props;
+const { title, description, image, sideLabel, videoUrl } = Astro.props;
 ---
 
 <Layout title={title} description={description} image={image}>
   <PageHeading title={title} description={description} sideLabel={sideLabel} />
   <div class="content-container">
-    <div class="content-blocks"><slot /></div>
+    <div class="content-blocks">
+      {videoUrl && <YouTubeEmbed url={videoUrl} title={title} />}
+      <slot />
+    </div>
   </div>
   <hr />
   <NewsletterSection />

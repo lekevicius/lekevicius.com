@@ -22,7 +22,7 @@ const description = 'Conference presentations and keynotes.';
           allTalks.map((talk) => {
             return (
               <li class="entry-grid-item media-grid-item">
-                <a href={`/${talk.data.slug}`} title={talk.data.title ?? undefined}>
+                <a href={`/${talk.data.slug}`}>
                   <div class="media-date entry-grid-side-title">{formatDate(talk.data.presentedAt ?? '')}</div>
                   <div class="entry-grid-content-subgrid">
                     {talk.data.image?.formats?.small && (
