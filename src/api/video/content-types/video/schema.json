@@ -20,9 +20,6 @@
       "targetField": "title"
     },
     "link": {
-      "type": "string"
-    },
-    "embedURL": {
       "type": "string",
       "required": true
     },

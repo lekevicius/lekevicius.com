@@ -622,15 +622,14 @@ export interface ApiTalkTalk extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.String;
-    embedURL: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::talk.talk'> &
       Schema.Attribute.Private;
     note: Schema.Attribute.String;
     presentedAt: Schema.Attribute.Date;
     publishedAt: Schema.Attribute.DateTime;
+    recordingLink: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'title'>;
     tag: Schema.Attribute.String;
     title: Schema.Attribute.String & Schema.Attribute.Required;
@@ -659,9 +658,8 @@ export interface ApiVideoVideo extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.String;
-    embedURL: Schema.Attribute.String & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.String;
+    link: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::video.video'> &
       Schema.Attribute.Private;

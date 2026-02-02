@@ -19,10 +19,7 @@
       "type": "uid",
       "targetField": "title"
     },
-    "link": {
-      "type": "string"
-    },
-    "embedURL": {
+    "recordingLink": {
       "type": "string"
     },
     "presentedAt": {
