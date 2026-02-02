@@ -5,23 +5,23 @@ ARG NODE_VERSION=22-alpine
 FROM node:${NODE_VERSION} AS build
 # native/build deps; keep minimal (adjust if you don't need some)
 RUN apk add --no-cache build-base git vips-dev autoconf automake zlib-dev libpng-dev
-# install bun for package management
-RUN npm install -g bun
+# install pnpm directly (avoid corepack issues)
+RUN npm install -g pnpm@10
 
 # install exactly where we will build
 WORKDIR /opt/app
 # prime layers for caching
-COPY package.json bun.lock ./
-RUN --mount=type=cache,id=bun-cache,target=/root/.bun/install/cache \
-    bun install --frozen-lockfile
+COPY package.json pnpm-lock.yaml ./
+RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
+    pnpm install --frozen-lockfile
 
 # make local bins (strapi) resolvable during build
 ENV PATH=/opt/app/node_modules/.bin:$PATH
 
 # now copy sources and build
 COPY . .
-RUN bun run build
-RUN bun install --frozen-lockfile --production
+RUN pnpm build
+RUN CI=true pnpm prune --prod
 
 ### RUNTIME ####################################################################
 FROM node:${NODE_VERSION}
@@ -37,5 +37,5 @@ RUN chown -R node:node /opt/app
 USER node
 
 EXPOSE 1337
-# call Strapi directly via node
-CMD ["node", "node_modules/.bin/strapi", "start"]
+# call Strapi directly
+CMD ["node_modules/.bin/strapi", "start"]
