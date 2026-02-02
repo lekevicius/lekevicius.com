@@ -1,0 +1,72 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: strapi-db-dev
+    restart: unless-stopped
+    environment:
+      # admin bootstrap (Postgres official envs)
+      POSTGRES_USER: ${DB_ADMIN_USER:-admin}
+      POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD:-adminpass}
+      POSTGRES_DB: ${DB_ADMIN_DB:-admindb}
+      # passed through for our init script:
+      STRAPI_DB_USER: ${STRAPI_DB_USER:-strapi}
+      STRAPI_DB_PASSWORD: ${STRAPI_DB_PASSWORD:-strapipass}
+      STRAPI_DB_NAME: ${STRAPI_DB_NAME:-strapidb}
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata-dev:/var/lib/postgresql/data
+      - ./infra/db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $$POSTGRES_USER']
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  strapi:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile.dev
+    image: ghcr.io/lekevicius/dubitai-admin:latest
+    container_name: strapi
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      # Strapi DB envs -> point to the dedicated role/db created by init script
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${STRAPI_DB_NAME:-strapidb}
+      DATABASE_USERNAME: ${STRAPI_DB_USER:-strapi}
+      DATABASE_PASSWORD: ${STRAPI_DB_PASSWORD:-strapipass}
+      # Core Strapi secrets (override with real values in .env)
+      APP_KEYS: ${APP_KEYS:-devkey1,devkey2}
+      API_TOKEN_SALT: ${API_TOKEN_SALT:-devsalt}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-devadminjwt}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-devtransfersalt}
+      JWT_SECRET: ${JWT_SECRET:-devjwt}
+      # S3 env
+      CDN_URL: ${CDN_URL:-}
+      CDN_ROOT_PATH: ${CDN_ROOT_PATH:-}
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:-}
+      S3_ACCESS_SECRET: ${S3_ACCESS_SECRET:-}
+      S3_REGION: ${S3_REGION:-}
+      S3_ENDPOINT: ${S3_ENDPOINT:-}
+      S3_BUCKET: ${S3_BUCKET:-}
+      # If file watching on macOS/WSL2 is flaky, uncomment:
+      # CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./public/uploads:/opt/app/public/uploads
+      - ./package.json:/opt/package.json
+      - ./pnpm-lock.yaml:/opt/pnpm-lock.yaml
+      - ./.env:/opt/app/.env
+    ports:
+      - '1337:1337'
+
+volumes:
+  pgdata-dev:
