@@ -197,7 +197,7 @@ a:focus-visible {
 .block-link,
 .link-grid-item > a,
 .entry-grid-item > a {
-  @apply block rounded-xl hover:bg-text/5 transition-colors;
+  @apply block rounded-xl hover:bg-text/5 transition-colors hover:backdrop-blur-sm;
   position: relative;
 }
 
@@ -273,7 +273,7 @@ a:focus-visible {
 }
 
 .featured-block {
-  @apply md:grid grid-cols-subgrid col-span-12 bg-surface-background rounded-2xl overflow-hidden shadow;
+  @apply md:grid grid-cols-subgrid col-span-12 bg-surface-background rounded-2xl overflow-hidden shadow backdrop-blur-sm;
 
   .featured-block-graphic {
     @apply col-span-12 h-36;

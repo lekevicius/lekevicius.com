@@ -17,8 +17,10 @@ const { title, description, image } = Astro.props;
   <Head title={title} description={description} image={image} />
   <body>
     <section id="art" transition:persist>
-      <canvas id="artCanvas" class="fixed top-0 left-0 w-full h-full -z-10 user-select-none pointer-events-none"
-      ></canvas>
+      <canvas
+        id="artCanvas"
+        class="fixed top-0 left-0 -z-10 user-select-none pointer-events-none"
+        style="width: 100vw; height: 100vh;"></canvas>
     </section>
     <div class="site-container">
       <Header />
