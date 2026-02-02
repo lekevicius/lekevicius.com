@@ -273,7 +273,8 @@ a:focus-visible {
 }
 
 .featured-block {
-  @apply md:grid grid-cols-subgrid col-span-12 bg-surface-background rounded-2xl overflow-hidden shadow backdrop-blur-sm;
+  @apply md:grid grid-cols-subgrid col-span-12 bg-surface-background rounded-2xl overflow-hidden backdrop-blur-sm;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.05);
 
   .featured-block-graphic {
     @apply col-span-12 h-36;
@@ -399,7 +400,8 @@ a:focus-visible {
   }
   .link-grid-item-image {
     @apply grow-0 shrink-0 relative size-13 rounded-xl overflow-hidden;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15); */
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07);
   }
   .link-grid-item-image img {
     @apply block w-full h-full object-cover rounded-xl;
@@ -408,7 +410,7 @@ a:focus-visible {
     content: '';
     @apply absolute inset-0 rounded-xl pointer-events-none;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
-    box-shadow: 0 0.5px 1px 1px rgba(255, 255, 255, 0.33) inset;
+    box-shadow: 0 0.5px 1px 0.5px rgba(255, 255, 255, 0.33) inset;
   }
   .link-grid-item-content {
     @apply grow flex flex-col gap-y-1;
@@ -458,7 +460,7 @@ a:focus-visible {
 
     .media-thumbnail {
       @apply grow-0 shrink-0 relative md:w-40 aspect-video rounded-xl overflow-hidden;
-      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07);
 
       img {
         @apply block w-full h-full object-cover rounded-xl;
@@ -468,7 +470,7 @@ a:focus-visible {
       content: '';
       @apply absolute inset-0 rounded-xl pointer-events-none;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
-      box-shadow: 0 0.5px 1px 1px rgba(255, 255, 255, 0.33) inset;
+      box-shadow: 0 0.5px 1px 0.5px rgba(255, 255, 255, 0.33) inset;
     }
   }
   .media-info {

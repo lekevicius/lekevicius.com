@@ -58,7 +58,7 @@ let pageLocation = `${siteData.siteUrl}${Astro.url.pathname}`;
   <script>
     let angle = 0;
     function animate() {
-      angle = (angle + 4) % 360;
+      angle = (angle + 2) % 360;
       document.documentElement.style.setProperty('--border-angle', angle + 'deg');
       requestAnimationFrame(animate);
     }

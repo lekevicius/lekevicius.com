@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import PageHeading from '../components/PageHeading.astro';
 import type { TalkEntry } from '../lib/strapiTypes';
 import { formatDate } from '../lib/utils';
@@ -27,7 +28,13 @@ const description = 'Conference presentations and keynotes.';
                   <div class="entry-grid-content-subgrid">
                     {talk.data.image?.formats?.small && (
                       <div class="media-thumbnail">
-                        <img src={talk.data.image.formats.small.url} alt={talk.data.title ?? ''} />
+                        <Image
+                          width={500}
+                          height={281}
+                          loading="eager"
+                          src={talk.data.image.formats.small.url}
+                          alt={talk.data.title ?? ''}
+                        />
                       </div>
                     )}
                     <div class="media-info">
