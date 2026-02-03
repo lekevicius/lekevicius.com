@@ -30,28 +30,46 @@
 
   --gradient-color-1: oklch(58.8% 0.158 241.966);
   --gradient-color-2: oklch(76.5% 0.177 163.223);
-  --gradient-color-3: oklch(85.2% 0.199 91.936);
+  --gradient-color-3: oklch(52.204% 0.16411 138.878);
   --gradient-color-4: oklch(67.3% 0.182 276.935);
 
-  --background-color-1: #faf9f0;
-  --background-color-2: #fffdf7;
-  --background-color-3: #ece9e1;
-  --background-color-4: #fdf3ed;
+  --background-color-1: #f1f1f4;
+  --background-color-2: #f3f3fa;
+  --background-color-3: #e8ecf1;
+  --background-color-4: #d7e7f0;
+
+  --noise-intensity: 0.9;
+  --noise-blend-mode: 10;
+  --noise-low: 0.2;
+  --noise-high: 1;
+  --noise-enabled: 1;
+  --noise-scale: 2400;
+  --noise-speed: 3;
+  --noise-monochrome: 1;
 
   --dark-background-color: oklch(37.2% 0.044 257.287);
   --dark-text-color: oklch(96.8% 0.007 247.896);
   --dark-surface-background-color: oklch(0% 0 0 / 0.2);
   --dark-surface-text-color: oklch(96.8% 0.007 247.896);
 
-  --dark-gradient-color-1: oklch(76.5% 0.177 163.223);
-  --dark-gradient-color-2: oklch(58.8% 0.158 241.966);
-  --dark-gradient-color-3: oklch(85.2% 0.199 91.936);
+  --dark-gradient-color-1: oklch(55.954% 0.19925 267.874);
+  --dark-gradient-color-2: oklch(69.726% 0.17734 316.371);
+  --dark-gradient-color-3: oklch(81.046% 0.14453 216.708);
   --dark-gradient-color-4: oklch(67.3% 0.182 276.935);
 
-  --dark-background-color-1: #3a3b4a;
-  --dark-background-color-2: #332c34;
-  --dark-background-color-3: #211d33;
-  --dark-background-color-4: #342e41;
+  --dark-background-color-1: #373952;
+  --dark-background-color-2: #352f3d;
+  --dark-background-color-3: #3d394d;
+  --dark-background-color-4: #211e25;
+
+  --dark-noise-intensity: 0.5;
+  --dark-noise-blend-mode: 4;
+  --dark-noise-low: 0;
+  --dark-noise-high: 1;
+  --dark-noise-enabled: var(--noise-enabled);
+  --dark-noise-scale: var(--noise-scale);
+  --dark-noise-speed: var(--noise-speed);
+  --dark-noise-monochrome: var(--noise-monochrome);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -70,6 +88,15 @@
     --background-color-2: var(--dark-background-color-2);
     --background-color-3: var(--dark-background-color-3);
     --background-color-4: var(--dark-background-color-4);
+
+    --noise-enabled: var(--dark-noise-enabled);
+    --noise-intensity: var(--dark-noise-intensity);
+    --noise-scale: var(--dark-noise-scale);
+    --noise-speed: var(--dark-noise-speed);
+    --noise-blend-mode: var(--dark-noise-blend-mode);
+    --noise-monochrome: var(--dark-noise-monochrome);
+    --noise-low: var(--dark-noise-low);
+    --noise-high: var(--dark-noise-high);
   }
 }
 
@@ -88,6 +115,15 @@
   --background-color-2: var(--dark-background-color-2);
   --background-color-3: var(--dark-background-color-3);
   --background-color-4: var(--dark-background-color-4);
+
+  --noise-enabled: var(--dark-noise-enabled);
+  --noise-intensity: var(--dark-noise-intensity);
+  --noise-scale: var(--dark-noise-scale);
+  --noise-speed: var(--dark-noise-speed);
+  --noise-blend-mode: var(--dark-noise-blend-mode);
+  --noise-monochrome: var(--dark-noise-monochrome);
+  --noise-low: var(--dark-noise-low);
+  --noise-high: var(--dark-noise-high);
 }
 
 @theme inline {
@@ -208,7 +244,7 @@ a:focus-visible {
   position: absolute;
   inset: 0;
   border-radius: 0.75rem;
-  padding: 1px;
+  padding: 1.5px;
   background: conic-gradient(
     from var(--border-angle, 0deg),
     transparent 0deg,
@@ -513,10 +549,10 @@ a:focus-visible {
   .column-block {
     @apply col-span-4 p-4 block;
   }
-  .column-block-content {
+  /* .column-block-content {
   }
   .column-block-footer {
-  }
+  } */
 }
 .column-blocks-primary {
   .column-block {

@@ -1,14 +1,24 @@
 import { MiniGl, normalizeColor } from "./MiniGL.js";
 import WavesShader from "./shaders/WavesShader.js";
 import WarpShader from "./shaders/WarpShader.js";
+import {
+  BLEND_MODES,
+  createNoiseOverlayUniforms,
+  wrapFragmentShaderWithNoise,
+  getDefaultNoiseConfig
+} from "./shaders/NoiseOverlay.js";
 
 /**
  * Gradient class - manages the animated background
  */
 class Gradient {
-  constructor(shader = WavesShader) {
+  constructor(shader = WarpShader, noiseConfig = null) {
     // Shader configuration
     this.shader = shader;
+
+    // Noise overlay configuration
+    this.noiseConfig = noiseConfig !== null ? noiseConfig : getDefaultNoiseConfig();
+    this.noiseUniforms = null;
 
     // DOM elements
     this.el = null;
@@ -108,6 +118,7 @@ class Gradient {
         this.computedCanvasStyle = getComputedStyle(sourceEl);
       }
       this.initGradientColors();
+      this.refreshNoiseFromCss();
       if (this.uniforms && this.sectionColors && this.sectionColors.length >= 1) {
         if (this.shader.updateColors) {
           this.shader.updateColors(this.uniforms, this.sectionColors);
@@ -206,9 +217,21 @@ class Gradient {
       darkenTop: this.el.dataset.jsDarkenTop === ""
     });
 
+    // Add noise overlay uniforms (always if noiseConfig exists)
+    if (this.noiseConfig) {
+      this.noiseUniforms = createNoiseOverlayUniforms(this.minigl, this.noiseConfig);
+      Object.assign(this.uniforms, this.noiseUniforms);
+    }
+
+    // Get fragment shader, wrapping with noise if noiseConfig exists
+    let fragmentShader = this.shader.getFragmentShader();
+    if (this.noiseConfig) {
+      fragmentShader = wrapFragmentShaderWithNoise(fragmentShader);
+    }
+
     return new this.minigl.Material(
       this.shader.getVertexShader(),
-      this.shader.getFragmentShader(),
+      fragmentShader,
       this.uniforms
     );
   }
@@ -220,6 +243,7 @@ class Gradient {
   }
 
   init() {
+    this.refreshNoiseFromCss();
     this.initGradientColors();
     this.initMesh();
     this.resize();
@@ -279,19 +303,214 @@ class Gradient {
       .filter(Boolean)
       .map(normalizeColor);
   }
+
+  getNoiseConfigFromCss() {
+    if (!this.computedCanvasStyle) return null;
+
+    const readVar = (name) =>
+      this.computedCanvasStyle.getPropertyValue(name).trim();
+
+    const parseNumber = (value) => {
+      if (!value) return undefined;
+      const parsed = parseFloat(value);
+      return Number.isFinite(parsed) ? parsed : undefined;
+    };
+
+    const parseBool = (value) => {
+      if (!value) return undefined;
+      const normalized = value.toLowerCase();
+      if (normalized === "1" || normalized === "true") return true;
+      if (normalized === "0" || normalized === "false") return false;
+      return undefined;
+    };
+
+    const parseBlendMode = (value) => {
+      if (!value) return undefined;
+      const trimmed = value.trim();
+      const numeric = parseFloat(trimmed);
+      if (Number.isFinite(numeric)) return numeric;
+      const key = trimmed.toUpperCase().replace(/\s+/g, "_");
+      if (Object.prototype.hasOwnProperty.call(BLEND_MODES, key)) {
+        return BLEND_MODES[key];
+      }
+      return undefined;
+    };
+
+    const enabled = parseBool(readVar("--noise-enabled"));
+    const intensity = parseNumber(readVar("--noise-intensity"));
+    const scale = parseNumber(readVar("--noise-scale"));
+    const speed = parseNumber(readVar("--noise-speed"));
+    const blendMode = parseBlendMode(readVar("--noise-blend-mode"));
+    const monochrome = parseBool(readVar("--noise-monochrome"));
+    const low = parseNumber(readVar("--noise-low"));
+    const high = parseNumber(readVar("--noise-high"));
+
+    const config = {};
+    if (enabled !== undefined) config.enabled = enabled;
+    if (intensity !== undefined) config.intensity = intensity;
+    if (scale !== undefined) config.scale = scale;
+    if (speed !== undefined) config.speed = speed;
+    if (blendMode !== undefined) config.blendMode = blendMode;
+    if (monochrome !== undefined) config.monochrome = monochrome;
+    if (low !== undefined) config.low = Math.max(0, Math.min(1, low));
+    if (high !== undefined) config.high = Math.max(0, Math.min(1, high));
+
+    return Object.keys(config).length ? config : null;
+  }
+
+  refreshNoiseFromCss() {
+    const cssConfig = this.getNoiseConfigFromCss();
+    if (!cssConfig) return;
+    this.noiseConfig = { ...this.noiseConfig, ...cssConfig };
+    if (this.uniforms) {
+      this.updateNoiseConfig(this.noiseConfig);
+    }
+  }
+
+  // Noise overlay control methods
+
+  /**
+   * Set noise overlay enabled state
+   * @param {boolean} enabled
+   */
+  setNoiseEnabled(enabled) {
+    if (this.uniforms && this.uniforms.u_noise_enabled) {
+      this.uniforms.u_noise_enabled.value = enabled ? 1.0 : 0.0;
+      if (this.minigl && !this.conf.playing) {
+        this.minigl.render();
+      }
+    }
+  }
+
+  /**
+   * Set noise overlay intensity (0-1, recommended: 0.02-0.15)
+   * @param {number} intensity
+   */
+  setNoiseIntensity(intensity) {
+    if (this.uniforms && this.uniforms.u_noise_intensity) {
+      this.uniforms.u_noise_intensity.value = Math.max(0, Math.min(1, intensity));
+      if (this.minigl && !this.conf.playing) {
+        this.minigl.render();
+      }
+    }
+  }
+
+  /**
+   * Set noise overlay scale (higher = finer grain)
+   * @param {number} scale
+   */
+  setNoiseScale(scale) {
+    if (this.uniforms && this.uniforms.u_noise_scale) {
+      this.uniforms.u_noise_scale.value = scale;
+      if (this.minigl && !this.conf.playing) {
+        this.minigl.render();
+      }
+    }
+  }
+
+  /**
+   * Set noise animation speed (0 = static, 0.0001 = very slow)
+   * @param {number} speed
+   */
+  setNoiseSpeed(speed) {
+    if (this.uniforms && this.uniforms.u_noise_speed) {
+      this.uniforms.u_noise_speed.value = speed;
+    }
+  }
+
+  /**
+   * Set noise blend mode
+   * @param {number} blendMode - Use BLEND_MODES constant
+   */
+  setNoiseBlendMode(blendMode) {
+    if (this.uniforms && this.uniforms.u_noise_blend_mode) {
+      this.uniforms.u_noise_blend_mode.value = blendMode;
+      if (this.minigl && !this.conf.playing) {
+        this.minigl.render();
+      }
+    }
+  }
+
+  /**
+   * Set whether noise is monochrome or colored
+   * @param {boolean} monochrome
+   */
+  setNoiseMonochrome(monochrome) {
+    if (this.uniforms && this.uniforms.u_noise_monochrome) {
+      this.uniforms.u_noise_monochrome.value = monochrome ? 1.0 : 0.0;
+      if (this.minigl && !this.conf.playing) {
+        this.minigl.render();
+      }
+    }
+  }
+
+  /**
+   * Set noise black point (0-1)
+   * @param {number} low
+   */
+  setNoiseLow(low) {
+    if (this.uniforms && this.uniforms.u_noise_low) {
+      this.uniforms.u_noise_low.value = Math.max(0, Math.min(1, low));
+      if (this.minigl && !this.conf.playing) {
+        this.minigl.render();
+      }
+    }
+  }
+
+  /**
+   * Set noise white point (0-1)
+   * @param {number} high
+   */
+  setNoiseHigh(high) {
+    if (this.uniforms && this.uniforms.u_noise_high) {
+      this.uniforms.u_noise_high.value = Math.max(0, Math.min(1, high));
+      if (this.minigl && !this.conf.playing) {
+        this.minigl.render();
+      }
+    }
+  }
+
+  /**
+   * Update multiple noise settings at once
+   * @param {Object} config - Noise configuration object
+   */
+  updateNoiseConfig(config) {
+    if (config.enabled !== undefined) this.setNoiseEnabled(config.enabled);
+    if (config.intensity !== undefined) this.setNoiseIntensity(config.intensity);
+    if (config.scale !== undefined) this.setNoiseScale(config.scale);
+    if (config.speed !== undefined) this.setNoiseSpeed(config.speed);
+    if (config.blendMode !== undefined) this.setNoiseBlendMode(config.blendMode);
+    if (config.monochrome !== undefined) this.setNoiseMonochrome(config.monochrome);
+    if (config.low !== undefined) this.setNoiseLow(config.low);
+    if (config.high !== undefined) this.setNoiseHigh(config.high);
+  }
 }
 
 // Export for external use
-export { Gradient, normalizeColor };
+export { Gradient, normalizeColor, BLEND_MODES, getDefaultNoiseConfig };
 // export { WavesShader } from "./shaders/WavesShader.js";
 export { WarpShader } from "./shaders/WarpShader.js";
 
 // Auto-initialize when DOM is ready
 (function () {
-  var gradient = new Gradient();
+  // Default noise config: low contrast, slow animation, soft light blend
+  var noiseConfig = {
+    enabled: true,
+    intensity: 1,
+    scale: 2000,
+    speed: 3,
+    blendMode: BLEND_MODES.OVERLAY,
+    monochrome: true,
+    low: 0.0,
+    high: 1.0
+  };
+
+  var gradient = new Gradient(WarpShader, noiseConfig);
   if (typeof window !== "undefined") {
     window.addEventListener("DOMContentLoaded", function () {
       gradient.initGradient("#artCanvas");
     });
+    // Expose gradient instance for debugging/customization
+    window.gradientInstance = gradient;
   }
 })();
