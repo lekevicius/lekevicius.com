@@ -1,5 +1,5 @@
 import { MiniGl, normalizeColor } from "./MiniGL.js";
-import WavesShader from "./shaders/WavesShader.js";
+// import WavesShader from "./shaders/WavesShader.js";
 import WarpShader from "./shaders/WarpShader.js";
 import {
   BLEND_MODES,
@@ -139,8 +139,6 @@ class Gradient {
           window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
         if (this._mqDark && this._mqDark.addEventListener) {
           this._mqDark.addEventListener("change", this.handleThemeChange);
-        } else if (this._mqDark && this._mqDark.addListener) {
-          this._mqDark.addListener(this.handleThemeChange);
         }
       } catch (err) { }
 
@@ -194,8 +192,6 @@ class Gradient {
     try {
       if (this._mqDark && this._mqDark.removeEventListener) {
         this._mqDark.removeEventListener("change", this.handleThemeChange);
-      } else if (this._mqDark && this._mqDark.removeListener) {
-        this._mqDark.removeListener(this.handleThemeChange);
       }
     } catch (err) { }
 
@@ -292,13 +288,13 @@ class Gradient {
         // Handle shorthand hex values
         if (hex.length === 4) {
           const hexTemp = hex
-            .substr(1)
+            .slice(1)
             .split("")
             .map((c) => c + c)
             .join("");
           hex = `#${hexTemp}`;
         }
-        return hex && `0x${hex.substr(1)}`;
+        return hex && `0x${hex.slice(1)}`;
       })
       .filter(Boolean)
       .map(normalizeColor);

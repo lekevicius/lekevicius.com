@@ -28,15 +28,15 @@
   --surface-background-color: oklch(100% 0 0 / 0.4);
   --surface-text-color: oklch(26.8% 0.007 34.298);
 
-  --gradient-color-1: oklch(58.8% 0.158 241.966);
-  --gradient-color-2: oklch(76.5% 0.177 163.223);
-  --gradient-color-3: oklch(52.204% 0.16411 138.878);
-  --gradient-color-4: oklch(67.3% 0.182 276.935);
+  --gradient-color-1: oklch(53.884% 0.17648 254.85);
+  --gradient-color-2: oklch(71.53% 0.11818 228.092);
+  --gradient-color-3: oklch(27.701% 0.17977 264.222);
+  --gradient-color-4: oklch(64.601% 0.21855 332.699);
 
-  --background-color-1: #f1f1f4;
-  --background-color-2: #f3f3fa;
-  --background-color-3: #e8ecf1;
-  --background-color-4: #d7e7f0;
+  --background-color-1: #faf9f8;
+  --background-color-2: #fcfbf9;
+  --background-color-3: #f6f5f0;
+  --background-color-4: #e8ecf0;
 
   --noise-intensity: 0.9;
   --noise-blend-mode: 10;
@@ -52,15 +52,15 @@
   --dark-surface-background-color: oklch(0% 0 0 / 0.2);
   --dark-surface-text-color: oklch(96.8% 0.007 247.896);
 
-  --dark-gradient-color-1: oklch(55.954% 0.19925 267.874);
-  --dark-gradient-color-2: oklch(69.726% 0.17734 316.371);
+  --dark-gradient-color-1: oklch(71.809% 0.11968 271.432);
+  --dark-gradient-color-2: oklch(73.127% 0.11924 316.611);
   --dark-gradient-color-3: oklch(81.046% 0.14453 216.708);
   --dark-gradient-color-4: oklch(67.3% 0.182 276.935);
 
-  --dark-background-color-1: #373952;
-  --dark-background-color-2: #352f3d;
-  --dark-background-color-3: #3d394d;
-  --dark-background-color-4: #211e25;
+  --dark-background-color-1: #565662;
+  --dark-background-color-2: #3f3748;
+  --dark-background-color-3: #393351;
+  --dark-background-color-4: #23203c;
 
   --dark-noise-intensity: 0.5;
   --dark-noise-blend-mode: 4;
@@ -248,10 +248,11 @@ a:focus-visible {
   background: conic-gradient(
     from var(--border-angle, 0deg),
     transparent 0deg,
-    var(--gradient-color-1) 40deg,
-    var(--gradient-color-2) 80deg,
-    var(--gradient-color-3) 120deg,
-    transparent 180deg,
+    var(--gradient-color-1) 30deg,
+    var(--gradient-color-2) 60deg,
+    var(--gradient-color-3) 90deg,
+    var(--gradient-color-4) 120deg,
+    transparent 150deg,
     transparent 360deg
   );
   -webkit-mask: 

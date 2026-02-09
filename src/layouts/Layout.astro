@@ -32,9 +32,9 @@ const { title, description, image } = Astro.props;
 </html>
 
 <script src="../components/Background.js"></script>
-<script type="module">
+<script>
   async function initTooltips() {
-    const { wireTooltips } = await import('/src/lib/tooltip.ts');
+    const { wireTooltips } = await import('../lib/tooltip.ts');
     wireTooltips(document);
   }
   document.addEventListener('astro:page-load', initTooltips);

@@ -131,11 +131,20 @@ const encodedEmail = Buffer.from(email).toString('base64');
   </div>
 </section>
 
-<script lang="js">
+<script>
+  // Extend the Window interface to include __emailCopyHandlersAdded__
+  declare global {
+    interface Window {
+      __emailCopyHandlersAdded__?: boolean;
+    }
+  }
+
   const TOAST_COPIED = 'Email copied!';
 
-  const handleClick = (event) => {
-    const anchor = event.target?.closest('a[data-email-b64]');
+  const handleClick = (event: MouseEvent) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const anchor = target.closest('a[data-email-b64]');
     if (!anchor) return;
     event.preventDefault();
 
@@ -147,7 +156,7 @@ const encodedEmail = Buffer.from(email).toString('base64');
     } catch (e) {}
     if (!decoded) return;
 
-    const showToast = (message) => {
+    const showToast = (message: string) => {
       const existingToast = document.querySelector('.toast');
       if (existingToast) {
         existingToast.remove();
@@ -173,26 +182,16 @@ const encodedEmail = Buffer.from(email).toString('base64');
       }, 2000);
     };
 
-    const copyText = async (text) => {
+    const copyText = async (text: string) => {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(text);
-        return true;
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (err) {
+          return false;
+        }
       }
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.setAttribute('readonly', '');
-      textarea.style.position = 'absolute';
-      textarea.style.left = '-9999px';
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        const ok = document.execCommand('copy');
-        document.body.removeChild(textarea);
-        return ok;
-      } catch (err) {
-        document.body.removeChild(textarea);
-        return false;
-      }
+      return false;
     };
 
     copyText(decoded).then((ok) => {

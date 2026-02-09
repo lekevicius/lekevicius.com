@@ -1,2 +1,18 @@
-<script defer data-domain="lekevicius.com" src="https://clicks.jonas.zip/js/script.outbound-links.tagged-events.js"></script>
-<script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+---
+import siteData from '../content/metadata.json';
+
+const analytics = siteData.analytics;
+---
+
+{
+  analytics?.scriptSrc && analytics?.dataDomain && (
+    <script is:inline defer data-domain={analytics.dataDomain} src={analytics.scriptSrc} />
+  )
+}
+<script is:inline>
+  window.plausible =
+    window.plausible ||
+    function () {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+</script>

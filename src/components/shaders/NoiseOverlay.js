@@ -213,7 +213,7 @@ export function wrapFragmentShaderWithNoise(fragmentShader) {
   // This regex finds gl_FragColor = vec4(color, 1.0); or similar patterns
   const modifiedShader = fragmentShader.replace(
     /gl_FragColor\s*=\s*vec4\s*\(\s*(\w+)\s*,\s*1\.0\s*\)\s*;/g,
-    (match, colorVar) => {
+    (_match, colorVar) => {
       return `vec3 finalColorWithNoise = applyNoiseOverlay(${colorVar}, gl_FragCoord.xy / resolution.xy, u_time * 0.001);
   gl_FragColor = vec4(finalColorWithNoise, 1.0);`;
     }

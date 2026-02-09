@@ -1,4 +1,3 @@
-// src/lib/tooltip.ts
 import {
   computePosition, autoUpdate,
   offset, flip, shift,
@@ -49,7 +48,7 @@ function setOpen(t: TooltipPair, open: boolean) {
     t.float.classList.add('tt-float-visible');
 
     const update = async () => {
-      const { x, y, middlewareData } = await computePosition(t.ref, t.float, {
+      const { x, y } = await computePosition(t.ref, t.float, {
         placement: 'top',
         middleware: [
           offset(8),

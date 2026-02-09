@@ -2,20 +2,19 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets'
 import Layout from '../layouts/Layout.astro';
-import Now from '../components/Now.astro';
+// import Now from '../components/Now.astro';
 import type { ArticleEntry, ProjectEntry, TalkEntry, VideoEntry } from '../lib/strapiTypes';
 
 // import RSSIcon from '../assets/services/rss.svg'
-import PixelPhoto from '../assets/images/pixel-photo.png';
-import FloatingPortrait from '../assets/images/floating-portrait.png';
 
 // import siteData from '../../metadata.json'
+// import featuredItems from '../content/featured.ts';
 
 import { markdownToHtml } from '../lib/markdown';
-import featuredItems from '../content/featured.ts';
 import featuredExperience from '../content/featuredExperience.ts';
 import NewsletterSection from '../components/NewsletterSection.astro';
 import FocusSection from '../components/FocusSection.astro';
+import AboutSection from '../components/AboutSection.astro';
 import { formatDate } from '../lib/utils';
 
 const allArticles = ((await getCollection('articles')) as ArticleEntry[])
@@ -239,25 +238,7 @@ const allVideos = ((await getCollection('videos')) as VideoEntry[])
   <hr />
 
   <!-- About -->
-  <section class="side-title-section">
-    <div class="side-title-title">
-      <h2>About</h2>
-    </div>
-    <div class="side-title-content">
-      <!-- flex flex-col md:grid grid-cols-subgrid col-span-12 -->
-        <div class="col-span-2 px-4 py-3">
-          <div class="flex justify-center">
-          <!-- <img loading="lazy" src={PixelPhoto.src} alt="Me in 64x64 pixels" class="size-48 grayscale brightness-110 mix-blend-luminosity" style="image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges" /> -->
-           <img loading="lazy" src={FloatingPortrait.src} alt="Portrait of me" class="mix-blend-luminosity" />
-          </div>
-        </div>
-        <div class="col-span-8 px-4 py-3">
-          <p>
-            I am a maker, living in Vilnius, Lithuania. I have been designing and developing digital things for nearly 20 years, having started by building websites in middle school. I studied arts and design, and hold a BA degree in Graphic Design from Vilnius Academy of Arts.
-          </p>
-        </div>
-    </div>
-  </section>
+  <AboutSection />
 
   <hr />
 

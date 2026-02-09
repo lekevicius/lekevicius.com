@@ -3,5 +3,31 @@
   "subtitle": "taming magic",
   "description": "We live in the age of magic. For now, we call it AI. I write and speak about it, and build tools with it.",
   "siteUrl": "https://lekevicius.com",
-  "author": "Jonas Lekevicius"
+  "author": "Jonas Lekevicius",
+  "authorUrl": "https://lekevicius.com",
+  "authorAvatar": "https://lekevicius.com/avatar.png",
+  "twitterHandle": "@lekevicius",
+  "sameAs": [
+    "https://x.com/lekevicius",
+    "https://github.com/lekevicius",
+    "https://www.linkedin.com/in/lekevicius/"
+  ],
+  "locale": "en_US",
+  "language": "en-US",
+  "themeColor": "#333333",
+  "tileColor": "#333333",
+  "appleTitle": "Lekevicius",
+  "feedTitle": "Articles",
+  "generator": "Astro (github.com/lekevicius/lekevicius.com)",
+  "analytics": {
+    "provider": "plausible",
+    "dataDomain": "lekevicius.com",
+    "scriptSrc": "https://clicks.jonas.zip/js/script.outbound-links.tagged-events.js",
+    "preconnect": [
+      "https://clicks.jonas.zip"
+    ],
+    "dnsPrefetch": [
+      "https://clicks.jonas.zip"
+    ]
+  }
 }
