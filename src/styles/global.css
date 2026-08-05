@@ -94,10 +94,10 @@
   --dark-gradient-color-3: oklch(81.046% 0.14453 216.708);
   --dark-gradient-color-4: oklch(67.3% 0.182 276.935);
 
-  --dark-background-color-1: #565662;
-  --dark-background-color-2: #3f3748;
-  --dark-background-color-3: #393351;
-  --dark-background-color-4: #23203c;
+  --dark-background-color-1: #161632;
+  --dark-background-color-2: #2b2432;
+  --dark-background-color-3: #23202e;
+  --dark-background-color-4: #141130;
 
   --dark-noise-intensity: 0.5;
   --dark-noise-blend-mode: 4;
