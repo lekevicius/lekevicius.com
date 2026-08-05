@@ -2,23 +2,60 @@
 @plugin "@tailwindcss/typography";
 
 @font-face {
-  font-family: InterVariable;
+  font-family: InterJL;
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../assets/fonts/InterVariable.woff2') format('woff2');
+  src: url('../assets/fonts/Inter.woff2') format('woff2');
 }
 @font-face {
-  font-family: InterVariable;
+  font-family: InterJL;
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../assets/fonts/InterVariable-Italic.woff2') format('woff2');
+  src: url('../assets/fonts/Inter-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: AmarnaJL;
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url('../assets/fonts/Amarna.ttf') format('opentype');
+}
+@font-face {
+  font-family: AmarnaJL;
+  font-style: italic;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url('../assets/fonts/Amarna-Italic.ttf') format('opentype');
+}
+@font-face {
+  font-family: BitcountPropSingleJL;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../assets/fonts/BitcountPropSingle.ttf') format('opentype');
+}
+@font-face {
+  font-family: IBMPlexMonoJL;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/IBMPlexMono-Regular.ttf') format('opentype');
+}
+@font-face {
+  font-family: IBMPlexMonoJL;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/IBMPlexMono-Italic.ttf') format('opentype');
 }
 
-@theme{
-  --font-main: 'InterVariable', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  --font-mono: 'IBMPlex Mono', 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Menlo, Courier, monospace;
+@theme {
+  --font-main: 'AmarnaJL', sans-serif;
+  --font-heading: 'InterJL', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-label: 'BitcountPropSingleJL', system-ui, monospace;
+  --font-mono: 'IBMPlexMonoJL', monospace;
 }
 
 :root,
@@ -201,6 +238,7 @@ p a:hover {
   }
   .site-header-title {
     @apply text-lg leading-6 md:leading-8 md:text-2xl col-span-10 md:px-4;
+    font-family: var(--font-heading);
 
     .site-name {
       @apply font-bold;
@@ -286,6 +324,7 @@ a:focus-visible {
 .arrow-link::before {
   content: '→';
   @apply inline-block absolute right-2.75 opacity-100 transition-all duration-300;
+  font-family: var(--font-heading);
 }
 .arrow-link::before {
   @apply text-text/75 scale-x-100;
@@ -306,7 +345,8 @@ a:focus-visible {
 .column-blocks-primary h3,
 .column-blocks-links h4,
 .contact-section h4 {
-  @apply text-sm leading-6 uppercase font-medium opacity-60 tracking-widest;
+  @apply text-sm leading-6 uppercase opacity-60 tracking-widest;
+  font-family: var(--font-label);
 }
 
 .featured-block {
@@ -379,6 +419,10 @@ a:focus-visible {
 }
 .content-main {
   @apply col-span-10 px-4 py-3;
+
+  h1 {
+    font-family: var(--font-heading);
+  }
 }
 .content-blocks {
   @apply col-span-12 md:grid grid-cols-subgrid;
@@ -723,4 +767,13 @@ a:focus-visible {
   --tw-prose-pre-bg: var(--text-color);
   --tw-prose-th-borders: oklch(from var(--text-color) l c h / 0.2);
   --tw-prose-td-borders: oklch(from var(--text-color) l c h / 0.1);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-family: var(--font-heading);
 }
