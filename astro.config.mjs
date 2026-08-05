@@ -28,5 +28,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  image: {
+    domains: ['lekevicius.nbg1.your-objectstorage.com'],
+  },
   integrations: [ogS3Integration].filter(Boolean),
 });
