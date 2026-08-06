@@ -1,33 +1,54 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
+import Portrait from "../assets/images/profile.webp";
 // import PixelPhoto from '../assets/images/pixel-photo.png';
-import FloatingPortrait from '../assets/images/floating-portrait.png';
+// import FloatingPortrait from '../assets/images/floating-portrait.png';
 ---
 
 <section class="side-title-section">
   <div class="side-title-title">
     <h2>About</h2>
   </div>
-  <div class="side-title-content">
+  <div class="side-title-content px-4 py-3">
     <!-- flex flex-col md:grid grid-cols-subgrid col-span-12 -->
-    <div class="col-span-2 px-4 pt-3 pb-0 md:pb-3">
-      <div class="flex md:justify-center">
-        <!-- <img loading="lazy" src={PixelPhoto.src} alt="Me in 64x64 pixels" class="size-48 grayscale brightness-110 mix-blend-luminosity" style="image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges" /> -->
-        <Image
+
+    <div class="col-span-full flex flex-col md:flex-row gap-4 md:gap-6">
+      <Image
+        inferSize
+        loading="lazy"
+        src={Portrait}
+        alt="Portrait of me"
+        class="profile-image"
+      />
+      <!-- style="image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges" -->
+      <!-- <Image
           inferSize
           loading="lazy"
           src={FloatingPortrait}
           alt="Portrait of me"
           class="mix-blend-luminosity dark:mix-blend-hard-light max-w-32"
-        />
+        /> -->
+      <div>
+        <div class="prose">
+          <p>
+            I am a maker, living in Vilnius, Lithuania. I have been designing
+            and developing digital things for over 20 years: having started by
+            building websites in middle school, and then moved through Flash
+            games, print magazines, dozens of apps, and recently, AI. I studied
+            arts and design, and hold a BA degree in Graphic Design from Vilnius
+            Academy of Arts.
+          </p>
+          <p>
+            Since 2022, I've stopped contracting or working full-time and
+            started working on my own startups: first, Orb Land, and currently,
+            Silent.
+          </p>
+        </div>
+        <div class="flex gap-x-6 mt-5">
+          <a href="/profile" class="inline-block-link">Read more…</a>
+          <a href="/resume" class="arrow-link">Resume</a>
+        </div>
       </div>
-    </div>
-    <div class="col-span-8 px-4 py-3">
-      <p>
-        I am a maker, living in Vilnius, Lithuania. I have been designing and developing digital things for nearly 20
-        years, having started by building websites in middle school. I studied arts and design, and hold a BA degree in
-        Graphic Design from Vilnius Academy of Arts.
-      </p>
     </div>
   </div>
 </section>
