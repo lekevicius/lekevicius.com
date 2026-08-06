@@ -1,6 +1,6 @@
 /**
  * GLSL Simplex Noise Functions
- * 
+ *
  * Description : Array and textureless GLSL 2D/3D/4D simplex noise functions.
  * Author : Ian McEwan, Ashima Arts.
  * Maintainer : stegu

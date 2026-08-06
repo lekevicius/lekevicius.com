@@ -1,7 +1,10 @@
 import {
-  computePosition, autoUpdate,
-  offset, flip, shift,
-} from '@floating-ui/dom';
+  computePosition,
+  autoUpdate,
+  offset,
+  flip,
+  shift,
+} from "@floating-ui/dom";
 
 type TooltipPair = {
   ref: HTMLElement;
@@ -23,12 +26,12 @@ function setOpen(t: TooltipPair, open: boolean) {
   }
 
   if (!open) {
-    t.float.classList.remove('tt-float-visible');
+    t.float.classList.remove("tt-float-visible");
     lastCloseTime = Date.now();
-    
+
     // Delay hiding until transition completes
     setTimeout(() => {
-      if (!t.float.classList.contains('tt-float-visible')) {
+      if (!t.float.classList.contains("tt-float-visible")) {
         t.float.hidden = true;
         t.cleanup?.();
         t.cleanup = null;
@@ -44,17 +47,15 @@ function setOpen(t: TooltipPair, open: boolean) {
   t.showTimeout = setTimeout(() => {
     t.float.hidden = false;
     // Force reflow before adding visible class for transition
-    t.float.offsetHeight;
-    t.float.classList.add('tt-float-visible');
+    void t.float.offsetHeight;
+    t.float.classList.add("tt-float-visible");
 
     const update = async () => {
       const { x, y } = await computePosition(t.ref, t.float, {
-        placement: 'top',
-        middleware: [
-          offset(8),
-          flip(),
-          shift({ padding: 8 }),
-        ].filter(Boolean) as any,
+        placement: "top",
+        middleware: [offset(8), flip(), shift({ padding: 8 })].filter(
+          Boolean,
+        ) as any,
       });
 
       Object.assign(t.float.style, { left: `${x}px`, top: `${y}px` });
@@ -66,10 +67,10 @@ function setOpen(t: TooltipPair, open: boolean) {
 }
 
 export function wireTooltips(root: ParentNode = document) {
-  const refs = root.querySelectorAll<HTMLElement>('.tt-ref');
+  const refs = root.querySelectorAll<HTMLElement>(".tt-ref");
 
   for (const ref of refs) {
-    const float = ref.parentElement?.querySelector<HTMLElement>('.tt-float');
+    const float = ref.parentElement?.querySelector<HTMLElement>(".tt-float");
     if (!float) continue;
 
     const t: TooltipPair = { ref, float, cleanup: null, showTimeout: null };
@@ -77,9 +78,9 @@ export function wireTooltips(root: ParentNode = document) {
     const open = () => setOpen(t, true);
     const close = () => setOpen(t, false);
 
-    ref.addEventListener('mouseenter', open);
-    ref.addEventListener('mouseleave', close);
-    ref.addEventListener('focus', open);
-    ref.addEventListener('blur', close);
+    ref.addEventListener("mouseenter", open);
+    ref.addEventListener("mouseleave", close);
+    ref.addEventListener("focus", open);
+    ref.addEventListener("blur", close);
   }
 }

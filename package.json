@@ -1,12 +1,16 @@
 {
   "name": "lekevicius-v8",
-  "type": "module",
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "bunx --bun astro dev",
     "build": "bunx --bun astro check && bunx --bun astro build",
     "preview": "bunx --bun astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
@@ -31,5 +35,10 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "oxlint": "^1.77.0",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1"
   }
 }

@@ -1,15 +1,15 @@
 ---
-import type { StrapiMediaComponent } from '../../lib/strapiTypes';
-import { Image } from 'astro:assets';
+import type { StrapiMediaComponent } from "../../lib/strapiTypes";
+import { Image } from "astro:assets";
 
 type Props = {
   data: StrapiMediaComponent;
 };
 
 const { data } = Astro.props;
-const display = data.display || 'plain';
+const display = data.display || "plain";
 const caption = data.caption || data.file.caption;
-const alt = data.file.alternativeText || caption || '';
+const alt = data.file.alternativeText || caption || "";
 
 // Extract hostname from link for website display
 const getHostname = (url: string) => {
@@ -22,34 +22,58 @@ const getHostname = (url: string) => {
 ---
 
 {
-  display === 'plain' && (
+  display === "plain" && (
     <figure class="media-block media-block-plain my-4">
-      <Image inferSize loading="eager" src={data.file.url} alt={alt} class="w-full h-auto rounded-md" />
-      {caption && <figcaption class="mt-2 text-sm opacity-60">{caption}</figcaption>}
+      <Image
+        inferSize
+        loading="eager"
+        src={data.file.url}
+        alt={alt}
+        class="w-full h-auto rounded-md"
+      />
+      {caption && (
+        <figcaption class="mt-2 text-sm opacity-60">{caption}</figcaption>
+      )}
     </figure>
   )
 }
 
 {
-  display === 'full' && (
+  display === "full" && (
     <figure class="media-block media-block-full my-4">
-      <Image inferSize loading="eager" src={data.file.url} alt={alt} class="w-full h-auto" />
-      {caption && <figcaption class="mt-2 text-sm opacity-60">{caption}</figcaption>}
+      <Image
+        inferSize
+        loading="eager"
+        src={data.file.url}
+        alt={alt}
+        class="w-full h-auto"
+      />
+      {caption && (
+        <figcaption class="mt-2 text-sm opacity-60">{caption}</figcaption>
+      )}
     </figure>
   )
 }
 
 {
-  display === 'boxed' && (
+  display === "boxed" && (
     <figure class="media-block media-block-boxed my-4 bg-text/8 rounded-2xl overflow-hidden">
-      <Image inferSize loading="eager" src={data.file.url} alt={alt} class="w-full h-auto" />
-      {caption && <figcaption class="text-sm opacity-80 mt-0 p-3">{caption}</figcaption>}
+      <Image
+        inferSize
+        loading="eager"
+        src={data.file.url}
+        alt={alt}
+        class="w-full h-auto"
+      />
+      {caption && (
+        <figcaption class="text-sm opacity-80 mt-0 p-3">{caption}</figcaption>
+      )}
     </figure>
   )
 }
 
 {
-  display === 'website' && (
+  display === "website" && (
     <figure class="media-block media-block-website my-4 bg-text/8 rounded-2xl overflow-hidden shadow-lg">
       <div class="website-titlebar flex items-center gap-3 px-4 py-3">
         <div class="traffic-lights flex gap-2">
@@ -60,8 +84,14 @@ const getHostname = (url: string) => {
         {caption && (
           <div class="website-title text-sm truncate flex-1">
             {data.link ? (
-              <a href={data.link} target="_blank" rel="noopener noreferrer" class="decoration-none">
-                {caption} &middot; <span class="opacity-50">{getHostname(data.link)}</span>
+              <a
+                href={data.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="decoration-none"
+              >
+                {caption} &middot;{" "}
+                <span class="opacity-50">{getHostname(data.link)}</span>
               </a>
             ) : (
               caption
@@ -69,7 +99,13 @@ const getHostname = (url: string) => {
           </div>
         )}
       </div>
-      <Image inferSize loading="eager" src={data.file.url} alt={alt} class="w-full h-auto" />
+      <Image
+        inferSize
+        loading="eager"
+        src={data.file.url}
+        alt={alt}
+        class="w-full h-auto"
+      />
     </figure>
   )
 }

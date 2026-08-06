@@ -134,34 +134,31 @@ void main() {
  * Create uniforms for the Lava shader
  */
 export function createLavaUniforms(minigl, options = {}) {
-  const {
-    colors = [],
-    scale = 2.0
-  } = options;
+  const { colors = [], scale = 2.0 } = options;
 
   return {
     u_time: new minigl.Uniform({
-      value: 0
+      value: 0,
     }),
     u_scale: new minigl.Uniform({
-      value: scale
+      value: scale,
     }),
     u_color1: new minigl.Uniform({
       value: colors[0] || [0.1, 0.0, 0.1],
-      type: "vec3"
+      type: "vec3",
     }),
     u_color2: new minigl.Uniform({
       value: colors[1] || [0.4, 0.1, 0.1],
-      type: "vec3"
+      type: "vec3",
     }),
     u_color3: new minigl.Uniform({
       value: colors[2] || [0.8, 0.3, 0.1],
-      type: "vec3"
+      type: "vec3",
     }),
     u_color4: new minigl.Uniform({
       value: colors[3] || [1.0, 0.8, 0.3],
-      type: "vec3"
-    })
+      type: "vec3",
+    }),
   };
 }
 
@@ -199,7 +196,7 @@ export const LavaShader = {
   getVertexShader,
   getFragmentShader,
   createUniforms: createLavaUniforms,
-  updateColors: updateLavaColors
+  updateColors: updateLavaColors,
 };
 
 export default LavaShader;

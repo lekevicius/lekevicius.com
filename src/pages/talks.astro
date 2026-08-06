@@ -1,17 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import PageHeading from '../components/PageHeading.astro';
-import type { TalkEntry } from '../lib/strapiTypes';
-import { formatDate } from '../lib/utils';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import PageHeading from "../components/PageHeading.astro";
+import type { TalkEntry } from "../lib/strapiTypes";
+import { formatDate } from "../lib/utils";
 
-const allTalks = ((await getCollection('talks')) as TalkEntry[]).sort(
-  (a, b) => new Date(b.data.presentedAt ?? 0).getTime() - new Date(a.data.presentedAt ?? 0).getTime(),
+const allTalks = ((await getCollection("talks")) as TalkEntry[]).sort(
+  (a, b) =>
+    new Date(b.data.presentedAt ?? 0).getTime() -
+    new Date(a.data.presentedAt ?? 0).getTime(),
 );
 
-const title = 'Talks';
-const description = 'Conference presentations and keynotes.';
+const title = "Talks";
+const description = "Conference presentations and keynotes.";
 ---
 
 <Layout title={title} description={description}>
@@ -24,7 +26,9 @@ const description = 'Conference presentations and keynotes.';
             return (
               <li class="entry-grid-item media-grid-item">
                 <a href={`/${talk.data.slug}`}>
-                  <div class="media-date entry-grid-side-title">{formatDate(talk.data.presentedAt ?? '')}</div>
+                  <div class="media-date entry-grid-side-title">
+                    {formatDate(talk.data.presentedAt ?? "")}
+                  </div>
                   <div class="entry-grid-content-subgrid">
                     {talk.data.image?.formats?.small && (
                       <div class="media-thumbnail">
@@ -33,15 +37,19 @@ const description = 'Conference presentations and keynotes.';
                           height={281}
                           loading="eager"
                           src={talk.data.image.formats.small.url}
-                          alt={talk.data.title ?? ''}
+                          alt={talk.data.title ?? ""}
                         />
                       </div>
                     )}
                     <div class="media-info">
                       <h3 class="item-title">
-                        {talk.data.tag && <span class="item-tag">{talk.data.tag}</span>}
+                        {talk.data.tag && (
+                          <span class="item-tag">{talk.data.tag}</span>
+                        )}
                         {talk.data.title}
-                        {talk.data.note && <span class="item-note">{talk.data.note}</span>}
+                        {talk.data.note && (
+                          <span class="item-note">{talk.data.note}</span>
+                        )}
                       </h3>
                       <p class="item-description">{talk.data.description}</p>
                     </div>

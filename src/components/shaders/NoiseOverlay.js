@@ -22,7 +22,7 @@ export const BLEND_MODES = {
   COLOR_DODGE: 9,
   COLOR_BURN: 10,
   LINEAR_DODGE: 11,
-  LINEAR_BURN: 12
+  LINEAR_BURN: 12,
 };
 
 /**
@@ -163,37 +163,37 @@ export function createNoiseOverlayUniforms(minigl, options = {}) {
     blendMode = BLEND_MODES.SOFT_LIGHT,
     monochrome = true,
     low = 0.0,
-    high = 1.0
+    high = 1.0,
   } = options;
 
   return {
     u_noise_enabled: new minigl.Uniform({
-      value: enabled ? 1.0 : 0.0
+      value: enabled ? 1.0 : 0.0,
     }),
     u_noise_intensity: new minigl.Uniform({
-      value: intensity
+      value: intensity,
     }),
     u_noise_scale: new minigl.Uniform({
-      value: scale
+      value: scale,
     }),
     u_noise_speed: new minigl.Uniform({
-      value: speed
+      value: speed,
     }),
     u_noise_seed: new minigl.Uniform({
-      value: seed
+      value: seed,
     }),
     u_noise_blend_mode: new minigl.Uniform({
-      value: blendMode
+      value: blendMode,
     }),
     u_noise_monochrome: new minigl.Uniform({
-      value: monochrome ? 1.0 : 0.0
+      value: monochrome ? 1.0 : 0.0,
     }),
     u_noise_low: new minigl.Uniform({
-      value: low
+      value: low,
     }),
     u_noise_high: new minigl.Uniform({
-      value: high
-    })
+      value: high,
+    }),
   };
 }
 
@@ -207,7 +207,7 @@ export function wrapFragmentShaderWithNoise(fragmentShader) {
   // We need to capture the color before it's assigned to gl_FragColor
 
   // First, add the noise overlay GLSL code (blend functions + noise functions)
-  const noiseCode = blendGLSL + '\n\n' + noiseOverlayGLSL;
+  const noiseCode = blendGLSL + "\n\n" + noiseOverlayGLSL;
 
   // Modify the fragment shader to apply noise before final output
   // This regex finds gl_FragColor = vec4(color, 1.0); or similar patterns
@@ -216,10 +216,10 @@ export function wrapFragmentShaderWithNoise(fragmentShader) {
     (_match, colorVar) => {
       return `vec3 finalColorWithNoise = applyNoiseOverlay(${colorVar}, gl_FragCoord.xy / resolution.xy, u_time * 0.001);
   gl_FragColor = vec4(finalColorWithNoise, 1.0);`;
-    }
+    },
   );
 
-  return noiseCode + '\n\n' + modifiedShader;
+  return noiseCode + "\n\n" + modifiedShader;
 }
 
 /**
@@ -228,14 +228,14 @@ export function wrapFragmentShaderWithNoise(fragmentShader) {
 export function getDefaultNoiseConfig() {
   return {
     enabled: true,
-    intensity: 0.05,      // Low contrast
-    scale: 100,           // Medium grain size
-    speed: 0.0001,        // Very slow animation
+    intensity: 0.05, // Low contrast
+    scale: 100, // Medium grain size
+    speed: 0.0001, // Very slow animation
     seed: Math.random() * 1000,
-    blendMode: BLEND_MODES.SOFT_LIGHT,  // Preserves color vividness
+    blendMode: BLEND_MODES.SOFT_LIGHT, // Preserves color vividness
     monochrome: true,
     low: 0.0,
-    high: 1.0
+    high: 1.0,
   };
 }
 
@@ -244,5 +244,5 @@ export default {
   noiseOverlayGLSL,
   createNoiseOverlayUniforms,
   wrapFragmentShaderWithNoise,
-  getDefaultNoiseConfig
+  getDefaultNoiseConfig,
 };

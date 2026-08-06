@@ -1,18 +1,20 @@
 ---
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
-import PageHeading from '../components/PageHeading.astro';
-import type { ProjectEntry } from '../lib/strapiTypes';
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import PageHeading from "../components/PageHeading.astro";
+import type { ProjectEntry } from "../lib/strapiTypes";
 
-const allProjects = ((await getCollection('projects')) as ProjectEntry[]).sort(
-  (a, b) => new Date(b.data.releasedAt ?? 0).getTime() - new Date(a.data.releasedAt ?? 0).getTime(),
+const allProjects = ((await getCollection("projects")) as ProjectEntry[]).sort(
+  (a, b) =>
+    new Date(b.data.releasedAt ?? 0).getTime() -
+    new Date(a.data.releasedAt ?? 0).getTime(),
 );
 const activeProjects = allProjects.filter((project) => project.data.active);
 const inactiveProjects = allProjects.filter((project) => !project.data.active);
 
-const title = 'Projects';
-const description = 'Apps, tools, and creative works.';
+const title = "Projects";
+const description = "Apps, tools, and creative works.";
 ---
 
 <Layout title={title} description={description}>
@@ -34,15 +36,19 @@ const description = 'Apps, tools, and creative works.';
                       height={156}
                       loading="eager"
                       src={item.data.image.formats.thumbnail.url}
-                      alt={item.data.title ?? ''}
+                      alt={item.data.title ?? ""}
                     />
                   </div>
                 )}
                 <div class="link-grid-item-content">
                   <h3 class="item-title">
-                    {item.data.tag && <span class="item-tag">{item.data.tag}</span>}
+                    {item.data.tag && (
+                      <span class="item-tag">{item.data.tag}</span>
+                    )}
                     {item.data.title}
-                    {item.data.note && <span class="item-note">{item.data.note}</span>}
+                    {item.data.note && (
+                      <span class="item-note">{item.data.note}</span>
+                    )}
                   </h3>
                   <p class="item-description">{item.data.description}</p>
                 </div>
@@ -71,15 +77,19 @@ const description = 'Apps, tools, and creative works.';
                       height={156}
                       loading="eager"
                       src={item.data.image.formats.thumbnail.url}
-                      alt={item.data.title ?? ''}
+                      alt={item.data.title ?? ""}
                     />
                   </div>
                 )}
                 <div class="link-grid-item-content">
                   <h3 class="item-title">
-                    {item.data.tag && <span class="item-tag">{item.data.tag}</span>}
+                    {item.data.tag && (
+                      <span class="item-tag">{item.data.tag}</span>
+                    )}
                     {item.data.title}
-                    {item.data.note && <span class="item-note">{item.data.note}</span>}
+                    {item.data.note && (
+                      <span class="item-note">{item.data.note}</span>
+                    )}
                   </h3>
                   <p class="item-description">{item.data.description}</p>
                 </div>

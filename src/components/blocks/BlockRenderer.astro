@@ -1,14 +1,14 @@
 ---
-import RichTextBlock from './RichTextBlock.astro';
-import MediaBlock from './MediaBlock.astro';
-import SlideBlock from './SlideBlock.astro';
+import RichTextBlock from "./RichTextBlock.astro";
+import MediaBlock from "./MediaBlock.astro";
+import SlideBlock from "./SlideBlock.astro";
 
 import type {
   StrapiContentComponent,
   StrapiRichTextComponent,
   StrapiMediaComponent,
   StrapiSlideComponent,
-} from '../../lib/strapiTypes';
+} from "../../lib/strapiTypes";
 
 type Props = {
   data: StrapiContentComponent;
@@ -17,6 +17,18 @@ type Props = {
 const { data } = Astro.props;
 ---
 
-{data.__component === 'shared.rich-text' && <RichTextBlock data={data as StrapiRichTextComponent} />}
-{data.__component === 'shared.media' && <MediaBlock data={data as StrapiMediaComponent} />}
-{data.__component === 'shared.slide' && <SlideBlock data={data as StrapiSlideComponent} />}
+{
+  data.__component === "shared.rich-text" && (
+    <RichTextBlock data={data as StrapiRichTextComponent} />
+  )
+}
+{
+  data.__component === "shared.media" && (
+    <MediaBlock data={data as StrapiMediaComponent} />
+  )
+}
+{
+  data.__component === "shared.slide" && (
+    <SlideBlock data={data as StrapiSlideComponent} />
+  )
+}

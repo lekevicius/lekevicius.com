@@ -1,15 +1,18 @@
 ---
-import { readFileSync } from 'fs';
-import resumeData from '../content/resume';
-import { markdownToHtml } from '../lib/markdown';
+import { readFileSync } from "fs";
+import resumeData from "../content/resume";
+import { markdownToHtml } from "../lib/markdown";
 
-const resumeLogos = import.meta.glob('../assets/resume/*.svg');
+const resumeLogos = import.meta.glob("../assets/resume/*.svg");
 const resumeLogoObject: Record<string, string> = {};
 for (const logoKey of Object.keys(resumeLogos)) {
   const logo = await resumeLogos[logoKey]();
   const logoId = logoKey.match(/\/([a-zA-Z0-9-]+)\.?([a-zA-Z0-9-_]*)\.svg/);
   if (logoId && logoId[1]) {
-    resumeLogoObject[logoId[1]] = readFileSync(`./src/assets/resume/${logoId[1]}.svg`, 'utf-8');
+    resumeLogoObject[logoId[1]] = readFileSync(
+      `./src/assets/resume/${logoId[1]}.svg`,
+      "utf-8",
+    );
   } else {
     console.error(logo);
   }
@@ -44,7 +47,9 @@ const { section } = Astro.props;
           <div class="col-span-10 px-4 py-3">
             {item.link ? (
               <a href={item.link}>
-                <h4 class="font-bold underline underline-offset-2">{item.place}</h4>
+                <h4 class="font-bold underline underline-offset-2">
+                  {item.place}
+                </h4>
               </a>
             ) : (
               <h4 class="font-bold">{item.place}</h4>

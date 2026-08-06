@@ -1,33 +1,35 @@
 ---
-import { readFileSync } from 'fs';
-import Layout from '../layouts/Layout.astro';
-import PageHeading from '../components/PageHeading.astro';
-import ResumeSection from '../components/ResumeSection.astro';
-import Tooltip from '../components/Tooltip.astro';
+import { readFileSync } from "fs";
+import Layout from "../layouts/Layout.astro";
+import PageHeading from "../components/PageHeading.astro";
+import ResumeSection from "../components/ResumeSection.astro";
+import Tooltip from "../components/Tooltip.astro";
 
-import clientsData from '../content/clients';
-const clientsLogos = import.meta.glob('../assets/clients/*.svg');
+import clientsData from "../content/clients";
+const clientsLogos = import.meta.glob("../assets/clients/*.svg");
 const clientsLogoObject: Record<string, string> = {};
 for (const logoKey of Object.keys(clientsLogos)) {
   const logo = await clientsLogos[logoKey]();
   const logoId = logoKey.match(/\/([a-zA-Z0-9-]+)\.?([a-zA-Z0-9-_]*)\.svg/);
   if (logoId && logoId[1]) {
-    clientsLogoObject[logoId[1]] = readFileSync(`./src/assets/clients/${logoId[1]}.svg`, 'utf-8');
+    clientsLogoObject[logoId[1]] = readFileSync(
+      `./src/assets/clients/${logoId[1]}.svg`,
+      "utf-8",
+    );
   } else {
     console.error(logo);
   }
 }
 
-const title = 'Resume';
-const description = 'Work experience and education, so far.';
+const title = "Resume";
+const description = "Work experience and education, so far.";
 ---
 
 <Layout title={title} description={description}>
   <PageHeading title={title} description={description}>
     <p class="mt-8">
-      This page is my "formal" resume. If you want to read a more personal take on my journey so far, I have a <a
-        href="/profile">profile page</a
-      >.
+      This page is my "formal" resume. If you want to read a more personal take
+      on my journey so far, I have a <a href="/profile">profile page</a>.
     </p>
   </PageHeading>
 
@@ -39,14 +41,21 @@ const description = 'Work experience and education, so far.';
     </div>
     <div class="side-title-content">
       <p class="span-all">
-        I have been doing client work of all kinds — websites, apps, branding, games, magazines, videos — for over 15
-        years. Here are a couple of clients that I had the pleasure to work with.
+        I have been doing client work of all kinds — websites, apps, branding,
+        games, magazines, videos — for over 15 years. Here are a couple of
+        clients that I had the pleasure to work with.
       </p>
-      <ul class="grid grid-cols-2 md:grid-cols-4 span-all px-4 py-3 gap-4 client-list">
+      <ul
+        class="grid grid-cols-2 md:grid-cols-4 span-all px-4 py-3 gap-4 client-list"
+      >
         {
           clientsData.clients.map((client) => (
             <li class="flex justify-center items-center md:justify-start">
-              <Tooltip id={`client-${client.name}`} title={client.name} text={client.contribution}>
+              <Tooltip
+                id={`client-${client.name}`}
+                title={client.name}
+                text={client.contribution}
+              >
                 <figure
                   class="p-1 rounded-lg col-span-2 flex justify-center"
                   set:html={clientsLogoObject[client.logo]}
@@ -56,7 +65,9 @@ const description = 'Work experience and education, so far.';
           ))
         }
       </ul>
-      <p class="span-all opacity-60 text-xs tracking-wide">I am not available for any freelance or contract work.</p>
+      <p class="span-all opacity-60 text-xs tracking-wide">
+        I am not available for any freelance or contract work.
+      </p>
     </div>
   </section>
 
@@ -68,9 +79,10 @@ const description = 'Work experience and education, so far.';
     </div>
     <div class="side-title-content">
       <p class="span-all">
-        I have started by building websites with HTML tables in 2004, and soon after discovered Flash. After some years
-        of working as a developer, I have focused on UX/UI design and for about 10 years worked as a product designer.
-        In 2022, I have shifted my focus towards blockchain projects.
+        I have started by building websites with HTML tables in 2004, and soon
+        after discovered Flash. After some years of working as a developer, I
+        have focused on UX/UI design and for about 10 years worked as a product
+        designer. In 2022, I have shifted my focus towards blockchain projects.
       </p>
     </div>
   </section>
@@ -85,8 +97,9 @@ const description = 'Work experience and education, so far.';
     </div>
     <div class="side-title-content">
       <p class="span-all">
-        I was always interested in both scientific and artistic aspects of computers. Computer science / programming
-        side seemed a lot easier to learn on my own, so I have focused all my education on arts.
+        I was always interested in both scientific and artistic aspects of
+        computers. Computer science / programming side seemed a lot easier to
+        learn on my own, so I have focused all my education on arts.
       </p>
     </div>
   </section>

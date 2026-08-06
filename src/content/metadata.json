@@ -23,11 +23,7 @@
     "provider": "plausible",
     "dataDomain": "lekevicius.com",
     "scriptSrc": "https://clicks.jonas.zip/js/script.outbound-links.tagged-events.js",
-    "preconnect": [
-      "https://clicks.jonas.zip"
-    ],
-    "dnsPrefetch": [
-      "https://clicks.jonas.zip"
-    ]
+    "preconnect": ["https://clicks.jonas.zip"],
+    "dnsPrefetch": ["https://clicks.jonas.zip"]
   }
 }

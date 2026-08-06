@@ -8,7 +8,7 @@ export function normalizeColor(hexCode) {
   return [
     ((hexCode >> 16) & 255) / 255,
     ((hexCode >> 8) & 255) / 255,
-    (255 & hexCode) / 255
+    (255 & hexCode) / 255,
   ];
 }
 
@@ -20,7 +20,7 @@ export class MiniGl {
 
     _miniGl.canvas = canvas;
     _miniGl.gl = _miniGl.canvas.getContext("webgl", {
-      antialias: true
+      antialias: true,
     });
     _miniGl.meshes = [];
 
@@ -34,18 +34,18 @@ export class MiniGl {
     _miniGl.debug =
       debug && debug_output
         ? function (e) {
-          const t = new Date();
-          if (t - _miniGl.lastDebugMsg > 1e3) console.log("---");
-          console.log(
-            t.toLocaleTimeString() +
-            Array(Math.max(0, 32 - e.length)).join(" ") +
-            e +
-            ": ",
-            ...Array.from(arguments).slice(1)
-          );
-          _miniGl.lastDebugMsg = t;
-        }
-        : () => { };
+            const t = new Date();
+            if (t - _miniGl.lastDebugMsg > 1e3) console.log("---");
+            console.log(
+              t.toLocaleTimeString() +
+                Array(Math.max(0, 32 - e.length)).join(" ") +
+                e +
+                ": ",
+              ...Array.from(arguments).slice(1),
+            );
+            _miniGl.lastDebugMsg = t;
+          }
+        : () => {};
 
     Object.defineProperties(_miniGl, {
       Material: {
@@ -97,11 +97,11 @@ export class MiniGl {
 
             material.vertexShader = getShaderByType(
               context.VERTEX_SHADER,
-              material.vertexSource
+              material.vertexSource,
             );
             material.fragmentShader = getShaderByType(
               context.FRAGMENT_SHADER,
-              material.Source
+              material.Source,
             );
 
             material.program = context.createProgram();
@@ -109,7 +109,12 @@ export class MiniGl {
             context.attachShader(material.program, material.fragmentShader);
             context.linkProgram(material.program);
 
-            if (!context.getProgramParameter(material.program, context.LINK_STATUS)) {
+            if (
+              !context.getProgramParameter(
+                material.program,
+                context.LINK_STATUS,
+              )
+            ) {
               console.error(context.getProgramInfoLog(material.program));
             }
 
@@ -126,24 +131,24 @@ export class MiniGl {
               });
             } else if ("array" == uniforms.type) {
               uniforms.value.forEach((uniform, i) =>
-                material.attachUniforms(`${name}[${i}]`, uniform)
+                material.attachUniforms(`${name}[${i}]`, uniform),
               );
             } else if ("struct" == uniforms.type) {
               Object.entries(uniforms.value).forEach(([uniform, i]) =>
-                material.attachUniforms(`${name}.${uniform}`, i)
+                material.attachUniforms(`${name}.${uniform}`, i),
               );
             } else {
               _miniGl.debug("Material.attachUniforms", {
                 name: name,
-                uniform: uniforms
+                uniform: uniforms,
               });
               material.uniformInstances.push({
                 uniform: uniforms,
-                location: context.getUniformLocation(material.program, name)
+                location: context.getUniformLocation(material.program, name),
               });
             }
           }
-        }
+        },
       },
 
       Uniform: {
@@ -159,7 +164,7 @@ export class MiniGl {
                 vec2: "2fv",
                 vec3: "3fv",
                 vec4: "4fv",
-                mat4: "Matrix4fv"
+                mat4: "Matrix4fv",
               }[this.type] || "1f";
             this.update();
           }
@@ -171,8 +176,10 @@ export class MiniGl {
             if (void 0 !== this.value) {
               context[`uniform${this.typeFn}`](
                 value,
-                0 === this.typeFn.indexOf("Matrix") ? this.transpose : this.value,
-                0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                0 === this.typeFn.indexOf("Matrix")
+                  ? this.transpose
+                  : this.value,
+                0 === this.typeFn.indexOf("Matrix") ? this.value : null,
               );
             }
           }
@@ -182,19 +189,25 @@ export class MiniGl {
             if (uniform.excludeFrom !== type) {
               if ("array" === uniform.type) {
                 return (
-                  uniform.value[0].getDeclaration(name, type, uniform.value.length) +
-                  `\nconst int ${name}_length = ${uniform.value.length};`
+                  uniform.value[0].getDeclaration(
+                    name,
+                    type,
+                    uniform.value.length,
+                  ) + `\nconst int ${name}_length = ${uniform.value.length};`
                 );
               }
               if ("struct" === uniform.type) {
                 let name_no_prefix = name.replace("u_", "");
                 name_no_prefix =
-                  name_no_prefix.charAt(0).toUpperCase() + name_no_prefix.slice(1);
+                  name_no_prefix.charAt(0).toUpperCase() +
+                  name_no_prefix.slice(1);
                 return (
                   `uniform struct ${name_no_prefix} \n{\n` +
                   Object.entries(uniform.value)
                     .map(([name, uniform]) =>
-                      uniform.getDeclaration(name, type).replace(/^uniform/, "")
+                      uniform
+                        .getDeclaration(name, type)
+                        .replace(/^uniform/, ""),
                     )
                     .join("") +
                   `\n} ${name}${length > 0 ? `[${length}]` : ""};`
@@ -203,7 +216,7 @@ export class MiniGl {
               return `uniform ${uniform.type} ${name}${length > 0 ? `[${length}]` : ""};`;
             }
           }
-        }
+        },
       },
 
       PlaneGeometry: {
@@ -214,21 +227,21 @@ export class MiniGl {
             this.attributes = {
               position: new _miniGl.Attribute({
                 target: context.ARRAY_BUFFER,
-                size: 3
+                size: 3,
               }),
               uv: new _miniGl.Attribute({
                 target: context.ARRAY_BUFFER,
-                size: 2
+                size: 2,
               }),
               uvNorm: new _miniGl.Attribute({
                 target: context.ARRAY_BUFFER,
-                size: 2
+                size: 2,
               }),
               index: new _miniGl.Attribute({
                 target: context.ELEMENT_ARRAY_BUFFER,
                 size: 3,
-                type: context.UNSIGNED_SHORT
-              })
+                type: context.UNSIGNED_SHORT,
+              }),
             };
             this.setTopology(n, i);
             this.setSize(width, height, orientation);
@@ -250,7 +263,8 @@ export class MiniGl {
                 n.attributes.uv.values[2 * i] = t / n.xSegCount;
                 n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount;
                 n.attributes.uvNorm.values[2 * i] = (t / n.xSegCount) * 2 - 1;
-                n.attributes.uvNorm.values[2 * i + 1] = 1 - (e / n.ySegCount) * 2;
+                n.attributes.uvNorm.values[2 * i + 1] =
+                  1 - (e / n.ySegCount) * 2;
 
                 if (t < n.xSegCount && e < n.ySegCount) {
                   const s = e * n.xSegCount + t;
@@ -270,7 +284,7 @@ export class MiniGl {
             _miniGl.debug("Geometry.setTopology", {
               uv: n.attributes.uv,
               uvNorm: n.attributes.uvNorm,
-              index: n.attributes.index
+              index: n.attributes.index,
             });
           }
 
@@ -282,10 +296,11 @@ export class MiniGl {
 
             if (
               !geometry.attributes.position.values ||
-              geometry.attributes.position.values.length !== 3 * geometry.vertexCount
+              geometry.attributes.position.values.length !==
+                3 * geometry.vertexCount
             ) {
               geometry.attributes.position.values = new Float32Array(
-                3 * geometry.vertexCount
+                3 * geometry.vertexCount,
               );
             }
 
@@ -310,10 +325,10 @@ export class MiniGl {
 
             geometry.attributes.position.update();
             _miniGl.debug("Geometry.setSize", {
-              position: geometry.attributes.position
+              position: geometry.attributes.position,
             });
           }
-        }
+        },
       },
 
       Mesh: {
@@ -326,12 +341,14 @@ export class MiniGl {
             mesh.wireframe = false;
             mesh.attributeInstances = [];
 
-            Object.entries(mesh.geometry.attributes).forEach(([e, attribute]) => {
-              mesh.attributeInstances.push({
-                attribute: attribute,
-                location: attribute.attach(e, mesh.material.program)
-              });
-            });
+            Object.entries(mesh.geometry.attributes).forEach(
+              ([e, attribute]) => {
+                mesh.attributeInstances.push({
+                  attribute: attribute,
+                  location: attribute.attach(e, mesh.material.program),
+                });
+              },
+            );
 
             _miniGl.meshes.push(mesh);
             _miniGl.debug("Mesh.constructor", { mesh: mesh });
@@ -339,24 +356,24 @@ export class MiniGl {
 
           draw() {
             context.useProgram(this.material.program);
-            this.material.uniformInstances.forEach(({ uniform: e, location: t }) =>
-              e.update(t)
+            this.material.uniformInstances.forEach(
+              ({ uniform: e, location: t }) => e.update(t),
             );
             this.attributeInstances.forEach(({ attribute: e, location: t }) =>
-              e.use(t)
+              e.use(t),
             );
             context.drawElements(
               this.wireframe ? context.LINES : context.TRIANGLES,
               this.geometry.attributes.index.values.length,
               context.UNSIGNED_SHORT,
-              0
+              0,
             );
           }
 
           remove() {
             _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
           }
-        }
+        },
       },
 
       Attribute: {
@@ -381,7 +398,14 @@ export class MiniGl {
             const n = context.getAttribLocation(t, e);
             if (this.target === context.ARRAY_BUFFER) {
               context.enableVertexAttribArray(n);
-              context.vertexAttribPointer(n, this.size, this.type, this.normalized, 0, 0);
+              context.vertexAttribPointer(
+                n,
+                this.size,
+                this.type,
+                this.normalized,
+                0,
+                0,
+              );
             }
             return n;
           }
@@ -390,31 +414,38 @@ export class MiniGl {
             context.bindBuffer(this.target, this.buffer);
             if (this.target === context.ARRAY_BUFFER) {
               context.enableVertexAttribArray(e);
-              context.vertexAttribPointer(e, this.size, this.type, this.normalized, 0, 0);
+              context.vertexAttribPointer(
+                e,
+                this.size,
+                this.type,
+                this.normalized,
+                0,
+                0,
+              );
             }
           }
-        }
-      }
+        },
+      },
     });
 
     const identityMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
     _miniGl.commonUniforms = {
       projectionMatrix: new _miniGl.Uniform({
         type: "mat4",
-        value: identityMatrix
+        value: identityMatrix,
       }),
       modelViewMatrix: new _miniGl.Uniform({
         type: "mat4",
-        value: identityMatrix
+        value: identityMatrix,
       }),
       resolution: new _miniGl.Uniform({
         type: "vec2",
-        value: [1, 1]
+        value: [1, 1],
       }),
       aspectRatio: new _miniGl.Uniform({
         type: "float",
-        value: 1
-      })
+        value: 1,
+      }),
     };
   }
 
@@ -446,9 +477,12 @@ export class MiniGl {
       e,
       t,
       n,
-      1
+      1,
     ];
-    this.debug("setOrthographicCamera", this.commonUniforms.projectionMatrix.value);
+    this.debug(
+      "setOrthographicCamera",
+      this.commonUniforms.projectionMatrix.value,
+    );
   }
 
   render() {

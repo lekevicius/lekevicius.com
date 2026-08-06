@@ -1,8 +1,8 @@
 ---
-import Logo from '../assets/images/logo.svg'
-import siteData from '../content/metadata.json'
+import Logo from "../assets/images/logo.svg";
+import siteData from "../content/metadata.json";
 
-const isHome = Astro.url.pathname === '/'
+const isHome = Astro.url.pathname === "/";
 ---
 
 <header class="site-header">
@@ -12,7 +12,11 @@ const isHome = Astro.url.pathname === '/'
     </div>
     <div class="site-header-title">
       <h1 class="site-name">
-        {siteData.title}{siteData.subtitle && isHome && false && <span class="site-name-comma">, </span>}
+        {siteData.title}{
+          siteData.subtitle && isHome && false && (
+            <span class="site-name-comma">, </span>
+          )
+        }
         <!-- {siteData.subtitle && isHome && <span class="site-subtitle">{siteData.subtitle}</span>} -->
       </h1>
     </div>

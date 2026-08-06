@@ -1,24 +1,24 @@
 ---
-import EmailIcon from '../assets/services/email.svg';
-import SignalIcon from '../assets/services/signal.svg';
-import TelegramIcon from '../assets/services/telegram.svg';
-import MessengerIcon from '../assets/services/messenger.svg';
+import EmailIcon from "../assets/services/email.svg";
+import SignalIcon from "../assets/services/signal.svg";
+import TelegramIcon from "../assets/services/telegram.svg";
+import MessengerIcon from "../assets/services/messenger.svg";
 
-import BlueskyIcon from '../assets/services/bluesky.svg';
-import MastodonIcon from '../assets/services/mastodon.svg';
-import XIcon from '../assets/services/x.svg';
-import InstagramIcon from '../assets/services/instagram.svg';
+import BlueskyIcon from "../assets/services/bluesky.svg";
+import MastodonIcon from "../assets/services/mastodon.svg";
+import XIcon from "../assets/services/x.svg";
+import InstagramIcon from "../assets/services/instagram.svg";
 
-import LinkedInIcon from '../assets/services/linkedin.svg';
-import GitHubIcon from '../assets/services/github.svg';
-import LetterboxdIcon from '../assets/services/letterboxd.svg';
-import ENSIcon from '../assets/services/ens.svg';
+import LinkedInIcon from "../assets/services/linkedin.svg";
+import GitHubIcon from "../assets/services/github.svg";
+import LetterboxdIcon from "../assets/services/letterboxd.svg";
+import ENSIcon from "../assets/services/ens.svg";
 
-import Tooltip from './Tooltip.astro';
+import Tooltip from "./Tooltip.astro";
 
 // Email copy config
-const email = 'jonas@lekevicius.com';
-const encodedEmail = Buffer.from(email).toString('base64');
+const email = "jonas@lekevicius.com";
+const encodedEmail = Buffer.from(email).toString("base64");
 ---
 
 <section class="column-blocks contact-section">
@@ -49,14 +49,22 @@ const encodedEmail = Buffer.from(email).toString('base64');
       </li>
       <li>
         <Tooltip id="contact-telegram" text="Message on Telegram">
-          <a href="https://t.me/lekevicius" title="Telegram" aria-label="Telegram">
+          <a
+            href="https://t.me/lekevicius"
+            title="Telegram"
+            aria-label="Telegram"
+          >
             <TelegramIcon />
           </a>
         </Tooltip>
       </li>
       <li>
         <Tooltip id="contact-messenger" text="Message on Messenger">
-          <a href="https://m.me/lekevicius" title="Messenger" aria-label="Messenger">
+          <a
+            href="https://m.me/lekevicius"
+            title="Messenger"
+            aria-label="Messenger"
+          >
             <MessengerIcon />
           </a>
         </Tooltip>
@@ -68,14 +76,22 @@ const encodedEmail = Buffer.from(email).toString('base64');
     <ul class="contact-links">
       <li>
         <Tooltip id="contact-bluesky" text="Follow on Bluesky">
-          <a href="https://bsky.app/profile/lekevicius.com" title="Bluesky" aria-label="Bluesky">
+          <a
+            href="https://bsky.app/profile/lekevicius.com"
+            title="Bluesky"
+            aria-label="Bluesky"
+          >
             <BlueskyIcon />
           </a>
         </Tooltip>
       </li>
       <li>
         <Tooltip id="contact-mastodon" text="Follow on Mastodon">
-          <a href="https://mastodon.social/@lekevicius" title="Mastodon" aria-label="Mastodon">
+          <a
+            href="https://mastodon.social/@lekevicius"
+            title="Mastodon"
+            aria-label="Mastodon"
+          >
             <MastodonIcon />
           </a>
         </Tooltip>
@@ -89,7 +105,11 @@ const encodedEmail = Buffer.from(email).toString('base64');
       </li>
       <li>
         <Tooltip id="contact-instagram" text="Follow on Instagram">
-          <a href="https://instagram.com/lekevicius" title="Instagram" aria-label="Instagram">
+          <a
+            href="https://instagram.com/lekevicius"
+            title="Instagram"
+            aria-label="Instagram"
+          >
             <InstagramIcon />
           </a>
         </Tooltip>
@@ -101,28 +121,44 @@ const encodedEmail = Buffer.from(email).toString('base64');
     <ul class="contact-links">
       <li>
         <Tooltip id="contact-linkedin" text="Connect on LinkedIn">
-          <a href="https://linkedin.com/in/lekevicius" title="LinkedIn" aria-label="LinkedIn">
+          <a
+            href="https://linkedin.com/in/lekevicius"
+            title="LinkedIn"
+            aria-label="LinkedIn"
+          >
             <LinkedInIcon />
           </a>
         </Tooltip>
       </li>
       <li>
         <Tooltip id="contact-github" text="Follow on GitHub">
-          <a href="https://github.com/lekevicius" title="GitHub" aria-label="GitHub">
+          <a
+            href="https://github.com/lekevicius"
+            title="GitHub"
+            aria-label="GitHub"
+          >
             <GitHubIcon />
           </a>
         </Tooltip>
       </li>
       <li>
         <Tooltip id="contact-letterboxd" text="Follow on Letterboxd">
-          <a href="https://letterboxd.com/lekevicius" title="Letterboxd" aria-label="Letterboxd">
+          <a
+            href="https://letterboxd.com/lekevicius"
+            title="Letterboxd"
+            aria-label="Letterboxd"
+          >
             <LetterboxdIcon />
           </a>
         </Tooltip>
       </li>
       <li>
         <Tooltip id="contact-gpg" text="View GPG Key">
-          <a href="https://keybase.io/lekevicius" title="GPG Key" aria-label="GPG Key">
+          <a
+            href="https://keybase.io/lekevicius"
+            title="GPG Key"
+            aria-label="GPG Key"
+          >
             <ENSIcon />
           </a>
         </Tooltip>
@@ -139,41 +175,41 @@ const encodedEmail = Buffer.from(email).toString('base64');
     }
   }
 
-  const TOAST_COPIED = 'Email copied!';
+  const TOAST_COPIED = "Email copied!";
 
   const handleClick = (event: MouseEvent) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
-    const anchor = target.closest('a[data-email-b64]');
+    const anchor = target.closest("a[data-email-b64]");
     if (!anchor) return;
     event.preventDefault();
 
-    const b64 = anchor.getAttribute('data-email-b64');
+    const b64 = anchor.getAttribute("data-email-b64");
     if (!b64) return;
-    let decoded = '';
+    let decoded = "";
     try {
       decoded = atob(b64);
     } catch (e) {}
     if (!decoded) return;
 
     const showToast = (message: string) => {
-      const existingToast = document.querySelector('.toast');
+      const existingToast = document.querySelector(".toast");
       if (existingToast) {
         existingToast.remove();
       }
 
-      const toast = document.createElement('div');
-      toast.className = 'toast';
+      const toast = document.createElement("div");
+      toast.className = "toast";
       toast.textContent = message;
       document.body.appendChild(toast);
 
-      toast.offsetHeight;
+      void toast.offsetHeight;
       requestAnimationFrame(() => {
-        toast.classList.add('toast-show');
+        toast.classList.add("toast-show");
       });
 
       setTimeout(() => {
-        toast.classList.add('toast-hide');
+        toast.classList.add("toast-hide");
         setTimeout(() => {
           if (toast.parentNode) {
             toast.parentNode.removeChild(toast);
@@ -202,7 +238,7 @@ const encodedEmail = Buffer.from(email).toString('base64');
   };
 
   if (!window.__emailCopyHandlersAdded__) {
-    document.addEventListener('click', handleClick);
+    document.addEventListener("click", handleClick);
     window.__emailCopyHandlersAdded__ = true;
   }
 </script>

@@ -119,76 +119,76 @@ export function createWavesUniforms(minigl, options = {}) {
     freqX = 10e-5,
     freqY = 29e-5,
     activeColors = [1, 1, 1, 1],
-    darkenTop = false
+    darkenTop = false,
   } = options;
 
   const uniforms = {
     u_time: new minigl.Uniform({
-      value: 0
+      value: 0,
     }),
     u_shadow_power: new minigl.Uniform({
-      value: 5
+      value: 5,
     }),
     u_darken_top: new minigl.Uniform({
-      value: darkenTop ? 1 : 0
+      value: darkenTop ? 1 : 0,
     }),
     u_active_colors: new minigl.Uniform({
       value: activeColors,
-      type: "vec4"
+      type: "vec4",
     }),
     u_global: new minigl.Uniform({
       value: {
         noiseFreq: new minigl.Uniform({
           value: [freqX, freqY],
-          type: "vec2"
+          type: "vec2",
         }),
         noiseSpeed: new minigl.Uniform({
-          value: 5e-6
-        })
+          value: 5e-6,
+        }),
       },
-      type: "struct"
+      type: "struct",
     }),
     u_vertDeform: new minigl.Uniform({
       value: {
         incline: new minigl.Uniform({
-          value: Math.sin(angle) / Math.cos(angle)
+          value: Math.sin(angle) / Math.cos(angle),
         }),
         offsetTop: new minigl.Uniform({
-          value: -0.5
+          value: -0.5,
         }),
         offsetBottom: new minigl.Uniform({
-          value: -0.5
+          value: -0.5,
         }),
         noiseFreq: new minigl.Uniform({
           value: [3, 4],
-          type: "vec2"
+          type: "vec2",
         }),
         noiseAmp: new minigl.Uniform({
-          value: amp
+          value: amp,
         }),
         noiseSpeed: new minigl.Uniform({
-          value: 10
+          value: 10,
         }),
         noiseFlow: new minigl.Uniform({
-          value: 3
+          value: 3,
         }),
         noiseSeed: new minigl.Uniform({
-          value: seed
-        })
+          value: seed,
+        }),
       },
       type: "struct",
-      excludeFrom: "fragment"
+      excludeFrom: "fragment",
     }),
     u_baseColor: new minigl.Uniform({
       value: colors[0] || [1, 0, 0],
       type: "vec3",
-      excludeFrom: "fragment"
+      excludeFrom: "fragment",
     }),
     u_waveLayers: new minigl.Uniform({
       value: [],
       excludeFrom: "fragment",
-      type: "array"
-    })
+      type: "array",
+    }),
   };
 
   // Create wave layers for additional colors
@@ -198,30 +198,30 @@ export function createWavesUniforms(minigl, options = {}) {
         value: {
           color: new minigl.Uniform({
             value: colors[i],
-            type: "vec3"
+            type: "vec3",
           }),
           noiseFreq: new minigl.Uniform({
             value: [2 + i / colors.length, 3 + i / colors.length],
-            type: "vec2"
+            type: "vec2",
           }),
           noiseSpeed: new minigl.Uniform({
-            value: 11 + 0.3 * i
+            value: 11 + 0.3 * i,
           }),
           noiseFlow: new minigl.Uniform({
-            value: 6.5 + 0.3 * i
+            value: 6.5 + 0.3 * i,
           }),
           noiseSeed: new minigl.Uniform({
-            value: seed + 10 * i
+            value: seed + 10 * i,
           }),
           noiseFloor: new minigl.Uniform({
-            value: 0.1
+            value: 0.1,
           }),
           noiseCeil: new minigl.Uniform({
-            value: 0.63 + 0.07 * i
-          })
+            value: 0.63 + 0.07 * i,
+          }),
         },
-        type: "struct"
-      })
+        type: "struct",
+      }),
     );
   }
 
@@ -273,7 +273,7 @@ export const WavesShader = {
   getVertexShader,
   getFragmentShader,
   createUniforms: createWavesUniforms,
-  updateColors: updateWavesColors
+  updateColors: updateWavesColors,
 };
 
 export default WavesShader;

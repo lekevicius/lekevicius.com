@@ -93,34 +93,31 @@ void main() {
  * Create uniforms for the Warp shader
  */
 export function createWarpUniforms(minigl, options = {}) {
-  const {
-    colors = [],
-    scale = 1.5
-  } = options;
+  const { colors = [], scale = 1.5 } = options;
 
   return {
     u_time: new minigl.Uniform({
-      value: 0
+      value: 0,
     }),
     u_scale: new minigl.Uniform({
-      value: scale
+      value: scale,
     }),
     u_color1: new minigl.Uniform({
       value: colors[0] || [0.2, 0.0, 0.1],
-      type: "vec3"
+      type: "vec3",
     }),
     u_color2: new minigl.Uniform({
       value: colors[1] || [0.5, 0.1, 0.2],
-      type: "vec3"
+      type: "vec3",
     }),
     u_color3: new minigl.Uniform({
       value: colors[2] || [0.9, 0.4, 0.2],
-      type: "vec3"
+      type: "vec3",
     }),
     u_color4: new minigl.Uniform({
       value: colors[3] || [1.0, 0.9, 0.5],
-      type: "vec3"
-    })
+      type: "vec3",
+    }),
   };
 }
 
@@ -158,7 +155,7 @@ export const WarpShader = {
   getVertexShader,
   getFragmentShader,
   createUniforms: createWarpUniforms,
-  updateColors: updateWarpColors
+  updateColors: updateWarpColors,
 };
 
 export default WarpShader;

@@ -1,16 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import PageHeading from '../components/PageHeading.astro';
-import type { AppearanceEntry } from '../lib/strapiTypes';
-import { formatDate } from '../lib/utils';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import PageHeading from "../components/PageHeading.astro";
+import type { AppearanceEntry } from "../lib/strapiTypes";
+import { formatDate } from "../lib/utils";
 
-const allAppearances = ((await getCollection('appearances')) as AppearanceEntry[]).sort(
-  (a, b) => new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime(),
+const allAppearances = (
+  (await getCollection("appearances")) as AppearanceEntry[]
+).sort(
+  (a, b) =>
+    new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime(),
 );
 
-const title = 'Appearances';
-const description = 'Podcasts, interviews, and media features.';
+const title = "Appearances";
+const description = "Podcasts, interviews, and media features.";
 ---
 
 <Layout title={title} description={description}>
@@ -22,15 +25,29 @@ const description = 'Podcasts, interviews, and media features.';
           allAppearances.map((appearance) => {
             const linkContent = (
               <>
-                <div class="entry-grid-side-title">{formatDate(appearance.data.date ?? '')}</div>
+                <div class="entry-grid-side-title">
+                  {formatDate(appearance.data.date ?? "")}
+                </div>
                 <div class="entry-grid-content">
                   <h3>
                     <span class="font-bold">{appearance.data.publisher}</span>
-                    {appearance.data.type && <span class="opacity-80"> &middot; {appearance.data.type}</span>}
-                    {appearance.data.language && <span class="opacity-80"> &middot; {appearance.data.language}</span>}
+                    {appearance.data.type && (
+                      <span class="opacity-80">
+                        {" "}
+                        &middot; {appearance.data.type}
+                      </span>
+                    )}
+                    {appearance.data.language && (
+                      <span class="opacity-80">
+                        {" "}
+                        &middot; {appearance.data.language}
+                      </span>
+                    )}
                   </h3>
                   {appearance.data.title && <p>“{appearance.data.title}”</p>}
-                  {appearance.data.description && <p class="opacity-80 mt-1">{appearance.data.description}</p>}
+                  {appearance.data.description && (
+                    <p class="opacity-80 mt-1">{appearance.data.description}</p>
+                  )}
                 </div>
               </>
             );
@@ -38,7 +55,11 @@ const description = 'Podcasts, interviews, and media features.';
             return (
               <li class="entry-grid-item">
                 {appearance.data.link ? (
-                  <a href={appearance.data.link} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={appearance.data.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {linkContent}
                   </a>
                 ) : (

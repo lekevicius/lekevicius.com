@@ -1,17 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import PageHeading from '../components/PageHeading.astro';
-import type { VideoEntry } from '../lib/strapiTypes';
-import { formatDate } from '../lib/utils';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import PageHeading from "../components/PageHeading.astro";
+import type { VideoEntry } from "../lib/strapiTypes";
+import { formatDate } from "../lib/utils";
 
-const allVideos = ((await getCollection('videos')) as VideoEntry[]).sort(
-  (a, b) => new Date(b.data.releasedAt ?? 0).getTime() - new Date(a.data.releasedAt ?? 0).getTime(),
+const allVideos = ((await getCollection("videos")) as VideoEntry[]).sort(
+  (a, b) =>
+    new Date(b.data.releasedAt ?? 0).getTime() -
+    new Date(a.data.releasedAt ?? 0).getTime(),
 );
 
-const title = 'Videos';
-const description = 'Video content, recordings, and more.';
+const title = "Videos";
+const description = "Video content, recordings, and more.";
 ---
 
 <Layout title={title} description={description}>
@@ -24,7 +26,9 @@ const description = 'Video content, recordings, and more.';
             return (
               <li class="entry-grid-item media-grid-item">
                 <a href={`/${video.data.slug}`}>
-                  <div class="media-date entry-grid-side-title">{formatDate(video.data.releasedAt ?? '')}</div>
+                  <div class="media-date entry-grid-side-title">
+                    {formatDate(video.data.releasedAt ?? "")}
+                  </div>
                   <div class="entry-grid-content-subgrid">
                     {video.data.image?.formats?.small && (
                       <div class="media-thumbnail">
@@ -33,15 +37,19 @@ const description = 'Video content, recordings, and more.';
                           height={281}
                           loading="eager"
                           src={video.data.image.formats.small.url}
-                          alt={video.data.title ?? ''}
+                          alt={video.data.title ?? ""}
                         />
                       </div>
                     )}
                     <div class="media-info">
                       <h3 class="item-title">
-                        {video.data.tag && <span class="item-tag">{video.data.tag}</span>}
+                        {video.data.tag && (
+                          <span class="item-tag">{video.data.tag}</span>
+                        )}
                         {video.data.title}
-                        {video.data.note && <span class="item-note">{video.data.note}</span>}
+                        {video.data.note && (
+                          <span class="item-note">{video.data.note}</span>
+                        )}
                       </h3>
                       <p class="item-description">{video.data.description}</p>
                     </div>

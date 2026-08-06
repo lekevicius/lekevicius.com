@@ -1,8 +1,8 @@
 ---
-import '../styles/global.css';
-import siteData from '../content/metadata.json';
-import { ClientRouter } from 'astro:transitions';
-import Analytics from './Analytics.astro';
+import "../styles/global.css";
+import siteData from "../content/metadata.json";
+import { ClientRouter } from "astro:transitions";
+import Analytics from "./Analytics.astro";
 
 interface Props {
   title?: string;
@@ -12,13 +12,19 @@ interface Props {
 const { title, description, image } = Astro.props;
 
 let pageTitle = title ? `${title} - ${siteData.title}` : siteData.title;
-const pageDescription = description ? description.replace(/<[^>]+>/g, '').trim() : siteData.description;
+const pageDescription = description
+  ? description.replace(/<[^>]+>/g, "").trim()
+  : siteData.description;
 const toAbsoluteUrl = (url: string) =>
-  /^https?:\/\//i.test(url) ? url : `${siteData.siteUrl}${url.startsWith('/') ? '' : '/'}${url}`;
+  /^https?:\/\//i.test(url)
+    ? url
+    : `${siteData.siteUrl}${url.startsWith("/") ? "" : "/"}${url}`;
 
 const getOgBaseUrl = (): string => {
-  const explicit = import.meta.env.OG_IMAGE_BASE_URL || import.meta.env.PUBLIC_OG_IMAGE_BASE_URL;
-  if (explicit) return explicit.replace(/\/+$/, '');
+  const explicit =
+    import.meta.env.OG_IMAGE_BASE_URL ||
+    import.meta.env.PUBLIC_OG_IMAGE_BASE_URL;
+  if (explicit) return explicit.replace(/\/+$/, "");
 
   const bucket = import.meta.env.OG_BUCKET || import.meta.env.S3_BUCKET;
   const endpoint = import.meta.env.S3_ENDPOINT;
@@ -28,38 +34,41 @@ const getOgBaseUrl = (): string => {
       const host = endpointUrl.hostname.startsWith(`${bucket}.`)
         ? endpointUrl.hostname
         : `${bucket}.${endpointUrl.hostname}`;
-      return `${endpointUrl.protocol}//${host}${endpointUrl.port ? `:${endpointUrl.port}` : ''}`;
+      return `${endpointUrl.protocol}//${host}${endpointUrl.port ? `:${endpointUrl.port}` : ""}`;
     } catch {
       // Ignore invalid endpoint and fall back to site URL.
     }
   }
 
-  return siteData.siteUrl.replace(/\/+$/, '');
+  return siteData.siteUrl.replace(/\/+$/, "");
 };
 
 const ogBaseUrl = getOgBaseUrl();
 const ogKey = (() => {
-  const path = Astro.url.pathname ?? '/';
-  const trimmed = path.replace(/^\/+|\/+$/g, '');
-  return trimmed.length ? trimmed : 'index';
+  const path = Astro.url.pathname ?? "/";
+  const trimmed = path.replace(/^\/+|\/+$/g, "");
+  return trimmed.length ? trimmed : "index";
 })();
-const ogImage = `${ogBaseUrl.replace(/\/+$/, '')}/og/${ogKey}.png`;
+const ogImage = `${ogBaseUrl.replace(/\/+$/, "")}/og/${ogKey}.png`;
 let pageImage = image ? toAbsoluteUrl(image) : ogImage;
 let pageLocation = `${siteData.siteUrl}${Astro.url.pathname}`;
-const twitterHandle = siteData.twitterHandle || '';
-const locale = siteData.locale || 'en_US';
-const language = siteData.language || 'en-US';
-const themeColor = siteData.themeColor || '#333333';
+const twitterHandle = siteData.twitterHandle || "";
+const locale = siteData.locale || "en_US";
+const language = siteData.language || "en-US";
+const themeColor = siteData.themeColor || "#333333";
 const tileColor = siteData.tileColor || themeColor;
 const appleTitle = siteData.appleTitle || siteData.title;
-const feedTitle = siteData.feedTitle || 'Articles';
-const generator = siteData.generator || 'Astro';
+const feedTitle = siteData.feedTitle || "Articles";
+const generator = siteData.generator || "Astro";
 const analytics = siteData.analytics;
 ---
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1"
+  />
   <meta name="robots" content="index, follow" />
 
   <title>{pageTitle}</title>
@@ -95,33 +104,50 @@ const analytics = siteData.analytics;
   <meta name="apple-mobile-web-app-title" content={appleTitle} />
   <meta name="apple-mobile-web-app-capable" content="yes" />
 
-  {Array.isArray(analytics?.preconnect) && analytics.preconnect.map((href) => <link rel="preconnect" href={href} />)}
+  {
+    Array.isArray(analytics?.preconnect) &&
+      analytics.preconnect.map((href) => <link rel="preconnect" href={href} />)
+  }
   {
     Array.isArray(analytics?.dnsPrefetch) &&
-      analytics.dnsPrefetch.map((href) => <link rel="dns-prefetch" href={href} />)
+      analytics.dnsPrefetch.map((href) => (
+        <link rel="dns-prefetch" href={href} />
+      ))
   }
 
   <link rel="sitemap" href="/sitemap-index.xml" />
-  <link rel="alternate" type="application/rss+xml" title={feedTitle} href="/feed.xml" />
-  <link rel="alternate" type="application/feed+json" title={feedTitle} href="/feed.json" />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title={feedTitle}
+    href="/feed.xml"
+  />
+  <link
+    rel="alternate"
+    type="application/feed+json"
+    title={feedTitle}
+    href="/feed.json"
+  />
 
   <script
     is:inline
     type="application/ld+json"
     set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
+      "@context": "https://schema.org",
+      "@type": "WebSite",
       name: siteData.title,
       url: siteData.siteUrl,
       description: siteData.description,
       inLanguage: language,
       author: siteData.author
         ? {
-            '@type': 'Person',
+            "@type": "Person",
             name: siteData.author,
             url: siteData.authorUrl,
             image: siteData.authorAvatar || undefined,
-            sameAs: Array.isArray(siteData.sameAs) ? siteData.sameAs : undefined,
+            sameAs: Array.isArray(siteData.sameAs)
+              ? siteData.sameAs
+              : undefined,
           }
         : undefined,
       sameAs: Array.isArray(siteData.sameAs) ? siteData.sameAs : undefined,
@@ -134,7 +160,10 @@ const analytics = siteData.analytics;
     let angle = 0;
     function animate() {
       angle = (angle + 2) % 360;
-      document.documentElement.style.setProperty('--border-angle', angle + 'deg');
+      document.documentElement.style.setProperty(
+        "--border-angle",
+        angle + "deg",
+      );
       requestAnimationFrame(animate);
     }
     animate();

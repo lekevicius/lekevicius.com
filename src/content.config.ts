@@ -1,6 +1,6 @@
-import { generateCollections } from '@sensinum/astro-strapi-loader'
+import { generateCollections } from "@sensinum/astro-strapi-loader";
 
-let strapiCollections: any = {}
+let strapiCollections: any = {};
 try {
   strapiCollections = await generateCollections(
     {
@@ -8,17 +8,38 @@ try {
       token: import.meta.env.STRAPI_TOKEN,
     },
     [
-      { name: 'pages', query: { populate: { content: { populate: '*' }, cover: true } } },
-      { name: 'projects', query: { populate: { content: { populate: '*' }, image: true, cover: true } } },
-      { name: 'articles', query: { populate: { content: { populate: '*' }, cover: true } } },
-      { name: 'talks', query: { populate: { content: { populate: '*' }, image: true, cover: true } } },
-      { name: 'videos', query: { populate: { content: { populate: '*' }, image: true, cover: true } } },
-      { name: 'moments', query: {  } },
-      { name: 'appearances', query: {  } },
-    ]
-  )
+      {
+        name: "pages",
+        query: { populate: { content: { populate: "*" }, cover: true } },
+      },
+      {
+        name: "projects",
+        query: {
+          populate: { content: { populate: "*" }, image: true, cover: true },
+        },
+      },
+      {
+        name: "articles",
+        query: { populate: { content: { populate: "*" }, cover: true } },
+      },
+      {
+        name: "talks",
+        query: {
+          populate: { content: { populate: "*" }, image: true, cover: true },
+        },
+      },
+      {
+        name: "videos",
+        query: {
+          populate: { content: { populate: "*" }, image: true, cover: true },
+        },
+      },
+      { name: "moments", query: {} },
+      { name: "appearances", query: {} },
+    ],
+  );
 } catch (error) {
-  console.error(error)
+  console.error(error);
 }
 
 // Import utilities from `astro:content`
@@ -39,7 +60,7 @@ try {
 //   }),
 // })
 // Export a single `collections` object to register your collection(s)
-export const collections = { ...strapiCollections }
+export const collections = { ...strapiCollections };
 
 // ---
 

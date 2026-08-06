@@ -1,16 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import PageHeading from '../components/PageHeading.astro';
-import type { ArticleEntry } from '../lib/strapiTypes';
-import { formatDate } from '../lib/utils';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import PageHeading from "../components/PageHeading.astro";
+import type { ArticleEntry } from "../lib/strapiTypes";
+import { formatDate } from "../lib/utils";
 
-const allArticles = ((await getCollection('articles')) as ArticleEntry[]).sort(
-  (a, b) => new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime(),
+const allArticles = ((await getCollection("articles")) as ArticleEntry[]).sort(
+  (a, b) =>
+    new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime(),
 );
 
-const title = 'Writing';
-const description = 'Articles, essays, and thoughts.';
+const title = "Writing";
+const description = "Articles, essays, and thoughts.";
 ---
 
 <Layout title={title} description={description}>
@@ -24,7 +25,9 @@ const description = 'Articles, essays, and thoughts.';
             return (
               <li class="entry-grid-item articles-grid-item">
                 <a href={`/${year}/${article.data.slug}`}>
-                  <div class="article-date entry-grid-side-title">{formatDate(article.data.createdAt)}</div>
+                  <div class="article-date entry-grid-side-title">
+                    {formatDate(article.data.createdAt)}
+                  </div>
                   <div class="entry-grid-content-subgrid">
                     <h3 class="item-title">{article.data.title}</h3>
                     <p class="item-description">{article.data.description}</p>

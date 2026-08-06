@@ -1,15 +1,21 @@
 ---
-import { getCollection } from 'astro:content'
-import { markdownToHtml } from '../lib/markdown'
-import type { MomentEntry } from '../lib/strapiTypes'
+import { getCollection } from "astro:content";
+import { markdownToHtml } from "../lib/markdown";
+import type { MomentEntry } from "../lib/strapiTypes";
 
-const nowContent = await getCollection('moments') as MomentEntry[]
+const nowContent = (await getCollection("moments")) as MomentEntry[];
 
-const lastEntry = nowContent.sort((a, b) => new Date(a.data.createdAt).getTime() - new Date(b.data.createdAt).getTime())[0]
+const lastEntry = nowContent.sort(
+  (a, b) =>
+    new Date(a.data.createdAt).getTime() - new Date(b.data.createdAt).getTime(),
+)[0];
 
-const rawContent = markdownToHtml(lastEntry.data.text ?? '')
-const unwrappedContent = rawContent.replace(/^<p>/, '').replace(/<\/p>$/, '')
-const updatedDaysAgo = Math.floor((Date.now() - new Date(lastEntry.data.updatedAt).getTime()) / (1000 * 60 * 60 * 24))
+const rawContent = markdownToHtml(lastEntry.data.text ?? "");
+const unwrappedContent = rawContent.replace(/^<p>/, "").replace(/<\/p>$/, "");
+const updatedDaysAgo = Math.floor(
+  (Date.now() - new Date(lastEntry.data.updatedAt).getTime()) /
+    (1000 * 60 * 60 * 24),
+);
 ---
 
 <section class="side-title-section now-section">
@@ -31,11 +37,14 @@ const updatedDaysAgo = Math.floor((Date.now() - new Date(lastEntry.data.updatedA
           stroke-width="1.75"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="now-location-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg
+          class="now-location-icon"
+          ><path
+            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+          ></path><circle cx="12" cy="10" r="3"></circle></svg
         >
         <span class="now-location">{lastEntry.data.location}</span>
         <span class="now-updated">
-          {updatedDaysAgo > 1 ? `${updatedDaysAgo} days ago` : 'Today'}
+          {updatedDaysAgo > 1 ? `${updatedDaysAgo} days ago` : "Today"}
         </span>
       </span>
     </p>

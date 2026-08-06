@@ -1,14 +1,14 @@
 ---
-import type { StrapiSlideComponent } from '../../lib/strapiTypes';
-import { markdownToHtml } from '../../lib/markdown';
-import { Image } from 'astro:assets';
+import type { StrapiSlideComponent } from "../../lib/strapiTypes";
+import { markdownToHtml } from "../../lib/markdown";
+import { Image } from "astro:assets";
 
 type Props = {
   data: StrapiSlideComponent;
 };
 
 const { data } = Astro.props;
-const alt = data.image?.alternativeText || '';
+const alt = data.image?.alternativeText || "";
 ---
 
 <figure
@@ -21,7 +21,7 @@ const alt = data.image?.alternativeText || '';
           src={data.image.url}
           width={data.image.width || 1920}
           height={data.image.height || 1080}
-          loading={'eager'}
+          loading={"eager"}
           alt={alt}
           class="w-full h-auto rounded-lg"
         />
@@ -29,6 +29,6 @@ const alt = data.image?.alternativeText || '';
     }
   </div>
   <figcaption class="md:col-span-7 prose md:px-4 md:py-3">
-    <div set:html={markdownToHtml(data.text ?? '')} />
+    <div set:html={markdownToHtml(data.text ?? "")} />
   </figcaption>
 </figure>

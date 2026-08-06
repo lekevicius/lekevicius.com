@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @font-face {
@@ -6,56 +6,56 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../assets/fonts/Inter.woff2') format('woff2');
+  src: url("../assets/fonts/Inter.woff2") format("woff2");
 }
 @font-face {
   font-family: InterJL;
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../assets/fonts/Inter-Italic.woff2') format('woff2');
+  src: url("../assets/fonts/Inter-Italic.woff2") format("woff2");
 }
 @font-face {
   font-family: AmarnaJL;
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
-  src: url('../assets/fonts/Amarna.ttf') format('opentype');
+  src: url("../assets/fonts/Amarna.ttf") format("opentype");
 }
 @font-face {
   font-family: AmarnaJL;
   font-style: italic;
   font-weight: 100 700;
   font-display: swap;
-  src: url('../assets/fonts/Amarna-Italic.ttf') format('opentype');
+  src: url("../assets/fonts/Amarna-Italic.ttf") format("opentype");
 }
 @font-face {
   font-family: BitcountPropSingleJL;
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../assets/fonts/BitcountPropSingle.ttf') format('opentype');
+  src: url("../assets/fonts/BitcountPropSingle.ttf") format("opentype");
 }
 @font-face {
   font-family: IBMPlexMonoJL;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../assets/fonts/IBMPlexMono-Regular.ttf') format('opentype');
+  src: url("../assets/fonts/IBMPlexMono-Regular.ttf") format("opentype");
 }
 @font-face {
   font-family: IBMPlexMonoJL;
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('../assets/fonts/IBMPlexMono-Italic.ttf') format('opentype');
+  src: url("../assets/fonts/IBMPlexMono-Italic.ttf") format("opentype");
 }
 
 @theme {
-  --font-main: 'AmarnaJL', sans-serif;
-  --font-heading: 'InterJL', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-label: 'BitcountPropSingleJL', system-ui, monospace;
-  --font-mono: 'IBMPlexMonoJL', monospace;
+  --font-main: "AmarnaJL", sans-serif;
+  --font-heading: "InterJL", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-label: "BitcountPropSingleJL", system-ui, monospace;
+  --font-mono: "IBMPlexMonoJL", monospace;
 }
 
 :root,
@@ -176,12 +176,12 @@
 }
 
 * {
-  font-variation-settings: 'slnt' 0deg;
+  font-variation-settings: "slnt" 0deg;
   text-rendering: optimizeLegibility;
 }
 
 .italic {
-  font-variation-settings: 'slnt' 10deg;
+  font-variation-settings: "slnt" 10deg;
 }
 
 html {
@@ -275,34 +275,36 @@ a:focus-visible {
 }
 
 .block-link,
-.link-grid-item>a,
-.entry-grid-item>a {
+.link-grid-item > a,
+.entry-grid-item > a {
   @apply block rounded-xl hover:bg-text/5 transition-colors hover:backdrop-blur-sm;
   position: relative;
 }
 
 .block-link::before,
-.link-grid-item>a::before,
-.entry-grid-item>a::before {
-  content: '';
+.link-grid-item > a::before,
+.entry-grid-item > a::before {
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 0.75rem;
   padding: 1.5px;
-  background: conic-gradient(from var(--border-angle, 0deg),
+  background: conic-gradient(
+    from var(--border-angle, 0deg),
     transparent 0deg,
     var(--gradient-color-1) 30deg,
     var(--gradient-color-2) 60deg,
     var(--gradient-color-3) 90deg,
     var(--gradient-color-4) 120deg,
     transparent 150deg,
-      transparent 360deg);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
   opacity: 0;
@@ -311,8 +313,8 @@ a:focus-visible {
 }
 
 .block-link:hover::before,
-.link-grid-item>a:hover::before,
-.entry-grid-item>a:hover::before {
+.link-grid-item > a:hover::before,
+.entry-grid-item > a:hover::before {
   opacity: 1;
 }
 
@@ -326,7 +328,7 @@ a:focus-visible {
 
 .arrow-link::after,
 .arrow-link::before {
-  content: '→';
+  content: "→";
   @apply inline-block absolute right-2.75 opacity-100 transition-all duration-300;
   font-family: var(--font-heading);
 }
@@ -477,7 +479,6 @@ a:focus-visible {
 } */
 
 @media (prefers-color-scheme: dark) {
-
   .media-block-boxed,
   .media-block-website {
     box-shadow:
@@ -500,7 +501,7 @@ a:focus-visible {
     @apply col-span-5;
   }
 
-  .link-grid-item>a {
+  .link-grid-item > a {
     @apply px-4 py-3 flex gap-x-4 h-full;
   }
 
@@ -518,9 +519,13 @@ a:focus-visible {
   }
 
   .link-grid-item-image::after {
-    content: '';
+    content: "";
     @apply absolute inset-0 rounded-xl pointer-events-none;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     box-shadow: 0 0.5px 1px 0.5px rgba(255, 255, 255, 0.33) inset;
   }
 
@@ -533,11 +538,11 @@ a:focus-visible {
   @apply flex flex-col md:grid grid-cols-subgrid col-span-12;
 
   .entry-grid-item,
-  .entry-grid-item>a {
+  .entry-grid-item > a {
     @apply block md:grid grid-cols-subgrid col-span-12;
   }
 
-  .entry-grid-item>a {
+  .entry-grid-item > a {
     @apply px-4 py-3 md:p-0;
   }
 
@@ -588,9 +593,13 @@ a:focus-visible {
     }
 
     .media-thumbnail::after {
-      content: '';
+      content: "";
       @apply absolute inset-0 rounded-xl pointer-events-none;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
       box-shadow: 0 0.5px 1px 0.5px rgba(255, 255, 255, 0.33) inset;
     }
   }
@@ -602,7 +611,7 @@ a:focus-visible {
       @apply mt-0;
     }
   }
-  
+
   .media-date {
     @apply mb-4 md:mb-0;
   }
@@ -686,7 +695,7 @@ a:focus-visible {
   @apply mb-0;
 }
 
-.site-container>hr {
+.site-container > hr {
   @apply border-surface-text col-span-12 opacity-10 mx-4;
 }
 

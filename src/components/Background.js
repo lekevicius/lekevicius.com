@@ -5,7 +5,7 @@ import {
   BLEND_MODES,
   createNoiseOverlayUniforms,
   wrapFragmentShaderWithNoise,
-  getDefaultNoiseConfig
+  getDefaultNoiseConfig,
 } from "./shaders/NoiseOverlay.js";
 
 /**
@@ -17,7 +17,8 @@ class Gradient {
     this.shader = shader;
 
     // Noise overlay configuration
-    this.noiseConfig = noiseConfig !== null ? noiseConfig : getDefaultNoiseConfig();
+    this.noiseConfig =
+      noiseConfig !== null ? noiseConfig : getDefaultNoiseConfig();
     this.noiseUniforms = null;
 
     // DOM elements
@@ -119,7 +120,11 @@ class Gradient {
       }
       this.initGradientColors();
       this.refreshNoiseFromCss();
-      if (this.uniforms && this.sectionColors && this.sectionColors.length >= 1) {
+      if (
+        this.uniforms &&
+        this.sectionColors &&
+        this.sectionColors.length >= 1
+      ) {
         if (this.shader.updateColors) {
           this.shader.updateColors(this.uniforms, this.sectionColors);
         }
@@ -136,21 +141,24 @@ class Gradient {
     this.attachThemeListeners = () => {
       try {
         this._mqDark =
-          window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)");
         if (this._mqDark && this._mqDark.addEventListener) {
           this._mqDark.addEventListener("change", this.handleThemeChange);
         }
-      } catch (err) { }
+      } catch {}
 
       try {
         const opts = { attributes: true, attributeFilter: ["class"] };
         this._themeObserverDoc = new MutationObserver(this.handleThemeChange);
         this._themeObserverDoc.observe(document.documentElement, opts);
         if (document.body) {
-          this._themeObserverBody = new MutationObserver(this.handleThemeChange);
+          this._themeObserverBody = new MutationObserver(
+            this.handleThemeChange,
+          );
           this._themeObserverBody.observe(document.body, opts);
         }
-      } catch (err) { }
+      } catch {}
     };
 
     this.initGradient = (selector) => {
@@ -167,7 +175,7 @@ class Gradient {
       density: [0.06, 0.16],
       zoom: 1,
       rotation: 0,
-      playing: true
+      playing: true,
     };
 
     if (document.querySelectorAll(".site-container").length < 1) {
@@ -193,12 +201,12 @@ class Gradient {
       if (this._mqDark && this._mqDark.removeEventListener) {
         this._mqDark.removeEventListener("change", this.handleThemeChange);
       }
-    } catch (err) { }
+    } catch {}
 
     try {
       if (this._themeObserverDoc) this._themeObserverDoc.disconnect();
       if (this._themeObserverBody) this._themeObserverBody.disconnect();
-    } catch (err) { }
+    } catch {}
   }
 
   initMaterial() {
@@ -210,12 +218,15 @@ class Gradient {
       freqX: this.freqX,
       freqY: this.freqY,
       activeColors: this.activeColors,
-      darkenTop: this.el.dataset.jsDarkenTop === ""
+      darkenTop: this.el.dataset.jsDarkenTop === "",
     });
 
     // Add noise overlay uniforms (always if noiseConfig exists)
     if (this.noiseConfig) {
-      this.noiseUniforms = createNoiseOverlayUniforms(this.minigl, this.noiseConfig);
+      this.noiseUniforms = createNoiseOverlayUniforms(
+        this.minigl,
+        this.noiseConfig,
+      );
       Object.assign(this.uniforms, this.noiseUniforms);
     }
 
@@ -228,7 +239,7 @@ class Gradient {
     return new this.minigl.Material(
       this.shader.getVertexShader(),
       fragmentShader,
-      this.uniforms
+      this.uniforms,
     );
   }
 
@@ -265,7 +276,7 @@ class Gradient {
           normalizeColor(0xff0000),
           normalizeColor(0xff0000),
           normalizeColor(0xff00ff),
-          normalizeColor(0x00ff00)
+          normalizeColor(0x00ff00),
         ];
         this.init();
         return;
@@ -279,7 +290,7 @@ class Gradient {
       "--background-color-1",
       "--background-color-2",
       "--background-color-3",
-      "--background-color-4"
+      "--background-color-4",
     ]
       .map((cssPropertyName) => {
         let hex = this.computedCanvasStyle
@@ -384,7 +395,10 @@ class Gradient {
    */
   setNoiseIntensity(intensity) {
     if (this.uniforms && this.uniforms.u_noise_intensity) {
-      this.uniforms.u_noise_intensity.value = Math.max(0, Math.min(1, intensity));
+      this.uniforms.u_noise_intensity.value = Math.max(
+        0,
+        Math.min(1, intensity),
+      );
       if (this.minigl && !this.conf.playing) {
         this.minigl.render();
       }
@@ -472,11 +486,14 @@ class Gradient {
    */
   updateNoiseConfig(config) {
     if (config.enabled !== undefined) this.setNoiseEnabled(config.enabled);
-    if (config.intensity !== undefined) this.setNoiseIntensity(config.intensity);
+    if (config.intensity !== undefined)
+      this.setNoiseIntensity(config.intensity);
     if (config.scale !== undefined) this.setNoiseScale(config.scale);
     if (config.speed !== undefined) this.setNoiseSpeed(config.speed);
-    if (config.blendMode !== undefined) this.setNoiseBlendMode(config.blendMode);
-    if (config.monochrome !== undefined) this.setNoiseMonochrome(config.monochrome);
+    if (config.blendMode !== undefined)
+      this.setNoiseBlendMode(config.blendMode);
+    if (config.monochrome !== undefined)
+      this.setNoiseMonochrome(config.monochrome);
     if (config.low !== undefined) this.setNoiseLow(config.low);
     if (config.high !== undefined) this.setNoiseHigh(config.high);
   }
@@ -498,7 +515,7 @@ export { WarpShader } from "./shaders/WarpShader.js";
     blendMode: BLEND_MODES.OVERLAY,
     monochrome: true,
     low: 0.0,
-    high: 1.0
+    high: 1.0,
   };
 
   var gradient = new Gradient(WarpShader, noiseConfig);
