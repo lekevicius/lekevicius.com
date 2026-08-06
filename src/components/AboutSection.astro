@@ -13,13 +13,23 @@ import Portrait from "../assets/images/profile.webp";
     <!-- flex flex-col md:grid grid-cols-subgrid col-span-12 -->
 
     <div class="col-span-full flex flex-col md:flex-row gap-4 md:gap-6">
-      <Image
-        inferSize
-        loading="lazy"
-        src={Portrait}
-        alt="Portrait of me"
-        class="profile-image"
-      />
+      <div class="profile-image">
+        <Image
+          inferSize
+          loading="lazy"
+          src={Portrait}
+          alt="Portrait of me"
+          class="profile-image-layer profile-image-muted"
+        />
+        <Image
+          inferSize
+          loading="lazy"
+          src={Portrait}
+          alt=""
+          aria-hidden="true"
+          class="profile-image-layer profile-image-color"
+        />
+      </div>
       <!-- style="image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges" -->
       <!-- <Image
           inferSize

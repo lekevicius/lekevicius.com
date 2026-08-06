@@ -618,14 +618,33 @@ a:focus-visible {
 }
 
 .profile-image {
-  @apply grow-0 shrink-0 relative md:size-40 size-64 rounded-xl overflow-hidden brightness-115 dark:brightness-80 border border-surface-text/20 mix-blend-luminosity;
+  @apply grow-0 shrink-0 relative md:size-40 size-64 rounded-xl overflow-hidden border border-surface-text/20;
   /*box-shadow:
     0 0 1px rgba(0, 0, 0, 0.1),
     0 2px 4px rgba(0, 0, 0, 0.07),
     0 4px 8px rgba(0, 0, 0, 0.07);*/
 }
-.profile-image:hover {
-  @apply mix-blend-normal brightness-100;
+
+.profile-image-layer {
+  @apply absolute inset-0 size-full object-cover pointer-events-none transition-opacity duration-500 ease-out;
+}
+
+.profile-image-muted {
+  @apply brightness-115 dark:brightness-80 mix-blend-luminosity;
+}
+
+.profile-image-color {
+  @apply brightness-100 mix-blend-normal opacity-0;
+}
+
+.profile-image:hover .profile-image-color {
+  @apply opacity-100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-image-layer {
+    @apply transition-none;
+  }
 }
 
 /*.profile-image::after {
