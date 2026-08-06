@@ -11,9 +11,7 @@ import type {
 } from "../lib/strapiTypes";
 
 // import RSSIcon from '../assets/services/rss.svg'
-
 // import siteData from '../../metadata.json'
-// import featuredItems from '../content/featured.ts';
 
 import { markdownToHtml } from "../lib/markdown";
 import featuredExperience from "../content/featuredExperience.ts";
@@ -59,43 +57,10 @@ const allVideos = ((await getCollection("videos")) as VideoEntry[])
 
 <Layout>
   <NewsletterSection />
-  <!-- <Now />
-  <hr /> -->
-  <FocusSection />
-  <!-- <hr /> -->
-  <!-- Featured -->
-  <!-- <section class="side-title-section">
-    <div class="side-title-title">
-      <h2>Featured</h2>
-    </div>
-    <div class="side-title-content">
-      <ul class="link-grid">
-        {
-          featuredItems.map((item) => (
-            <li class="link-grid-item">
-              <a href={`${item.url}`}>
-                {item.image && (
-                  <div class="link-grid-item-image">
-                    <img src={item.image} alt={item.title ?? ''} />
-                  </div>
-                )}
-                <div class="link-grid-item-content">
-                  <h3 class="item-title">
-                    {item.tag && <span class="item-tag">{item.tag}</span>}
-                    {item.title}
-                    {item.note && <span class="item-note">{item.note}</span>}
-                  </h3>
-                  <p class="item-description">{item.description}</p>
-                </div>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section> -->
+  <hr />
 
   <!-- Projects -->
+  <FocusSection />
   <section class="side-title-section">
     <div class="side-title-title"></div>
     <div class="side-title-content">
@@ -311,6 +276,8 @@ const allVideos = ((await getCollection("videos")) as VideoEntry[])
   }
 
   <hr />
+  <!-- <Now />
+  <hr /> -->
 
   <!-- About -->
   <AboutSection />
