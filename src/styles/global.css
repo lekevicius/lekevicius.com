@@ -355,7 +355,7 @@ a:focus-visible {
 .column-blocks-primary h3,
 .column-blocks-links h4,
 .contact-section h4 {
-  @apply text-sm leading-6 uppercase opacity-60 tracking-widest;
+  @apply text-sm leading-6 uppercase opacity-70 tracking-widest;
   font-family: var(--font-label);
 }
 
@@ -649,7 +649,7 @@ a:focus-visible {
 }
 
 .item-tag {
-  @apply bg-linear-to-br from-gradient-1 via-gradient-2 to-gradient-3 text-white;
+  @apply bg-linear-to-br from-gradient-1 via-gradient-2 to-gradient-3 text-white dark:text-black;
 }
 
 .item-note {
@@ -715,6 +715,9 @@ a:focus-visible {
 
 .site-container > hr {
   @apply border-surface-text col-span-12 opacity-10 mx-4;
+}
+hr {
+  @apply border-surface-text opacity-10;
 }
 
 .site-footer {
