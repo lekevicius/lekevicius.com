@@ -3,6 +3,9 @@ import Logo from "../assets/images/logo.svg";
 import siteData from "../content/metadata.json";
 
 const isHome = Astro.url.pathname === "/";
+const subtitle = siteData.subtitle.trim();
+const hasSubtitle = subtitle.length > 0;
+const showSubtitle = hasSubtitle && isHome;
 const navigationItems = [
   { label: "Projects", href: "/projects" },
   { label: "Writing", href: "/writing" },
@@ -11,7 +14,10 @@ const navigationItems = [
 ];
 ---
 
-<header class="site-header">
+<header
+  class="site-header"
+  data-has-subtitle={hasSubtitle ? "true" : undefined}
+>
   <div class="site-header-bar">
     <a href="/" aria-label="Home" class="site-header-brand">
       <div class="site-logo">
@@ -19,12 +25,18 @@ const navigationItems = [
       </div>
       <div class="site-header-title">
         <h1 class="site-name">
-          {siteData.title}{
-            siteData.subtitle && isHome && false && (
-              <span class="site-name-comma">, </span>
+          <span class="site-name-title">
+            {siteData.title}
+            {showSubtitle && <span class="site-name-comma">,</span>}
+          </span>
+          {
+            showSubtitle && (
+              <>
+                {" "}
+                <span class="site-subtitle">{subtitle}</span>
+              </>
             )
           }
-          <!-- {siteData.subtitle && isHome && <span class="site-subtitle">{siteData.subtitle}</span>} -->
         </h1>
       </div>
     </a>
@@ -56,7 +68,7 @@ const navigationItems = [
       <nav
         id="site-mobile-navigation"
         class="site-mobile-navigation"
-        aria-label="Mobile navigation"
+        aria-label="Primary navigation"
       >
         {
           navigationItems.map(({ label, href }) => (
@@ -73,7 +85,6 @@ const navigationItems = [
   </p> -->
   {isHome && <p class="site-description mb-0!">{siteData.description}</p>}
 </header>
-<!-- <span class="site-subtitle">taming magic</span> -->
 
 <script>
   declare global {

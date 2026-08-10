@@ -228,11 +228,11 @@ p a:hover {
   @apply p-4 md:gap-y-0 md:p-0 md:grid grid-cols-subgrid col-span-12;
 
   .site-header-bar {
-    @apply relative flex items-center col-span-12 md:grid md:grid-cols-12;
+    @apply relative flex items-start col-span-12 md:items-center md:grid md:grid-cols-12;
   }
 
   .site-header-brand {
-    @apply min-w-0 flex grow items-center gap-3 md:gap-0 md:grid md:grid-cols-7 md:col-span-7;
+    @apply mt-3 min-w-0 flex grow items-start gap-3 md:mt-0 md:items-center md:gap-0 md:grid md:grid-cols-7 md:col-span-7;
   }
 
   .site-logo {
@@ -251,12 +251,16 @@ p a:hover {
       @apply font-bold;
     }
 
+    .site-name-title {
+      @apply whitespace-nowrap;
+    }
+
     .site-name-comma {
       @apply font-normal opacity-60;
     }
 
     .site-subtitle {
-      @apply font-normal italic bg-clip-text text-transparent bg-linear-to-br from-gradient-1 via-gradient-2 to-gradient-3;
+      @apply whitespace-nowrap font-normal italic bg-clip-text text-transparent bg-linear-to-br from-gradient-1 via-gradient-2 to-gradient-3;
     }
   }
 
@@ -271,6 +275,24 @@ p a:hover {
 
   .site-mobile-menu {
     @apply relative ml-auto -mr-3 block md:hidden;
+  }
+
+  &[data-has-subtitle="true"] {
+    .site-header-brand {
+      @apply md:grid-cols-11 md:col-span-11;
+    }
+
+    .site-header-title {
+      @apply md:col-span-9;
+    }
+
+    .site-navigation {
+      @apply md:hidden;
+    }
+
+    .site-mobile-menu {
+      @apply md:mr-1 md:block md:col-span-1 md:justify-self-end;
+    }
   }
 
   .site-menu-button {
