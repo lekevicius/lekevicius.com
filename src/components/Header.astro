@@ -3,27 +3,100 @@ import Logo from "../assets/images/logo.svg";
 import siteData from "../content/metadata.json";
 
 const isHome = Astro.url.pathname === "/";
+const navigationItems = [
+  { label: "Projects", href: "/projects" },
+  { label: "Writing", href: "/writing" },
+  { label: "About", href: "/profile" },
+  { label: "Contact", href: "/contact" },
+];
 ---
 
 <header class="site-header">
-  <a href="/" aria-label="Home" class="site-header-brand">
-    <div class="site-logo">
-      <Logo />
-    </div>
-    <div class="site-header-title">
-      <h1 class="site-name">
-        {siteData.title}{
-          siteData.subtitle && isHome && false && (
-            <span class="site-name-comma">, </span>
-          )
+  <div class="site-header-bar">
+    <a href="/" aria-label="Home" class="site-header-brand">
+      <div class="site-logo">
+        <Logo />
+      </div>
+      <div class="site-header-title">
+        <h1 class="site-name">
+          {siteData.title}{
+            siteData.subtitle && isHome && false && (
+              <span class="site-name-comma">, </span>
+            )
+          }
+          <!-- {siteData.subtitle && isHome && <span class="site-subtitle">{siteData.subtitle}</span>} -->
+        </h1>
+      </div>
+    </a>
+
+    <nav class="site-navigation" aria-label="Primary navigation">
+      {
+        navigationItems.map(({ label, href }) => (
+          <a href={href} class="site-navigation-link inline-block-link">
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="site-mobile-menu" data-mobile-menu data-state="closed">
+      <button
+        type="button"
+        class="site-menu-button"
+        aria-controls="site-mobile-navigation"
+        aria-expanded="false"
+        aria-label="Toggle menu"
+        data-menu-button
+      >
+        <span class="site-menu-icon" aria-hidden="true">
+          <span class="site-menu-icon-line"></span>
+          <span class="site-menu-icon-line"></span>
+        </span>
+      </button>
+      <nav
+        id="site-mobile-navigation"
+        class="site-mobile-navigation"
+        aria-label="Mobile navigation"
+      >
+        {
+          navigationItems.map(({ label, href }) => (
+            <a href={href} class="site-mobile-navigation-link">
+              {label}
+            </a>
+          ))
         }
-        <!-- {siteData.subtitle && isHome && <span class="site-subtitle">{siteData.subtitle}</span>} -->
-      </h1>
+      </nav>
     </div>
-  </a>
+  </div>
   <!-- <p class="site-description">
     We live in the age of magic. For now, we call it AI.<br /> I&nbsp;<a href="/writing">write</a> and <a href="/talks">speak</a> about it, and <a href="/projects">build tools</a> with it.
   </p> -->
-  {isHome && <p class="site-description">{siteData.description}</p>}
+  {isHome && <p class="site-description mb-0!">{siteData.description}</p>}
 </header>
 <!-- <span class="site-subtitle">taming magic</span> -->
+
+<script>
+  declare global {
+    interface Window {
+      __mobileMenuHandlerAdded__?: boolean;
+    }
+  }
+
+  const handleMobileMenuClick = (event: MouseEvent) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const menuButton = target.closest<HTMLButtonElement>("[data-menu-button]");
+    const mobileMenu = menuButton?.closest<HTMLElement>("[data-mobile-menu]");
+    if (!mobileMenu || !menuButton) return;
+
+    const open = mobileMenu.dataset.state !== "open";
+    mobileMenu.dataset.state = open ? "open" : "closed";
+    menuButton.setAttribute("aria-expanded", String(open));
+  };
+
+  if (!window.__mobileMenuHandlerAdded__) {
+    document.addEventListener("click", handleMobileMenuClick);
+    window.__mobileMenuHandlerAdded__ = true;
+  }
+</script>
