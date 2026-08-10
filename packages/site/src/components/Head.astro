@@ -12,13 +12,13 @@ interface Props {
 const { title, description, image } = Astro.props;
 
 let pageTitle = title ? `${title} - ${siteData.title}` : siteData.title;
+const siteUrl = (Astro.site ?? new URL(siteData.siteUrl)).toString();
+const robots = import.meta.env.PUBLIC_ROBOTS || "index, follow";
 const pageDescription = description
   ? description.replace(/<[^>]+>/g, "").trim()
   : siteData.description;
 const toAbsoluteUrl = (url: string) =>
-  /^https?:\/\//i.test(url)
-    ? url
-    : `${siteData.siteUrl}${url.startsWith("/") ? "" : "/"}${url}`;
+  /^https?:\/\//i.test(url) ? url : new URL(url, siteUrl).toString();
 
 const getOgBaseUrl = (): string => {
   const explicit =
@@ -40,7 +40,7 @@ const getOgBaseUrl = (): string => {
     }
   }
 
-  return siteData.siteUrl.replace(/\/+$/, "");
+  return siteUrl.replace(/\/+$/, "");
 };
 
 const ogBaseUrl = getOgBaseUrl();
@@ -51,7 +51,7 @@ const ogKey = (() => {
 })();
 const ogImage = `${ogBaseUrl.replace(/\/+$/, "")}/og/${ogKey}.png`;
 let pageImage = image ? toAbsoluteUrl(image) : ogImage;
-let pageLocation = `${siteData.siteUrl}${Astro.url.pathname}`;
+let pageLocation = new URL(Astro.url.pathname, siteUrl).toString();
 const twitterHandle = siteData.twitterHandle || "";
 const locale = siteData.locale || "en_US";
 const language = siteData.language || "en-US";
@@ -74,7 +74,7 @@ const analytics = siteData.analytics;
     name="viewport"
     content="width=device-width, initial-scale=1, minimum-scale=1"
   />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={robots} />
 
   <title>{pageTitle}</title>
   <meta property="og:title" content={pageTitle} />
@@ -141,7 +141,7 @@ const analytics = siteData.analytics;
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: siteData.title,
-      url: siteData.siteUrl,
+      url: siteUrl,
       description: siteData.description,
       inLanguage: language,
       author: siteData.author

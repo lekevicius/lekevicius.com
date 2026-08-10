@@ -1,10 +1,18 @@
 import { generateCollections } from "@sensinum/astro-strapi-loader";
 
 let strapiCollections: any = {};
+const strapiUrl = import.meta.env.STRAPI_URL;
+
+if (import.meta.env.PROD && !strapiUrl) {
+  throw new Error(
+    "STRAPI_URL is required for production builds. Add it as a Cloudflare build variable.",
+  );
+}
+
 try {
   strapiCollections = await generateCollections(
     {
-      url: import.meta.env.STRAPI_URL,
+      url: strapiUrl,
       token: import.meta.env.STRAPI_TOKEN,
     },
     [
@@ -39,6 +47,12 @@ try {
     ],
   );
 } catch (error) {
+  if (import.meta.env.PROD) {
+    throw new Error(
+      "Unable to load content from Strapi. The production build was stopped to avoid deploying an empty site.",
+      { cause: error },
+    );
+  }
   console.error(error);
 }
 

@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import type { StrapiMediaSource } from "../lib/strapiTypes";
+import { getStrapiMediaUrl, type StrapiMediaSource } from "../lib/strapiTypes";
 
 interface Props {
   src: StrapiMediaSource;
@@ -12,12 +12,13 @@ interface Props {
 }
 
 const { src, alt, width, height, loading, class: className } = Astro.props;
+const normalizedSrc = getStrapiMediaUrl(src) ?? src;
 ---
 
 {
-  typeof src !== "string" ? (
+  typeof normalizedSrc !== "string" ? (
     <Image
-      src={src}
+      src={normalizedSrc}
       width={width ?? undefined}
       height={height ?? undefined}
       loading={loading}
@@ -26,7 +27,7 @@ const { src, alt, width, height, loading, class: className } = Astro.props;
     />
   ) : width && height ? (
     <Image
-      src={src}
+      src={normalizedSrc}
       width={width}
       height={height}
       loading={loading}
@@ -34,6 +35,12 @@ const { src, alt, width, height, loading, class: className } = Astro.props;
       class={className}
     />
   ) : (
-    <Image src={src} inferSize loading={loading} alt={alt} class={className} />
+    <Image
+      src={normalizedSrc}
+      inferSize
+      loading={loading}
+      alt={alt}
+      class={className}
+    />
   )
 }

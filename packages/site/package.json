@@ -6,6 +6,8 @@
     "dev": "bunx --bun astro dev",
     "build": "bunx --bun astro check && bunx --bun astro build",
     "preview": "bunx --bun astro preview",
+    "preview:cloudflare": "bun run build && bunx wrangler dev",
+    "deploy:cloudflare": "bun run build && bunx wrangler deploy",
     "astro": "astro",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -17,6 +19,7 @@
   "dependencies": {
     "@astrojs/check": "0.9.10",
     "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "^3.7.3",
     "@sensinum/astro-strapi-blocks": "^1.5.0",
     "@sensinum/astro-strapi-loader": "^1.4.0",
     "@tailwindcss/typography": "^0.5.20",
@@ -42,7 +45,8 @@
     "lint-staged": "^17.3.0",
     "oxlint": "^1.77.0",
     "prettier": "3.9.6",
-    "prettier-plugin-astro": "0.14.1"
+    "prettier-plugin-astro": "0.14.1",
+    "wrangler": "^4.120.1"
   },
   "lint-staged": {
     "*.{astro,css,html,js,json,jsonc,md,mjs,ts,yaml,yml}": "prettier --write"

@@ -8,7 +8,22 @@ export type StrapiMediaSource = string | ImageMetadata;
 
 export const getStrapiMediaUrl = (
   source: StrapiMediaSource | null | undefined,
-) => (typeof source === "string" ? source : source?.src);
+) => {
+  const value = typeof source === "string" ? source : source?.src;
+  if (!value || /^(?:https?:)?\/\//i.test(value) || !value.startsWith("/")) {
+    return value;
+  }
+
+  const assetBaseUrl =
+    import.meta.env.PUBLIC_STRAPI_ASSET_BASE_URL || import.meta.env.STRAPI_URL;
+  if (!assetBaseUrl) return value;
+
+  try {
+    return new URL(value, assetBaseUrl).toString();
+  } catch {
+    return value;
+  }
+};
 
 /** Common fields present on all Strapi collection entries */
 export interface StrapiBaseFields {

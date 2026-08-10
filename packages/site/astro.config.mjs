@@ -1,11 +1,23 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { ogToS3Bun } from "./src/integrations/og-s3-bun";
 
 const mode = process.env.NODE_ENV ?? "production";
 const env = loadEnv(mode, process.cwd(), "");
+const siteUrl = env.SITE_URL || "https://lekevicius.com";
+
+const imageDomains = new Set(["lekevicius.nbg1.your-objectstorage.com"]);
+for (const value of [env.PUBLIC_STRAPI_ASSET_BASE_URL, env.STRAPI_URL]) {
+  if (!value) continue;
+  try {
+    imageDomains.add(new URL(value).hostname);
+  } catch {
+    // Environment validation during the build will report an invalid URL.
+  }
+}
 
 const ogS3Integration =
   env.OG_BUCKET &&
@@ -26,12 +38,12 @@ const ogS3Integration =
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://lekevicius.com",
+  site: siteUrl,
   vite: {
     plugins: [tailwindcss()],
   },
   image: {
-    domains: ["lekevicius.nbg1.your-objectstorage.com"],
+    domains: [...imageDomains],
   },
-  integrations: [ogS3Integration].filter(Boolean),
+  integrations: [sitemap(), ogS3Integration].filter(Boolean),
 });

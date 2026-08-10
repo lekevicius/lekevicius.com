@@ -38,6 +38,9 @@ remaining site variables configure its canonical URL, media URLs, and optional
 S3-compatible Open Graph image publishing. Strapi documents its full local
 configuration in `packages/admin/.env.example`.
 
+Production builds stop when Strapi cannot be reached so an empty site cannot be
+deployed accidentally.
+
 ## Development
 
 Run the CMS and site in separate terminals:
@@ -52,13 +55,19 @@ The default local ports are `1337` for Strapi and `4321` for Astro. Running
 
 Useful root commands:
 
-| Command | Purpose |
-| --- | --- |
-| `bun run build` | Build the Astro site and Strapi admin |
-| `bun run build:site` | Type-check and build the site |
-| `bun run build:admin` | Build the Strapi admin |
-| `bun run lint` | Lint the site |
-| `bun run format:check` | Check site formatting |
+| Command                | Purpose                               |
+| ---------------------- | ------------------------------------- |
+| `bun run build`        | Build the Astro site and Strapi admin |
+| `bun run build:site`   | Type-check and build the site         |
+| `bun run build:admin`  | Build the Strapi admin                |
+| `bun run lint`         | Lint the site                         |
+| `bun run format:check` | Check site formatting                 |
+
+## Deployment
+
+The Astro site is configured as a Cloudflare Worker with static assets. See the
+[Cloudflare deployment guide](docs/cloudflare.md) for the Workers Builds,
+`next.lekevicius.com`, Strapi webhook, caching, and image setup.
 
 Strapi can also run with Docker Compose from its package directory:
 
