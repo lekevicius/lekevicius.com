@@ -1,0 +1,76 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import ServiceIcon from "../components/ServiceIcon.astro";
+import Tooltip from "../components/Tooltip.astro";
+import contactServices, { gpgPublicKey } from "../content/contactServices";
+import Layout from "../layouts/Layout.astro";
+import NewsletterSection from "../components/NewsletterSection.astro";
+
+const title = "Contact";
+const description = "Ways to reach me or follow my thoughts.";
+---
+
+<Layout title={title} description={description} bodyClass="contact-page">
+  <PageHeading title={title} description={description} />
+  <hr />
+  <NewsletterSection />
+  {
+    contactServices.map((group) => (
+      <>
+        <hr />
+        <section
+          class="side-title-section"
+          aria-labelledby={`contact-group-${group.id}`}
+        >
+          <div class="side-title-title">
+            <h2 id={`contact-group-${group.id}`}>{group.title}</h2>
+          </div>
+          <div class="side-title-content">
+            <ul class="link-grid">
+              {group.services.map((service) => (
+                <li class="link-grid-item">
+                  <a href={service.href}>
+                    <ServiceIcon
+                      name={service.icon}
+                      class="contact-service-icon"
+                    />
+                    <div class="link-grid-item-content">
+                      <h3 class="item-title">{service.name}</h3>
+                      <p class="item-description">{service.description}</p>
+                    </div>
+                  </a>
+                </li>
+              ))}
+              {group.id === "contact" && (
+                <li class="link-grid-item contact-gpg-item col-span-10!">
+                  <Tooltip id="contact-gpg-copy" text="Copy to Clipboard">
+                    <button
+                      type="button"
+                      class="block-link contact-gpg-copy"
+                      data-copy-value-b64={Buffer.from(gpgPublicKey).toString(
+                        "base64",
+                      )}
+                      data-copy-toast="GPG key copied!"
+                      aria-label="Copy GPG public key to clipboard"
+                    >
+                      <ServiceIcon name="key" class="contact-service-icon" />
+                      <div class="link-grid-item-content min-w-0">
+                        <h3 class="item-title">
+                          GPG Public Key
+                          <span class="item-note">Ed25519</span>
+                        </h3>
+                        <p class="item-description font-mono text-sm leading-7 truncate">
+                          70F9 472A 8F2D 2EC3 F31D 2266 30F6 0BAA 75FF D0D7
+                        </p>
+                      </div>
+                    </button>
+                  </Tooltip>
+                </li>
+              )}
+            </ul>
+          </div>
+        </section>
+      </>
+    ))
+  }
+</Layout>

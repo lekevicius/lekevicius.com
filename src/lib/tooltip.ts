@@ -80,7 +80,7 @@ export function wireTooltips(root: ParentNode = document) {
 
     ref.addEventListener("mouseenter", open);
     ref.addEventListener("mouseleave", close);
-    ref.addEventListener("focus", open);
-    ref.addEventListener("blur", close);
+    ref.addEventListener("focusin", open);
+    ref.addEventListener("focusout", close);
   }
 }

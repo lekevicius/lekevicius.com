@@ -1,190 +1,60 @@
 ---
-import EmailIcon from "../assets/services/email.svg";
-import SignalIcon from "../assets/services/signal.svg";
-import TelegramIcon from "../assets/services/telegram.svg";
-import MessengerIcon from "../assets/services/messenger.svg";
-
-import BlueskyIcon from "../assets/services/bluesky.svg";
-import MastodonIcon from "../assets/services/mastodon.svg";
-import XIcon from "../assets/services/x.svg";
-import InstagramIcon from "../assets/services/instagram.svg";
-
-import LinkedInIcon from "../assets/services/linkedin.svg";
-import GitHubIcon from "../assets/services/github.svg";
-import LetterboxdIcon from "../assets/services/letterboxd.svg";
-import ENSIcon from "../assets/services/ens.svg";
-
+import footerContactLinks from "../content/footerContactLinks";
+import ServiceIcon from "./ServiceIcon.astro";
 import Tooltip from "./Tooltip.astro";
-
-// Email copy config
-const email = "jonas@lekevicius.com";
-const encodedEmail = Buffer.from(email).toString("base64");
 ---
 
 <section class="column-blocks contact-section">
-  <div class="column-block">
-    <h4>Contact</h4>
-    <ul class="contact-links">
-      <li class="service-link service-link-email">
-        <Tooltip id="contact-email" text="Copy email address">
-          <a
-            href="mailto:click-to-copy@spam-prevention.com"
-            aria-label="Copy email address"
-            data-email-b64={encodedEmail}
-          >
-            <EmailIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-signal" text="Message on Signal">
-          <a
-            href="https://signal.me/#eu/519y9OoMmKjPzHFsP0XUP5MNP8lnBpytNLLocKpiIcX-x_LnkrpOu7Zs7uH96Ka7"
-            title="Signal"
-            aria-label="Signal"
-          >
-            <SignalIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-telegram" text="Message on Telegram">
-          <a
-            href="https://t.me/lekevicius"
-            title="Telegram"
-            aria-label="Telegram"
-          >
-            <TelegramIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-messenger" text="Message on Messenger">
-          <a
-            href="https://m.me/lekevicius"
-            title="Messenger"
-            aria-label="Messenger"
-          >
-            <MessengerIcon />
-          </a>
-        </Tooltip>
-      </li>
-    </ul>
-  </div>
-  <div class="column-block">
-    <h4>Follow</h4>
-    <ul class="contact-links">
-      <li>
-        <Tooltip id="contact-bluesky" text="Follow on Bluesky">
-          <a
-            href="https://bsky.app/profile/lekevicius.com"
-            title="Bluesky"
-            aria-label="Bluesky"
-          >
-            <BlueskyIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-mastodon" text="Follow on Mastodon">
-          <a
-            href="https://mastodon.social/@lekevicius"
-            title="Mastodon"
-            aria-label="Mastodon"
-          >
-            <MastodonIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-x" text="Follow on X">
-          <a href="https://x.com/lekevicius" title="X" aria-label="X">
-            <XIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-instagram" text="Follow on Instagram">
-          <a
-            href="https://instagram.com/lekevicius"
-            title="Instagram"
-            aria-label="Instagram"
-          >
-            <InstagramIcon />
-          </a>
-        </Tooltip>
-      </li>
-    </ul>
-  </div>
-  <div class="column-block">
-    <h4>Elsewhere</h4>
-    <ul class="contact-links">
-      <li>
-        <Tooltip id="contact-linkedin" text="Connect on LinkedIn">
-          <a
-            href="https://linkedin.com/in/lekevicius"
-            title="LinkedIn"
-            aria-label="LinkedIn"
-          >
-            <LinkedInIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-github" text="Follow on GitHub">
-          <a
-            href="https://github.com/lekevicius"
-            title="GitHub"
-            aria-label="GitHub"
-          >
-            <GitHubIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-letterboxd" text="Follow on Letterboxd">
-          <a
-            href="https://letterboxd.com/lekevicius"
-            title="Letterboxd"
-            aria-label="Letterboxd"
-          >
-            <LetterboxdIcon />
-          </a>
-        </Tooltip>
-      </li>
-      <li>
-        <Tooltip id="contact-gpg" text="View GPG Key">
-          <a
-            href="https://keybase.io/lekevicius"
-            title="GPG Key"
-            aria-label="GPG Key"
-          >
-            <ENSIcon />
-          </a>
-        </Tooltip>
-      </li>
-    </ul>
-  </div>
+  {
+    footerContactLinks.map((group) => (
+      <div class="column-block">
+        <h4>{group.title}</h4>
+        <ul class="contact-links">
+          {group.links.map((link) => {
+            const encodedCopyValue = link.copyValue
+              ? Buffer.from(link.copyValue).toString("base64")
+              : undefined;
+
+            return (
+              <li class:list={{ "service-link-email": link.copyValue }}>
+                <Tooltip id={`contact-${link.id}`} text={link.tooltip}>
+                  <a
+                    href={link.href}
+                    title={link.label}
+                    aria-label={link.tooltip}
+                    data-copy-value-b64={encodedCopyValue}
+                    data-copy-toast={
+                      link.copyValue ? "Email copied!" : undefined
+                    }
+                  >
+                    <ServiceIcon name={link.icon} />
+                  </a>
+                </Tooltip>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))
+  }
 </section>
 
 <script>
-  // Extend the Window interface to include __emailCopyHandlersAdded__
+  // Keep one delegated copy handler across Astro page transitions.
   declare global {
     interface Window {
-      __emailCopyHandlersAdded__?: boolean;
+      __copyHandlersAdded__?: boolean;
     }
   }
-
-  const TOAST_COPIED = "Email copied!";
 
   const handleClick = (event: MouseEvent) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
-    const anchor = target.closest("a[data-email-b64]");
-    if (!anchor) return;
+    const copyTarget = target.closest<HTMLElement>("[data-copy-value-b64]");
+    if (!copyTarget) return;
     event.preventDefault();
 
-    const b64 = anchor.getAttribute("data-email-b64");
+    const b64 = copyTarget.dataset.copyValueB64;
     if (!b64) return;
     let decoded = "";
     try {
@@ -232,13 +102,13 @@ const encodedEmail = Buffer.from(email).toString("base64");
 
     copyText(decoded).then((ok) => {
       if (ok) {
-        showToast(TOAST_COPIED);
+        showToast(copyTarget.dataset.copyToast ?? "Copied!");
       }
     });
   };
 
-  if (!window.__emailCopyHandlersAdded__) {
+  if (!window.__copyHandlersAdded__) {
     document.addEventListener("click", handleClick);
-    window.__emailCopyHandlersAdded__ = true;
+    window.__copyHandlersAdded__ = true;
   }
 </script>

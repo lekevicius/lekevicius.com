@@ -269,7 +269,8 @@ a {
   outline: none;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 2px solid oklch(62.3% 0.214 259.815);
   outline-offset: 2px;
 }
@@ -552,6 +553,20 @@ a:focus-visible {
   }
 }
 
+.contact-page {
+  .link-grid .link-grid-item-content {
+    @apply gap-y-0;
+  }
+
+  .side-title-section:not(:has(~ .side-title-section)) {
+    @apply mb-8;
+  }
+
+  .contact-section {
+    @apply hidden;
+  }
+}
+
 .entry-grid {
   @apply flex flex-col md:grid grid-cols-subgrid col-span-12;
 
@@ -783,6 +798,24 @@ hr {
   .contact-links {
     @apply grid grid-cols-2 gap-4 w-16 md:w-auto md:flex md:gap-x-8 flex-wrap;
   }
+}
+
+.contact-service-icon {
+  @apply mt-0.5 size-6 shrink-0 opacity-60 transition-opacity;
+}
+
+.link-grid-item > a:hover .contact-service-icon,
+.contact-gpg-copy:hover .contact-service-icon {
+  @apply opacity-100;
+}
+
+.contact-gpg-item > .tt,
+.contact-gpg-item > .tt > .tt-ref {
+  @apply block h-full min-w-0 w-full;
+}
+
+.contact-gpg-copy {
+  @apply flex h-full w-full min-w-0 max-w-full cursor-pointer gap-x-4 px-4 py-3 text-left;
 }
 
 .now-section {

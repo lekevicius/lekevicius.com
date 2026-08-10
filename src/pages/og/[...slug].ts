@@ -49,6 +49,10 @@ const staticPages: Record<string, OgPageData> = {
     title: "Appearances",
     description: "Podcasts, interviews, and media features.",
   },
+  contact: {
+    title: "Contact",
+    description: "Ways to reach me or follow my thoughts.",
+  },
   colophon: {
     title: "Colophon",
     description: "How this site is made.",
