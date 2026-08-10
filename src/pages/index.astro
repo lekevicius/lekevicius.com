@@ -70,10 +70,15 @@ const hasMoments = (await getContentCollection("moments")).length > 0;
   <hr />
 
   <!-- Projects -->
-  <FocusSection />
   <section class="side-title-section">
-    <div class="side-title-title"></div>
+    <div class="side-title-title">
+      <h2>Projects</h2>
+    </div>
     <div class="side-title-content">
+      <div class="col-span-10 px-4 py-3 flex flex-col gap-y-6">
+        <FocusSection />
+        <hr />
+      </div>
       <ul class="link-grid">
         {
           featuredProjects.map((item) => (
