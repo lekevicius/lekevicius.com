@@ -1,0 +1,117 @@
+---
+import StrapiImage from "../components/StrapiImage.astro";
+import FocusSection from "../components/FocusSection.astro";
+import Layout from "../layouts/Layout.astro";
+import PageHeading from "../components/PageHeading.astro";
+import type { ProjectEntry } from "../lib/strapiTypes";
+import { getContentCollection } from "../lib/content";
+
+const allProjects = (
+  (await getContentCollection("projects")) as ProjectEntry[]
+).sort(
+  (a, b) =>
+    new Date(b.data.releasedAt ?? 0).getTime() -
+    new Date(a.data.releasedAt ?? 0).getTime(),
+);
+const activeProjects = allProjects.filter((project) => project.data.active);
+const inactiveProjects = allProjects.filter((project) => !project.data.active);
+
+const title = "Projects";
+const description = "Apps, tools, and creative works.";
+---
+
+<Layout title={title} description={description}>
+  <PageHeading title={title} description={description} />
+  <section class="side-title-section">
+    <div class="side-title-title">
+      <h2>Focus</h2>
+    </div>
+    <div class="side-title-content">
+      <div class="col-span-10 px-4 py-3 flex flex-col gap-y-6">
+        <FocusSection />
+      </div>
+    </div>
+  </section>
+  <hr />
+  <section class="side-title-section">
+    <div class="side-title-title">
+      <h2>Active</h2>
+    </div>
+    <div class="side-title-content">
+      <ul class="link-grid">
+        {
+          activeProjects.map((item) => (
+            <li class="link-grid-item">
+              <a href={`/${item.data.slug}`}>
+                {item.data.image?.formats?.thumbnail && (
+                  <div class="link-grid-item-image">
+                    <StrapiImage
+                      width={156}
+                      height={156}
+                      loading="eager"
+                      src={item.data.image.formats.thumbnail.url}
+                      alt={item.data.title ?? ""}
+                    />
+                  </div>
+                )}
+                <div class="link-grid-item-content">
+                  <h3 class="item-title">
+                    {item.data.tag && (
+                      <span class="item-tag">{item.data.tag}</span>
+                    )}
+                    {item.data.title}
+                    {item.data.note && (
+                      <span class="item-note">{item.data.note}</span>
+                    )}
+                  </h3>
+                  <p class="item-description">{item.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+  <hr />
+  <section class="side-title-section">
+    <div class="side-title-title">
+      <h2>Past</h2>
+    </div>
+    <div class="side-title-content">
+      <ul class="link-grid">
+        {
+          inactiveProjects.map((item) => (
+            <li class="link-grid-item">
+              <a href={`/${item.data.slug}`}>
+                {item.data.image?.formats?.thumbnail && (
+                  <div class="link-grid-item-image">
+                    <StrapiImage
+                      width={156}
+                      height={156}
+                      loading="eager"
+                      src={item.data.image.formats.thumbnail.url}
+                      alt={item.data.title ?? ""}
+                    />
+                  </div>
+                )}
+                <div class="link-grid-item-content">
+                  <h3 class="item-title">
+                    {item.data.tag && (
+                      <span class="item-tag">{item.data.tag}</span>
+                    )}
+                    {item.data.title}
+                    {item.data.note && (
+                      <span class="item-note">{item.data.note}</span>
+                    )}
+                  </h3>
+                  <p class="item-description">{item.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Layout>

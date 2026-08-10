@@ -1,0 +1,176 @@
+---
+import "../styles/global.css";
+import siteData from "../content/metadata.json";
+import { ClientRouter } from "astro:transitions";
+import Analytics from "./Analytics.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+const { title, description, image } = Astro.props;
+
+let pageTitle = title ? `${title} - ${siteData.title}` : siteData.title;
+const pageDescription = description
+  ? description.replace(/<[^>]+>/g, "").trim()
+  : siteData.description;
+const toAbsoluteUrl = (url: string) =>
+  /^https?:\/\//i.test(url)
+    ? url
+    : `${siteData.siteUrl}${url.startsWith("/") ? "" : "/"}${url}`;
+
+const getOgBaseUrl = (): string => {
+  const explicit =
+    import.meta.env.OG_IMAGE_BASE_URL ||
+    import.meta.env.PUBLIC_OG_IMAGE_BASE_URL;
+  if (explicit) return explicit.replace(/\/+$/, "");
+
+  const bucket = import.meta.env.OG_BUCKET || import.meta.env.S3_BUCKET;
+  const endpoint = import.meta.env.S3_ENDPOINT;
+  if (bucket && endpoint) {
+    try {
+      const endpointUrl = new URL(endpoint);
+      const host = endpointUrl.hostname.startsWith(`${bucket}.`)
+        ? endpointUrl.hostname
+        : `${bucket}.${endpointUrl.hostname}`;
+      return `${endpointUrl.protocol}//${host}${endpointUrl.port ? `:${endpointUrl.port}` : ""}`;
+    } catch {
+      // Ignore invalid endpoint and fall back to site URL.
+    }
+  }
+
+  return siteData.siteUrl.replace(/\/+$/, "");
+};
+
+const ogBaseUrl = getOgBaseUrl();
+const ogKey = (() => {
+  const path = Astro.url.pathname ?? "/";
+  const trimmed = path.replace(/^\/+|\/+$/g, "");
+  return trimmed.length ? trimmed : "index";
+})();
+const ogImage = `${ogBaseUrl.replace(/\/+$/, "")}/og/${ogKey}.png`;
+let pageImage = image ? toAbsoluteUrl(image) : ogImage;
+let pageLocation = `${siteData.siteUrl}${Astro.url.pathname}`;
+const twitterHandle = siteData.twitterHandle || "";
+const locale = siteData.locale || "en_US";
+const language = siteData.language || "en-US";
+const themeColor = siteData.themeColor || "#333333";
+const tileColor = siteData.tileColor || themeColor;
+const appleTitle = siteData.appleTitle || siteData.title;
+const feedTitle = siteData.feedTitle || "Articles";
+const feedBaseUrl = import.meta.env.DEV
+  ? new URL(Astro.url.origin)
+  : (Astro.site ?? new URL(siteData.siteUrl));
+const rssFeedUrl = new URL("/feed.xml", feedBaseUrl);
+const jsonFeedUrl = new URL("/feed.json", feedBaseUrl);
+const generator = siteData.generator || "Astro";
+const analytics = siteData.analytics;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1"
+  />
+  <meta name="robots" content="index, follow" />
+
+  <title>{pageTitle}</title>
+  <meta property="og:title" content={pageTitle} />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta property="og:site_name" content={siteData.title} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content={locale} />
+
+  <meta name="description" content={pageDescription} />
+  <meta property="og:description" content={pageDescription} />
+  <meta name="twitter:description" content={pageDescription} />
+
+  <link rel="canonical" href={pageLocation} />
+  <meta property="og:url" content={pageLocation} />
+  <meta name="twitter:url" content={pageLocation} />
+
+  <meta name="author" content={siteData.author} />
+  {twitterHandle && <meta name="twitter:site" content={twitterHandle} />}
+  {twitterHandle && <meta name="twitter:creator" content={twitterHandle} />}
+  <link type="text/plain" rel="author" href="/humans.txt" />
+  <meta name="generator" content={generator} />
+
+  <meta property="og:image" content={pageImage} />
+  <meta name="twitter:image" content={pageImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content={themeColor} />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="msapplication-TileColor" content={tileColor} />
+  <meta name="msapplication-TileImage" content="/tileicon.png" />
+
+  <meta name="apple-mobile-web-app-title" content={appleTitle} />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  {
+    Array.isArray(analytics?.preconnect) &&
+      analytics.preconnect.map((href) => <link rel="preconnect" href={href} />)
+  }
+  {
+    Array.isArray(analytics?.dnsPrefetch) &&
+      analytics.dnsPrefetch.map((href) => (
+        <link rel="dns-prefetch" href={href} />
+      ))
+  }
+
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title={feedTitle}
+    href={rssFeedUrl}
+  />
+  <link
+    rel="alternate"
+    type="application/feed+json"
+    title={feedTitle}
+    href={jsonFeedUrl}
+  />
+
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: siteData.title,
+      url: siteData.siteUrl,
+      description: siteData.description,
+      inLanguage: language,
+      author: siteData.author
+        ? {
+            "@type": "Person",
+            name: siteData.author,
+            url: siteData.authorUrl,
+            image: siteData.authorAvatar || undefined,
+            sameAs: Array.isArray(siteData.sameAs)
+              ? siteData.sameAs
+              : undefined,
+          }
+        : undefined,
+      sameAs: Array.isArray(siteData.sameAs) ? siteData.sameAs : undefined,
+    })}
+  />
+
+  <Analytics />
+  <ClientRouter />
+  <script>
+    let angle = 0;
+    function animate() {
+      angle = (angle + 2) % 360;
+      document.documentElement.style.setProperty(
+        "--border-angle",
+        angle + "deg",
+      );
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</head>

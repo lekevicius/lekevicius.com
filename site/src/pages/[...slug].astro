@@ -1,0 +1,95 @@
+---
+import Page from "../layouts/Page.astro";
+import BlockListRenderer from "../components/blocks/BlockListRenderer.astro";
+import { formatDate } from "../lib/utils";
+import type {
+  StrapiContentComponents,
+  PageEntry,
+  ProjectEntry,
+  TalkEntry,
+  VideoEntry,
+} from "../lib/strapiTypes";
+import { getStrapiMediaUrl } from "../lib/strapiTypes";
+import { getContentCollection } from "../lib/content";
+
+export async function getStaticPaths() {
+  const pages = (await getContentCollection("pages")) as PageEntry[];
+  const projects = (await getContentCollection("projects")) as ProjectEntry[];
+  const talks = (await getContentCollection("talks")) as TalkEntry[];
+  const videos = (await getContentCollection("videos")) as VideoEntry[];
+  return [
+    ...pages.map((page) => ({
+      params: {
+        slug: page.data.slug,
+      },
+      props: { page },
+    })),
+    ...projects.map((project) => ({
+      params: {
+        slug: project.data.slug,
+      },
+      props: { page: project },
+    })),
+    ...talks.map((talk) => ({
+      params: {
+        slug: talk.data.slug,
+      },
+      props: { page: talk },
+    })),
+    ...videos.map((video) => ({
+      params: {
+        slug: video.data.slug,
+      },
+      props: { page: video },
+    })),
+  ];
+}
+
+const { page } = Astro.props as {
+  page: PageEntry | ProjectEntry | TalkEntry | VideoEntry;
+};
+
+// Get video URL for embed: videos always have link, talks optionally have recordingLink
+const videoUrl =
+  page.collection === "videos"
+    ? (page.data as VideoEntry["data"]).link
+    : page.collection === "talks"
+      ? (page.data as TalkEntry["data"]).recordingLink
+      : undefined;
+
+// Get date for sideLabel based on collection type
+const getDateLabel = (): string | undefined => {
+  const data = page.data;
+  switch (page.collection) {
+    case "videos":
+      return (data as VideoEntry["data"]).releasedAt
+        ? formatDate((data as VideoEntry["data"]).releasedAt!, "long")
+        : undefined;
+    case "talks":
+      return (data as TalkEntry["data"]).presentedAt
+        ? formatDate((data as TalkEntry["data"]).presentedAt!, "long")
+        : undefined;
+    case "projects":
+      return (data as ProjectEntry["data"]).releasedAt
+        ? formatDate((data as ProjectEntry["data"]).releasedAt!, "long")
+        : undefined;
+    default:
+      return undefined;
+  }
+};
+const sideLabel = getDateLabel();
+---
+
+<Page
+  title={page.data.title ?? ""}
+  description={page.data.description ?? undefined}
+  image={getStrapiMediaUrl(page.data.cover?.url)}
+  videoUrl={videoUrl ?? undefined}
+  sideLabel={sideLabel}
+>
+  {
+    page.data.content && (
+      <BlockListRenderer data={page.data.content as StrapiContentComponents} />
+    )
+  }
+</Page>

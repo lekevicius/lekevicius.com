@@ -1,0 +1,12 @@
+---
+import BlockRenderer from "./BlockRenderer.astro";
+import type { StrapiContentComponents } from "../../lib/strapiTypes";
+
+type Props = {
+  data: StrapiContentComponents;
+};
+
+const { data } = Astro.props;
+---
+
+{data.map((item) => <BlockRenderer data={item} />)}

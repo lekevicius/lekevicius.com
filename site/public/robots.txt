@@ -1,0 +1,6 @@
+# robotstxt.org/
+
+User-agent: *
+Allow: /
+
+Sitemap: http://lekevicius.com/sitemap-index.xml

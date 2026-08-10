@@ -1,0 +1,49 @@
+---
+import Head from "../components/Head.astro";
+import ContactLinks from "../components/ContactLinks.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  bodyClass?: string;
+}
+const { title, description, image, bodyClass } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <Head title={title} description={description} image={image} />
+  <body class={bodyClass}>
+    <section id="art" transition:persist>
+      <canvas
+        id="artCanvas"
+        class="fixed top-0 left-0 -z-10 user-select-none pointer-events-none"
+        style="width: 100vw; height: 100vh;"></canvas>
+    </section>
+    <div class="site-container">
+      <Header />
+      <slot />
+      <ContactLinks />
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<script src="../components/Background.js"></script>
+<script>
+  async function initTooltips() {
+    const { wireTooltips } = await import("../lib/tooltip.ts");
+    wireTooltips(document);
+  }
+  async function initProse() {
+    const { wireProse } = await import("../lib/prose.ts");
+    wireProse(document);
+  }
+  document.addEventListener("astro:page-load", initTooltips);
+  document.addEventListener("astro:after-swap", initTooltips);
+  document.addEventListener("astro:page-load", initProse);
+  document.addEventListener("astro:after-swap", initProse);
+</script>

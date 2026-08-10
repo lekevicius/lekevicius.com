@@ -1,0 +1,114 @@
+---
+import footerContactLinks from "../content/footerContactLinks";
+import ServiceIcon from "./ServiceIcon.astro";
+import Tooltip from "./Tooltip.astro";
+---
+
+<section class="column-blocks contact-section">
+  {
+    footerContactLinks.map((group) => (
+      <div class="column-block">
+        <h4>{group.title}</h4>
+        <ul class="contact-links">
+          {group.links.map((link) => {
+            const encodedCopyValue = link.copyValue
+              ? Buffer.from(link.copyValue).toString("base64")
+              : undefined;
+
+            return (
+              <li class:list={{ "service-link-email": link.copyValue }}>
+                <Tooltip id={`contact-${link.id}`} text={link.tooltip}>
+                  <a
+                    href={link.href}
+                    title={link.label}
+                    aria-label={link.tooltip}
+                    data-copy-value-b64={encodedCopyValue}
+                    data-copy-toast={
+                      link.copyValue ? "Email copied!" : undefined
+                    }
+                  >
+                    <ServiceIcon name={link.icon} />
+                  </a>
+                </Tooltip>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))
+  }
+</section>
+
+<script>
+  // Keep one delegated copy handler across Astro page transitions.
+  declare global {
+    interface Window {
+      __copyHandlersAdded__?: boolean;
+    }
+  }
+
+  const handleClick = (event: MouseEvent) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const copyTarget = target.closest<HTMLElement>("[data-copy-value-b64]");
+    if (!copyTarget) return;
+    event.preventDefault();
+
+    const b64 = copyTarget.dataset.copyValueB64;
+    if (!b64) return;
+    let decoded = "";
+    try {
+      decoded = atob(b64);
+    } catch (e) {}
+    if (!decoded) return;
+
+    const showToast = (message: string) => {
+      const existingToast = document.querySelector(".toast");
+      if (existingToast) {
+        existingToast.remove();
+      }
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      void toast.offsetHeight;
+      requestAnimationFrame(() => {
+        toast.classList.add("toast-show");
+      });
+
+      setTimeout(() => {
+        toast.classList.add("toast-hide");
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 200);
+      }, 2000);
+    };
+
+    const copyText = async (text: string) => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (err) {
+          return false;
+        }
+      }
+      return false;
+    };
+
+    copyText(decoded).then((ok) => {
+      if (ok) {
+        showToast(copyTarget.dataset.copyToast ?? "Copied!");
+      }
+    });
+  };
+
+  if (!window.__copyHandlersAdded__) {
+    document.addEventListener("click", handleClick);
+    window.__copyHandlersAdded__ = true;
+  }
+</script>

@@ -1,0 +1,59 @@
+---
+import BlueskyIcon from "../assets/services/bluesky.svg";
+import ButtondownIcon from "../assets/services/buttondown.svg";
+import DiscordIcon from "../assets/services/discord.svg";
+import EmailIcon from "../assets/services/email.svg";
+import ENSIcon from "../assets/services/ens.svg";
+import FacebookIcon from "../assets/services/facebook.svg";
+import GitHubIcon from "../assets/services/github.svg";
+import HackerNewsIcon from "../assets/services/hacker-news.svg";
+import InstagramIcon from "../assets/services/instagram.svg";
+import KeyIcon from "../assets/services/key.svg";
+import LetterboxdIcon from "../assets/services/letterboxd.svg";
+import LensIcon from "../assets/services/lens.svg";
+import LinkedInIcon from "../assets/services/linkedin.svg";
+import MastodonIcon from "../assets/services/mastodon.svg";
+import MediumIcon from "../assets/services/medium.svg";
+import MessengerIcon from "../assets/services/messenger.svg";
+import RedditIcon from "../assets/services/reddit.svg";
+import RSSIcon from "../assets/services/rss.svg";
+import SignalIcon from "../assets/services/signal.svg";
+import TelegramIcon from "../assets/services/telegram.svg";
+import XIcon from "../assets/services/x.svg";
+import YouTubeIcon from "../assets/services/youtube.svg";
+
+const icons = {
+  bluesky: BlueskyIcon,
+  buttondown: ButtondownIcon,
+  discord: DiscordIcon,
+  email: EmailIcon,
+  ens: ENSIcon,
+  facebook: FacebookIcon,
+  github: GitHubIcon,
+  hackernews: HackerNewsIcon,
+  instagram: InstagramIcon,
+  key: KeyIcon,
+  letterboxd: LetterboxdIcon,
+  lens: LensIcon,
+  linkedin: LinkedInIcon,
+  mastodon: MastodonIcon,
+  medium: MediumIcon,
+  messenger: MessengerIcon,
+  reddit: RedditIcon,
+  rss: RSSIcon,
+  signal: SignalIcon,
+  telegram: TelegramIcon,
+  x: XIcon,
+  youtube: YouTubeIcon,
+} as const;
+
+interface Props {
+  name: keyof typeof icons;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+const Icon = icons[name];
+---
+
+<Icon class={className} />

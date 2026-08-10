@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Field notes spread across a dark workbench</title>
+  <desc id="description">An abstract editorial illustration with overlapping notes, diagrams, and a warm glowing orb.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15162a"/>
+      <stop offset="1" stop-color="#303766"/>
+    </linearGradient>
+    <radialGradient id="orb">
+      <stop offset="0" stop-color="#fff3b0"/>
+      <stop offset=".45" stop-color="#ffb45e"/>
+      <stop offset="1" stop-color="#ff6b8a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#background)"/>
+  <circle cx="1260" cy="210" r="240" fill="url(#orb)"/>
+  <g transform="translate(180 145) rotate(-5 480 300)">
+    <rect width="960" height="610" rx="28" fill="#f6f0df"/>
+    <path d="M90 130h420M90 190h710M90 250h590" stroke="#302f43" stroke-width="16" stroke-linecap="round" opacity=".72"/>
+    <circle cx="720" cy="420" r="104" fill="none" stroke="#f05f72" stroke-width="22"/>
+    <path d="M625 420h190M720 325v190" stroke="#f05f72" stroke-width="14" stroke-linecap="round"/>
+    <path d="M90 370h350M90 430h430M90 490h280" stroke="#4d5590" stroke-width="14" stroke-linecap="round" opacity=".58"/>
+  </g>
+  <g fill="none" stroke="#a6b5ff" stroke-width="8" stroke-linecap="round" opacity=".72">
+    <path d="M120 760c190-90 270-30 380-120"/>
+    <path d="M1320 620c-90 20-140 80-180 170"/>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+---
+const { id, title = undefined, text } = Astro.props;
+---
+
+<span class="tt">
+  <span class="tt-ref" aria-describedby={id}>
+    <slot />
+  </span>
+
+  <span id={id} class="tt-float" role="tooltip" hidden>
+    {
+      title && (
+        <>
+          <strong>{title}</strong>
+          <br />
+        </>
+      )
+    }
+    {text}
+  </span>
+</span>

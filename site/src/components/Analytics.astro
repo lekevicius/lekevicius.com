@@ -1,0 +1,23 @@
+---
+import siteData from "../content/metadata.json";
+
+const analytics = siteData.analytics;
+---
+
+{
+  analytics?.scriptSrc && analytics?.dataDomain && (
+    <script
+      is:inline
+      defer
+      data-domain={analytics.dataDomain}
+      src={analytics.scriptSrc}
+    />
+  )
+}
+<script is:inline>
+  window.plausible =
+    window.plausible ||
+    function () {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+</script>

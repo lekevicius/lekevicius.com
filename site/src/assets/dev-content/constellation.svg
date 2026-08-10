@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">A constellation of connected ideas</title>
+  <desc id="description">Colorful nodes connected across a deep blue field, suggesting a map of related ideas.</desc>
+  <defs>
+    <radialGradient id="background">
+      <stop offset="0" stop-color="#344477"/>
+      <stop offset="1" stop-color="#10152b"/>
+    </radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#background)"/>
+  <g stroke="#8195d9" stroke-width="7" opacity=".5">
+    <path d="M180 620 420 300 730 470 1040 210 1370 430 1170 710 730 470 460 740z" fill="none"/>
+    <path d="M420 300 1040 210M460 740 1170 710M730 470 1370 430"/>
+  </g>
+  <g filter="url(#glow)" opacity=".7">
+    <circle cx="420" cy="300" r="72" fill="#ffb85d"/>
+    <circle cx="730" cy="470" r="88" fill="#ee6c92"/>
+    <circle cx="1170" cy="710" r="68" fill="#7be0c0"/>
+  </g>
+  <g stroke="#fff" stroke-width="9">
+    <circle cx="180" cy="620" r="30" fill="#829cf2"/>
+    <circle cx="420" cy="300" r="44" fill="#ffb85d"/>
+    <circle cx="730" cy="470" r="56" fill="#ee6c92"/>
+    <circle cx="1040" cy="210" r="34" fill="#a792ef"/>
+    <circle cx="1370" cy="430" r="40" fill="#ffdc7b"/>
+    <circle cx="1170" cy="710" r="46" fill="#7be0c0"/>
+    <circle cx="460" cy="740" r="30" fill="#ef819a"/>
+  </g>
+</svg>

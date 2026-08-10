@@ -1,0 +1,26 @@
+---
+import Page from "./Page.astro";
+import type { MarkdownLayoutProps } from "astro";
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  description: string;
+  image: string;
+  sideLabel: string;
+}>;
+
+const { frontmatter } = Astro.props;
+---
+
+<Page
+  title={frontmatter.title}
+  description={frontmatter.description}
+  image={frontmatter.image}
+  sideLabel={frontmatter.sideLabel}
+>
+  <div class="rich-text-block prose">
+    <div class="rich-text-content">
+      <slot />
+    </div>
+  </div>
+</Page>
