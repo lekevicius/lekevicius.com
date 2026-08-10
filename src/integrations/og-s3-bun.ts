@@ -62,7 +62,7 @@ export function ogToS3Bun(options: OgS3BunOptions): AstroIntegration {
           return;
         }
 
-        const bun = globalThis.Bun as BunRuntime | undefined;
+        const bun = (globalThis as { Bun?: BunRuntime }).Bun;
         if (!bun?.S3Client || !bun.file) {
           throw new Error(
             "[og-to-s3-bun] Bun runtime not available. Run the build with Bun.",

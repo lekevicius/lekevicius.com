@@ -104,7 +104,6 @@ articleEntries.forEach((entry) => {
 
 export const { getStaticPaths, GET } = await OGImageRoute({
   pages,
-  param: "slug",
   getImageOptions: (_path, page) => ({
     title: page.title,
     description: page.description ?? "",
@@ -115,10 +114,7 @@ export const { getStaticPaths, GET } = await OGImageRoute({
     bgImage: {
       path: "./src/assets/images/og-bg.png",
     },
-    fonts: [
-      "./src/assets/fonts/Inter-Regular.ttf",
-      "./src/assets/fonts/Inter-Bold.ttf",
-    ],
+    fonts: ["./src/assets/fonts/Inter.woff2"],
     font: {
       title: {
         size: 64,
