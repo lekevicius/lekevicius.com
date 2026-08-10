@@ -1,0 +1,19 @@
+{
+  "name": "lekevicius",
+  "version": "8.0.0",
+  "private": true,
+  "description": "The lekevicius.com site and its Strapi content service",
+  "scripts": {
+    "dev": "bun run dev:site",
+    "dev:site": "bun run --cwd site dev",
+    "dev:admin": "pnpm --dir packages/admin run dev",
+    "build": "bun run build:site && bun run build:admin",
+    "build:site": "bun run --cwd site build",
+    "build:admin": "pnpm --dir packages/admin run build",
+    "lint": "bun run --cwd site lint",
+    "format:check": "bun run --cwd site format:check"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x"
+  }
+}
