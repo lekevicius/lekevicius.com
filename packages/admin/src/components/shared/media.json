@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_shared_media",
+  "info": {
+    "displayName": "Media",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "display": {
+      "type": "enumeration",
+      "enum": [
+        "plain",
+        "full",
+        "boxed",
+        "website"
+      ]
+    },
+    "caption": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

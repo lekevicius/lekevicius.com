@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_slides",
+  "info": {
+    "displayName": "Slide",
+    "icon": "slideshow"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "text": {
+      "type": "richtext"
+    }
+  },
+  "config": {}
+}

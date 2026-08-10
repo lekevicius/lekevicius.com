@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "appearances",
+  "info": {
+    "singularName": "appearance",
+    "pluralName": "appearances",
+    "displayName": "Appearance"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": false
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "Lithuanian",
+        "English"
+      ]
+    },
+    "type": {
+      "type": "string"
+    }
+  }
+}
