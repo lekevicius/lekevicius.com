@@ -51,14 +51,14 @@ const navigationItems = [
       }
     </nav>
 
-    <div class="site-mobile-menu" data-mobile-menu data-state="closed">
+    <div class="site-mobile-menu" data-menu data-state="closed">
       <button
         type="button"
         class="site-menu-button"
         aria-controls="site-mobile-navigation"
         aria-expanded="false"
         aria-label="Toggle menu"
-        data-menu-button
+        data-menu-toggle
       >
         <span class="site-menu-icon" aria-hidden="true">
           <span class="site-menu-icon-line"></span>
@@ -69,6 +69,8 @@ const navigationItems = [
         id="site-mobile-navigation"
         class="site-mobile-navigation"
         aria-label="Primary navigation"
+        data-menu-panel
+        inert
       >
         {
           navigationItems.map(({ label, href }) => (
@@ -85,29 +87,3 @@ const navigationItems = [
   </p> -->
   {isHome && <p class="site-description mb-0!">{siteData.description}</p>}
 </header>
-
-<script>
-  declare global {
-    interface Window {
-      __mobileMenuHandlerAdded__?: boolean;
-    }
-  }
-
-  const handleMobileMenuClick = (event: MouseEvent) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-
-    const menuButton = target.closest<HTMLButtonElement>("[data-menu-button]");
-    const mobileMenu = menuButton?.closest<HTMLElement>("[data-mobile-menu]");
-    if (!mobileMenu || !menuButton) return;
-
-    const open = mobileMenu.dataset.state !== "open";
-    mobileMenu.dataset.state = open ? "open" : "closed";
-    menuButton.setAttribute("aria-expanded", String(open));
-  };
-
-  if (!window.__mobileMenuHandlerAdded__) {
-    document.addEventListener("click", handleMobileMenuClick);
-    window.__mobileMenuHandlerAdded__ = true;
-  }
-</script>

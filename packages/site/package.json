@@ -17,7 +17,6 @@
   "dependencies": {
     "@astrojs/check": "0.9.10",
     "@astrojs/rss": "4.0.19",
-    "@floating-ui/dom": "^1.8.0",
     "@sensinum/astro-strapi-blocks": "^1.5.0",
     "@sensinum/astro-strapi-loader": "^1.4.0",
     "@tailwindcss/typography": "^0.5.20",

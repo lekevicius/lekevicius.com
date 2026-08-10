@@ -3,7 +3,6 @@ import { readFileSync } from "fs";
 import Layout from "../layouts/Layout.astro";
 import PageHeading from "../components/PageHeading.astro";
 import ResumeSection from "../components/ResumeSection.astro";
-import Tooltip from "../components/Tooltip.astro";
 
 import clientsData from "../content/clients";
 const clientsLogos = import.meta.glob("../assets/clients/*.svg");
@@ -51,16 +50,14 @@ const description = "Work experience and education, so far.";
         {
           clientsData.clients.map((client) => (
             <li class="flex justify-center items-center md:justify-start">
-              <Tooltip
-                id={`client-${client.name}`}
-                title={client.name}
-                text={client.contribution}
-              >
-                <figure
-                  class="p-1 rounded-lg col-span-2 flex justify-center"
-                  set:html={clientsLogoObject[client.logo]}
-                />
-              </Tooltip>
+              <figure
+                class="p-1 rounded-lg col-span-2 flex justify-center"
+                data-tooltip={client.contribution}
+                data-tooltip-title={client.name}
+                aria-label={`${client.name}: ${client.contribution}`}
+                tabindex="0"
+                set:html={clientsLogoObject[client.logo]}
+              />
             </li>
           ))
         }

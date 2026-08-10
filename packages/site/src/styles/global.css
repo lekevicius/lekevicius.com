@@ -923,11 +923,6 @@ hr {
   @apply opacity-100;
 }
 
-.contact-gpg-item > .tt,
-.contact-gpg-item > .tt > .tt-ref {
-  @apply block h-full min-w-0 w-full;
-}
-
 .contact-gpg-copy {
   @apply flex h-full w-full min-w-0 max-w-full cursor-pointer gap-x-4 px-4 py-3 text-left;
 }
@@ -960,9 +955,9 @@ hr {
   }
 }
 
-/* Shared popup appearance for toast and tooltips */
+/* Shared popup appearance for toast and tooltip */
 .toast,
-.tt-float {
+.tooltip {
   @apply bg-text text-background text-sm leading-5 py-3 px-4 rounded-xl whitespace-nowrap z-10000 pointer-events-none;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
@@ -991,27 +986,24 @@ hr {
     filter 0.2s ease-in;
 }
 
-.tt {
-  @apply inline-block;
-}
-
-.tt-float {
-  @apply absolute top-0 left-0 w-max opacity-0;
+.tooltip {
+  @apply fixed top-0 left-0 w-max opacity-0;
   @apply py-2 px-3 rounded-lg text-sm leading-5 whitespace-normal max-w-60;
+  max-width: min(15rem, calc(100vw - 1rem));
   transform: translateY(4px) scale(0.96);
   transition:
     opacity 0.15s ease-out,
     transform 0.15s ease-out;
 }
 
-.tt-float-visible {
+.tooltip-visible {
   @apply opacity-100;
   transform: translateY(0) scale(1);
 }
 
 @media (prefers-color-scheme: dark) {
   .toast,
-  .tt-float {
+  .tooltip {
     background: rgba(255, 255, 255, 0.95);
     color: #000;
   }
@@ -1019,13 +1011,18 @@ hr {
 
 @media (prefers-reduced-motion: reduce) {
   .toast,
-  .tt-float {
+  .tooltip {
     transition: none;
   }
 }
 
-.client-list .tt {
+.client-list [data-tooltip] {
   @apply flex;
+}
+
+.client-list [data-tooltip]:focus-visible {
+  outline: 2px solid oklch(62.3% 0.214 259.815);
+  outline-offset: 2px;
 }
 
 /* Prose theming */
