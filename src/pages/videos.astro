@@ -1,12 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
+import StrapiImage from "../components/StrapiImage.astro";
 import PageHeading from "../components/PageHeading.astro";
 import type { VideoEntry } from "../lib/strapiTypes";
 import { formatDate } from "../lib/utils";
+import { getContentCollection } from "../lib/content";
 
-const allVideos = ((await getCollection("videos")) as VideoEntry[]).sort(
+const allVideos = ((await getContentCollection("videos")) as VideoEntry[]).sort(
   (a, b) =>
     new Date(b.data.releasedAt ?? 0).getTime() -
     new Date(a.data.releasedAt ?? 0).getTime(),
@@ -32,7 +32,7 @@ const description = "Video content, recordings, and more.";
                   <div class="entry-grid-content-subgrid">
                     {video.data.image?.formats?.small && (
                       <div class="media-thumbnail">
-                        <Image
+                        <StrapiImage
                           width={500}
                           height={281}
                           loading="eager"

@@ -1,11 +1,13 @@
 ---
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+import StrapiImage from "../components/StrapiImage.astro";
 import Layout from "../layouts/Layout.astro";
 import PageHeading from "../components/PageHeading.astro";
 import type { ProjectEntry } from "../lib/strapiTypes";
+import { getContentCollection } from "../lib/content";
 
-const allProjects = ((await getCollection("projects")) as ProjectEntry[]).sort(
+const allProjects = (
+  (await getContentCollection("projects")) as ProjectEntry[]
+).sort(
   (a, b) =>
     new Date(b.data.releasedAt ?? 0).getTime() -
     new Date(a.data.releasedAt ?? 0).getTime(),
@@ -31,7 +33,7 @@ const description = "Apps, tools, and creative works.";
               <a href={`/${item.data.slug}`}>
                 {item.data.image?.formats?.thumbnail && (
                   <div class="link-grid-item-image">
-                    <Image
+                    <StrapiImage
                       width={156}
                       height={156}
                       loading="eager"
@@ -72,7 +74,7 @@ const description = "Apps, tools, and creative works.";
               <a href={`/${item.data.slug}`}>
                 {item.data.image?.formats?.thumbnail && (
                   <div class="link-grid-item-image">
-                    <Image
+                    <StrapiImage
                       width={156}
                       height={156}
                       loading="eager"

@@ -1,12 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import PageHeading from "../components/PageHeading.astro";
 import type { AppearanceEntry } from "../lib/strapiTypes";
 import { formatDate } from "../lib/utils";
+import { getContentCollection } from "../lib/content";
 
 const allAppearances = (
-  (await getCollection("appearances")) as AppearanceEntry[]
+  (await getContentCollection("appearances")) as AppearanceEntry[]
 ).sort(
   (a, b) =>
     new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime(),

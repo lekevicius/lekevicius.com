@@ -1,6 +1,14 @@
+import type { ImageMetadata } from "astro";
+
 // ============================================================================
 // Base Types & Common Fields
 // ============================================================================
+
+export type StrapiMediaSource = string | ImageMetadata;
+
+export const getStrapiMediaUrl = (
+  source: StrapiMediaSource | null | undefined,
+) => (typeof source === "string" ? source : source?.src);
 
 /** Common fields present on all Strapi collection entries */
 export interface StrapiBaseFields {
@@ -27,7 +35,7 @@ export interface StrapiMedia {
   ext: string;
   mime: string;
   size: number;
-  url: string;
+  url: StrapiMediaSource;
   previewUrl?: string | null;
   provider: string;
   createdAt: string;
@@ -42,7 +50,7 @@ export interface StrapiMediaFormat {
   width: number;
   height: number;
   size: number;
-  url: string;
+  url: StrapiMediaSource;
 }
 
 // ============================================================================

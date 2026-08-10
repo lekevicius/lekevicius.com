@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+  <title id="title">A calm software interface</title>
+  <desc id="description">A browser-like interface with a navigation rail, modular cards, a chart, and small status controls.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9e5ff"/>
+      <stop offset="1" stop-color="#cddbf7"/>
+    </linearGradient>
+    <linearGradient id="chart" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#775ce7"/>
+      <stop offset="1" stop-color="#ef6989"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#background)"/>
+  <rect x="110" y="95" width="1380" height="810" rx="34" fill="#fbfaff"/>
+  <rect x="110" y="95" width="250" height="810" rx="34" fill="#1f2545"/>
+  <circle cx="190" cy="175" r="30" fill="#f8ce72"/>
+  <g fill="#aeb8e7">
+    <rect x="165" y="280" width="140" height="18" rx="9"/>
+    <rect x="165" y="350" width="105" height="18" rx="9"/>
+    <rect x="165" y="420" width="125" height="18" rx="9"/>
+  </g>
+  <rect x="420" y="155" width="530" height="290" rx="28" fill="#eeebf8"/>
+  <path d="M470 385c120-130 180-40 270-130 70-70 110-30 160-70" fill="none" stroke="url(#chart)" stroke-width="28" stroke-linecap="round"/>
+  <rect x="1010" y="155" width="400" height="290" rx="28" fill="#f9d9c9"/>
+  <circle cx="1210" cy="300" r="92" fill="none" stroke="#e76c7f" stroke-width="34" stroke-dasharray="360 220" transform="rotate(-40 1210 300)"/>
+  <rect x="420" y="505" width="990" height="310" rx="28" fill="#242b50"/>
+  <g fill="#9facdf">
+    <rect x="480" y="570" width="330" height="20" rx="10"/>
+    <rect x="480" y="630" width="570" height="20" rx="10"/>
+    <rect x="480" y="690" width="460" height="20" rx="10"/>
+  </g>
+  <rect x="1120" y="590" width="220" height="94" rx="47" fill="#ffcc76"/>
+</svg>

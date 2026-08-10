@@ -1,12 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
+import StrapiImage from "../components/StrapiImage.astro";
 import PageHeading from "../components/PageHeading.astro";
 import type { TalkEntry } from "../lib/strapiTypes";
 import { formatDate } from "../lib/utils";
+import { getContentCollection } from "../lib/content";
 
-const allTalks = ((await getCollection("talks")) as TalkEntry[]).sort(
+const allTalks = ((await getContentCollection("talks")) as TalkEntry[]).sort(
   (a, b) =>
     new Date(b.data.presentedAt ?? 0).getTime() -
     new Date(a.data.presentedAt ?? 0).getTime(),
@@ -32,7 +32,7 @@ const description = "Conference presentations and keynotes.";
                   <div class="entry-grid-content-subgrid">
                     {talk.data.image?.formats?.small && (
                       <div class="media-thumbnail">
-                        <Image
+                        <StrapiImage
                           width={500}
                           height={281}
                           loading="eager"

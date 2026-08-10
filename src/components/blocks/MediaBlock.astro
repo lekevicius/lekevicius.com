@@ -1,6 +1,6 @@
 ---
 import type { StrapiMediaComponent } from "../../lib/strapiTypes";
-import { Image } from "astro:assets";
+import StrapiImage from "../StrapiImage.astro";
 
 type Props = {
   data: StrapiMediaComponent;
@@ -24,8 +24,9 @@ const getHostname = (url: string) => {
 {
   display === "plain" && (
     <figure class="media-block media-block-plain my-4">
-      <Image
-        inferSize
+      <StrapiImage
+        width={data.file.width}
+        height={data.file.height}
         loading="eager"
         src={data.file.url}
         alt={alt}
@@ -41,8 +42,9 @@ const getHostname = (url: string) => {
 {
   display === "full" && (
     <figure class="media-block media-block-full my-4">
-      <Image
-        inferSize
+      <StrapiImage
+        width={data.file.width}
+        height={data.file.height}
         loading="eager"
         src={data.file.url}
         alt={alt}
@@ -58,8 +60,9 @@ const getHostname = (url: string) => {
 {
   display === "boxed" && (
     <figure class="media-block media-block-boxed my-4 bg-text/8 rounded-2xl overflow-hidden">
-      <Image
-        inferSize
+      <StrapiImage
+        width={data.file.width}
+        height={data.file.height}
         loading="eager"
         src={data.file.url}
         alt={alt}
@@ -99,8 +102,9 @@ const getHostname = (url: string) => {
           </div>
         )}
       </div>
-      <Image
-        inferSize
+      <StrapiImage
+        width={data.file.width}
+        height={data.file.height}
         loading="eager"
         src={data.file.url}
         alt={alt}

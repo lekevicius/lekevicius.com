@@ -1,4 +1,3 @@
-import { getCollection } from "astro:content";
 import { OGImageRoute } from "astro-og-canvas";
 import siteData from "../../content/metadata.json";
 import type {
@@ -8,6 +7,7 @@ import type {
   TalkEntry,
   VideoEntry,
 } from "../../lib/strapiTypes";
+import { getContentCollection } from "../../lib/content";
 
 type OgPageData = {
   title: string;
@@ -74,11 +74,15 @@ const addPage = (
   };
 };
 
-const pageEntries = (await getCollection("pages")) as PageEntry[];
-const projectEntries = (await getCollection("projects")) as ProjectEntry[];
-const talkEntries = (await getCollection("talks")) as TalkEntry[];
-const videoEntries = (await getCollection("videos")) as VideoEntry[];
-const articleEntries = (await getCollection("articles")) as ArticleEntry[];
+const pageEntries = (await getContentCollection("pages")) as PageEntry[];
+const projectEntries = (await getContentCollection(
+  "projects",
+)) as ProjectEntry[];
+const talkEntries = (await getContentCollection("talks")) as TalkEntry[];
+const videoEntries = (await getContentCollection("videos")) as VideoEntry[];
+const articleEntries = (await getContentCollection(
+  "articles",
+)) as ArticleEntry[];
 
 pageEntries.forEach((entry) => {
   addPage(entry.data.slug, entry.data.title, entry.data.description);

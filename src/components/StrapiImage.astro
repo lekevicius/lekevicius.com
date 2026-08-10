@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import type { StrapiMediaSource } from "../lib/strapiTypes";
+
+interface Props {
+  src: StrapiMediaSource;
+  alt: string;
+  width?: number | null;
+  height?: number | null;
+  loading?: "eager" | "lazy";
+  class?: string;
+}
+
+const { src, alt, width, height, loading, class: className } = Astro.props;
+---
+
+{
+  typeof src !== "string" ? (
+    <Image
+      src={src}
+      width={width ?? undefined}
+      height={height ?? undefined}
+      loading={loading}
+      alt={alt}
+      class={className}
+    />
+  ) : width && height ? (
+    <Image
+      src={src}
+      width={width}
+      height={height}
+      loading={loading}
+      alt={alt}
+      class={className}
+    />
+  ) : (
+    <Image src={src} inferSize loading={loading} alt={alt} class={className} />
+  )
+}

@@ -5,11 +5,12 @@ import type {
   StrapiContentComponents,
   ArticleEntry,
 } from "../../lib/strapiTypes";
-import { getCollection } from "astro:content";
+import { getStrapiMediaUrl } from "../../lib/strapiTypes";
 import { formatDate } from "../../lib/utils";
+import { getContentCollection } from "../../lib/content";
 
 export async function getStaticPaths() {
-  const articles = (await getCollection("articles")) as ArticleEntry[];
+  const articles = (await getContentCollection("articles")) as ArticleEntry[];
   return articles.map((article) => ({
     params: {
       year: new Date(article.data.createdAt).getFullYear().toString(),
@@ -25,7 +26,7 @@ const { article } = Astro.props as { article: ArticleEntry };
 <Page
   title={article.data.title ?? ""}
   description={article.data.description ?? undefined}
-  image={article.data.cover?.url}
+  image={getStrapiMediaUrl(article.data.cover?.url)}
   sideLabel={formatDate(article.data.createdAt, "long")}
 >
   <BlockListRenderer data={article.data.content as StrapiContentComponents} />

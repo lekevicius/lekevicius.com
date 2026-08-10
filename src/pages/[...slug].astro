@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import Page from "../layouts/Page.astro";
 import BlockListRenderer from "../components/blocks/BlockListRenderer.astro";
 import { formatDate } from "../lib/utils";
@@ -10,12 +9,14 @@ import type {
   TalkEntry,
   VideoEntry,
 } from "../lib/strapiTypes";
+import { getStrapiMediaUrl } from "../lib/strapiTypes";
+import { getContentCollection } from "../lib/content";
 
 export async function getStaticPaths() {
-  const pages = (await getCollection("pages")) as PageEntry[];
-  const projects = (await getCollection("projects")) as ProjectEntry[];
-  const talks = (await getCollection("talks")) as TalkEntry[];
-  const videos = (await getCollection("videos")) as VideoEntry[];
+  const pages = (await getContentCollection("pages")) as PageEntry[];
+  const projects = (await getContentCollection("projects")) as ProjectEntry[];
+  const talks = (await getContentCollection("talks")) as TalkEntry[];
+  const videos = (await getContentCollection("videos")) as VideoEntry[];
   return [
     ...pages.map((page) => ({
       params: {
@@ -82,7 +83,7 @@ const sideLabel = getDateLabel();
 <Page
   title={page.data.title ?? ""}
   description={page.data.description ?? undefined}
-  image={page.data.cover?.url ?? undefined}
+  image={getStrapiMediaUrl(page.data.cover?.url)}
   videoUrl={videoUrl ?? undefined}
   sideLabel={sideLabel}
 >

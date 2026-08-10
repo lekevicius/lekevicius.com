@@ -1,7 +1,7 @@
 ---
 import type { StrapiSlideComponent } from "../../lib/strapiTypes";
 import { markdownToHtml } from "../../lib/markdown";
-import { Image } from "astro:assets";
+import StrapiImage from "../StrapiImage.astro";
 
 type Props = {
   data: StrapiSlideComponent;
@@ -17,7 +17,7 @@ const alt = data.image?.alternativeText || "";
   <div class="md:col-span-5 md:px-4 md:py-3">
     {
       data.image && (
-        <Image
+        <StrapiImage
           src={data.image.url}
           width={data.image.width || 1920}
           height={data.image.height || 1080}

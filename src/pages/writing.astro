@@ -1,11 +1,13 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import PageHeading from "../components/PageHeading.astro";
 import type { ArticleEntry } from "../lib/strapiTypes";
 import { formatDate } from "../lib/utils";
+import { getContentCollection } from "../lib/content";
 
-const allArticles = ((await getCollection("articles")) as ArticleEntry[]).sort(
+const allArticles = (
+  (await getContentCollection("articles")) as ArticleEntry[]
+).sort(
   (a, b) =>
     new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime(),
 );
