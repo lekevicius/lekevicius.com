@@ -62,6 +62,7 @@ const allVideos = ((await getContentCollection("videos")) as VideoEntry[])
       new Date(a.data.releasedAt ?? 0).getTime(),
   )
   .slice(0, 3);
+const hasMoments = (await getContentCollection("moments")).length > 0;
 ---
 
 <Layout>
@@ -111,6 +112,50 @@ const allVideos = ((await getContentCollection("videos")) as VideoEntry[])
       </div>
     </div>
   </section>
+
+  <!-- Writing -->
+  {
+    allArticles.length > 0 && (
+      <>
+        <hr />
+        <section class="stacked-title-section">
+          <div class="stacked-title-title">
+            <h2>Writing</h2>
+          </div>
+          <div class="stacked-title-content">
+            <ul class="entry-grid articles-grid">
+              {allArticles.map((article, index) => {
+                const year = new Date(article.data.createdAt).getFullYear();
+                return (
+                  <li class="entry-grid-item articles-grid-item">
+                    <a href={`/${year}/${article.data.slug}`}>
+                      <div class="article-date entry-grid-side-title">
+                        {formatDate(article.data.createdAt)}
+                      </div>
+                      <div class="entry-grid-content-subgrid">
+                        <h3 class="item-title">{article.data.title}</h3>
+                        {index < 3 && (
+                          <p class="item-description">
+                            {article.data.description}
+                          </p>
+                        )}
+                      </div>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+            <div class="entry-grid-footer justify-between">
+              <a href="/writing" class="inline-block-link">
+                All Articles…
+              </a>
+              {/* <a href="/feed.xml" class="inline-block-link flex! items-center gap-x-1 text-text/30!"><RSSIcon class="size-4" /> RSS</a> */}
+            </div>
+          </div>
+        </section>
+      </>
+    )
+  }
 
   <!-- Videos -->
   {
@@ -179,50 +224,6 @@ const allVideos = ((await getContentCollection("videos")) as VideoEntry[])
     )
   }
 
-  <!-- Writing -->
-  {
-    allArticles.length > 0 && (
-      <>
-        <hr />
-        <section class="stacked-title-section">
-          <div class="stacked-title-title">
-            <h2>Writing</h2>
-          </div>
-          <div class="stacked-title-content">
-            <ul class="entry-grid articles-grid">
-              {allArticles.map((article, index) => {
-                const year = new Date(article.data.createdAt).getFullYear();
-                return (
-                  <li class="entry-grid-item articles-grid-item">
-                    <a href={`/${year}/${article.data.slug}`}>
-                      <div class="article-date entry-grid-side-title">
-                        {formatDate(article.data.createdAt)}
-                      </div>
-                      <div class="entry-grid-content-subgrid">
-                        <h3 class="item-title">{article.data.title}</h3>
-                        {index < 3 && (
-                          <p class="item-description">
-                            {article.data.description}
-                          </p>
-                        )}
-                      </div>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-            <div class="entry-grid-footer justify-between">
-              <a href="/writing" class="inline-block-link">
-                All Articles…
-              </a>
-              {/* <a href="/feed.xml" class="inline-block-link flex! items-center gap-x-1 text-text/30!"><RSSIcon class="size-4" /> RSS</a> */}
-            </div>
-          </div>
-        </section>
-      </>
-    )
-  }
-
   <!-- Talks -->
   {
     allTalks.length > 0 && (
@@ -284,9 +285,16 @@ const allVideos = ((await getContentCollection("videos")) as VideoEntry[])
     )
   }
 
+  {
+    hasMoments && (
+      <Fragment>
+        <hr />
+        <Now />
+      </Fragment>
+    )
+  }
+
   <hr />
-  <!-- <Now />
-  <hr /> -->
 
   <!-- About -->
   <AboutSection />
