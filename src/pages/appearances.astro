@@ -63,7 +63,9 @@ const description = "Podcasts, interviews, and media features.";
                     {linkContent}
                   </a>
                 ) : (
-                  <div class="flex">{linkContent}</div>
+                  <div class="block md:grid grid-cols-subgrid col-span-12 px-4 py-3 md:p-0">
+                    {linkContent}
+                  </div>
                 )}
               </li>
             );

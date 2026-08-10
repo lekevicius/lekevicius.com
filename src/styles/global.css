@@ -613,7 +613,7 @@ button:focus-visible {
   }
 
   .link-grid-item-image {
-    @apply grow-0 shrink-0 relative size-13 rounded-xl overflow-hidden;
+    @apply grow-0 shrink-0 relative size-14 rounded-xl overflow-hidden;
     /* box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15); */
     box-shadow:
       0 0 1px rgba(0, 0, 0, 0.1),
@@ -702,7 +702,7 @@ button:focus-visible {
     @apply md:grid-cols-10 flex flex-col md:flex-row gap-6 h-full items-start;
 
     .media-thumbnail {
-      @apply grow-0 shrink-0 relative md:w-40 aspect-video rounded-xl overflow-hidden;
+      @apply grow-0 shrink-0 relative md:w-40 max-w-80 aspect-video rounded-xl overflow-hidden;
       box-shadow:
         0 0 1px rgba(0, 0, 0, 0.1),
         0 2px 4px rgba(0, 0, 0, 0.07),
