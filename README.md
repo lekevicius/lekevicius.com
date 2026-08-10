@@ -7,14 +7,14 @@ provides its content.
 
 ```text
 .
-├── packages/
-│   └── admin/   # Strapi 5 CMS
-└── site/        # Astro 7 website
+└── packages/
+    ├── admin/   # Strapi 5 CMS
+    └── site/    # Astro 7 website
 ```
 
 The projects keep their existing package managers and lockfiles:
 
-- `site/` uses Bun.
+- `packages/site/` uses Bun.
 - `packages/admin/` uses pnpm and Node.js 18–22.
 
 ## Setup
@@ -22,14 +22,14 @@ The projects keep their existing package managers and lockfiles:
 Install each project's dependencies from the repository root:
 
 ```sh
-bun install --cwd site
+bun install --cwd packages/site
 pnpm --dir packages/admin install
 ```
 
 Create local environment files and fill in the required secrets:
 
 ```sh
-cp site/.env.example site/.env
+cp packages/site/.env.example packages/site/.env
 cp packages/admin/.env.example packages/admin/.env
 ```
 
@@ -76,3 +76,9 @@ additional parents, so their original commit IDs remain valid.
 The `archive/v7-all-history` branch retains legacy v7 commits that had become
 reachable only through old remote-tracking refs. It exists solely as a history
 anchor and is not a development branch.
+
+## License
+
+The website content is licensed under the
+[Creative Commons BY-NC-ND 3.0 license](https://creativecommons.org/licenses/by-nc-nd/3.0/).
+The design and implementation remain copyrighted. See `LICENSE` for details.
