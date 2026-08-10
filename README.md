@@ -1,5 +1,19 @@
 # Astro Starter Kit: Basics
 
+## Development content
+
+`bun run dev` merges local fixtures with every Strapi-backed collection. The
+fixtures exercise articles, pages, projects, talks, videos, moments, and
+appearances, including all rich-text and media display variants. They are
+excluded from production builds.
+
+Useful review routes:
+
+- `/2026/the-quiet-workshop` — article typography, content blocks, and feeds
+- `/dev-content-lab` — the same block showcase in a generic page
+- `/projects`, `/talks`, `/videos`, and `/appearances` — collection variants
+- `/feed.xml` and `/feed.json` — RSS 2.0 and JSON Feed 1.1 output
+
 ```sh
 npm create astro@latest -- --template basics
 ```

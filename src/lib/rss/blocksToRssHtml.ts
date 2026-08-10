@@ -14,6 +14,7 @@ import type {
   StrapiRichTextComponent,
   StrapiSlideComponent,
 } from "../strapiTypes";
+import { getStrapiMediaUrl } from "../strapiTypes";
 
 type RssHtmlOptions = {
   site: URL;
@@ -26,10 +27,13 @@ const ALLOWED_TAGS = [
   "h2",
   "h3",
   "h4",
+  "h5",
+  "h6",
   "strong",
   "em",
   "u",
   "s",
+  "del",
   "code",
   "pre",
   "ul",
@@ -40,6 +44,16 @@ const ALLOWED_TAGS = [
   "figure",
   "img",
   "figcaption",
+  "hr",
+  "table",
+  "thead",
+  "tbody",
+  "tr",
+  "th",
+  "td",
+  "sup",
+  "sub",
+  "kbd",
 ];
 
 const SANITIZE_SCHEMA: Schema = {
@@ -48,7 +62,7 @@ const SANITIZE_SCHEMA: Schema = {
   attributes: {
     ...defaultSchema.attributes,
     a: ["href"],
-    img: ["src", "alt"],
+    img: ["src", "alt", "width", "height"],
   },
   protocols: {
     ...defaultSchema.protocols,
@@ -147,19 +161,34 @@ const renderMedia = (
   media: StrapiMedia,
   caption?: string | null,
   options?: RssHtmlOptions,
+  link?: string | null,
 ) => {
   if (!media?.url) return "";
   const src = normalizeImageUrl(
-    media.url,
+    getStrapiMediaUrl(media.url) ?? "",
     options?.site ?? new URL("https://lekevicius.com"),
     options?.strapiPublicUrl,
   );
   if (!src) return "";
   const alt = escapeHtml(media.alternativeText || caption || "");
+  const dimensions = [
+    media.width ? ` width="${media.width}"` : "",
+    media.height ? ` height="${media.height}"` : "",
+  ].join("");
+  const image = `<img src="${src}" alt="${alt}"${dimensions}>`;
+  const normalizedLink = link
+    ? normalizeUrl(link, options?.site ?? new URL("https://lekevicius.com"), [
+        "http",
+        "https",
+      ])
+    : "";
+  const linkedImage = normalizedLink
+    ? `<a href="${normalizedLink}">${image}</a>`
+    : image;
   const figcaption = caption
     ? `<figcaption>${escapeHtml(caption)}</figcaption>`
     : "";
-  return `<figure><img src="${src}" alt="${alt}">${figcaption}</figure>`;
+  return `<figure>${linkedImage}${figcaption}</figure>`;
 };
 
 const renderSlide = (slide: StrapiSlideComponent, options: RssHtmlOptions) => {
@@ -193,7 +222,7 @@ export const blocksToRssHtml = (
       const media = block as StrapiMediaComponent;
       const caption = media.caption || media.file?.caption;
       const output = media.file
-        ? renderMedia(media.file, caption, options)
+        ? renderMedia(media.file, caption, options, media.link)
         : "";
       if (output) html.push(output);
     }

@@ -59,6 +59,11 @@ const themeColor = siteData.themeColor || "#333333";
 const tileColor = siteData.tileColor || themeColor;
 const appleTitle = siteData.appleTitle || siteData.title;
 const feedTitle = siteData.feedTitle || "Articles";
+const feedBaseUrl = import.meta.env.DEV
+  ? new URL(Astro.url.origin)
+  : (Astro.site ?? new URL(siteData.siteUrl));
+const rssFeedUrl = new URL("/feed.xml", feedBaseUrl);
+const jsonFeedUrl = new URL("/feed.json", feedBaseUrl);
 const generator = siteData.generator || "Astro";
 const analytics = siteData.analytics;
 ---
@@ -120,13 +125,13 @@ const analytics = siteData.analytics;
     rel="alternate"
     type="application/rss+xml"
     title={feedTitle}
-    href="/feed.xml"
+    href={rssFeedUrl}
   />
   <link
     rel="alternate"
     type="application/feed+json"
     title={feedTitle}
-    href="/feed.json"
+    href={jsonFeedUrl}
   />
 
   <script

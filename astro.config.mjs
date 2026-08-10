@@ -26,6 +26,7 @@ const ogS3Integration =
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://lekevicius.com",
   vite: {
     plugins: [tailwindcss()],
   },

@@ -1,64 +1,46 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
 import type { APIContext } from "astro";
 
-import { blocksToRssHtml } from "../lib/rss/blocksToRssHtml";
-import type { ArticleEntry } from "../lib/strapiTypes";
 import siteData from "../content/metadata.json";
-
-const SITE_FALLBACK = "https://lekevicius.com";
-
-const getSiteUrl = (context: APIContext) => {
-  return context.site ?? new URL(SITE_FALLBACK);
-};
+import { blocksToRssHtml } from "../lib/rss/blocksToRssHtml";
+import {
+  getArticleUrl,
+  getFeedArticles,
+  getFeedSite,
+  getLatestFeedDate,
+  getStrapiPublicUrl,
+} from "../lib/rss/feed";
 
 export async function GET(context: APIContext) {
-  const site = getSiteUrl(context);
-  const strapiPublicUrl = import.meta.env.OG_IMAGE_BASE_URL;
+  const site = getFeedSite(context);
+  const strapiPublicUrl = getStrapiPublicUrl();
   const authorName = siteData.author || "Unknown";
-  const channelImage = `${siteData.siteUrl}/icons/icon-512x512.png`;
+  const channelImage = new URL("/icons/icon-512x512.png", site).toString();
+  const articles = await getFeedArticles();
+  const latestFeedDate = getLatestFeedDate(articles);
 
-  const articles = (await getCollection("articles")) as ArticleEntry[];
-
-  const items = articles
-    .filter((article) => Boolean(article.data.slug))
-    .sort(
-      (a, b) =>
-        new Date(b.data.createdAt).getTime() -
-        new Date(a.data.createdAt).getTime(),
-    )
-    .map((article) => {
-      const year = new Date(article.data.createdAt).getFullYear().toString();
-      const link = new URL(`/${year}/${article.data.slug}`, site).toString();
-      const contentHtml = blocksToRssHtml(article.data.content, {
-        site,
-        strapiPublicUrl,
-      });
-      const guid = link;
-
-      return {
-        title: article.data.title ?? "Untitled",
-        pubDate: new Date(article.data.createdAt),
-        description: article.data.description ?? "",
-        link,
-        customData: [
-          `<dc:creator><![CDATA[${authorName}]]></dc:creator>`,
-          `<guid>${guid}</guid>`,
-          contentHtml
-            ? `<content:encoded><![CDATA[${contentHtml}]]></content:encoded>`
-            : "",
-        ]
-          .filter(Boolean)
-          .join(""),
-      };
+  const items = articles.map((article) => {
+    const link = getArticleUrl(article, site);
+    const contentHtml = blocksToRssHtml(article.data.content, {
+      site,
+      strapiPublicUrl,
     });
 
-  return rss({
+    return {
+      title: article.data.title ?? "Untitled",
+      pubDate: new Date(article.data.createdAt),
+      description: article.data.description ?? "",
+      link,
+      content: contentHtml || undefined,
+      customData: `<dc:creator><![CDATA[${authorName}]]></dc:creator>`,
+    };
+  });
+
+  const response = await rss({
     title: siteData.feedTitle || "Articles",
-    description: "Latest articles",
+    description: siteData.description || "Latest articles",
     site: site.toString(),
     xmlns: {
-      content: "http://purl.org/rss/1.0/modules/content/",
       atom: "http://www.w3.org/2005/Atom",
       dc: "http://purl.org/dc/elements/1.1/",
       sy: "http://purl.org/rss/1.0/modules/syndication/",
@@ -67,11 +49,19 @@ export async function GET(context: APIContext) {
     customData: [
       `<atom:link href="${new URL("/feed.xml", site).toString()}" rel="self" type="application/rss+xml" />`,
       `<language>${siteData.language || "en-US"}</language>`,
-      `<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>`,
+      latestFeedDate
+        ? `<lastBuildDate>${latestFeedDate.toUTCString()}</lastBuildDate>`
+        : "",
       `<sy:updatePeriod>daily</sy:updatePeriod>`,
       `<sy:updateFrequency>1</sy:updateFrequency>`,
       `<generator>${siteData.generator || "Astro"}</generator>`,
       `<image><url>${channelImage}</url><title>${siteData.title}</title><link>${site.toString()}</link></image>`,
-    ].join(""),
+    ]
+      .filter(Boolean)
+      .join(""),
   });
+
+  const headers = new Headers(response.headers);
+  headers.set("Content-Type", "application/rss+xml; charset=utf-8");
+  return new Response(response.body, { headers });
 }
