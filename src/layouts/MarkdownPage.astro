@@ -19,6 +19,8 @@ const { frontmatter } = Astro.props;
   sideLabel={frontmatter.sideLabel}
 >
   <div class="rich-text-block prose">
-    <slot />
+    <div class="rich-text-content">
+      <slot />
+    </div>
   </div>
 </Page>

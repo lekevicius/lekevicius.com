@@ -447,10 +447,28 @@ a:focus-visible {
 .content-blocks {
   @apply col-span-12 md:grid grid-cols-subgrid;
 
-  /* Default blocks go in the content column (3-12) */
-  .rich-text-block,
+  /* Default media goes in the content column (3-12) */
   .media-block-plain {
     @apply col-start-3 col-span-10 px-4;
+  }
+
+  /* Prose children join the page grid so selected elements can break out. */
+  .rich-text-block {
+    @apply col-span-12 px-4 md:contents;
+  }
+
+  .rich-text-content {
+    @apply md:contents;
+  }
+
+  .rich-text-content > * {
+    @apply md:col-start-3 md:col-span-10 md:mx-4;
+    max-width: 65ch;
+  }
+
+  .rich-text-content > table {
+    @apply md:col-start-1 md:col-span-12 md:mx-4 md:w-auto;
+    max-width: none;
   }
 
   .youtube-embed {
@@ -877,8 +895,8 @@ hr {
   --tw-prose-quote-borders: oklch(from var(--text-color) l c h / 0.2);
   --tw-prose-captions: oklch(from var(--text-color) l c h / 0.6);
   --tw-prose-code: var(--text-color);
-  --tw-prose-pre-code: var(--background-color);
-  --tw-prose-pre-bg: var(--text-color);
+  --tw-prose-pre-code: var(--text-color);
+  --tw-prose-pre-bg: oklch(from var(--text-color) l c h / 0.06);
   --tw-prose-th-borders: oklch(from var(--text-color) l c h / 0.2);
   --tw-prose-td-borders: oklch(from var(--text-color) l c h / 0.1);
 }
@@ -890,4 +908,50 @@ hr {
 .prose h5,
 .prose h6 {
   font-family: var(--font-heading);
+}
+
+.prose table {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+.prose .code-block {
+  position: relative;
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.prose .code-block pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-right: 3.75rem;
+}
+
+.code-copy-button {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.375rem;
+  z-index: 1;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.15s ease-out;
+}
+
+.code-copy-button:hover,
+.code-copy-button:focus-visible {
+  background: oklch(from var(--text-color) l c h / 0.06);
+}
+
+.code-copy-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  pointer-events: none;
 }

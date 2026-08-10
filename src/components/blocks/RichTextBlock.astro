@@ -10,5 +10,9 @@ const { data } = Astro.props;
 ---
 
 <div class="prose rich-text-block">
-  {data.body && <div set:html={markdownToHtml(data.body)} />}
+  {
+    data.body && (
+      <div class="rich-text-content" set:html={markdownToHtml(data.body)} />
+    )
+  }
 </div>

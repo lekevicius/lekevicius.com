@@ -37,6 +37,12 @@ const { title, description, image } = Astro.props;
     const { wireTooltips } = await import("../lib/tooltip.ts");
     wireTooltips(document);
   }
+  async function initProse() {
+    const { wireProse } = await import("../lib/prose.ts");
+    wireProse(document);
+  }
   document.addEventListener("astro:page-load", initTooltips);
   document.addEventListener("astro:after-swap", initTooltips);
+  document.addEventListener("astro:page-load", initProse);
+  document.addEventListener("astro:after-swap", initProse);
 </script>
